@@ -1,0 +1,402 @@
+/* feast AI - terminal theme
+   Warm amber accent (feast) over a cool slate base (telemetry). */
+
+Screen {
+    background: #0e1117;
+    color: #e6e9f0;
+}
+
+Header {
+    background: #161b26;
+    color: #ffb454;
+    text-style: bold;
+}
+
+Footer {
+    background: #161b26;
+}
+
+.panel {
+    border: round #2a3040;
+    background: #131822;
+    padding: 1 2;
+}
+
+.panel-title {
+    color: #ffb454;
+    text-style: bold;
+    margin-bottom: 1;
+}
+
+.dim { color: #6f7789; }
+.accent { color: #ffb454; }
+.info { color: #4fc1ff; }
+.good { color: #7bd88f; }
+.warn { color: #ffb454; }
+.bad  { color: #ff5f5f; }
+.tr   { color: #7bd88f; text-style: bold; }
+
+Button {
+    margin: 0 1;
+    min-width: 16;
+}
+
+Button.-primary {
+    background: #ff8a3d;
+    color: #10131a;
+    text-style: bold;
+}
+
+/* ------------------------------------------------------------------ */
+/* Welcome                                                             */
+/* ------------------------------------------------------------------ */
+#welcome-wrap {
+    align: center middle;
+    height: 1fr;
+}
+
+#welcome-card {
+    width: 88;
+    max-width: 96%;
+    height: auto;
+    border: round #2a3040;
+    background: #131822;
+    padding: 1 3;
+}
+
+#banner { height: auto; margin-bottom: 1; }
+
+#host-facts {
+    height: auto;
+    border-top: solid #2a3040;
+    padding-top: 1;
+    margin-top: 1;
+}
+
+#welcome-actions {
+    height: auto;
+    align: center middle;
+    margin-top: 1;
+}
+
+#boot-status {
+    height: auto;
+    color: #6f7789;
+    margin-top: 1;
+}
+
+#boot-progress { margin-top: 1; display: none; }
+#boot-progress.active { display: block; }
+
+/* ------------------------------------------------------------------ */
+/* Settings                                                            */
+/* ------------------------------------------------------------------ */
+#settings-body { height: 1fr; }
+
+.settings-col {
+    width: 1fr;
+    padding: 0 1;
+}
+
+.field-label {
+    color: #8b93a7;
+    margin-top: 1;
+}
+
+.field-help {
+    color: #545b6b;
+    margin-bottom: 0;
+}
+
+Input, Select {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+#system-prompt {
+    height: 9;
+    border: round #2a3040;
+    background: #0e1117;
+}
+
+#profile-note {
+    height: auto;
+    color: #6f7789;
+    margin-top: 1;
+    padding: 1;
+    border: round #2a3040;
+}
+
+#settings-actions {
+    height: auto;
+    align: center middle;
+    padding: 1 0;
+    border-top: solid #2a3040;
+}
+
+.switch-row {
+    height: auto;
+    align: left middle;
+    margin-top: 1;
+}
+
+.switch-row Label { width: 30; color: #8b93a7; }
+
+/* ------------------------------------------------------------------ */
+/* Models                                                              */
+/* ------------------------------------------------------------------ */
+#models-body { height: 1fr; }
+
+#model-table {
+    width: 2fr;
+    height: 1fr;
+}
+
+#model-detail {
+    width: 1fr;
+    height: 1fr;
+    border-left: solid #2a3040;
+    padding: 1 2;
+}
+
+#detail-name {
+    color: #ffb454;
+    text-style: bold;
+}
+
+#detail-why { margin-top: 1; }
+
+#download-bar { margin-top: 1; display: none; }
+#download-bar.active { display: block; }
+
+#download-status {
+    height: auto;
+    color: #6f7789;
+    margin-top: 1;
+}
+
+#model-actions {
+    height: auto;
+    align: center middle;
+    border-top: solid #2a3040;
+    padding: 1 0;
+}
+
+DataTable { background: #131822; }
+DataTable > .datatable--header {
+    background: #1b2230;
+    color: #ffb454;
+    text-style: bold;
+}
+DataTable > .datatable--cursor { background: #35405a; color: #ffffff; }
+
+/* ------------------------------------------------------------------ */
+/* Chat                                                                */
+/* ------------------------------------------------------------------ */
+#chat-body { height: 1fr; }
+
+#chat-main {
+    width: 1fr;
+    height: 1fr;
+}
+
+#transcript {
+    height: 1fr;
+    background: #0e1117;
+    padding: 0 2;
+    scrollbar-size: 1 1;
+}
+
+#composer {
+    height: auto;
+    border-top: solid #2a3040;
+    padding: 1 2;
+}
+
+#chat-input { border: round #2a3040; }
+
+#telemetry {
+    width: 38;
+    min-width: 30;
+    height: 1fr;
+    border-left: solid #2a3040;
+    background: #111620;
+    padding: 1 1;
+}
+
+.telemetry-section {
+    height: auto;
+    margin-bottom: 1;
+    border-bottom: solid #1e2431;
+    padding-bottom: 1;
+}
+
+.telemetry-head {
+    color: #ffb454;
+    text-style: bold;
+}
+
+.tiles {
+    height: auto;
+    grid-size: 2 2;
+    grid-gutter: 0 1;
+}
+
+/* Paging readout: only shown while a RAM ceiling is being enforced. */
+.paging-facts {
+    height: auto;
+    margin-top: 1;
+    padding: 0 1;
+    border-left: solid #ff5f5f;
+}
+
+StatTile {
+    height: 2;
+    width: 1fr;
+}
+
+Meter { height: 1; }
+MiniSparkline { height: 1; }
+
+#chat-status {
+    height: 1;
+    color: #6f7789;
+    padding: 0 2;
+}
+
+/* ------------------------------------------------------------------ */
+/* Summary                                                             */
+/* ------------------------------------------------------------------ */
+#summary-body { height: 1fr; padding: 0 1; }
+
+#verdict {
+    height: auto;
+    border: round #2a3040;
+    padding: 1 2;
+    margin-bottom: 1;
+}
+
+.summary-grid {
+    height: auto;
+    grid-size: 4 1;
+    grid-gutter: 0 1;
+    margin-bottom: 1;
+}
+
+.summary-grid StatTile {
+    height: 3;
+    border: round #2a3040;
+    padding: 0 1;
+    content-align: center middle;
+}
+
+#summary-cols { height: auto; }
+
+.summary-panel {
+    width: 1fr;
+    height: auto;
+    border: round #2a3040;
+    padding: 1 2;
+    margin: 0 1 1 0;
+}
+
+#turn-table { height: auto; max-height: 16; }
+
+#summary-actions {
+    height: auto;
+    align: center middle;
+    border-top: solid #2a3040;
+    padding: 1 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Modals                                                              */
+/* ------------------------------------------------------------------ */
+ConfirmScreen {
+    align: center middle;
+}
+
+#confirm-card {
+    width: 64;
+    height: auto;
+    border: round #ffb454;
+    background: #131822;
+    padding: 1 2;
+}
+
+#confirm-actions {
+    height: auto;
+    align: center middle;
+    margin-top: 1;
+}
+
+SystemPromptScreen { align: center middle; }
+
+#prompt-card {
+    width: 84;
+    max-width: 96%;
+    height: auto;
+    border: round #ffb454;
+    background: #131822;
+    padding: 1 2;
+}
+
+#prompt-card TextArea {
+    height: 11;
+    border: round #2a3040;
+    background: #0e1117;
+}
+
+.save-row {
+    height: auto;
+    align: left middle;
+    margin-top: 1;
+}
+
+.save-row Input { width: 1fr; }
+.save-row Button { min-width: 10; margin: 0 0 0 1; }
+
+AddModelScreen { align: center middle; }
+
+#add-card {
+    width: 92;
+    max-width: 96%;
+    height: auto;
+    border: round #4fc1ff;
+    background: #131822;
+    padding: 1 2;
+}
+
+#add-examples {
+    height: auto;
+    padding: 1;
+    border: round #2a3040;
+    color: #545b6b;
+    margin-bottom: 1;
+}
+
+#add-status { height: auto; margin: 1 0; }
+
+.meta-row {
+    height: auto;
+    margin-top: 1;
+}
+
+.meta-row Input { width: 1fr; margin-right: 1; }
+
+LoadingScreen { align: center middle; }
+
+#loading-card {
+    width: 70;
+    height: auto;
+    border: round #2a3040;
+    background: #131822;
+    padding: 2 3;
+}
+
+#loading-title {
+    color: #ffb454;
+    text-style: bold;
+}
+
+#loading-detail { color: #8b93a7; margin-top: 1; }

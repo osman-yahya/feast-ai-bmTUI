@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+
+# feast AI runtime state lives in ~/.feast-ai, but keep these out just in case
+*.gguf
+*.gguf.part
+sessions/
+logs/

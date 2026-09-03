@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "PowerShell(Get-ChildItem C:\\\\Users\\\\UYSM-3\\\\Desktop\\\\Osman\\\\Bitirme -Force | Select-Object Name, Length; echo \"---PY---\"; \\(Get-Command python -ErrorAction SilentlyContinue\\).Source; python --version; echo \"---OLLAMA---\"; \\(Get-Command ollama -ErrorAction SilentlyContinue\\).Source; echo \"---CPU---\"; \\(Get-CimInstance Win32_Processor\\).Name; \\(Get-CimInstance Win32_Processor\\).NumberOfLogicalProcessors; [math]::Round\\(\\(Get-CimInstance Win32_ComputerSystem\\).TotalPhysicalMemory/1GB,1\\))",
+      "WebFetch(domain:huggingface.co)",
+      "WebFetch(domain:api.github.com)",
+      "PowerShell(python -m pip --version)",
+      "PowerShell(python -c \"import textual, psutil; print\\(textual.__version__, psutil.__version__\\)\" 2>&1)",
+      "PowerShell(python -m pip install --quiet \"textual>=1.0\" psutil httpx huggingface_hub rich 2>&1)",
+      "PowerShell(python -c \"import textual,psutil,httpx,huggingface_hub; print\\('textual',textual.__version__\\); print\\('psutil',psutil.__version__\\); print\\('httpx',httpx.__version__\\); print\\('hf',huggingface_hub.__version__\\)\")",
+      "Bash(python -)",
+      "PowerShell(python -m feast_ai models)",
+      "PowerShell(python -m feast_ai runtime)",
+      "PowerShell(python -m feast_ai pull gemma-3-270m)",
+      "PowerShell(python -m feast_ai pull llama32-1b-tr)",
+      "PowerShell(python \"$env:TEMP\\\\claude\\\\C--Users-UYSM-3-Desktop-Osman-Bitirme\\\\ff77b06e-5432-4d10-a6fd-fcaa6f1af321\\\\scratchpad\\\\e2e.py\" llama32-1b-tr 4)",
+      "PowerShell(python \"$env:TEMP\\\\claude\\\\C--Users-UYSM-3-Desktop-Osman-Bitirme\\\\ff77b06e-5432-4d10-a6fd-fcaa6f1af321\\\\scratchpad\\\\e2e.py\" gemma-3-270m 1)",
+      "PowerShell($env:FEAST_AI_HOME=\"\"; python \"$env:TEMP\\\\claude\\\\C--Users-UYSM-3-Desktop-Osman-Bitirme\\\\ff77b06e-5432-4d10-a6fd-fcaa6f1af321\\\\scratchpad\\\\tui.py\")",
+      "PowerShell(python \"$env:TEMP\\\\claude\\\\C--Users-UYSM-3-Desktop-Osman-Bitirme\\\\ff77b06e-5432-4d10-a6fd-fcaa6f1af321\\\\scratchpad\\\\tui.py\")",
+      "PowerShell(python -m pip install --quiet pyflakes 2>&1)",
+      "PowerShell(python -m pyflakes feast_ai)",
+      "PowerShell(python -m feast_ai pull qwen3-0.6b 2>&1)",
+      "PowerShell(python \"$env:TEMP\\\\claude\\\\C--Users-UYSM-3-Desktop-Osman-Bitirme\\\\ff77b06e-5432-4d10-a6fd-fcaa6f1af321\\\\scratchpad\\\\think.py\")",
+      "PowerShell(python \"$env:TEMP\\\\claude\\\\C--Users-UYSM-3-Desktop-Osman-Bitirme\\\\ff77b06e-5432-4d10-a6fd-fcaa6f1af321\\\\scratchpad\\\\think2.py\")",
+      "PowerShell(python -m pyflakes feast_ai; python \"$env:TEMP\\\\claude\\\\C--Users-UYSM-3-Desktop-Osman-Bitirme\\\\ff77b06e-5432-4d10-a6fd-fcaa6f1af321\\\\scratchpad\\\\tui_think.py\")",
+      "PowerShell(python -m pyflakes feast_ai; if \\($?\\) { Write-Host \"pyflakes: clean\" }; python \"$env:TEMP\\\\claude\\\\C--Users-UYSM-3-Desktop-Osman-Bitirme\\\\ff77b06e-5432-4d10-a6fd-fcaa6f1af321\\\\scratchpad\\\\tui_think.py\")",
+      "PowerShell(python -m pyflakes feast_ai; python \"$env:TEMP\\\\claude\\\\C--Users-UYSM-3-Desktop-Osman-Bitirme\\\\ff77b06e-5432-4d10-a6fd-fcaa6f1af321\\\\scratchpad\\\\repro.py\")"
+    ]
+  }
+}
