@@ -49,6 +49,10 @@ class FeastApp(App):
         self.settings: Settings = Settings.load()
         self.runtime: RuntimeInfo = runtime_info()
         self.server: BaseServer | None = None
+        #: The intent router's worker and policy, alive only while the
+        #: hierarchical agent mode has been used this session.
+        self.router_server: BaseServer | None = None
+        self.router = None
         self.sampler: Sampler = Sampler(
             budget_cores=self.settings.cpu_budget_cores,
             history_points=self.settings.sample_points,
@@ -71,10 +75,34 @@ class FeastApp(App):
     def engine_running(self) -> bool:
         return self.server is not None and self.server.running
 
+    @property
+    def router_running(self) -> bool:
+        return self.router_server is not None and self.router_server.running
+
+    def attach_telemetry(self) -> None:
+        """Sample the model and, when loaded, the router as one device.
+
+        They share the simulated phone's cores and memory, so CPU and RSS
+        are reported for the pair - the router is not free.
+        """
+        procs = self.server.snapshot_processes() if self.server else []
+        if self.router_server is not None:
+            procs += self.router_server.snapshot_processes()
+        self.sampler.attach(procs)
+
     # ------------------------------------------------------------------
+    async def shutdown_router(self) -> None:
+        if self.router is not None:
+            await self.router.aclose()
+        self.router = None
+        if self.router_server is not None:
+            await self.router_server.stop()
+        self.router_server = None
+
     async def shutdown_engine(self) -> None:
-        """Stop the inference server and detach telemetry."""
+        """Stop the inference server (and router) and detach telemetry."""
         self.sampler.detach()
+        await self.shutdown_router()
         if self.server is not None:
             await self.server.stop()
         self.server = None
@@ -85,8 +113,10 @@ class FeastApp(App):
 
     async def on_unmount(self) -> None:
         # Belt and braces: never leave an orphaned llama-server behind.
-        if self.server is not None:
+        for server in (self.server, self.router_server):
+            if server is None:
+                continue
             try:
-                await asyncio.wait_for(self.server.stop(), timeout=5)
+                await asyncio.wait_for(server.stop(), timeout=5)
             except (asyncio.TimeoutError, OSError):  # pragma: no cover
                 pass

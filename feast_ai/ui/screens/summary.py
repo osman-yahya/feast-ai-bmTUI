@@ -66,6 +66,9 @@ class SummaryScreen(Screen):
         for column, width in (
             ("#", 3),
             ("Prompt", 30),
+            ("Route", 20),
+            ("Call", 16),
+            ("Latency s", 9),
             ("In", 6),
             ("Out", 6),
             ("Think", 12),
@@ -232,6 +235,22 @@ class SummaryScreen(Screen):
             summary.thinking_mode,
             {"off": "#7bd88f", "on": "#ffb454"}.get(summary.thinking_mode, "#8b93a7"),
         )
+        line("Agent mode", summary.agent_mode,
+             "#7bd88f" if summary.agent_used else "#8b93a7")
+        if summary.agent_used:
+            text.append("\nAGENT PIPELINE\n", style="bold #ffb454")
+            if summary.router_model:
+                line("Router", summary.router_model, "#4fc1ff")
+                line("Router RSS", human_bytes(summary.router_rss))
+                line("Router avg", f"{summary.router_ms_avg:.0f} ms "
+                                   f"(encoder {summary.encoder_ms_avg:.0f})")
+            line("No-SLM turns", f"{summary.direct_turns} of {summary.turns}", "#7bd88f")
+            line("Latency avg/p95",
+                 f"{summary.latency_avg:.2f} / {summary.latency_p95:.2f} s")
+            line("Calls ok", str(summary.calls_ok), "#7bd88f")
+            line("Hallucinated", str(summary.calls_hallucinated),
+                 "#ff5f5f" if summary.calls_hallucinated else "#7bd88f")
+            line("Text replies", str(summary.text_replies))
         text.append("\nSYSTEM PROMPT\n", style="#6f7789")
         prompt = summary.system_prompt.strip() or "(none)"
         text.append(prompt[:400] + ("…" if len(prompt) > 400 else ""), style="#8b93a7")
@@ -258,9 +277,23 @@ class SummaryScreen(Screen):
                 think_cell = Text(f"{think_tokens} ({share:.0f}%)", style="#ffb454")
             else:
                 think_cell = Text("off" if mode == "off" else "—", style="#6f7789")
+            kind = row.get("route_kind", "")
+            route_cell = Text(
+                f"{row.get('route_intent', '')}·{kind}" if kind else row.get("agent_mode", "off"),
+                style="#7bd88f" if kind == "direct" else "#8b93a7",
+            )
+            status = row.get("call_status", "")
+            call_cell = Text(
+                f"{row.get('tool_call') or 'text'}" if status in ("ok", "text")
+                else (status.replace("_", " ") if status else "—"),
+                style={"ok": "#7bd88f", "text": "#8b93a7", "": "#6f7789"}.get(status, "#ff5f5f"),
+            )
             table.add_row(
                 str(row["index"]),
                 preview[:28] + ("…" if len(preview) > 28 else ""),
+                route_cell,
+                call_cell,
+                f"{row.get('total_s', 0.0):.2f}",
                 str(row["prompt_tokens"]),
                 str(row["completion_tokens"]),
                 think_cell,

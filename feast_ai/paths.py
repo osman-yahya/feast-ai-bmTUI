@@ -24,11 +24,18 @@ BIN_DIR = HOME / "bin"
 RUNTIME_DIR = BIN_DIR / "llama.cpp"
 SESSIONS_DIR = HOME / "sessions"
 LOG_DIR = HOME / "logs"
+#: Encoder models (the intent router), kept apart from the generative catalog.
+ENCODERS_DIR = HOME / "encoders"
+#: The simulated phone state the agent prompt's CONTEXT block is rendered from.
+AGENT_CONTEXT_FILE = HOME / "agent_context.json"
+#: Saved llama.cpp slot states - one precomputed KV snapshot per intent
+#: prompt, standing in for what a phone would keep on flash.
+KV_DIR = HOME / "kv"
 
 
 def ensure_dirs() -> None:
     """Create every directory feast AI writes to."""
-    for path in (HOME, MODELS_DIR, BIN_DIR, RUNTIME_DIR, SESSIONS_DIR, LOG_DIR):
+    for path in (HOME, MODELS_DIR, BIN_DIR, RUNTIME_DIR, SESSIONS_DIR, LOG_DIR, ENCODERS_DIR):
         path.mkdir(parents=True, exist_ok=True)
 
 

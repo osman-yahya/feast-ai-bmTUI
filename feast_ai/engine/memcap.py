@@ -122,17 +122,21 @@ def _apply_windows(pid: int, limit_bytes: int) -> CapResult:
 # --------------------------------------------------------------------------
 # Linux
 # --------------------------------------------------------------------------
-def _apply_linux(pid: int, limit_bytes: int) -> CapResult:
+def _apply_linux(pid: int, limit_bytes: int, group_name: str = "feast-ai") -> CapResult:
     """cgroup v2 ``memory.high``: throttle and reclaim, never OOM-kill.
 
     ``memory.high`` is the right knob precisely because it is *not*
     ``memory.max`` - crossing it triggers reclaim and throttling rather than
     the OOM killer, matching the Windows behaviour above.
+
+    Each server gets its own group.  With one shared group, the intent
+    router's small slice would overwrite the model's ``memory.high`` - the
+    last writer wins - and squeeze the model far below its budget.
     """
     base = Path("/sys/fs/cgroup")
     if not (base / "cgroup.controllers").exists():
         return CapResult(detail="cgroup v2 not mounted")
-    group = base / "feast-ai"
+    group = base / group_name
     try:
         group.mkdir(exist_ok=True)
         (group / "memory.high").write_text(str(limit_bytes))
@@ -149,14 +153,17 @@ def _apply_linux(pid: int, limit_bytes: int) -> CapResult:
 
 
 # --------------------------------------------------------------------------
-def apply_cap(pid: int, limit_bytes: int) -> CapResult:
-    """Cap the resident memory of ``pid``. Best effort; reports what happened."""
+def apply_cap(pid: int, limit_bytes: int, group: str = "feast-ai") -> CapResult:
+    """Cap the resident memory of ``pid``. Best effort; reports what happened.
+
+    ``group`` names the Linux cgroup; Windows caps are per-process already.
+    """
     if limit_bytes <= 0:
         return CapResult(detail="no limit requested")
     if sys.platform == "win32":
         return _apply_windows(pid, limit_bytes)
     if sys.platform.startswith("linux"):
-        return _apply_linux(pid, limit_bytes)
+        return _apply_linux(pid, limit_bytes, group)
     return CapResult(detail=f"no working-set cap available on {sys.platform}")
 
 
@@ -172,6 +179,14 @@ def release_cap(pid: int) -> None:
     try:
         k32 = ctypes.WinDLL("kernel32", use_last_error=True)
         k32.OpenProcess.restype = wt.HANDLE
+        k32.OpenProcess.argtypes = [wt.DWORD, wt.BOOL, wt.DWORD]
+        # Each WinDLL() is a fresh object, so the argtypes set in
+        # _apply_windows do not carry over. Without them ctypes passes ints as
+        # C int and (SIZE_T)-1 overflows.
+        k32.SetProcessWorkingSetSizeEx.argtypes = [
+            wt.HANDLE, ctypes.c_size_t, ctypes.c_size_t, wt.DWORD,
+        ]
+        k32.CloseHandle.argtypes = [wt.HANDLE]
         handle = k32.OpenProcess(0x0100 | 0x0400, False, pid)
         if not handle:
             return

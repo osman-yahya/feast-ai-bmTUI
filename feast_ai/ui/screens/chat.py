@@ -1,4 +1,11 @@
-"""Chat screen: streaming conversation with live edge telemetry."""
+"""Chat screen: streaming conversation with live edge telemetry.
+
+With an agent mode on (Ctrl+R) the screen also runs the feast tool-calling
+pipeline under test: ``direct`` sends every tool, ``hierarchical`` asks the
+intent router first and may answer without the SLM.  Each turn records how it
+was routed and whether the call that came back was valid, so the session
+report compares the pipelines on the same device budget.
+"""
 
 from __future__ import annotations
 
@@ -12,6 +19,11 @@ from textual.containers import Grid, Horizontal, Vertical, VerticalScroll
 from textual.screen import Screen
 from textual.widgets import Footer, Header, Input, Static
 
+from ...agent import prompts as agent_prompts
+from ...agent.calls import check_reply, render_call
+from ...agent.context import AgentContext
+from ...agent.router import RouteDecision, RouterError
+from ...agent.tools import ALL_TOOL_NAMES
 from ...engine import ChatClient, make_server
 from ...engine.client import Message, ThinkFilter
 from ...engine.server import EngineError
@@ -66,6 +78,7 @@ class ChatScreen(Screen):
         ("ctrl+e", "end_session", "End & report"),
         ("ctrl+p", "edit_prompt", "System prompt"),
         ("ctrl+t", "toggle_thinking", "Thinking"),
+        ("ctrl+r", "toggle_agent", "Agent mode"),
         ("ctrl+x", "stop_generation", "Stop"),
         ("ctrl+l", "clear_chat", "Clear"),
         ("f2", "open_settings", "Settings"),
@@ -84,6 +97,12 @@ class ChatScreen(Screen):
         self._first_token_at = 0.0
         self._pending_render: Bubble | None = None
         self._ready = False
+        #: The previous routing decision, so a follow-up ("evet") can inherit
+        #: its tool group. Reset whenever the context or the mode changes.
+        self._last_route: RouteDecision | None = None
+        self._router_lock = asyncio.Lock()
+        #: Kept past an unload, so the report still states what the router cost.
+        self._router_rss = 0
 
     # ------------------------------------------------------------------
     def compose(self) -> ComposeResult:
@@ -133,6 +152,12 @@ class ChatScreen(Screen):
     def on_screen_resume(self) -> None:
         if self._timer is not None:
             self._timer.resume()
+        # The agent mode may have changed in Settings: an idle router must not
+        # keep holding RAM the model is now entitled to.
+        if self.app.settings.agent_mode != "hierarchical":
+            self._last_route = None
+            if self.app.router_server is not None:
+                self.stop_router_worker()
         self.update_side_facts()
 
     # ------------------------------------------------------------------
@@ -194,7 +219,7 @@ class ChatScreen(Screen):
 
         app.sampler.set_budget(app.settings.cpu_budget_cores)
         app.sampler.reset()
-        app.sampler.attach(server.snapshot_processes())
+        app.attach_telemetry()
         self.client = ChatClient(server.base_url, app.settings, model=spec.id)
 
         pinned = report.pinned_cores
@@ -231,6 +256,72 @@ class ChatScreen(Screen):
         self.status(
             "[#7bd88f]Ready.[/] [#6f7789]Type a message. Ctrl+E ends the session "
             "and opens the report.[/]"
+        )
+        self.update_side_facts()
+        if app.settings.agent_mode == "hierarchical":
+            await self.ensure_router()
+
+    # ------------------------------------------------------------------
+    async def ensure_router(self) -> bool:
+        """Start the intent router if it is not running. Safe to race."""
+        from ...agent import start_router
+        from ...agent.intents import INTENTS
+
+        app = self.app
+        async with self._router_lock:
+            if app.router_running:
+                return True
+            self.status("[#8b93a7]Loading the intent router…[/]")
+            try:
+                server, router = await start_router(
+                    app.settings, app.server,
+                    on_status=lambda m: self.status(f"[#8b93a7]router: {m}[/]"),
+                )
+            except EngineError as exc:
+                self.add_bubble("error", "router", str(exc))
+                self.status("[#ff5f5f]Router unavailable - hierarchical mode cannot route.[/]")
+                return False
+            app.router_server, app.router = server, router
+            self._router_rss = max(self._router_rss, server.report.rss_after_load)
+            app.attach_telemetry()
+            props = await router.props()
+            report = server.report
+            message = (
+                f"Intent router ready in {report.load_seconds:.1f}s · "
+                f"{server.spec.name} · {props.get('bank_size', '?')} exemplars over "
+                f"{len(INTENTS)} intents · RSS {human_bytes(report.rss_after_load)} · "
+                f"same {app.settings.cpu_budget_cores} core(s) as the model."
+            )
+            if report.cap.applied and app.server is not None:
+                message += (
+                    f"\nRAM budget split: router {report.cap.limit_mb} MB, model "
+                    f"{app.server.report.cap.limit_mb} MB."
+                )
+            self.add_bubble("system", "feast AI", message)
+            self.status("[#7bd88f]Router ready.[/]")
+            self.update_side_facts()
+            return True
+
+    @work(group="router")
+    async def start_router_worker(self) -> None:
+        # Its own group: send() is exclusive in the default group and would
+        # otherwise cancel a router that is half-way through starting.
+        await self.ensure_router()
+
+    @work(group="router")
+    async def stop_router_worker(self) -> None:
+        """Unload the router so non-hierarchical turns do not pay for it."""
+        app = self.app
+        async with self._router_lock:
+            if app.router_server is None:
+                return
+            await app.shutdown_router()
+            if app.server is not None and app.server.ram_limit_override is not None:
+                app.server.set_ram_limit(None)
+            app.attach_telemetry()
+        self.add_bubble(
+            "system", "feast AI",
+            "Intent router unloaded - the model has the whole device budget again.",
         )
         self.update_side_facts()
 
@@ -369,11 +460,25 @@ class ChatScreen(Screen):
                 style=f"bold {think_tone}",
             )
             model.append("  (Ctrl+T)\n", style="#3a3f4b")
-            prompt = " ".join(settings.system_prompt.split())
-            model.append(
-                "system: " + (prompt[:70] + "…" if len(prompt) > 70 else prompt or "(none)"),
-                style="#545b6b",
-            )
+            agent_tone = {"off": "#6f7789", "direct": "#ffb454", "hierarchical": "#7bd88f"}
+            model.append("agent    ", style="#6f7789")
+            model.append(settings.agent_mode, style=f"bold {agent_tone[settings.agent_mode]}")
+            model.append("  (Ctrl+R)\n", style="#3a3f4b")
+            if settings.agent_mode == "hierarchical":
+                state = "ready" if app.router_running else "not loaded"
+                model.append(f"router   {state}\n", style="#6f7789")
+            if settings.agent_mode == "off":
+                prompt = " ".join(settings.system_prompt.split())
+                model.append(
+                    "system: " + (prompt[:70] + "…" if len(prompt) > 70 else prompt or "(none)"),
+                    style="#545b6b",
+                )
+            else:
+                model.append(
+                    "system: feast tool prompt"
+                    + (" (routed per message)" if settings.agent_mode == "hierarchical" else ""),
+                    style="#545b6b",
+                )
         self.query_one("#model-facts", Static).update(model)
 
     # ------------------------------------------------------------------
@@ -414,21 +519,51 @@ class ChatScreen(Screen):
             )
 
         self.add_bubble("user", "you", text)
-        bubble = self.add_bubble("assistant", app.active_model.name if app.active_model else "model")
-
-        turn = self.recorder.start_turn(text, thinking_mode=settings.thinking_mode)
-        messages = self.client.build_messages(self.history, text)
+        mode = settings.agent_mode
+        turn = self.recorder.start_turn(
+            text, thinking_mode=settings.thinking_mode, agent_mode=mode
+        )
 
         self.generating = True
         self._stop = False
         self._live_tokens = 0
         self._live_tps = 0.0
         self._first_token_at = 0.0
+        # The clock starts before routing: the router is part of what the user
+        # waits for, so TTFT and latency include it.
         started = time.monotonic()
         window_start = time.time()
 
+        system_prompt: str | None = None  # None -> the Settings system prompt
+        offered: tuple[str, ...] = ()
+        context: AgentContext | None = None
+        if mode != "off":
+            context = AgentContext.load()
+            if mode == "direct":
+                system_prompt = agent_prompts.full_prompt(context)
+                offered = ALL_TOOL_NAMES
+                turn.prompt_name, turn.tools_offered = "full", len(offered)
+            else:
+                decision = await self.route(text, context)
+                if decision is None:
+                    self.recorder.drop_last()
+                    self.generating = False
+                    return
+                self._record_route(turn, decision)
+                if decision.kind == "direct":
+                    self._finish_direct(turn, decision, text, started, window_start)
+                    return
+                system_prompt = agent_prompts.prompt_for(decision.tools, context)
+                offered = decision.tools
+
+        bubble = self.add_bubble("assistant", app.active_model.name if app.active_model else "model")
+        messages = self.client.build_messages(self.history, text, system_prompt=system_prompt)
+
         think = ThinkFilter()
         visible_parts: list[str] = []
+        # Answer tokens only: with "show reasoning" on, visible_parts also holds
+        # the thinking, which must not be parsed as the tool call.
+        answer_parts: list[str] = []
         reasoning_chars = 0
         reasoning_tokens = 0
         usage: dict = {}
@@ -470,6 +605,7 @@ class ChatScreen(Screen):
                     visible_parts.append(reasoned)
                 if visible:
                     visible_parts.append(visible)
+                    answer_parts.append(visible)
                 self._live_tokens += 1
                 if not self._first_token_at:
                     self._first_token_at = time.monotonic()
@@ -485,6 +621,7 @@ class ChatScreen(Screen):
         tail = think.flush()
         if tail:
             visible_parts.append(tail)
+            answer_parts.append(tail)
         answer = "".join(visible_parts).strip()
         finished = time.monotonic()
 
@@ -502,16 +639,19 @@ class ChatScreen(Screen):
         turn.completion_tokens = int(
             usage.get("completion_tokens") or timings.get("predicted_n") or self._live_tokens
         )
+        # Prompt tokens llama.cpp did not have to prefill again.
+        turn.cached_tokens = int(timings.get("cache_n") or 0)
 
         # llama.cpp's own timings are authoritative when present.
         if timings.get("predicted_per_second"):
             turn.decode_tps = float(timings["predicted_per_second"])
         elif turn.completion_tokens:
             turn.decode_tps = turn.completion_tokens / turn.decode_s
+        prefill_s = turn.ttft_s - turn.router_ms / 1000.0  # TTFT includes routing
         if timings.get("prompt_per_second"):
             turn.prefill_tps = float(timings["prompt_per_second"])
-        elif turn.prompt_tokens and turn.ttft_s > 0:
-            turn.prefill_tps = turn.prompt_tokens / turn.ttft_s
+        elif turn.prompt_tokens and prefill_s > 0:
+            turn.prefill_tps = turn.prompt_tokens / prefill_s
         if turn.total_s > 0:
             turn.e2e_tps = turn.completion_tokens / turn.total_s
 
@@ -536,6 +676,14 @@ class ChatScreen(Screen):
             self.add_bubble("error", "engine", error)
             self.status(f"[#ff5f5f]{error[:120]}[/]")
         else:
+            call_note = ""
+            if context is not None:
+                check = check_reply("".join(answer_parts), offered, context.tags)
+                turn.tool_call, turn.call_status = check.name, check.status
+                turn.call_format = check.format
+                call_note = f" · call: {check.label()}"
+                if check.issues:
+                    call_note += " — " + "; ".join(check.issues[:2])
             if settings.keep_history:
                 self.history.append(Message("user", text))
                 self.history.append(Message("assistant", answer))
@@ -544,11 +692,14 @@ class ChatScreen(Screen):
                 if turn.reasoning_tokens
                 else ""
             )
+            cache_note = f" ({turn.cached_tokens} cached)" if turn.cached_tokens else ""
             footer = (
                 f"{turn.completion_tokens} tok · {turn.decode_tps:.1f} t/s · "
-                f"TTFT {turn.ttft_s:.2f}s · prefill {turn.prefill_tps:.0f} t/s · "
+                f"TTFT {turn.ttft_s:.2f}s · prompt {turn.prompt_tokens}{cache_note} · "
+                f"prefill {turn.prefill_tps:.0f} t/s · "
                 f"CPU {turn.avg_cpu_device:.0f}% · RAM {human_bytes(turn.peak_rss)}"
                 + thinking_note
+                + call_note
                 + ("  [stopped]" if turn.stopped else "")
             )
             bubble.set_text(answer, footer)
@@ -561,6 +712,98 @@ class ChatScreen(Screen):
         self.query_one("#t-ttft", StatTile).set_value(f"{turn.ttft_s:.2f}")
         self.query_one("#transcript", VerticalScroll).scroll_end(animate=False)
         self.query_one("#chat-input", Input).focus()
+
+    # ------------------------------------------------------------------
+    async def route(self, text: str, context: AgentContext) -> RouteDecision | None:
+        """Ask the intent router how to serve ``text``; ``None`` on failure."""
+        app = self.app
+        if not app.router_running and not await self.ensure_router():
+            return None
+        self.status("[#4fc1ff]Routing…[/]")
+        try:
+            decision = await app.router.route(text, context, self._last_route)
+        except RouterError as exc:
+            self.add_bubble("error", "router", str(exc))
+            self.status("[#ff5f5f]Routing failed.[/]")
+            return None
+        self._last_route = decision
+        self.add_bubble("system", "router", f"{decision.summary()}\n{decision.reason}")
+        return decision
+
+    @staticmethod
+    def _record_route(turn, decision: RouteDecision) -> None:
+        turn.route_intent = decision.intent
+        turn.route_score = decision.score
+        turn.route_margin = decision.margin
+        turn.route_kind = decision.kind
+        turn.prompt_name = decision.prompt_name if decision.uses_slm else ""
+        turn.tools_offered = len(decision.tools) if decision.uses_slm else 0
+        turn.router_ms = decision.router_ms
+        turn.encoder_ms = decision.encoder_ms
+
+    def _finish_direct(self, turn, decision: RouteDecision, text: str,
+                       started: float, window_start: float) -> None:
+        """Close a turn the router answered alone - no SLM tokens exist."""
+        app = self.app
+        result = decision.direct
+        reply = render_call(result.tool, result.args or {}) if result.is_call else result.text
+        check = check_reply(reply, ALL_TOOL_NAMES)
+        turn.total_s = time.monotonic() - started
+        turn.response_chars = len(reply)
+        turn.tool_call, turn.call_status, turn.call_format = check.name, check.status, "direct"
+
+        # One reading so the turn carries the router's own CPU/RAM cost.
+        app.sampler.sample(busy=True)
+        turn.avg_cpu_device, turn.peak_cpu_device, turn.peak_rss = (
+            app.sampler.busy_stats(window_start)
+        )
+        self.generating = False
+        if app.settings.keep_history:
+            self.history.append(Message("user", text))
+            self.history.append(Message("assistant", reply))
+
+        shown = (
+            f"⚙ {result.tool}({', '.join(f'{k}={v!r}' for k, v in (result.args or {}).items())})"
+            if result.is_call else result.text
+        )
+        bubble = self.add_bubble("assistant", "feast AI · router")
+        bubble.set_text(
+            shown,
+            f"no SLM · {turn.total_s * 1000:.0f} ms end to end · encoder "
+            f"{decision.encoder_ms:.0f} ms · CPU {turn.avg_cpu_device:.0f}%",
+        )
+        self.status(
+            f"[#7bd88f]Served without the SLM[/] [#6f7789]· "
+            f"{turn.total_s * 1000:.0f} ms · {decision.intent} {decision.score:.2f}[/]"
+        )
+        self.query_one("#t-ttft", StatTile).set_value("—")
+        self.query_one("#transcript", VerticalScroll).scroll_end(animate=False)
+        self.query_one("#chat-input", Input).focus()
+
+    def action_toggle_agent(self) -> None:
+        """Cycle off -> direct -> hierarchical. Applies to the next message."""
+        if self.generating:
+            self.notify("Wait for the reply to finish, or press Ctrl+X.", severity="warning")
+            return
+        app = self.app
+        mode = app.settings.cycle_agent_mode()
+        app.save_settings()
+        self._last_route = None
+        explain = {
+            "off": "plain chat with your system prompt",
+            "direct": "every tool in one prompt; the SLM decides alone",
+            "hierarchical": "intent router first, then only the relevant tools",
+        }[mode]
+        self.notify(f"Agent: {mode} — {explain}", title="feast AI")
+        self.status(
+            f"[#4fc1ff]Agent mode {mode}[/] [#6f7789]· {explain} · applies from the "
+            "next message[/]"
+        )
+        if self._ready and mode == "hierarchical" and not app.router_running:
+            self.start_router_worker()
+        elif mode != "hierarchical" and app.router_server is not None:
+            self.stop_router_worker()
+        self.update_side_facts()
 
     # ------------------------------------------------------------------
     def action_stop_generation(self) -> None:
@@ -595,6 +838,12 @@ class ChatScreen(Screen):
                 "system", "feast AI", "System prompt updated. It applies from the next message."
             )
             self.notify("System prompt updated.")
+            if self.app.settings.agent_mode != "off":
+                self.notify(
+                    "Agent mode is on, so messages use the feast tool prompt. This "
+                    "prompt applies once agent mode is off (Ctrl+R).",
+                    severity="warning",
+                )
 
         self.app.push_screen(SystemPromptScreen(self.app.settings.system_prompt), applied)
 
@@ -603,6 +852,7 @@ class ChatScreen(Screen):
 
     def action_clear_chat(self) -> None:
         self.history.clear()
+        self._last_route = None
         for bubble in self.query("#transcript Bubble"):
             bubble.remove()
         self.add_bubble("system", "feast AI", "Context cleared. Metrics keep accumulating.")
@@ -622,6 +872,22 @@ class ChatScreen(Screen):
         spec = app.active_model
         report = app.server.report if app.server else None
 
+        # Agent turns never saw the Settings prompt, so the report must not
+        # claim they did: record what each kind of turn was actually sent.
+        modes = {t.agent_mode for t in self.recorder.turns}
+        system_prompt = app.settings.system_prompt
+        if modes - {"off"}:
+            parts = []
+            if "off" in modes:
+                parts.append("[agent mode off]\n" + app.settings.system_prompt)
+            parts.append(
+                "[agent turns - the feast tool prompt; hierarchical turns list only "
+                "the routed intent's tools, see the Route column]\n"
+                + agent_prompts.full_prompt(AgentContext.load())
+            )
+            system_prompt = "\n\n".join(parts)
+        routed = any(t.route_kind for t in self.recorder.turns)
+
         summary = self.recorder.summarize(
             model_id=spec.id if spec else "",
             model_name=spec.name if spec else "",
@@ -631,7 +897,7 @@ class ChatScreen(Screen):
             threads=app.settings.cpu_budget_cores,
             pinned_cores=report.pinned_cores if report else [],
             context_size=app.settings.context_size,
-            system_prompt=app.settings.system_prompt,
+            system_prompt=system_prompt,
             thinking_mode=app.settings.thinking_mode,
             load_seconds=report.load_seconds if report else 0.0,
             model_file_bytes=spec.local_size if spec else 0,
@@ -646,6 +912,10 @@ class ChatScreen(Screen):
             ram_cap_method=report.cap.method if report and report.cap.applied else "",
             storage_mbps=app.settings.device.storage_mbps,
             storage_note=app.settings.device.storage_note,
+            agent_mode=app.settings.agent_mode,
+            router_model=app.settings.router_model if routed else "",
+            router_rss=self._router_rss if routed else 0,
+            prompt_cache_ram_mb=app.settings.prompt_cache_ram_mb,
         )
         app.last_summary = summary
         app.push_screen("summary")

@@ -25,6 +25,17 @@ def _cmd_models() -> int:
             f"{spec.tr_stars:<6} {status:<9} {spec.repo}"
         )
     print("\nTR column: Turkish capability, 1-5. Entries at 5 are Turkish-native fine-tunes.")
+
+    from .encoders import ENCODERS
+
+    print(f"\nEncoders - Cosmos ModernBERT-TR ({len(ENCODERS)}), used by the intent router\n")
+    header = f"    {'ENCODER':<32} {'TASK':<15} {'ROLE':<10} {'STATUS':<9} REPO"
+    print(header)
+    print("    " + "-" * (len(header) - 4))
+    for enc in ENCODERS:
+        status = "local" if enc.downloaded else "remote"
+        print(f"    {enc.id:<32} {enc.task:<15} {enc.role:<10} {status:<9} {enc.repo}")
+    print("\nPull an encoder like a model:  feast-ai pull modernbert-tr-embed")
     return 0
 
 
@@ -32,6 +43,12 @@ def _cmd_pull(model_id: str) -> int:
     from .catalog import get
     from .download import download
     from .paths import human_bytes
+
+    from . import encoders
+
+    encoder = encoders.get(model_id)
+    if encoder is not None:
+        return _pull_encoder(encoder)
 
     spec = get(model_id)
     if spec is None:
@@ -61,6 +78,136 @@ def _cmd_pull(model_id: str) -> int:
     else:
         asyncio.run(download(spec.url, spec.local_path, on_progress=on_progress))
     print(f"\nSaved to {spec.local_path}")
+    return 0
+
+
+def _pull_encoder(encoder) -> int:
+    from .download import download_many
+    from .paths import human_bytes
+
+    if encoder.downloaded:
+        print(f"{encoder.name} already present at {encoder.local_path}")
+        return 0
+
+    def on_progress(progress) -> None:
+        total = f"/{human_bytes(progress.total)}" if progress.total else ""
+        print(f"\r  {human_bytes(progress.downloaded)}{total}   ", end="", flush=True)
+
+    print(f"Downloading {encoder.name} (int8 ONNX, ~{encoder.approx_mb} MB) from {encoder.repo}")
+    asyncio.run(download_many(
+        encoder.urls, encoder.local_path,
+        total_bytes=encoder.approx_mb * 1024 * 1024, on_progress=on_progress,
+    ))
+    print(f"\nSaved to {encoder.local_path}")
+    if encoder.role != "router":
+        print(f"Note: feast AI does not use this encoder yet - {encoder.role_note}")
+    return 0
+
+
+def _cmd_bench(args) -> int:
+    from .agent.bench import run_bench
+    from .engine.server import EngineError
+
+    modes = tuple(m.strip() for m in args.modes.split(",") if m.strip())
+    from .agent.bench import MODES
+
+    unknown = [m for m in modes if m.split("@")[0] not in MODES]
+    if unknown:
+        print(f"Unknown mode(s): {unknown}. Choose from: {', '.join(MODES)}.", file=sys.stderr)
+        return 2
+    if not args.router_only and not args.model_id:
+        print("Give a model id, or --router-only.", file=sys.stderr)
+        return 2
+    try:
+        md_path, json_path = asyncio.run(run_bench(
+            model_id=args.model_id or "",
+            modes=modes,
+            router_only=args.router_only,
+            limit=args.limit,
+            cache=not args.no_cache,
+            thinking=args.thinking,
+            max_tokens=args.max_tokens,
+            temperature=args.temperature,
+            profile=args.profile,
+            cache_ram=args.cache_ram,
+            suite=args.suite,
+            cores=args.cores,
+            ram_gb=args.ram_gb,
+            router_model=args.router,
+        ))
+    except EngineError as exc:
+        print(f"\n{exc}", file=sys.stderr)
+        return 1
+    print(f"\nReport: {md_path}\nData:   {json_path}")
+    if not args.router_only:
+        print(f"Page:   {md_path.with_name(md_path.stem + '.html')}")
+    return 0
+
+
+def _cmd_compare(paths: list[str], out: str | None) -> int:
+    """Merge bench runs into one side-by-side comparison page."""
+    import json
+    from pathlib import Path
+
+    from .agent.page import render
+    from .paths import SESSIONS_DIR
+
+    runs = []
+    for raw in paths:
+        try:
+            runs.append(json.loads(Path(raw).read_text(encoding="utf-8")))
+        except (OSError, json.JSONDecodeError) as exc:
+            print(f"Cannot read {raw}: {exc}", file=sys.stderr)
+            return 2
+    runs = [r for r in runs if r.get("meta", {}).get("model_id")]
+    if not runs:
+        print("No SLM bench runs given (router-only runs have no chats).", file=sys.stderr)
+        return 2
+    target = Path(out) if out else SESSIONS_DIR / "compare.html"
+    target.write_text(render(runs, standalone=True), encoding="utf-8")
+    print(f"Page: {target}")
+    return 0
+
+
+def _cmd_route(texts: list[str]) -> int:
+    """Route sentences and print each decision - for tuning exemplars."""
+    from .agent import start_router
+    from .agent.context import AgentContext
+    from .config import Settings
+    from .engine.server import EngineError
+
+    if not texts:
+        texts = [line.strip() for line in sys.stdin if line.strip()]
+
+    async def run() -> None:
+        settings = Settings.load()
+        server, router = await start_router(settings)
+        context = AgentContext.load()
+        previous = None
+        try:
+            print(f"router up in {server.report.load_seconds:.1f}s on "
+                  f"{settings.cpu_budget_cores} core(s)\n")
+            for text in texts:
+                decision = await router.route(text, context, previous)
+                previous = decision
+                print(f"> {text}\n  {decision.summary()}\n  {decision.reason}"
+                      f" · nearest: {decision.nearest!r} · encoder {decision.encoder_ms:.1f} ms")
+                if decision.direct is not None:
+                    result = decision.direct
+                    print(f"  -> {result.tool}({result.args})" if result.is_call
+                          else f"  -> {result.text}")
+                else:
+                    print(f"  -> SLM with: {', '.join(decision.tools) or 'no tools'}")
+                print("  top: " + ", ".join(f"{k} {v:.2f}" for k, v in decision.top))
+        finally:
+            await router.aclose()
+            await server.stop()
+
+    try:
+        asyncio.run(run())
+    except EngineError as exc:
+        print(exc, file=sys.stderr)
+        return 1
     return 0
 
 
@@ -151,6 +298,19 @@ def _cmd_doctor() -> int:
 
     print(f"  onnx runtime     "
           f"{'onnxruntime-genai ' + onnx_version() if onnx_available() else 'NOT INSTALLED'}")
+    from . import encoders
+    from .engine.encoder_server import INSTALL_HINT, missing_packages
+
+    router = encoders.get(settings.router_model)
+    missing = missing_packages()
+    if missing:
+        router_state = f"needs {', '.join(missing)} ({INSTALL_HINT})"
+    elif router is None or not router.downloaded:
+        router_state = f"{settings.router_model} NOT DOWNLOADED"
+    else:
+        router_state = f"{router.name}  {human_bytes(router.local_size)}"
+    print(f"  intent router    {router_state}")
+    print(f"  agent mode       {settings.agent_mode}")
     print(f"  profile          {settings.device.name}")
     print(f"  cpu budget       {settings.cpu_budget_cores}/{HOST_CORES} cores"
           f"{' (pinned)' if settings.pin_affinity else ''}")
@@ -164,6 +324,8 @@ def _cmd_doctor() -> int:
         print("\n  Fix: feast-ai runtime")
     if not downloaded:
         print("  Fix: feast-ai pull gemma-3-270m")
+    if router is not None and not router.downloaded:
+        print(f"  Fix: feast-ai pull {router.id}   (for agent_mode hierarchical)")
     return 0
 
 
@@ -219,6 +381,43 @@ def main(argv: list[str] | None = None) -> int:
     add.add_argument("source", help="owner/name, a huggingface.co URL, or a .gguf link")
     add.add_argument("--name", help="display name for the catalog")
     add.add_argument("--quant", default="Q4_K_M", help="quantisation to pick (default Q4_K_M)")
+    bench = sub.add_parser(
+        "bench", help="compare the direct and hierarchical agent pipelines on a model"
+    )
+    bench.add_argument("model_id", nargs="?", help="catalog id of the SLM")
+    bench.add_argument("--modes", default="direct,hierarchical",
+                       help="comma-separated: direct, hierarchical, routed (router picks the "
+                            "prompt, SLM always), contexts (routed + per-intent KV snapshots)")
+    bench.add_argument("--router-only", action="store_true",
+                       help="measure the intent router alone, no SLM")
+    bench.add_argument("--limit", type=int, default=0, help="only the first N cases")
+    bench.add_argument("--no-cache", action="store_true",
+                       help="disable llama.cpp's prompt cache (cold prefill every turn)")
+    bench.add_argument("--thinking", default="off", choices=["auto", "off", "on"],
+                       help="reasoning mode (default off - agent calls want speed)")
+    bench.add_argument("--max-tokens", type=int, default=256)
+    bench.add_argument("--temperature", type=float, default=0.0,
+                       help="default 0: greedy, so pipelines differ only by prompt")
+    bench.add_argument("--profile", default="",
+                       help="device profile for this run only (budget, midrange, ...)")
+    bench.add_argument("--router", default="",
+                       choices=["", "modernbert-tr-embed", "decision-2.0-kai-0.6b"],
+                       help="intent router for this run (default: the setting)")
+    bench.add_argument("--cores", type=int, default=0,
+                       help="CPU cores for this run (overrides the profile)")
+    bench.add_argument("--ram-gb", type=float, default=0.0,
+                       help="device RAM for this run; enforces the RAM ceiling "
+                            "(ram_budget_pct of it, 70%% by default)")
+    bench.add_argument("--suite", default="standard", choices=["standard", "kanka"],
+                       help="standard labelled set, or kanka: casual end-user chats")
+    bench.add_argument("--cache-ram", type=int, default=None,
+                       help="llama-server cross-prompt KV cache in MB for this run "
+                            "(default: the setting, 0 = off)")
+    compare = sub.add_parser("compare", help="merge bench runs into one comparison page")
+    compare.add_argument("runs", nargs="+", help="bench-*.json files")
+    compare.add_argument("-o", "--out", help="output .html (default sessions/compare.html)")
+    route = sub.add_parser("route", help="show how the intent router serves sentences")
+    route.add_argument("texts", nargs="*", help="sentences (or one per line on stdin)")
 
     args = parser.parse_args(argv)
 
@@ -232,6 +431,12 @@ def main(argv: list[str] | None = None) -> int:
         return _cmd_runtime()
     if args.command == "doctor":
         return _cmd_doctor()
+    if args.command == "bench":
+        return _cmd_bench(args)
+    if args.command == "route":
+        return _cmd_route(args.texts)
+    if args.command == "compare":
+        return _cmd_compare(args.runs, args.out)
 
     from .ui import FeastApp
 

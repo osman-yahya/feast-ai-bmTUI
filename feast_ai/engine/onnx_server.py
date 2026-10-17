@@ -19,7 +19,7 @@ import sys
 from pathlib import Path
 
 from ..config import Settings
-from .server import BaseServer, EngineError
+from .server import BaseServer, EngineError, package_on_pythonpath
 
 #: Advertised on the models screen and in the session report.
 PACKAGE = "onnxruntime-genai"
@@ -71,20 +71,6 @@ class OnnxServer(BaseServer):
 
     async def _spawn_and_wait(self, cmd, status):
         # The worker is imported as ``feast_ai.engine.onnx_worker``, so it has
-        # to run with the project root importable. BaseServer sets cwd to the
-        # binary's directory, which for sys.executable is the Python install -
-        # wrong here, so the package root is put on PYTHONPATH instead.
-        import os
-
-        root = str(Path(__file__).resolve().parents[2])
-        existing = os.environ.get("PYTHONPATH", "")
-        os.environ["PYTHONPATH"] = (
-            root + (os.pathsep + existing if existing else "")
-        )
-        try:
+        # to run with the project root importable.
+        with package_on_pythonpath():
             return await super()._spawn_and_wait(cmd, status)
-        finally:
-            if existing:
-                os.environ["PYTHONPATH"] = existing
-            else:
-                os.environ.pop("PYTHONPATH", None)

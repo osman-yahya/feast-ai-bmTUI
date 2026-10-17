@@ -11,7 +11,11 @@ the OS migrate work across every core on the machine, and llama.cpp spawns
 extra helper threads for loading and batching.  Pinning gives a hard ceiling,
 so a "2-core phone" really cannot consume more than 2 cores' worth of CPU.
 
-RAM is never limited - see the note in :mod:`feast_ai.config`.
+RAM is capped as a *working set*, never as a commit limit, so a model that
+does not fit gets slow instead of dead - see :mod:`feast_ai.engine.memcap`
+and the note in :mod:`feast_ai.config`.  When the intent router runs beside
+the model, the two processes split one budget: each server can be given its
+own share through :attr:`BaseServer.ram_limit_override`.
 """
 
 from __future__ import annotations
@@ -22,6 +26,7 @@ import socket
 import subprocess
 import sys
 import time
+from contextlib import contextmanager
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -115,6 +120,9 @@ class BaseServer:
 
     engine_name = "engine"
     log_prefix = "engine"
+    #: Linux cgroup this server's ceiling lives in. One per server, so two
+    #: processes sharing a device budget never overwrite each other's limit.
+    cap_group = "feast-ai"
 
     def __init__(self, server_bin: Path, settings: Settings) -> None:
         self.server_bin = Path(server_bin)
@@ -126,8 +134,20 @@ class BaseServer:
         self.model_alias: str = "feast"
         self.report = LoadReport()
         self._log_handle = None
+        #: This server's share of the RAM ceiling, when it is not the only
+        #: process on the simulated device. ``None`` = the whole budget.
+        self.ram_limit_override: int | None = None
 
     # ------------------------------------------------------------------
+    @property
+    def ram_limit_bytes(self) -> int:
+        """The ceiling this process is held to (0 = uncapped)."""
+        if not self.settings.ram_limit_bytes:
+            return 0
+        if self.ram_limit_override is not None:
+            return self.ram_limit_override
+        return self.settings.ram_limit_bytes
+
     @property
     def base_url(self) -> str:
         return f"http://127.0.0.1:{self.port}"
@@ -272,13 +292,28 @@ class BaseServer:
         Capping now rather than after loading is the point: the model must
         never be fully resident, exactly as on a device that cannot hold it.
         """
-        limit = self.settings.ram_limit_bytes
+        limit = self.ram_limit_bytes
         if not limit or self.process is None:
             return CapResult(detail="no limit requested")
-        return apply_cap(self.process.pid, limit)
+        return apply_cap(self.process.pid, limit, self.cap_group)
+
+    def set_ram_limit(self, limit_bytes: int | None) -> CapResult:
+        """Re-cap a running server, e.g. when the router claims its slice.
+
+        Both mechanisms accept a new ceiling on a live process, so the model
+        does not have to reload. The load report is updated so the session
+        summary states the ceiling the turns actually ran under.
+        """
+        self.ram_limit_override = limit_bytes
+        if not self.running:
+            return self.report.cap
+        cap = self._apply_ram_cap()
+        if cap.applied:
+            self.report.cap = cap
+        return cap
 
     def _cap_warning(self, model_path: Path) -> str:
-        limit = self.settings.ram_limit_bytes
+        limit = self.ram_limit_bytes
         if not limit:
             return ""
         model_bytes = _model_bytes(model_path)
@@ -390,9 +425,21 @@ class LlamaServer(BaseServer):
         ]
         if s.effective_no_mmap:
             cmd.append("--no-mmap")
+        if s.swa_full:
+            cmd.append("--swa-full")
         if s.seed is not None and s.seed >= 0:
             cmd += ["--seed", str(s.seed)]
-        return [cmd + list(self.OPTIONAL_FLAGS), cmd]
+        # Optional because older builds lack it; the fallback then runs with
+        # llama.cpp's own default, which the load log records.
+        optional = list(self.OPTIONAL_FLAGS) + ["--cache-ram", str(max(-1, s.prompt_cache_ram_mb))]
+        # Lets the agent benchmark save and restore per-intent KV snapshots.
+        # Nothing is written unless a client asks for it.
+        from ..paths import KV_DIR
+
+        slots = KV_DIR / self.model_alias
+        slots.mkdir(parents=True, exist_ok=True)
+        optional += ["--slot-save-path", str(slots)]
+        return [cmd + optional, cmd]
 
 
 def _tail(path: Path | None, lines: int) -> str:
@@ -403,6 +450,26 @@ def _tail(path: Path | None, lines: int) -> str:
     except OSError:
         return ""
     return "\n".join(content[-lines:])
+
+
+@contextmanager
+def package_on_pythonpath():
+    """Make ``feast_ai`` importable for a ``python -m`` worker subprocess.
+
+    BaseServer sets the child's cwd to the binary's directory, which for
+    ``sys.executable`` is the Python install - so the package root goes on
+    PYTHONPATH for the duration of the launch instead.
+    """
+    root = str(Path(__file__).resolve().parents[2])
+    existing = os.environ.get("PYTHONPATH", "")
+    os.environ["PYTHONPATH"] = root + (os.pathsep + existing if existing else "")
+    try:
+        yield
+    finally:
+        if existing:
+            os.environ["PYTHONPATH"] = existing
+        else:
+            os.environ.pop("PYTHONPATH", None)
 
 
 def python_hint() -> str:

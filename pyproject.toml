@@ -24,6 +24,8 @@ dev = ["textual-dev>=1.5"]
 # The ONNX backend is optional: without it the llama.cpp engine
 # still works and ONNX catalog entries report it as missing.
 onnx = ["onnxruntime-genai>=0.14"]
+# The intent router behind agent_mode "hierarchical" (ModernBERT-TR, int8 ONNX).
+router = ["onnxruntime>=1.20", "tokenizers>=0.20", "numpy>=1.26"]
 
 [project.scripts]
 feast-ai = "feast_ai.cli:main"

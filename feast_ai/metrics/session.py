@@ -16,6 +16,11 @@ Decode t/s (TPS)
 E2E t/s
     Generated tokens / total wall clock including TTFT. The honest
     end-to-end figure for short answers on slow devices.
+
+Latency
+    Wall clock from sending the message to the finished answer, router
+    included.  The one figure that compares a turn the SLM served with one
+    the router answered alone (which has no tokens/s at all).
 """
 
 from __future__ import annotations
@@ -60,8 +65,28 @@ class TurnStats:
     disk_read_bytes: int = 0
     peak_fault_rate: float = 0.0
 
+    # Agent pipeline (see feast_ai.agent). Empty/zero when agent_mode is off.
+    agent_mode: str = "off"
+    route_intent: str = ""
+    route_score: float = 0.0
+    route_margin: float = 0.0
+    route_kind: str = ""        # "direct" | "slm" | "fallback" | "inherit"
+    prompt_name: str = ""       # "full" | "intent:<id>" | "chat"
+    tools_offered: int = 0
+    router_ms: float = 0.0      # wall clock, includes the localhost hop
+    encoder_ms: float = 0.0     # inference only - what a phone would pay
+    cached_tokens: int = 0      # prompt tokens reused from llama.cpp's cache
+    tool_call: str = ""
+    call_status: str = ""       # "text" | "ok" | a hallucination class
+    call_format: str = ""
+
     stopped: bool = False
     error: str = ""
+
+    @property
+    def served_direct(self) -> bool:
+        """Answered by the router alone - no SLM tokens exist for this turn."""
+        return self.route_kind == "direct"
 
     @property
     def total_tokens(self) -> int:
@@ -105,6 +130,10 @@ class SessionSummary:
     context_size: int = 0
     system_prompt: str = ""
     thinking_mode: str = "auto"
+    agent_mode: str = "off"
+    router_model: str = ""
+    router_rss: int = 0
+    prompt_cache_ram_mb: int = 0
 
     started_at: float = 0.0
     ended_at: float = 0.0
@@ -148,6 +177,17 @@ class SessionSummary:
 
     total_generation_s: float = 0.0
     wall_seconds: float = 0.0
+
+    # --- agent pipeline -------------------------------------------------
+    direct_turns: int = 0
+    latency_avg: float = 0.0
+    latency_p50: float = 0.0
+    latency_p95: float = 0.0
+    router_ms_avg: float = 0.0
+    encoder_ms_avg: float = 0.0
+    calls_ok: int = 0
+    calls_hallucinated: int = 0
+    text_replies: int = 0
 
     turn_rows: list[dict] = field(default_factory=list)
     cpu_series: list[float] = field(default_factory=list)
@@ -256,10 +296,16 @@ class SessionSummary:
         return self.streamed and 0 < self.storage_ceiling_tps < self.tps_avg
 
     @property
+    def agent_used(self) -> bool:
+        return self.agent_mode not in ("", "off")
+
+    @property
     def verdict(self) -> tuple[str, str]:
         """A plain-language judgement: ``(label, css_class)``."""
         if self.turns == 0:
             return "No data", "neutral"
+        if self.direct_turns == self.turns:
+            return "Every turn served by the router alone - no SLM ran", "great"
         tps = self.tps_avg
         if tps >= 25:
             return "Excellent - feels instant on this device class", "great"
@@ -306,9 +352,12 @@ class SessionRecorder:
         self.meta: dict = {}
 
     # ------------------------------------------------------------------
-    def start_turn(self, prompt: str, thinking_mode: str = "auto") -> TurnStats:
+    def start_turn(
+        self, prompt: str, thinking_mode: str = "auto", agent_mode: str = "off"
+    ) -> TurnStats:
         turn = TurnStats(
-            index=len(self.turns) + 1, prompt=prompt, thinking_mode=thinking_mode
+            index=len(self.turns) + 1, prompt=prompt, thinking_mode=thinking_mode,
+            agent_mode=agent_mode,
         )
         self.turns.append(turn)
         return turn
@@ -319,7 +368,10 @@ class SessionRecorder:
 
     @property
     def completed(self) -> list[TurnStats]:
-        return [t for t in self.turns if t.completion_tokens > 0 and not t.error]
+        return [
+            t for t in self.turns
+            if (t.completion_tokens > 0 or t.served_direct) and not t.error
+        ]
 
     # ------------------------------------------------------------------
     def summarize(
@@ -347,6 +399,10 @@ class SessionRecorder:
         ram_cap_method: str = "",
         storage_mbps: float = 0.0,
         storage_note: str = "",
+        agent_mode: str = "off",
+        router_model: str = "",
+        router_rss: int = 0,
+        prompt_cache_ram_mb: int = 0,
     ) -> SessionSummary:
         done = self.completed
         ttfts = [t.ttft_s for t in done if t.ttft_s > 0]
@@ -366,6 +422,10 @@ class SessionRecorder:
             # The mode can be toggled mid-session with Ctrl+T, so report what
             # the turns actually ran under rather than whatever is set now.
             thinking_mode=_modes_used(done, thinking_mode),
+            agent_mode=_modes_used(done, agent_mode, attr="agent_mode"),
+            router_model=router_model,
+            router_rss=router_rss,
+            prompt_cache_ram_mb=prompt_cache_ram_mb,
             system_prompt=system_prompt,
             started_at=self.started_at,
             ended_at=time.time(),
@@ -405,6 +465,22 @@ class SessionRecorder:
         if e2es:
             summary.e2e_tps_avg = statistics.fmean(e2es)
 
+        latencies = [t.total_s for t in done if t.total_s > 0]
+        if latencies:
+            summary.latency_avg = statistics.fmean(latencies)
+            summary.latency_p50 = statistics.median(latencies)
+            summary.latency_p95 = _percentile(latencies, 95)
+        routed = [t for t in done if t.route_kind]
+        if routed:
+            summary.router_ms_avg = statistics.fmean(t.router_ms for t in routed)
+            summary.encoder_ms_avg = statistics.fmean(t.encoder_ms for t in routed)
+        summary.direct_turns = sum(1 for t in done if t.served_direct)
+        summary.calls_ok = sum(1 for t in done if t.call_status == "ok")
+        summary.text_replies = sum(1 for t in done if t.call_status == "text")
+        summary.calls_hallucinated = sum(
+            1 for t in done if t.call_status not in ("", "ok", "text")
+        )
+
         if sampler_stats is not None:
             summary.cpu_avg = sampler_stats.avg_cpu_device
             summary.cpu_peak = sampler_stats.peak_cpu_device
@@ -418,9 +494,9 @@ class SessionRecorder:
         return summary
 
 
-def _modes_used(turns: list[TurnStats], fallback: str) -> str:
+def _modes_used(turns: list[TurnStats], fallback: str, attr: str = "thinking_mode") -> str:
     """``"off"`` if every turn ran that way, ``"mixed (auto, off)"`` if not."""
-    modes = sorted({t.thinking_mode for t in turns})
+    modes = sorted({getattr(t, attr) for t in turns})
     if not modes:
         return fallback
     if len(modes) == 1:
@@ -489,7 +565,10 @@ def save_markdown(summary: SessionSummary) -> Path:
         f"| Nominal device RAM | {summary.nominal_ram_gb or '-'} GB |",
         f"| RAM ceiling | {_cap_label(summary)} |",
         f"| Context | {summary.context_size} tokens |",
+        f"| Prompt-cache RAM | {summary.prompt_cache_ram_mb or 'off'}"
+        f"{' MB' if summary.prompt_cache_ram_mb > 0 else ''} |",
         f"| Thinking | {summary.thinking_mode} |",
+        f"| Agent mode | {summary.agent_mode} |",
         f"| Load time | {summary.load_seconds:.2f} s |",
         "",
         "## Throughput",
@@ -575,19 +654,54 @@ def save_markdown(summary: SessionSummary) -> Path:
                 ),
             ]
 
+    if summary.agent_used:
+        lines += [
+            "",
+            "## Agent pipeline",
+            "",
+            "`direct` shows the SLM every tool; `hierarchical` routes first with "
+            f"{summary.router_model or 'the encoder'} and shows only the intent's "
+            "tools, or answers with no SLM at all. Latency is end-to-end, router "
+            "included.",
+            "",
+            "| Metric | Value |",
+            "| --- | --- |",
+            f"| Agent mode | {summary.agent_mode} |",
+            f"| Turns served without the SLM | {summary.direct_turns} of {summary.turns} |",
+            f"| Latency avg / p50 / p95 | {summary.latency_avg:.2f} / "
+            f"{summary.latency_p50:.2f} / {summary.latency_p95:.2f} s |",
+            f"| Router avg (wall / encoder) | {summary.router_ms_avg:.1f} / "
+            f"{summary.encoder_ms_avg:.1f} ms |",
+            f"| Router RSS after load | {human_bytes(summary.router_rss)} |",
+            f"| Valid tool calls | {summary.calls_ok} |",
+            f"| Hallucinated calls | {summary.calls_hallucinated} |",
+            f"| Plain-text replies | {summary.text_replies} |",
+        ]
+
     lines += ["", f"**Verdict:** {verdict}", "", "## Turns", "",
-              "| # | Prompt | Think | In | Out | Reasoning | TTFT s | Decode t/s "
-              "| CPU % | Peak RAM |",
-              "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
+              "| # | Prompt | Think | Route | Call | In | Cached | Out | Reasoning "
+              "| TTFT s | Latency s | Decode t/s | CPU % | Peak RAM |",
+              "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- "
+              "| --- | --- | --- |"]
     for row in summary.turn_rows:
         preview = " ".join(str(row.get("prompt", "")).split())[:40].replace("|", "/")
         think_tokens = row.get("reasoning_tokens", 0)
         share = 100.0 * think_tokens / max(1, row["completion_tokens"])
         reasoning = f"{think_tokens} ({share:.0f}%)" if think_tokens else "-"
+        route = (
+            f"{row.get('route_intent')} ({row.get('route_kind')})"
+            if row.get("route_kind") else row.get("agent_mode", "off")
+        )
+        call = (
+            f"{row.get('tool_call') or '-'} {row.get('call_status')}".strip()
+            if row.get("call_status") else "-"
+        )
         lines.append(
             f"| {row['index']} | {preview} | {row.get('thinking_mode', 'auto')} "
-            f"| {row['prompt_tokens']} | {row['completion_tokens']} | {reasoning} "
-            f"| {row['ttft_s']:.2f} | {row['decode_tps']:.2f} "
+            f"| {route} | {call} "
+            f"| {row['prompt_tokens']} | {row.get('cached_tokens', 0)} "
+            f"| {row['completion_tokens']} | {reasoning} "
+            f"| {row['ttft_s']:.2f} | {row.get('total_s', 0.0):.2f} | {row['decode_tps']:.2f} "
             f"| {row['avg_cpu_device']:.0f} | {human_bytes(row['peak_rss'])} |"
         )
 

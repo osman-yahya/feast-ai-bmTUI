@@ -35,6 +35,11 @@ class ChatClient:
         self.base_url = base_url.rstrip("/")
         self.settings = settings
         self.model = model
+        #: llama.cpp reuses the KV cache of the longest unchanged prompt
+        #: prefix. On by default, as a phone app would run it; the benchmark
+        #: turns it off to measure cold prefill, which is where a long tool
+        #: prompt costs the most.
+        self.cache_prompt = True
 
     # ------------------------------------------------------------------
     def build_messages(
@@ -58,7 +63,7 @@ class ChatClient:
         return messages
 
     # ------------------------------------------------------------------
-    def _payload(self, messages: list[dict]) -> dict:
+    def _payload(self, messages: list[dict], extra: dict | None = None) -> dict:
         s = self.settings
         payload = {
             "model": self.model,
@@ -71,7 +76,7 @@ class ChatClient:
             "top_k": s.top_k,
             "repeat_penalty": s.repeat_penalty,
             "max_tokens": s.max_tokens,
-            "cache_prompt": True,
+            "cache_prompt": self.cache_prompt,
         }
         if s.seed is not None and s.seed >= 0:
             payload["seed"] = s.seed
@@ -84,6 +89,8 @@ class ChatClient:
             payload["chat_template_kwargs"] = {
                 "enable_thinking": s.thinking_mode == "on"
             }
+        if extra:
+            payload.update(extra)
         return payload
 
     # ------------------------------------------------------------------
@@ -91,15 +98,19 @@ class ChatClient:
         self,
         messages: list[dict],
         timeout: float = 600.0,
+        extra: dict | None = None,
     ) -> AsyncIterator[StreamEvent]:
-        """Yield :class:`StreamEvent` objects until the completion finishes."""
+        """Yield :class:`StreamEvent` objects until the completion finishes.
+
+        ``extra`` adds request fields for this call only (e.g. ``stop``).
+        """
         usage: dict = {}
         timings: dict = {}
         url = f"{self.base_url}/v1/chat/completions"
 
         try:
             async with httpx.AsyncClient(timeout=httpx.Timeout(timeout, connect=15.0)) as client:
-                async with client.stream("POST", url, json=self._payload(messages)) as response:
+                async with client.stream("POST", url, json=self._payload(messages, extra)) as response:
                     if response.status_code != 200:
                         body = (await response.aread()).decode("utf-8", "replace")
                         yield StreamEvent("error", error=f"HTTP {response.status_code}: {body[:400]}")
@@ -138,6 +149,39 @@ class ChatClient:
             return
 
         yield StreamEvent("done", usage=usage, timings=timings)
+
+    # ------------------------------------------------------------------
+    async def slot_action(self, action: str, filename: str, timeout: float = 120.0) -> dict:
+        """Save or restore slot 0's KV state (needs ``--slot-save-path``).
+
+        Returns llama.cpp's reply - ``n_written``/``n_read`` bytes and
+        ``timings.save_ms``/``restore_ms`` - or ``{"error": ...}``.
+        """
+        try:
+            async with httpx.AsyncClient(timeout=timeout) as client:
+                response = await client.post(
+                    f"{self.base_url}/slots/0?action={action}", json={"filename": filename}
+                )
+                data = response.json()
+                if response.status_code != 200:
+                    return {"error": f"HTTP {response.status_code}: {str(data)[:200]}"}
+                return data
+        except (httpx.HTTPError, ValueError, OSError) as exc:
+            return {"error": str(exc)}
+
+    async def complete_once(self, messages: list[dict], max_tokens: int = 1,
+                            timeout: float = 600.0) -> dict:
+        """One non-streamed completion - used to prefill a prompt to snapshot."""
+        payload = self._payload(messages)
+        payload.update(stream=False, max_tokens=max_tokens)
+        payload.pop("stream_options", None)
+        try:
+            async with httpx.AsyncClient(timeout=timeout) as client:
+                response = await client.post(f"{self.base_url}/v1/chat/completions", json=payload)
+                return response.json() if response.status_code == 200 else {
+                    "error": f"HTTP {response.status_code}: {response.text[:200]}"}
+        except (httpx.HTTPError, ValueError, OSError) as exc:
+            return {"error": str(exc)}
 
     # ------------------------------------------------------------------
     async def tokenize_count(self, text: str, timeout: float = 30.0) -> int | None:

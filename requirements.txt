@@ -6,3 +6,10 @@ rich>=13.7
 # Optional second inference engine. feast AI runs fine without it - the ONNX
 # models in the catalog simply report the backend as not installed.
 onnxruntime-genai>=0.14
+
+# Optional intent router for the hierarchical agent mode (Cosmos
+# ModernBERT-TR encoder). Without these, agent_mode "hierarchical" reports
+# what is missing; "off" and "direct" are unaffected.
+onnxruntime>=1.20
+tokenizers>=0.20
+numpy>=1.26

@@ -18,6 +18,9 @@ from textual.widgets import (
 )
 
 from ...config import (
+    AGENT_HELP,
+    AGENT_LABELS,
+    AGENT_MODES,
     DEVICE_PROFILES,
     HOST_CORES,
     PRIORITY_CHOICES,
@@ -180,6 +183,15 @@ class SettingsScreen(Screen):
                 yield Label("History window (turns)", classes="field-label")
                 yield Input(id="turns", type="integer")
 
+                yield Label("Prompt-cache RAM (MB, 0 = off)", classes="field-label")
+                yield Static(
+                    "llama-server keeps KV states of earlier prompts in RAM so a "
+                    "returning prefix skips prefill. llama.cpp's default is 8192 MB, "
+                    "far past a phone budget; 0 keeps RSS honest. Applies on next load.",
+                    classes="field-help",
+                )
+                yield Input(id="cache-ram", type="integer")
+
                 with Horizontal(classes="switch-row"):
                     yield Label("Disable mmap")
                     yield Switch(id="nommap")
@@ -211,6 +223,35 @@ class SettingsScreen(Screen):
                     "throughput either way.",
                     classes="field-help",
                 )
+
+                yield Static("AGENT / INTENT ROUTING", classes="panel-title")
+                yield Label("Agent mode", classes="field-label")
+                yield Select(
+                    [(AGENT_LABELS[m], m) for m in AGENT_MODES],
+                    id="agent-mode",
+                    allow_blank=False,
+                )
+                yield Static(AGENT_HELP, classes="field-help")
+                yield Static(id="router-note", classes="field-help")
+                yield Label("Route threshold (cosine, below -> all tools)",
+                            classes="field-label")
+                yield Input(id="router-threshold", type="number")
+                yield Label("Minimum margin between top two intents",
+                            classes="field-label")
+                yield Input(id="router-margin", type="number")
+                with Horizontal(classes="switch-row"):
+                    yield Label("Answer trivial requests without the SLM")
+                    yield Switch(id="direct-calls")
+                yield Label("Direct-answer threshold (stricter)", classes="field-label")
+                yield Input(id="direct-threshold", type="number")
+                yield Label("Router share of the RAM ceiling (MB)", classes="field-label")
+                yield Static(
+                    "Only used with the RAM ceiling on: carved out of the model's "
+                    "budget so the pair never exceeds the device. Measured router "
+                    "RSS: ~275 MB.",
+                    classes="field-help",
+                )
+                yield Input(id="router-ram", type="integer")
 
                 with Horizontal(classes="switch-row"):
                     yield Label("Auto-save session reports")
@@ -261,9 +302,17 @@ class SettingsScreen(Screen):
         self.query_one("#keep-history", Switch).value = s.keep_history
         self.query_one("#turns", Input).value = str(s.history_turns)
         self.query_one("#nommap", Switch).value = s.no_mmap
+        self.query_one("#cache-ram", Input).value = str(s.prompt_cache_ram_mb)
         self.query_one("#thinking-mode", Select).value = s.thinking_mode
         self.query_one("#show-thinking", Switch).value = s.show_thinking
         self.query_one("#autosave", Switch).value = s.auto_save_sessions
+        self.query_one("#agent-mode", Select).value = s.agent_mode
+        self.query_one("#router-threshold", Input).value = f"{s.router_threshold:g}"
+        self.query_one("#router-margin", Input).value = f"{s.router_margin:g}"
+        self.query_one("#direct-calls", Switch).value = s.direct_calls
+        self.query_one("#direct-threshold", Input).value = f"{s.direct_threshold:g}"
+        self.query_one("#router-ram", Input).value = str(s.router_ram_mb)
+        self._update_router_note(s)
         self._update_note()
 
     # ------------------------------------------------------------------
@@ -321,6 +370,23 @@ class SettingsScreen(Screen):
         if not fits and not streams:
             lines.append("[#6f7789]No models downloaded yet.[/]")
         note.update("\n".join(lines))
+
+    def _update_router_note(self, s: Settings) -> None:
+        from ... import encoders
+        from ...engine.encoder_server import INSTALL_HINT, missing_packages
+
+        spec = encoders.get(s.router_model)
+        missing = missing_packages()
+        if missing:
+            text = f"[#ffb454]Router needs: {INSTALL_HINT}[/]"
+        elif spec is None:
+            text = f"[#ff5f5f]Unknown router model '{s.router_model}'.[/]"
+        elif not spec.downloaded:
+            text = (f"[#ffb454]{spec.name} not downloaded - run: "
+                    f"python -m feast_ai pull {spec.id}[/]")
+        else:
+            text = f"[#7bd88f]Router: {spec.name} ({spec.params}, int8 ONNX) ready.[/]"
+        self.query_one("#router-note", Static).update(text)
 
     def on_switch_changed(self, event: Switch.Changed) -> None:
         if event.switch.id == "ram-limit":
@@ -388,9 +454,24 @@ class SettingsScreen(Screen):
         s.keep_history = self.query_one("#keep-history", Switch).value
         s.history_turns = _int(self.query_one("#turns", Input).value, s.history_turns, 1, 64)
         s.no_mmap = self.query_one("#nommap", Switch).value
+        s.prompt_cache_ram_mb = _int(
+            self.query_one("#cache-ram", Input).value, s.prompt_cache_ram_mb, -1, 65536
+        )
         s.thinking_mode = str(self.query_one("#thinking-mode", Select).value)
         s.show_thinking = self.query_one("#show-thinking", Switch).value
         s.auto_save_sessions = self.query_one("#autosave", Switch).value
+        s.agent_mode = str(self.query_one("#agent-mode", Select).value)
+        s.router_threshold = _float(
+            self.query_one("#router-threshold", Input).value, s.router_threshold, 0.0, 1.0
+        )
+        s.router_margin = _float(
+            self.query_one("#router-margin", Input).value, s.router_margin, 0.0, 1.0
+        )
+        s.direct_calls = self.query_one("#direct-calls", Switch).value
+        s.direct_threshold = _float(
+            self.query_one("#direct-threshold", Input).value, s.direct_threshold, 0.0, 1.0
+        )
+        s.router_ram_mb = _int(self.query_one("#router-ram", Input).value, s.router_ram_mb, 64, 4096)
 
         s.mark_custom_if_needed()
         s.configured = True

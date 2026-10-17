@@ -166,6 +166,23 @@ THINKING_HELP = (
     "to benchmark answer throughput; leave it on to benchmark reasoning cost."
 )
 
+#: How a message reaches the SLM - see :mod:`feast_ai.agent`.
+AGENT_MODES = ["off", "direct", "hierarchical"]
+
+AGENT_LABELS = {
+    "off": "Off - plain chat with the system prompt below",
+    "direct": "Direct - the SLM sees every tool and decides alone",
+    "hierarchical": "Hierarchical - intent router first, then only its tools",
+}
+
+AGENT_HELP = (
+    "Agent modes replace the system prompt with the feast mobile tool prompt. "
+    "Direct sends all 15 tools on every message. Hierarchical runs the "
+    "ModernBERT-TR encoder first: it narrows the prompt to the intent's tools, "
+    "or answers trivial requests (open saved items, time, back to GPS) with no "
+    "SLM at all. Compare them with Ctrl+R mid-chat, or `python -m feast_ai bench`."
+)
+
 QUANT_PREFERENCES = [
     "Q4_K_M",
     "Q4_0",
@@ -237,6 +254,18 @@ class Settings:
     repeat_penalty: float = 1.1
     seed: int = -1
     no_mmap: bool = True  # anonymous memory -> honest RSS accounting
+    #: llama-server's host-RAM prompt cache (``--cache-ram``): KV states of
+    #: earlier prompts kept so a returning prefix is restored, not prefilled.
+    #: llama.cpp defaults to 8192 MiB - on a 4 GB phone profile. Measured here:
+    #: switching system prompts per intent grew llama-server from 1112 to
+    #: 1624 MB RSS with the default. 0 disables it (the in-slot prefix reuse of
+    #: one conversation still works); set it to measure that trade-off.
+    prompt_cache_ram_mb: int = 0
+    #: ``--swa-full``: keep a full-size cache for sliding-window layers
+    #: (Gemma). Without it a restored KV snapshot is matched token-for-token
+    #: and then thrown away - llama.cpp has no checkpoint for the shorter
+    #: prefix - so every message re-prefills. Costs ~12 KB/token on Gemma 4 E2B.
+    swa_full: bool = False
 
     # --- prompting -------------------------------------------------------
     system_prompt: str = DEFAULT_SYSTEM_PROMPT
@@ -246,6 +275,22 @@ class Settings:
     # --- reasoning -------------------------------------------------------
     thinking_mode: str = "auto"   # does the model generate reasoning at all
     show_thinking: bool = False   # is that reasoning shown in the transcript
+
+    # --- agent / intent routing (see feast_ai.agent) ---------------------
+    agent_mode: str = "off"
+    router_model: str = "modernbert-tr-embed"
+    #: Below this nearest-exemplar cosine the router admits it does not know
+    #: and the SLM gets every tool. Calibrated with `feast-ai bench --router-only`.
+    router_threshold: float = 0.60
+    #: Within this of the top score, another intent counts as a near-tie and
+    #: its tools are offered too (feast_ai.agent.router). The margin is the
+    #: better confidence signal - 94% top-1 accuracy at 0.04 on the first run.
+    router_margin: float = 0.04
+    #: Answering with no SLM is only allowed above this (stricter) score.
+    direct_threshold: float = 0.75
+    direct_calls: bool = True
+    #: The router's share of the RAM ceiling, carved out of the model's.
+    router_ram_mb: int = 320
 
     # --- models ----------------------------------------------------------
     preferred_quant: str = "Q4_K_M"
@@ -347,6 +392,8 @@ class Settings:
             settings.priority = "normal"
         if settings.thinking_mode not in THINKING_MODES:
             settings.thinking_mode = "auto"
+        if settings.agent_mode not in AGENT_MODES:
+            settings.agent_mode = "off"
         return settings
 
     # ------------------------------------------------------------------
@@ -355,6 +402,12 @@ class Settings:
         index = THINKING_MODES.index(self.thinking_mode)
         self.thinking_mode = THINKING_MODES[(index + 1) % len(THINKING_MODES)]
         return self.thinking_mode
+
+    def cycle_agent_mode(self) -> str:
+        """Advance the agent mode: off -> direct -> hierarchical -> off."""
+        index = AGENT_MODES.index(self.agent_mode)
+        self.agent_mode = AGENT_MODES[(index + 1) % len(AGENT_MODES)]
+        return self.agent_mode
 
     # ------------------------------------------------------------------
     def save(self) -> None:
