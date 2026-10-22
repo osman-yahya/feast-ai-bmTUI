@@ -38,6 +38,8 @@ MODE_INFO = {
     "contexts": ("Routed context", "routed prompt restored from a saved KV snapshot",
                  "c-contexts"),
     "active": ("Active prompting", "picks a tool by name, then reads its manual", "c-hier"),
+    "active2": ("Active, constrained", "grammar-constrained pick, manual, prefilled call",
+                "c-contexts"),
     "classes": ("Classes", "router picks one of 13 class prompts with tool manuals",
                 "c-routed"),
     "classes@decision-2.0-kai-0.6b": ("Classes (Decision 2.0)",

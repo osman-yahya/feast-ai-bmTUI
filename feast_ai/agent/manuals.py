@@ -16,6 +16,9 @@ routing, not by wording:
              the call, and the manual is dropped from the history again;
 ``classes``  the router picks a class, and the class prompt carries the full
              manual of each of its tools.
+``active2``  ``active`` with a sharper index (:data:`INDEX2`) and a compact
+             manual (:func:`render_manual_compact`): the same hints and
+             examples, minus what its grammar already enforces.
 
 The examples follow the rule of the router exemplars: none paraphrases a
 sentence of the benchmark suite (:mod:`feast_ai.agent.suite`).  They teach an
@@ -173,3 +176,181 @@ def render_manuals(names: tuple[str, ...] | list[str], tags: tuple[str, ...]) ->
 
 def render_index() -> str:
     return "\n".join(f"{t.name} — {INDEX[t.name]}" for t in TOOLS)
+
+
+# --------------------------------------------------------------------------
+# active2: a sharper index, and manuals cut to what a grammar cannot say
+# --------------------------------------------------------------------------
+#: One line per tool for ``active2``'s first pass. ``active`` picked from
+#: names plus a bare purpose, and its misses were neighbours confused - shared
+#: items read as chat memory, a moved search area as a venue search, a dish
+#: with a price as a venue, a feeling as a venue kind, the QR scanner as a
+#: menu search, suggestions as friends.  Each line here states the tool's
+#: scope against its neighbour, as the OpenAI and Anthropic tool guides ask
+#: ("describe when, and when not, to use each function").  The quality
+#: examples for ``ask_about_posts`` deliberately avoid the ones the suite
+#: tests (working on a laptop, quiet, a view, pets): the model has to
+#: generalise from the category, not match a word.  The whole block lives in
+#: the static prompt, so after the first message it is cached and costs no
+#: prefill per turn.
+INDEX2: dict[str, str] = {
+    "search_restaurants": "venues by kind or cuisine (a fish restaurant, a kebab house, a bar), "
+                          "filtered by open now, a time, distance or popularity",
+    "search_menu_items": "a dish or drink by name: where it is served and what it costs "
+                         "(cheapest first, a price limit)",
+    "get_restaurant_details": "hours, address or menu of a venue already listed in this chat",
+    "get_menu_item_details": "ingredients or price of a dish already listed in this chat",
+    "get_directions": "the way to a venue already listed in this chat",
+    "set_active_location": "move where every search looks: a district or city the user "
+                           "names or is heading to, or back to their own GPS position "
+                           "(searching comes in the next turn)",
+    "search_posts": "what people posted about a dish, a venue or a keyword",
+    "ask_about_posts": "places with a quality no tag or keyword captures, judged from what "
+                       "people wrote: the atmosphere, romantic, live music, a garden, good "
+                       "for groups",
+    "search_saved": "the user's own saved venues, dishes or posts: show, filter or sort them",
+    "search_shared_items": "venues and dishes sent in chats: by a friend to the user, or by "
+                           "the user to a friend",
+    "search_chat_memory": "the user's earlier conversations with you, feast AI (not messages "
+                          "between friends)",
+    "list_friends": "people who are already the user's friends",
+    "get_suggested_users": "new people the user may know and could add as friends",
+    "open_screen": "open a screen of the app: saved, chats, friends, add_friends, feed, map, "
+                   "profile, notifications, settings, qr_scanner",
+    "send_message_to_friends": "write to friends: pick it when they ask (you then propose the "
+                               "text) and when they answer your proposal",
+}
+
+#: A cue-first decision list after the index: the cue, then the tool, most
+#: specific first. Small models are pulled by tool *names* (the Hammer paper's
+#: finding); a line that states the user's cue before the name lets the cue
+#: decide. Measured on a 48-sentence dev set written for this (none from the
+#: suite; word-overlap checked), pass-A picks with Gemma 4 E2B:
+#: index alone 38/48, index + this list 44/48, this list alone 43/48 - the
+#: misses it fixed were vibe questions read as venue or post searches, the
+#: map screen read as a venue search, and a moved search area answered with
+#: a clarifying question. Rewording the message and no-tool lines (one reply
+#: began "plain text: ...") gave 45/48; moving the "listed earlier" line above
+#: the venue line (a listed venue's hours had matched "opening hours" there)
+#: gave 47/48. Exact full-name scoring from llama.cpp logprobs
+#: (instead of greedy decoding over the grammar) changed none of 21 picks:
+#: the pick distributions were 0.9-1.0 peaked, so it is not used.
+CUES2: tuple[tuple[str, str], ...] = (
+    ("how a place feels or who it suits (mood, atmosphere, music, romantic, for kids or "
+     "groups)", "ask_about_posts"),
+    ("another district or city to search in, or back to the phone's own location",
+     "set_active_location"),
+    ("open or show a part of the app (map, chats, feed, profile, settings, notifications, "
+     "QR scanner, the saved screen)", "open_screen"),
+    ("something a friend sent the user, or the user sent a friend", "search_shared_items"),
+    ("something the user told you or asked you before", "search_chat_memory"),
+    ("the user's own saved items, to filter or sort", "search_saved"),
+    ("a venue or dish you listed earlier: its hours, address, menu or ingredients",
+     "get_restaurant_details or get_menu_item_details; the way there -> get_directions"),
+    ("a dish or drink: where, how much, cheapest, under a price", "search_menu_items"),
+    ("a kind of venue or cuisine, open now or at a time, distance, popular",
+     "search_restaurants"),
+    ("what people posted about something", "search_posts"),
+    ("the user's friends", "list_friends; new people to add or follow (suggestions) -> "
+     "get_suggested_users"),
+    ("a message to a friend (write, tell, send), or their answer to your proposal",
+     "send_message_to_friends"),
+)
+CUES2_TAIL = ("Anything else - greetings, thanks, questions about you, the time, date or "
+              "location, things no tool does - needs no tool: answer it directly.")
+
+#: Hints the compact manual drops: the parameter's name already says it, and
+#: the grammar enforces its type, enum or tag list (~10 prompt tokens each,
+#: ~110 ms of prefill on the 3-core budget).
+TERSE: dict[str, tuple[str, ...]] = {
+    "search_restaurants": ("tags", "open_now", "open_at", "max_walk_minutes",
+                           "max_distance_meters"),
+    "search_menu_items": ("open_now", "max_walk_minutes"),
+    "get_directions": ("mode",),
+    "open_screen": ("screen",),
+}
+
+#: ``send_message_to_friends`` is the one tool that changes anything, and the
+#: app knows which step it is in (did its last reply propose a message?), so
+#: each step gets its own manual - and its own grammar
+#: (:mod:`feast_ai.agent.grammar`): no call is possible before a proposal.
+#: On synthetic chats the bare propose rule once asked "what should I write?"
+#: although the user had said it, and the confirm step dropped the venue id
+#: of a listed place. A worked proposal example ("Bora'ya ...") was then
+#: copied - a request for Burak was proposed to Bora - so the proposal gets
+#: a template in obvious capitals (the rule of CALL_FORMAT), and only the
+#: confirm step, which copies names from the proposal above it, keeps a
+#: worked example (a name, venue and id the suite does not use).
+SEND_STEPS: dict[str, tuple[str, ...]] = {
+    "propose": (
+        "Do NOT send yet. Say who gets it and the exact message, then ask "
+        "\"Göndereyim mi?\". Never say a message was sent.",
+        'Form, with their real names and words: NAME\'a "MESSAGE" göndereyim mi?',
+    ),
+    "confirm": (
+        "The user answered your proposal. If they confirmed, reply with the call - the same "
+        "names and wording, plus attach_restaurant_id if the message is about a listed venue:",
+        '<tool_call>{"name": "send_message_to_friends", "arguments": {...}}</tool_call>',
+        "If they cancelled or changed it, reply in plain text and do not call. Never say a "
+        "message was sent unless you called the tool.",
+        'e.g. after a list with Liman (id: r_903): Bora\'ya "Liman\'da buluşalım" göndereyim '
+        'mi? -> "evet" -> <tool_call>{"name": "send_message_to_friends", "arguments": '
+        '{"friend_names": ["Bora"], "message": "Liman\'da buluşalım", "attach_restaurant_id": '
+        '"r_903"}}</tool_call>',
+    ),
+}
+
+#: Shared last line of a compact manual. The call's opening is prefilled, so
+#: the model writes the arguments object only; "earlier" is what lets a
+#: follow-up ("and under 100 lira") keep the values of the call it refines.
+ARGS_ONLY = "Use every value the user gave, now or earlier in this chat; leave the rest out."
+
+
+def render_index2() -> str:
+    return "\n".join(f"{t.name}: {INDEX2[t.name]}" for t in TOOLS)
+
+
+def render_cues2() -> str:
+    lines = [f"- {cue} -> {tool}" for cue, tool in CUES2]
+    return "WHICH TOOL - take the first line that fits:\n" + "\n".join(lines) + "\n" + CUES2_TAIL
+
+
+def render_manual_compact(name: str, tags: tuple[str, ...], step: str = "") -> str:
+    """``active2``'s manual: signature, non-obvious hints, one example as a
+    bare arguments object. Hint-less parameters share one line.
+
+    ``active``'s manual spent ~75 of its 150-356 tokens on a header and a
+    trailer about the call format; with the opening prefilled and a grammar
+    on the arguments, format words buy nothing.
+    """
+    spec: ToolSpec = BY_NAME[name]
+    if name in PROTOCOL and step == "propose":
+        # No call can follow (text-only grammar): its arguments are noise.
+        return "\n".join([name] + [f"  {rule}" for rule in SEND_STEPS["propose"]])
+    hints = HINTS.get(name, {})
+    terse = set(TERSE.get(name, ()))
+    lines = [f"{name} (* = required)"]
+    bare: list[str] = []
+    for param in spec.params:
+        if param.name == "limit":
+            continue
+        hint = "" if param.name in terse else hints.get(param.name, "")
+        if hint:
+            if bare:
+                lines.append("  " + ", ".join(bare))
+                bare = []
+            lines.append(f"  {param.render(tags)}: {hint}")
+        else:
+            bare.append(param.render(tags))
+    if bare:
+        lines.append("  " + ", ".join(bare))
+    for group in spec.exactly_one:
+        lines.append(f"  Give exactly one of {' / '.join(group)}.")
+    if name in PROTOCOL:
+        lines += [f"  {rule}" for rule in SEND_STEPS[step or "confirm"]]
+        return "\n".join(lines)
+    lines += [f"  {rule}" for rule in spec.rules]
+    for text, args in EXAMPLES.get(name, ()):
+        lines.append(f'  e.g. "{text}" -> {json.dumps(args, ensure_ascii=False)}')
+    lines.append(ARGS_ONLY)
+    return "\n".join(lines)

@@ -387,7 +387,10 @@ def main(argv: list[str] | None = None) -> int:
     bench.add_argument("model_id", nargs="?", help="catalog id of the SLM")
     bench.add_argument("--modes", default="direct,hierarchical",
                        help="comma-separated: direct, hierarchical, routed (router picks the "
-                            "prompt, SLM always), contexts (routed + per-intent KV snapshots)")
+                            "prompt, SLM always), contexts (routed + per-intent KV snapshots), "
+                            "active (pick a tool by name, then its manual), active2 (active "
+                            "with grammar-constrained pick and arguments, prefilled call), "
+                            "classes (router picks a class prompt)")
     bench.add_argument("--router-only", action="store_true",
                        help="measure the intent router alone, no SLM")
     bench.add_argument("--limit", type=int, default=0, help="only the first N cases")

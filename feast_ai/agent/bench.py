@@ -49,6 +49,12 @@ Pipelines (``--modes``)
                   is appended as a system turn and the model writes the call;
                   the manual is then dropped from the history. Two passes,
                   both on the cached conversation - only the manual is new.
+``active2``       ``active`` constrained (:func:`_active2_turn`): a GBNF
+                  grammar makes the first pass ``<use>`` + an exact tool name
+                  or plain text; the second pass gets a compact manual and
+                  the call's opening prefilled, and a grammar admits only
+                  that tool's arguments. ``send_message_to_friends`` can only
+                  be called right after a text turn (a proposal).
 ``classes``       the router picks one of the 13 action classes
                   (:mod:`feast_ai.agent.classes`); the class prompt carries
                   its tools' manuals and its own rules, restored from a KV
@@ -156,15 +162,28 @@ def _judge(row: Row, turn: Turn, check: CallCheck, reply: str) -> None:
 
 # --------------------------------------------------------------------------
 async def _generate(client: ChatClient, messages: list[dict], started: float,
-                    stop: tuple[str, ...] = ()) -> tuple[str, dict]:
-    """Stream one completion; return the visible reply and its measurements."""
+                    stop: tuple[str, ...] = (), grammar: str = "") -> tuple[str, dict]:
+    """Stream one completion; return the visible reply and its measurements.
+
+    ``grammar`` is a GBNF string for llama.cpp's grammar sampler. A trailing
+    assistant message in ``messages`` is continued, not answered (llama.cpp
+    prefill); b10144 streams the prefilled text back with the first generated
+    token - after prompt processing, so TTFT is still the first new token
+    (measured: 5.80 s first chunk vs 5.64 s prompt_ms on a cold 588-token
+    prompt).
+    """
     think = ThinkFilter()
     parts: list[str] = []
     first = 0.0
     usage: dict = {}
     timings: dict = {}
     error = ""
-    async for event in client.stream(messages, extra={"stop": list(stop)} if stop else None):
+    extra: dict = {}
+    if stop:
+        extra["stop"] = list(stop)
+    if grammar:
+        extra["grammar"] = grammar
+    async for event in client.stream(messages, extra=extra or None):
         if event.kind == "error":
             error = event.error
             break
@@ -268,6 +287,107 @@ async def _active_turn(row: Row, turn: Turn, history: list[Message], context: Ag
     return reply
 
 
+SEND = "send_message_to_friends"
+
+
+async def _active2_turn(row: Row, turn: Turn, history: list[Message], context: AgentContext,
+                        client: ChatClient, prompts: dict, started: float, state: dict) -> str:
+    """``active`` with every degree of freedom the app cannot act on removed.
+
+    Pass A - same conversation, the static ``active2`` prompt (the sharper
+    :data:`~feast_ai.agent.manuals.INDEX2` lines plus the cue-first
+    :data:`~feast_ai.agent.manuals.CUES2` list; 997 tokens against
+    ``active``'s 500, cached after the first message, so it costs no prefill
+    per turn) and :func:`~feast_ai.agent.grammar.select_grammar`: the
+    reply is ``<use>NAME`` (or a bare exact ``NAME``), or plain text without
+    ``<``/``{``. No stop string is needed - the grammar ends after the name.
+    A text reply is final (one pass, as in ``active``).
+
+    Pass B - pass A's messages, then ``<use>TOOL</use>`` as the assistant's
+    turn (already in the KV cache up to the name: pass A generated it), the
+    compact manual as a system turn (49-262 tokens, ``active``'s were
+    149-356), and the call's opening ``<tool_call>{"name": "TOOL",
+    "arguments":`` as a trailing assistant turn that llama.cpp continues.
+    :func:`~feast_ai.agent.grammar.args_grammar` then admits only that tool's
+    arguments object and the call's closing brace; the app appends
+    ``</tool_call>``. The model writes ~10-25 tokens instead of ~35-50, and
+    cannot echo the tag, write a second call or invent a tool, argument,
+    enum value, tag or id.
+
+    ``send_message_to_friends`` gets no prefill: after a plain-text turn of
+    this pipeline (a possible proposal) its grammar allows the call or text;
+    otherwise text only. A confirmation can only follow a text turn, so that
+    is a necessary condition of the protocol, enforced in code; whether the
+    user actually confirmed is still the model's call.
+
+    The manual is dropped from the history; only the final reply stays.
+
+    Measured (Gemma 4 E2B Q4_K_M, 3 pinned cores, 2.87 GB ceiling, 91 turns):
+    exact 85% vs ``active`` 73% (13 turns won, 2 lost; exact sign test
+    p = 0.007), 0 hallucinated calls, 1 text reply where a tool was due (vs
+    11); TTFT median 2.80 s vs 4.03 s, reply median 3.43 s vs 5.49 s, 165
+    prefilled and 22 generated tokens per turn vs 242 and 39.
+    """
+    from .grammar import (CALL_CLOSE, ID_KIND, TEXT_GRAMMAR, args_grammar, call_open,
+                          confirm_grammar, known_ids, picked_tool, select_grammar)
+    from .prompts import index2_prompt, manual2_message
+
+    system = index2_prompt(context)
+    select = select_grammar()
+    prompts.setdefault("active2", system)
+    prompts.setdefault("grammar:select", select)
+    row.prompt_name = "active2"
+    row.offered = list(ALL_TOOL_NAMES)
+    row.tools_offered = len(ALL_TOOL_NAMES)
+    after_text, state["after_text"] = state.get("after_text", False), False
+    messages = client.build_messages(history, turn.text, system_prompt=system)
+    first, a = await _generate(client, messages, started, grammar=select)
+    row.select_text, row.select_ms = first[:300], a["latency_s"] * 1000.0
+    tool = picked_tool(first) if not a["error"] else ""
+    if not tool:
+        for key, value in a.items():
+            setattr(row, key, value)
+        if row.error:
+            return ""
+        # A pick is the whole reply ("<use>NAME" or "NAME"); anything else is
+        # judged as the text it is.
+        _judge(row, turn, check_reply(first, ALL_TOOL_NAMES, context.tags), first)
+        state["after_text"] = row.status == "text"
+        return first
+    row.select_tool, row.passes = tool, 2
+    shown = known_ids([m.content for m in history if m.role == "assistant"])
+    used = sorted({i for p in BY_NAME[tool].params if p.name in ID_KIND
+                   for i in shown.get(ID_KIND[p.name], ())})
+    suffix = f"@{','.join(used)}" if used else ""
+    tail = [{"role": "assistant", "content": f"<use>{tool}</use>"}]
+    opening = ""
+    if tool == SEND:
+        step = "confirm" if after_text else "propose"
+        manual = manual2_message(tool, context, step)
+        grammar = confirm_grammar(tool, context.tags, shown) if after_text else TEXT_GRAMMAR
+        prompts.setdefault(f"manual2:{tool}/{step}", manual)
+        prompts.setdefault(f"grammar:{tool}/{step}{suffix if after_text else ''}", grammar)
+        tail.append({"role": "system", "content": manual})
+    else:
+        manual = manual2_message(tool, context)
+        grammar = args_grammar(tool, context.tags, shown)
+        opening = call_open(tool)
+        prompts.setdefault(f"manual2:{tool}", manual)
+        prompts.setdefault(f"grammar:args:{tool}{suffix}", grammar)
+        tail += [{"role": "system", "content": manual}, {"role": "assistant", "content": opening}]
+    reply, b = await _generate(client, messages + tail, started, grammar=grammar)
+    if opening and not b["error"]:
+        if not reply.startswith(opening.rstrip()):  # a server that does not echo the prefill
+            reply = opening + reply
+        reply += CALL_CLOSE
+    for key, value in _combine([a, b]).items():
+        setattr(row, key, value)
+    if not row.error:
+        _judge(row, turn, check_reply(reply, ALL_TOOL_NAMES, context.tags), reply)
+        state["after_text"] = row.status == "text"
+    return reply
+
+
 class ContextStore:
     """Per-intent KV snapshots: prefilled and saved once, restored per message.
 
@@ -359,11 +479,17 @@ async def _run_mode(mode: str, cases, context: AgentContext, client: ChatClient 
         history = [Message(role, content) for role, content in case.history]
         previous = None
         previous_ids: tuple[str, ...] = ()
+        state: dict = {}  # active2: what the app knows about this chat's last turn
         for index, turn in enumerate(case.turns, 1):
             row = Row(mode, case.id, index, turn.text, turn.intent, turn.tool)
             started = time.perf_counter()
-            if base == "active":
-                reply = await _active_turn(row, turn, history, context, client, prompts, started)
+            if base in ("active", "active2"):
+                if base == "active":
+                    reply = await _active_turn(row, turn, history, context, client, prompts,
+                                               started)
+                else:
+                    reply = await _active2_turn(row, turn, history, context, client, prompts,
+                                                started, state)
                 history += [Message("user", turn.text), Message("assistant", reply)]
                 rows.append(row)
                 log(row)
@@ -451,9 +577,14 @@ async def _warm_up(context: AgentContext, client: ChatClient, router, mode: str 
     from .router import FULL
 
     base = mode.split("@")[0]
-    system, stop = full_prompt(context), ()
+    system, stop, grammar = full_prompt(context), (), ""
     if base == "active":
         system, stop = index_prompt(context), SELECT_STOP
+    elif base == "active2":
+        from .grammar import select_grammar
+        from .prompts import index2_prompt
+
+        system, grammar = index2_prompt(context), select_grammar()
     elif router is not None:
         decision = await router.route("merhaba", context)
         system = prompt_for(decision.tools, context)
@@ -461,7 +592,7 @@ async def _warm_up(context: AgentContext, client: ChatClient, router, mode: str 
             system = (class_static(_class_ids(decision, ()), decision.tools, context.tags)
                       + "\n\n" + context.render())
     await _generate(client, client.build_messages([], "merhaba", system_prompt=system),
-                    time.perf_counter(), stop=stop)
+                    time.perf_counter(), stop=stop, grammar=grammar)
 
 
 def _class_statics(context: AgentContext) -> list[str]:
@@ -482,6 +613,27 @@ def _all_prompts(context: AgentContext, bases: set[str], used: dict) -> dict[str
     if "active" in bases:
         out["active"] = index_prompt(context)
         out.update({f"manual:{t}": manual_message(t, context) for t in ALL_TOOL_NAMES})
+    if "active2" in bases:
+        # The grammars are exported next to the prompts: they shape every
+        # reply as much as the words do. Id alternatives are filled from the
+        # chat per turn; the generic form is here, the filled ones as used.
+        from .grammar import (CALL_CLOSE, TEXT_GRAMMAR, args_grammar, call_open,
+                              confirm_grammar, select_grammar)
+        from .prompts import index2_prompt, manual2_message
+
+        out["active2"] = index2_prompt(context)
+        out["grammar:select"] = select_grammar()
+        out["active2:prefill"] = (call_open("TOOL") + "<grammar: arguments object + '}'>"
+                                  + CALL_CLOSE)
+        for t in ALL_TOOL_NAMES:
+            if t == SEND:
+                for step in ("propose", "confirm"):
+                    out[f"manual2:{t}/{step}"] = manual2_message(t, context, step)
+                out[f"grammar:{t}/propose"] = TEXT_GRAMMAR
+                out[f"grammar:{t}/confirm"] = confirm_grammar(t, context.tags)
+            else:
+                out[f"manual2:{t}"] = manual2_message(t, context)
+                out[f"grammar:args:{t}"] = args_grammar(t, context.tags)
     if "classes" in bases:
         for spec in v2.CLASSES:
             if spec.route != "inherit":
@@ -814,7 +966,7 @@ def _router_meta(settings: Settings) -> dict:
 
 
 ROUTER_MODES = ("hierarchical", "routed", "contexts", "classes")
-MODES = ("direct", "active") + ROUTER_MODES
+MODES = ("direct", "active", "active2") + ROUTER_MODES
 
 
 def _snapshot_sets() -> list[tuple[str, ...]]:

@@ -92,14 +92,18 @@ python -m feast_ai pull modernbert-tr-embed               # 150 MB intent router
 python -m feast_ai route "Kaydedilenlerimi gösterir misin" # how one message is routed
 ```
 
-**5. Reproduce the comparison.** This is the run behind the prompt-cycle
-table below: four pipelines on one simulated phone (3 cores, 4 GB). Each
-suite takes about 10 minutes on a desktop CPU. Every run writes a Markdown
-report, a JSON file and a side-by-side HTML page to `~/.feast-ai/sessions/`.
+**5. Reproduce the comparison.** This is the run behind the `active2` table
+in the prompt-cycle section: four pipelines on one simulated phone (3 cores,
+4 GB). The kanka suite takes about 10 minutes on a desktop CPU and the
+standard suite about 15. Every run writes a Markdown report, a JSON file and a
+side-by-side HTML page to `~/.feast-ai/sessions/`. Keep `classes` in the
+list: it turns on `--swa-full` for the whole run, without which Gemma's
+sliding-window cache reuses less and the other modes look slower than they
+are.
 
 ```bash
-python -m feast_ai bench gemma-4-e2b --modes direct,active,classes --suite kanka --cores 3 --ram-gb 4
-python -m feast_ai bench gemma-4-e2b --modes direct,active,classes --suite standard --cores 3 --ram-gb 4
+python -m feast_ai bench gemma-4-e2b --modes direct,active,active2,classes --suite kanka --cores 3 --ram-gb 4
+python -m feast_ai bench gemma-4-e2b --modes direct,active,active2,classes --suite standard --cores 3 --ram-gb 4
 ```
 
 **Optional: the Decision 2.0 router.** It needs a llama.cpp fork that stock
@@ -603,6 +607,7 @@ is routing, not wording:
 | `direct` | unchanged: all 15 compact tool lines, one prompt |
 | `active` | one fixed prompt lists every tool by name and purpose (494 tokens); the model answers `<use>tool</use>` (generation stops there) or in text; for a tool, its manual (150–350 tokens) is appended as a system turn, the model writes the call, and the manual is dropped from the history |
 | `classes` | the router picks one of 13 action classes (`agent/classes.py`: the 19 intents merged by what the SLM must do, e.g. venue + dish search = `food`); the class prompt carries its tools' manuals and its own rules (250–960 tokens), restored from a KV snapshot only when the class changes |
+| `active2` | `active` with constraints (see [below](#constrained-active-prompting-active2)): a grammar lets the first pass answer only `<use>` + an exact tool name, or in plain text; the second pass gets a compact manual (49–262 tokens) with the call's opening prefilled, and a grammar admits only that tool's arguments |
 
 `bench gemma-4-e2b --modes direct,active,classes,classes@decision-2.0-kai-0.6b
 --cores 3 --ram-gb 4`, kanka (31 turns) and standard (60 turns) suites, 91
@@ -647,6 +652,101 @@ the same rule: none paraphrases a suite sentence.
 
 Limits of the test: tools are not executed, so only the first hop is judged.
 Follow-up cases start from a history that already lists results with ids.
+
+#### Constrained active prompting (`active2`)
+
+`active` failed in ways the app could have prevented. In the run above, the
+second pass repeated `<use>tool</use>` 6 times (9 in the run below) and once
+wrote two calls in one tag, and the first pass picked tools from bare names. `active2` keeps the idea: the model picks the
+tool, its manual is shown for one pass and dropped. It removes every outcome
+the app could not act on:
+
+- **Pass A is grammar-constrained.** llama.cpp's `grammar` field (GBNF,
+  accepted on `/v1/chat/completions` in b10144) allows only `<use>` + one of
+  the 15 exact names, or plain text with no `<` or `{`. Invented names and
+  calls without a manual can't be written, and no stop string is needed.
+  The grammars are built from the same `ToolSpec`s as the prompt and the
+  judge (`agent/grammar.py`).
+- **A cue-first index.** Each tool line states its scope against its
+  neighbours. A "which tool" list then puts the user's cue before the tool
+  name ("how a place feels or who it suits → ask_about_posts"). On a 48-sentence
+  dev set written for this, none from the suite, Gemma's pass-A picks went
+  from 38/48 with the index alone to 47/48. The prompt is 997 tokens but
+  static, so it stays in the KV cache.
+- **Pass B is prefilled and constrained.** After the compact manual, the
+  call's opening `<tool_call>{"name": "TOOL", "arguments":` is sent as a
+  trailing assistant message. llama.cpp continues it, and the stream echoes it
+  with the first new token, so TTFT is unaffected. A grammar admits only that
+  tool's argument names, types, enum values, tags and the ids already shown in
+  the chat. The model writes about 22 tokens instead of 39.
+- **Compact manuals.** The same hints and examples, minus format instructions
+  and hints the grammar already enforces: 49–262 tokens, down from 149–356.
+- **Confirm-first is enforced in code.** `send_message_to_friends` gets a
+  text-only grammar unless the previous turn was a text reply, because a
+  confirmation can only follow a proposal. Whether the user actually
+  confirmed is still the model's call.
+
+Tried and dropped, as measured: exact full-name scoring from logprobs
+(changed none of 21 picks; the distributions were 0.9–1.0 peaked),
+`json_schema` (HTTP 400 on b10144 once a prefill is present), and a prefill
+ending in a space (it produced `{ "item_type": "any" }`-style splits).
+
+Same command as above, with `--modes direct,active,active2,classes`, run once
+per suite, one run after the other:
+
+| | Direct | Active | **Active2** | Classes |
+| --- | --- | --- | --- | --- |
+| Exact, kanka (31) | 71% | 71% | 84% | 84% |
+| Exact, standard (60) | 72% | 73% | 85% | 83% |
+| **Exact, all 91 turns** | 71% | 73% | **85%** | 84% |
+| Hallucinated calls | 7 | 0 | **0** | 1 |
+| Unsafe sends | 0 | 0 | 0 | 0 |
+| Text where a tool was needed | 6 | 11 | **1** | 2 |
+| Tool where text was right | 0 | 0 | 1 | 0 |
+| TTFT median | **0.44 s** | 4.03 s | 2.80 s | 1.83 s |
+| Reply median / average | **2.31 / 2.45 s** | 5.49 / 5.18 s | 3.43 / 3.42 s | 3.44 / 3.75 s |
+| Reply p95 | **4.05 s** | 7.44 s | 4.81 s | 5.44 s |
+| Prefilled tokens per turn | **21** | 242 | 165 | 126 |
+| Output tokens per turn | 32 | 39 | **22** | 29 |
+| Right tool picked in pass A | – | 52/70 | 62/70 | – |
+
+- **Accuracy rose to the classes level without a router.** Per turn,
+  `active2` beat `active` on 13 turns and lost 2 (exact sign test p = 0.007).
+  Against direct it was 17 to 5 (p = 0.017). Against classes it was 7 to 6,
+  a tie. Of its 14 misses:
+  - 5 are vibe turns still read as venue searches (both laptop questions,
+    the laptop follow-up, cats, sea view);
+  - 4 are `search_shared_items` calls missing the friend's name or the
+    direction;
+  - one each: a cheap döner read as a venue search, a clarifying question,
+    suggestions read as friends, `item_type` "menu_item" for saved posts, and
+    "Şu an hangi konumdayım" answered with a location reset.
+- **The grammar closes the holes words could not.** No tag echo, no second
+  call and no invented name, argument or tag are possible. The 0
+  hallucinated calls therefore measure the grammar as much as the model.
+  Text replies where a tool was due fell from 11 to 1, mostly because the
+  tag echo, 9 of `active`'s 11, can no longer happen.
+- **About 2 s faster than `active` per tool turn.** TTFT median on two-pass
+  turns was 3.17 s (4.33 s for `active`) and the reply median 3.75 s (6.06 s).
+  Pass A takes 0.86 s; the rest is prefilling the manual (~90 tokens/s).
+  Average reply time is now below classes (3.42 vs 3.75 s), but the median
+  TTFT is not. The manual still has to be prefilled, while a class snapshot
+  is restored.
+- **The "page-ins" row misleads for this mode.** It counts every page fault.
+  The arguments grammar makes llama.cpp's sampler allocate fresh memory on
+  each constrained token, about 3.4 MB of demand-zero faults per token. That
+  happens identically with the RAM ceiling off and reads nothing from the
+  model file, so `active2` showed 1.7–3.2 GB there against 0.1–0.3 GB for the
+  others. Decode speed was unchanged (17.0 tok/s).
+
+Caveats. The index descriptions were sharpened knowing which tool pairs
+`active` had confused on these suites. No wording copies a suite sentence
+(a word-overlap check found no shared bigram), but part of the gain may not
+transfer to new phrasings. The dev set is the guard, and a fresh held-out
+set would settle it. When no ids have been listed, an id parameter falls
+back to a free string, and the judge does not check ids against the chat:
+one `get_directions` call with an invented `r_123` counted as a valid call,
+though not as exact.
 
 ---
 

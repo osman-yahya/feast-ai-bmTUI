@@ -4,6 +4,9 @@
 ``hierarchical``  the router picks an intent first; the prompt then lists only
                   that intent's tool group (or none, for small talk).
 
+``active``/``active2`` (index + on-demand manual) and ``classes`` (one prompt
+per router class) have their own prompts further down.
+
 Everything except the TOOLS block is identical text in both pipelines - the
 preamble, the call format, the rules, the context.  That is deliberate: the
 comparison is meant to isolate one variable, how many tools the model is
@@ -118,6 +121,46 @@ def manual_message(tool: str, context: AgentContext) -> str:
         + "\", \"arguments\": {...}}</tool_call>, using only the arguments above. If the "
         "tool does not fit after all, or its rules say not to call yet, answer in plain text."
     )
+
+
+# --------------------------------------------------------------------------
+# active2: the same two passes, constrained (see feast_ai.agent.grammar)
+# --------------------------------------------------------------------------
+#: No "plain text" wording here or in the cue list: on the dev set Gemma once
+#: began a reply with "plain text: ..." copied from an earlier wording.
+SELECT2_FORMAT = (
+    "HOW TO ANSWER\n"
+    "If a tool fits, reply only <use>TOOL</use> with its exact name. The app then shows you "
+    "that tool's manual.\n"
+    "A short follow-up that only adds a condition (a price limit, a distance, open now) to "
+    "your last tool call keeps that tool: pick it again, do not ask what they mean.\n"
+    "Otherwise answer briefly in the user's language; the time, date and location are in "
+    "CONTEXT. Never invent venues, dishes, prices, people or messages."
+)
+
+
+def index2_static() -> str:
+    from .manuals import render_cues2, render_index2
+
+    return "\n\n".join((PREAMBLE, "TOOLS\n" + render_index2(), render_cues2(), SELECT2_FORMAT))
+
+
+def index2_prompt(context: AgentContext) -> str:
+    """``active2``'s one fixed prompt - static, so it stays in the KV cache."""
+    return index2_static() + "\n\n" + context.render()
+
+
+def manual2_message(tool: str, context: AgentContext, step: str = "") -> str:
+    """``active2``'s pass-B system turn: the compact manual, dropped afterwards.
+
+    No "do not write <use> again" and no call template: the call's opening
+    is prefilled as the assistant's turn, so the tag echo ``active`` fought
+    with words cannot happen (except for the confirm step of
+    ``send_message_to_friends``, which must stay free to answer in text).
+    """
+    from .manuals import render_manual_compact
+
+    return "TOOL MANUAL\n" + render_manual_compact(tool, context.tags, step)
 
 
 # --------------------------------------------------------------------------
