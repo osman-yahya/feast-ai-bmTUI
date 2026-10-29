@@ -118,9 +118,22 @@ def _asset_pattern() -> tuple[str, ...]:
     raise RuntimeError_(f"Unsupported platform: {system}/{machine}")
 
 
+def _release_url() -> str:
+    """``latest`` unless ``FEAST_AI_LLAMA_TAG`` pins a build (e.g. ``b10144``).
+
+    Pinning keeps runs comparable with earlier measurements, and is the way out
+    when the latest release ships without CPU binaries (``v0.8.0`` carried only
+    ``nightly-tag.txt``).
+    """
+    tag = os.environ.get("FEAST_AI_LLAMA_TAG", "").strip()
+    if not tag:
+        return RELEASES_API
+    return RELEASES_API.rsplit("/", 1)[0] + "/tags/" + tag
+
+
 def _fetch_release() -> dict:
     request = urllib.request.Request(
-        RELEASES_API, headers={"User-Agent": USER_AGENT, "Accept": "application/vnd.github+json"}
+        _release_url(), headers={"User-Agent": USER_AGENT, "Accept": "application/vnd.github+json"}
     )
     try:
         with urllib.request.urlopen(request, timeout=30) as response:
