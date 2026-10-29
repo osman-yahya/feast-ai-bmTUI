@@ -1,0 +1,36 @@
+[
+ {
+  "key": "allergen",
+  "value": "peanuts",
+  "kind": "hard",
+  "source_turn_id": "t_e1_1",
+  "valid_from": "2026-09-05",
+  "source": "inferred"
+ },
+ {
+  "key": "diet",
+  "value": "vegetarian",
+  "kind": "hard",
+  "source_turn_id": "t_e1_1",
+  "valid_from": "2026-09-05",
+  "valid_until": "2026-10-10",
+  "source": "inferred",
+  "status": "closed"
+ },
+ {
+  "key": "diet",
+  "value": "vegan",
+  "kind": "hard",
+  "source_turn_id": "t_e2_1",
+  "valid_from": "2026-10-10",
+  "source": "explicit"
+ },
+ {
+  "key": "likes",
+  "value": "acılı",
+  "kind": "soft",
+  "source_turn_id": "t_e3_1",
+  "valid_from": "2026-10-24",
+  "source": "inferred"
+ }
+]

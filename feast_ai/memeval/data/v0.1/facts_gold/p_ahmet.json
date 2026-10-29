@@ -1,0 +1,46 @@
+[
+ {
+  "key": "allergen",
+  "value": "tree_nuts",
+  "kind": "hard",
+  "valid_from": "2026-07-31",
+  "source": "inferred",
+  "valid_until": "2026-09-25",
+  "status": "closed",
+  "source_turn_id": "t_p_ahmet_00_00"
+ },
+ {
+  "key": "likes",
+  "value": "pide/lahmacun",
+  "kind": "soft",
+  "valid_from": "2026-08-19",
+  "source": "inferred",
+  "source_turn_id": "t_p_ahmet_01_00"
+ },
+ {
+  "key": "home_area",
+  "value": "Kadıköy Çarşı",
+  "kind": "soft",
+  "valid_from": "2026-09-10",
+  "source": "explicit",
+  "valid_until": "2026-10-08",
+  "status": "closed",
+  "source_turn_id": "t_p_ahmet_03_00"
+ },
+ {
+  "key": "home_area",
+  "value": "Moda",
+  "kind": "soft",
+  "valid_from": "2026-10-08",
+  "source": "explicit",
+  "source_turn_id": "t_p_ahmet_07_00"
+ },
+ {
+  "key": "likes",
+  "value": "ev yemekleri",
+  "kind": "soft",
+  "valid_from": "2026-10-23",
+  "source": "inferred",
+  "source_turn_id": "t_p_ahmet_09_00"
+ }
+]

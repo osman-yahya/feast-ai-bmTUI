@@ -1,0 +1,203 @@
+Sen bir eval veri seti icin gercekci Turkce sohbet yazarisin.
+Uygulama: feast, Istanbul'da restoran kesfi. Asistan: Mustachio - samimi, kisa (1-2 cumle) konusur.
+
+Kurallar:
+- Her oturum icin verilen "beat"leri SIRAYLA isle. Her beat tam olarak bir turda gecer ve o turun
+  "beats" listesine id'si yazilir. Beat'in rolu ile turun rolu ayni olmali.
+- Bir turda birden fazla beat olabilir; beat tasimayan kisa dolgu turlari ekleyebilirsin.
+- Oturum her zaman kullanici turuyla baslar. Oturum basina 2-8 tur.
+- Plan disinda kisisel bilgi EKLEME: alerji, diyet, evcil hayvan, adres, saglik, gidilen yer,
+  restoran adi. Beat'te gecmeyen hicbir restoran adini yazma.
+- "DOLAYLI" denen beat'lerde bilgiyi acikca soyleme, gunluk dille ima et.
+- Kullanicilar gercek insanlar gibi yazsin: bazen kucuk harf, diakritiksiz, kisa; ama Turkce dogal olsun.
+- Tarih ifadelerini (dun, gecen cuma...) beat'te verildigi gibi kullan; kendin tarih uydurma.
+- Asistan yalniz uygulamanin verisini bilir: yemek adi, fiyat, etiketler (vegan, glutensiz,
+  'populer', 'sefin onerisi'), semt, fiyat seviyesi. Puan, yorum, populerlik bilgisi YOK:
+  "meshur", "efsane", "cok sevilir", "herkes bayiliyor", "lezzetli" gibi degerlendirme YAZMA.
+  Baskasinin postunu aktarirsan yazariyla ve cift tirnak icinde aktar: @kullanici: "...".
+
+
+Kullanici: Can. Asagidaki 10 oturumu yaz.
+
+[
+ {
+  "session_index": 0,
+  "tarih": "25 temmuz 2026 cumartesi 12:15",
+  "beats": [
+   {
+    "id": "b_p_can_01",
+    "role": "user",
+    "talimat": "Kullanıcı balık yiyince rahatsızlandığını DOLAYLI ima eder (ör. nefesinin daraldığını, hastanelik olduğunu anlatır); 'alerji' kelimesini KULLANMAZ."
+   },
+   {
+    "id": "b_p_can_02",
+    "role": "user",
+    "talimat": "Kullanıcı kalamar, midye gibi yumuşakçalar yiyince rahatsızlandığını DOLAYLI ima eder (ör. nefesinin daraldığını, hastanelik olduğunu anlatır); 'alerji' kelimesini KULLANMAZ."
+   },
+   {
+    "id": "b_p_can_03",
+    "role": "assistant",
+    "talimat": "Asistan kullanıcının söylediğini dikkate aldığını kısaca belirtir, öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 1,
+  "tarih": "27 temmuz 2026 pazartesi 19:45",
+  "beats": [
+   {
+    "id": "b_p_can_04",
+    "role": "user",
+    "talimat": "Kullanıcı kebap sevdiğini DOLAYLI belli eder (ör. 'haftada iki kez yerim')."
+   },
+   {
+    "id": "b_p_can_17",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_can_18",
+    "role": "assistant",
+    "talimat": "Asistan 'Sushi Nami' restoranını önerir. Gerekçe YALNIZ şu veri: Tavuklu Pad Thai 290 TL (acılı); semt Beşiktaş; fiyat seviyesi ₺. Başka restoran adı GEÇİRMEZ. İstersen şu postu yazarıyla alıntılayabilirsin: @beyza.yer: \"Hayatımda yediğim en iyi Somon Sushi Seti 🔥\""
+   }
+  ]
+ },
+ {
+  "session_index": 2,
+  "tarih": "30 temmuz 2026 perşembe 13:00",
+  "beats": [
+   {
+    "id": "b_p_can_07",
+    "role": "user",
+    "talimat": "Kullanıcı dün akşam 'Ateş Kebap' restoranında Fıstıklı Kebap yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_can_08",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 3,
+  "tarih": "19 ağustos 2026 çarşamba 13:45",
+  "beats": [
+   {
+    "id": "b_p_can_06",
+    "role": "user",
+    "talimat": "Kullanıcı Beşiktaş semtinde oturduğunu söyler."
+   }
+  ]
+ },
+ {
+  "session_index": 4,
+  "tarih": "6 eylül 2026 pazar 20:45",
+  "beats": [
+   {
+    "id": "b_p_can_19",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_can_20",
+    "role": "assistant",
+    "talimat": "Asistan 'Cihangir Meze Evi' restoranını önerir. Gerekçe YALNIZ şu veri: Haydari 110 TL (vejetaryen); semt Beşiktaş; fiyat seviyesi ₺₺. Başka restoran adı GEÇİRMEZ. İstersen şu postu yazarıyla alıntılayabilirsin: @acikmis_ogrenci: \"Fiyatına göre gayet iyi bir Muhammara\""
+   }
+  ]
+ },
+ {
+  "session_index": 5,
+  "tarih": "17 eylül 2026 perşembe 20:15",
+  "beats": [
+   {
+    "id": "b_p_can_09",
+    "role": "user",
+    "talimat": "Kullanıcı dün akşam 'Smash Bros' restoranında Patates Kızartması yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_can_10",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 6,
+  "tarih": "25 eylül 2026 cuma 20:45",
+  "beats": [
+   {
+    "id": "b_p_can_21",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_can_22",
+    "role": "assistant",
+    "talimat": "Asistan 'Lagos Balık' restoranını önerir. Gerekçe YALNIZ şu veri: Roka Salatası 140 TL (vegan); semt Beşiktaş; fiyat seviyesi ₺₺. Başka restoran adı GEÇİRMEZ."
+   }
+  ]
+ },
+ {
+  "session_index": 7,
+  "tarih": "9 ekim 2026 cuma 19:15",
+  "beats": [
+   {
+    "id": "b_p_can_11",
+    "role": "user",
+    "talimat": "Kullanıcı dün öğlen 'Dün Gece Burger' restoranında Sebze Burger yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_can_12",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 8,
+  "tarih": "14 ekim 2026 çarşamba 13:30",
+  "beats": [
+   {
+    "id": "b_p_can_13",
+    "role": "user",
+    "talimat": "Kullanıcı evvelsi gün akşam 'Kebapçı Halil' restoranında Fıstıklı Kebap yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_can_14",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   },
+   {
+    "id": "b_p_can_23",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_can_24",
+    "role": "assistant",
+    "talimat": "Asistan 'Fenerbahçe Balıkçısı' restoranını önerir. Gerekçe YALNIZ şu veri: Helva 205 TL; semt Beşiktaş; fiyat seviyesi ₺₺₺₺. Başka restoran adı GEÇİRMEZ."
+   }
+  ]
+ },
+ {
+  "session_index": 9,
+  "tarih": "18 ekim 2026 pazar 20:00",
+  "beats": [
+   {
+    "id": "b_p_can_05",
+    "role": "user",
+    "talimat": "Kullanıcı burger sevdiğini DOLAYLI belli eder (ör. 'haftada iki kez yerim')."
+   },
+   {
+    "id": "b_p_can_15",
+    "role": "user",
+    "talimat": "Kullanıcı dün öğlen 'Pazar Kahvaltı Evi' restoranında Fıstık Ezmeli Pankek yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_can_16",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ }
+]

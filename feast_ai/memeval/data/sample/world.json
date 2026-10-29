@@ -1,0 +1,258 @@
+{
+ "restaurants": [
+  {
+   "id": "r_101",
+   "name": "Moda Yeşil Mutfak",
+   "lat": 40.9851,
+   "lng": 29.0262,
+   "tags": [
+    "vegan",
+    "kafe"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    }
+   },
+   "address": "Moda Cd. 12, Kadıköy",
+   "price_level": 2,
+   "area": "Moda"
+  },
+  {
+   "id": "r_102",
+   "name": "Cuma Pide",
+   "lat": 40.9902,
+   "lng": 29.0281,
+   "tags": [
+    "pide",
+    "lahmacun"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": false
+    },
+    "tuesday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "friday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    }
+   },
+   "address": "Bahariye Cd. 40, Kadıköy",
+   "price_level": 1,
+   "area": "Kadıköy"
+  },
+  {
+   "id": "r_103",
+   "name": "Antep Sofrası",
+   "lat": 40.9921,
+   "lng": 29.024,
+   "tags": [
+    "kebap",
+    "tatli"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "friday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    }
+   },
+   "address": "Kadife Sk. 3, Kadıköy",
+   "price_level": 3,
+   "area": "Kadıköy"
+  }
+ ],
+ "menu_items": [
+  {
+   "id": "m_1001",
+   "restaurant_id": "r_101",
+   "name": "Nohutlu Buddha Kase",
+   "category_name": "Ana Yemek",
+   "price": "240",
+   "badges": [
+    "vegan",
+    "gluten_free"
+   ],
+   "allergens": [
+    "sesame"
+   ],
+   "calories": 520
+  },
+  {
+   "id": "m_1002",
+   "restaurant_id": "r_101",
+   "name": "Fıstık Ezmeli Smoothie",
+   "category_name": "İçecek",
+   "price": "150",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "peanuts"
+   ]
+  },
+  {
+   "id": "m_1003",
+   "restaurant_id": "r_101",
+   "name": "Zencefilli Limonata",
+   "category_name": "İçecek",
+   "price": "90",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_2001",
+   "restaurant_id": "r_102",
+   "name": "Kuşbaşılı Pide",
+   "category_name": "Pide",
+   "price": "280",
+   "badges": [
+    "popular"
+   ],
+   "allergens": [
+    "gluten",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_2002",
+   "restaurant_id": "r_102",
+   "name": "Acılı Lahmacun",
+   "category_name": "Lahmacun",
+   "price": "110",
+   "badges": [
+    "spicy"
+   ],
+   "allergens": [
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_3001",
+   "restaurant_id": "r_103",
+   "name": "Fıstıklı Katmer",
+   "category_name": "Tatlı",
+   "price": "180",
+   "badges": [
+    "chef_special"
+   ],
+   "allergens": [
+    "tree_nuts",
+    "gluten",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_3002",
+   "restaurant_id": "r_103",
+   "name": "Közlenmiş Patlıcan Salatası",
+   "category_name": "Meze",
+   "price": "120",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  }
+ ],
+ "campaigns": [
+  {
+   "id": 1,
+   "restaurant_id": "r_102",
+   "title": "Hafta içi lahmacun 2 al 1 öde",
+   "description": "Salı-Perşembe 12:00-16:00",
+   "start_date": "2026-10-01T00:00:00",
+   "end_date": "2026-11-30T23:59:00"
+  }
+ ]
+}

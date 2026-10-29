@@ -1,0 +1,5083 @@
+{
+ "restaurants": [
+  {
+   "id": "r_000",
+   "name": "Cuma Pide",
+   "lat": 40.98596,
+   "lng": 29.02199,
+   "tags": [
+    "pide",
+    "lahmacun"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "friday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    }
+   },
+   "address": "Moda, İstanbul",
+   "price_level": 2,
+   "area": "Moda"
+  },
+  {
+   "id": "r_001",
+   "name": "Karadeniz Pide Salonu",
+   "lat": 40.99908,
+   "lng": 29.02772,
+   "tags": [
+    "pide",
+    "lahmacun"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": false
+    },
+    "tuesday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "friday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    }
+   },
+   "address": "Yeldeğirmeni, İstanbul",
+   "price_level": 1,
+   "area": "Yeldeğirmeni"
+  },
+  {
+   "id": "r_002",
+   "name": "Pideci Hasan",
+   "lat": 41.0424,
+   "lng": 29.00761,
+   "tags": [
+    "pide",
+    "lahmacun"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "friday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": false
+    },
+    "saturday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    }
+   },
+   "address": "Beşiktaş, İstanbul",
+   "price_level": 1,
+   "area": "Beşiktaş"
+  },
+  {
+   "id": "r_003",
+   "name": "Fırın Pide",
+   "lat": 40.98742,
+   "lng": 29.02477,
+   "tags": [
+    "pide",
+    "lahmacun"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "friday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "11:00",
+     "close": "23:30",
+     "is_open": true
+    }
+   },
+   "address": "Moda, İstanbul",
+   "price_level": 4,
+   "area": "Moda"
+  },
+  {
+   "id": "r_010",
+   "name": "Antep Sofrası",
+   "lat": 40.98757,
+   "lng": 29.02685,
+   "tags": [
+    "kebap"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "friday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    }
+   },
+   "address": "Kadıköy Çarşı, İstanbul",
+   "price_level": 2,
+   "area": "Kadıköy Çarşı"
+  },
+  {
+   "id": "r_011",
+   "name": "Urfa Ocakbaşı",
+   "lat": 40.97546,
+   "lng": 29.03582,
+   "tags": [
+    "kebap"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "friday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    }
+   },
+   "address": "Fenerbahçe, İstanbul",
+   "price_level": 3,
+   "area": "Fenerbahçe"
+  },
+  {
+   "id": "r_012",
+   "name": "Kebapçı Halil",
+   "lat": 41.0337,
+   "lng": 28.98351,
+   "tags": [
+    "kebap"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "friday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": false
+    },
+    "saturday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    }
+   },
+   "address": "Cihangir, İstanbul",
+   "price_level": 2,
+   "area": "Cihangir"
+  },
+  {
+   "id": "r_013",
+   "name": "Ateş Kebap",
+   "lat": 40.98992,
+   "lng": 29.02601,
+   "tags": [
+    "kebap"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "friday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "12:00",
+     "close": "00:30",
+     "is_open": true
+    }
+   },
+   "address": "Kadıköy Çarşı, İstanbul",
+   "price_level": 3,
+   "area": "Kadıköy Çarşı"
+  },
+  {
+   "id": "r_020",
+   "name": "Moda Yeşil Mutfak",
+   "lat": 40.99816,
+   "lng": 29.03159,
+   "tags": [
+    "vegan",
+    "kafe"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": false
+    },
+    "wednesday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    }
+   },
+   "address": "Yeldeğirmeni, İstanbul",
+   "price_level": 3,
+   "area": "Yeldeğirmeni"
+  },
+  {
+   "id": "r_021",
+   "name": "Bitki Kafe",
+   "lat": 41.046,
+   "lng": 29.00684,
+   "tags": [
+    "vegan",
+    "kafe"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    }
+   },
+   "address": "Beşiktaş, İstanbul",
+   "price_level": 2,
+   "area": "Beşiktaş"
+  },
+  {
+   "id": "r_022",
+   "name": "Filiz Vegan",
+   "lat": 40.98412,
+   "lng": 29.02434,
+   "tags": [
+    "vegan",
+    "kafe"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": false
+    },
+    "friday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    }
+   },
+   "address": "Moda, İstanbul",
+   "price_level": 1,
+   "area": "Moda"
+  },
+  {
+   "id": "r_023",
+   "name": "Yeşil Tabak",
+   "lat": 40.99792,
+   "lng": 29.03058,
+   "tags": [
+    "vegan",
+    "kafe"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": false
+    },
+    "tuesday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "09:00",
+     "close": "22:00",
+     "is_open": true
+    }
+   },
+   "address": "Yeldeğirmeni, İstanbul",
+   "price_level": 3,
+   "area": "Yeldeğirmeni"
+  },
+  {
+   "id": "r_030",
+   "name": "Dün Gece Burger",
+   "lat": 40.97475,
+   "lng": 29.03964,
+   "tags": [
+    "burger"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": false
+    },
+    "thursday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    }
+   },
+   "address": "Fenerbahçe, İstanbul",
+   "price_level": 2,
+   "area": "Fenerbahçe"
+  },
+  {
+   "id": "r_031",
+   "name": "Kasap Burger",
+   "lat": 41.03179,
+   "lng": 28.98431,
+   "tags": [
+    "burger"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    }
+   },
+   "address": "Cihangir, İstanbul",
+   "price_level": 1,
+   "area": "Cihangir"
+  },
+  {
+   "id": "r_032",
+   "name": "Smash Bros",
+   "lat": 40.99444,
+   "lng": 29.03008,
+   "tags": [
+    "burger"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    }
+   },
+   "address": "Kadıköy Çarşı, İstanbul",
+   "price_level": 2,
+   "area": "Kadıköy Çarşı"
+  },
+  {
+   "id": "r_033",
+   "name": "Burger Atölyesi",
+   "lat": 40.97278,
+   "lng": 29.04253,
+   "tags": [
+    "burger"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "12:00",
+     "close": "02:00",
+     "is_open": true
+    }
+   },
+   "address": "Fenerbahçe, İstanbul",
+   "price_level": 3,
+   "area": "Fenerbahçe"
+  },
+  {
+   "id": "r_040",
+   "name": "Fenerbahçe Balıkçısı",
+   "lat": 41.04075,
+   "lng": 29.0033,
+   "tags": [
+    "deniz urunleri"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": false
+    },
+    "tuesday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "friday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    }
+   },
+   "address": "Beşiktaş, İstanbul",
+   "price_level": 4,
+   "area": "Beşiktaş"
+  },
+  {
+   "id": "r_041",
+   "name": "Martı Balık",
+   "lat": 40.98344,
+   "lng": 29.02519,
+   "tags": [
+    "deniz urunleri"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": false
+    },
+    "friday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    }
+   },
+   "address": "Moda, İstanbul",
+   "price_level": 3,
+   "area": "Moda"
+  },
+  {
+   "id": "r_042",
+   "name": "İskele Lokantası",
+   "lat": 40.99871,
+   "lng": 29.02823,
+   "tags": [
+    "deniz urunleri"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "friday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    }
+   },
+   "address": "Yeldeğirmeni, İstanbul",
+   "price_level": 2,
+   "area": "Yeldeğirmeni"
+  },
+  {
+   "id": "r_043",
+   "name": "Lagos Balık",
+   "lat": 41.04204,
+   "lng": 29.00285,
+   "tags": [
+    "deniz urunleri"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "friday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "12:00",
+     "close": "23:59",
+     "is_open": true
+    }
+   },
+   "address": "Beşiktaş, İstanbul",
+   "price_level": 2,
+   "area": "Beşiktaş"
+  },
+  {
+   "id": "r_050",
+   "name": "Pazar Kahvaltı Evi",
+   "lat": 41.0281,
+   "lng": 28.98565,
+   "tags": [
+    "kahvalti"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    }
+   },
+   "address": "Cihangir, İstanbul",
+   "price_level": 2,
+   "area": "Cihangir"
+  },
+  {
+   "id": "r_051",
+   "name": "Serpme Bahçe",
+   "lat": 40.98945,
+   "lng": 29.02803,
+   "tags": [
+    "kahvalti"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": false
+    },
+    "saturday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    }
+   },
+   "address": "Kadıköy Çarşı, İstanbul",
+   "price_level": 1,
+   "area": "Kadıköy Çarşı"
+  },
+  {
+   "id": "r_052",
+   "name": "Van Kahvaltı Salonu",
+   "lat": 40.97524,
+   "lng": 29.04092,
+   "tags": [
+    "kahvalti"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    }
+   },
+   "address": "Fenerbahçe, İstanbul",
+   "price_level": 4,
+   "area": "Fenerbahçe"
+  },
+  {
+   "id": "r_053",
+   "name": "Simitçi Dünyası",
+   "lat": 41.03115,
+   "lng": 28.98285,
+   "tags": [
+    "kahvalti"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": false
+    },
+    "friday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "08:00",
+     "close": "16:00",
+     "is_open": true
+    }
+   },
+   "address": "Cihangir, İstanbul",
+   "price_level": 4,
+   "area": "Cihangir"
+  },
+  {
+   "id": "r_060",
+   "name": "Tokyo Sokağı",
+   "lat": 40.98633,
+   "lng": 29.02248,
+   "tags": [
+    "sushi",
+    "uzakdogu"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": false
+    },
+    "wednesday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    }
+   },
+   "address": "Moda, İstanbul",
+   "price_level": 2,
+   "area": "Moda"
+  },
+  {
+   "id": "r_061",
+   "name": "Wok & Roll",
+   "lat": 40.99609,
+   "lng": 29.03359,
+   "tags": [
+    "sushi",
+    "uzakdogu"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": false
+    },
+    "wednesday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    }
+   },
+   "address": "Yeldeğirmeni, İstanbul",
+   "price_level": 1,
+   "area": "Yeldeğirmeni"
+  },
+  {
+   "id": "r_062",
+   "name": "Sushi Nami",
+   "lat": 41.04391,
+   "lng": 29.00219,
+   "tags": [
+    "sushi",
+    "uzakdogu"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    }
+   },
+   "address": "Beşiktaş, İstanbul",
+   "price_level": 1,
+   "area": "Beşiktaş"
+  },
+  {
+   "id": "r_063",
+   "name": "Bambu",
+   "lat": 40.98659,
+   "lng": 29.02252,
+   "tags": [
+    "sushi",
+    "uzakdogu"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "12:00",
+     "close": "23:00",
+     "is_open": true
+    }
+   },
+   "address": "Moda, İstanbul",
+   "price_level": 2,
+   "area": "Moda"
+  },
+  {
+   "id": "r_070",
+   "name": "Anne Eli Lokantası",
+   "lat": 40.98899,
+   "lng": 29.02465,
+   "tags": [
+    "ev yemekleri"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    }
+   },
+   "address": "Kadıköy Çarşı, İstanbul",
+   "price_level": 3,
+   "area": "Kadıköy Çarşı"
+  },
+  {
+   "id": "r_071",
+   "name": "Esnaf Sofrası",
+   "lat": 40.97554,
+   "lng": 29.03913,
+   "tags": [
+    "ev yemekleri"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    }
+   },
+   "address": "Fenerbahçe, İstanbul",
+   "price_level": 2,
+   "area": "Fenerbahçe"
+  },
+  {
+   "id": "r_072",
+   "name": "Tencere Kapak",
+   "lat": 41.03531,
+   "lng": 28.98507,
+   "tags": [
+    "ev yemekleri"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": false
+    },
+    "saturday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    }
+   },
+   "address": "Cihangir, İstanbul",
+   "price_level": 2,
+   "area": "Cihangir"
+  },
+  {
+   "id": "r_073",
+   "name": "Bizim Mutfak",
+   "lat": 40.98859,
+   "lng": 29.02643,
+   "tags": [
+    "ev yemekleri"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "11:00",
+     "close": "21:00",
+     "is_open": true
+    }
+   },
+   "address": "Kadıköy Çarşı, İstanbul",
+   "price_level": 1,
+   "area": "Kadıköy Çarşı"
+  },
+  {
+   "id": "r_080",
+   "name": "Akşam Meyhanesi",
+   "lat": 40.99582,
+   "lng": 29.03109,
+   "tags": [
+    "meyhane"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    }
+   },
+   "address": "Yeldeğirmeni, İstanbul",
+   "price_level": 4,
+   "area": "Yeldeğirmeni"
+  },
+  {
+   "id": "r_081",
+   "name": "Cihangir Meze Evi",
+   "lat": 41.04555,
+   "lng": 29.00692,
+   "tags": [
+    "meyhane"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    }
+   },
+   "address": "Beşiktaş, İstanbul",
+   "price_level": 2,
+   "area": "Beşiktaş"
+  },
+  {
+   "id": "r_082",
+   "name": "Rakı Sofrası",
+   "lat": 40.99072,
+   "lng": 29.02792,
+   "tags": [
+    "meyhane"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": false
+    },
+    "tuesday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    }
+   },
+   "address": "Moda, İstanbul",
+   "price_level": 3,
+   "area": "Moda"
+  },
+  {
+   "id": "r_083",
+   "name": "Eski Dostlar",
+   "lat": 40.99945,
+   "lng": 29.02958,
+   "tags": [
+    "meyhane"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "17:00",
+     "close": "02:00",
+     "is_open": true
+    }
+   },
+   "address": "Yeldeğirmeni, İstanbul",
+   "price_level": 2,
+   "area": "Yeldeğirmeni"
+  },
+  {
+   "id": "r_090",
+   "name": "Baklavacı Güllüoğlu Usta",
+   "lat": 40.97292,
+   "lng": 29.03676,
+   "tags": [
+    "tatli"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    }
+   },
+   "address": "Fenerbahçe, İstanbul",
+   "price_level": 2,
+   "area": "Fenerbahçe"
+  },
+  {
+   "id": "r_091",
+   "name": "Şekerci Cafer",
+   "lat": 41.03588,
+   "lng": 28.98388,
+   "tags": [
+    "tatli"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": false
+    },
+    "saturday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    }
+   },
+   "address": "Cihangir, İstanbul",
+   "price_level": 2,
+   "area": "Cihangir"
+  },
+  {
+   "id": "r_092",
+   "name": "Muhallebici Moda",
+   "lat": 40.98718,
+   "lng": 29.02878,
+   "tags": [
+    "tatli"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    }
+   },
+   "address": "Kadıköy Çarşı, İstanbul",
+   "price_level": 2,
+   "area": "Kadıköy Çarşı"
+  },
+  {
+   "id": "r_093",
+   "name": "Tatlı Dünyası",
+   "lat": 40.97143,
+   "lng": 29.04131,
+   "tags": [
+    "tatli"
+   ],
+   "working_hours": {
+    "monday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "tuesday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "wednesday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "thursday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "friday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "saturday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    },
+    "sunday": {
+     "open": "10:00",
+     "close": "00:00",
+     "is_open": true
+    }
+   },
+   "address": "Fenerbahçe, İstanbul",
+   "price_level": 2,
+   "area": "Fenerbahçe"
+  }
+ ],
+ "menu_items": [
+  {
+   "id": "m_00000",
+   "restaurant_id": "r_000",
+   "name": "Kıymalı Pide",
+   "category_name": "Pide",
+   "price": "260",
+   "badges": [
+    "popular"
+   ],
+   "allergens": [
+    "gluten",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_00001",
+   "restaurant_id": "r_000",
+   "name": "Kaşarlı Pide",
+   "category_name": "Pide",
+   "price": "220",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "gluten",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_00002",
+   "restaurant_id": "r_000",
+   "name": "Lahmacun",
+   "category_name": "Lahmacun",
+   "price": "100",
+   "badges": [],
+   "allergens": [
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_00003",
+   "restaurant_id": "r_000",
+   "name": "Acılı Lahmacun",
+   "category_name": "Lahmacun",
+   "price": "110",
+   "badges": [
+    "spicy"
+   ],
+   "allergens": [
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_00004",
+   "restaurant_id": "r_000",
+   "name": "Ayran",
+   "category_name": "İçecek",
+   "price": "40",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk"
+   ]
+  },
+  {
+   "id": "m_00005",
+   "restaurant_id": "r_000",
+   "name": "Şalgam",
+   "category_name": "İçecek",
+   "price": "45",
+   "badges": [
+    "vegan",
+    "spicy"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_00100",
+   "restaurant_id": "r_001",
+   "name": "Kıymalı Pide",
+   "category_name": "Pide",
+   "price": "210",
+   "badges": [
+    "popular"
+   ],
+   "allergens": [
+    "gluten",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_00101",
+   "restaurant_id": "r_001",
+   "name": "Kaşarlı Pide",
+   "category_name": "Pide",
+   "price": "175",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "gluten",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_00102",
+   "restaurant_id": "r_001",
+   "name": "Lahmacun",
+   "category_name": "Lahmacun",
+   "price": "80",
+   "badges": [],
+   "allergens": [
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_00103",
+   "restaurant_id": "r_001",
+   "name": "Acılı Lahmacun",
+   "category_name": "Lahmacun",
+   "price": "90",
+   "badges": [
+    "spicy"
+   ],
+   "allergens": [
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_00104",
+   "restaurant_id": "r_001",
+   "name": "Ayran",
+   "category_name": "İçecek",
+   "price": "30",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk"
+   ]
+  },
+  {
+   "id": "m_00105",
+   "restaurant_id": "r_001",
+   "name": "Şalgam",
+   "category_name": "İçecek",
+   "price": "35",
+   "badges": [
+    "vegan",
+    "spicy"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_00200",
+   "restaurant_id": "r_002",
+   "name": "Kıymalı Pide",
+   "category_name": "Pide",
+   "price": "210",
+   "badges": [
+    "popular"
+   ],
+   "allergens": [
+    "gluten",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_00201",
+   "restaurant_id": "r_002",
+   "name": "Kaşarlı Pide",
+   "category_name": "Pide",
+   "price": "175",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "gluten",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_00202",
+   "restaurant_id": "r_002",
+   "name": "Lahmacun",
+   "category_name": "Lahmacun",
+   "price": "80",
+   "badges": [],
+   "allergens": [
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_00203",
+   "restaurant_id": "r_002",
+   "name": "Acılı Lahmacun",
+   "category_name": "Lahmacun",
+   "price": "90",
+   "badges": [
+    "spicy"
+   ],
+   "allergens": [
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_00204",
+   "restaurant_id": "r_002",
+   "name": "Ayran",
+   "category_name": "İçecek",
+   "price": "30",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk"
+   ]
+  },
+  {
+   "id": "m_00205",
+   "restaurant_id": "r_002",
+   "name": "Şalgam",
+   "category_name": "İçecek",
+   "price": "35",
+   "badges": [
+    "vegan",
+    "spicy"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_00300",
+   "restaurant_id": "r_003",
+   "name": "Kıymalı Pide",
+   "category_name": "Pide",
+   "price": "440",
+   "badges": [
+    "popular"
+   ],
+   "allergens": [
+    "gluten",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_00301",
+   "restaurant_id": "r_003",
+   "name": "Kaşarlı Pide",
+   "category_name": "Pide",
+   "price": "375",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "gluten",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_00302",
+   "restaurant_id": "r_003",
+   "name": "Lahmacun",
+   "category_name": "Lahmacun",
+   "price": "170",
+   "badges": [],
+   "allergens": [
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_00303",
+   "restaurant_id": "r_003",
+   "name": "Acılı Lahmacun",
+   "category_name": "Lahmacun",
+   "price": "185",
+   "badges": [
+    "spicy"
+   ],
+   "allergens": [
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_00304",
+   "restaurant_id": "r_003",
+   "name": "Ayran",
+   "category_name": "İçecek",
+   "price": "70",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk"
+   ]
+  },
+  {
+   "id": "m_00305",
+   "restaurant_id": "r_003",
+   "name": "Şalgam",
+   "category_name": "İçecek",
+   "price": "75",
+   "badges": [
+    "vegan",
+    "spicy"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_01000",
+   "restaurant_id": "r_010",
+   "name": "Adana Kebap",
+   "category_name": "Kebap",
+   "price": "420",
+   "badges": [
+    "spicy",
+    "halal"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_01001",
+   "restaurant_id": "r_010",
+   "name": "Urfa Kebap",
+   "category_name": "Kebap",
+   "price": "420",
+   "badges": [
+    "halal"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_01002",
+   "restaurant_id": "r_010",
+   "name": "Fıstıklı Kebap",
+   "category_name": "Kebap",
+   "price": "480",
+   "badges": [
+    "chef_special"
+   ],
+   "allergens": [
+    "tree_nuts"
+   ]
+  },
+  {
+   "id": "m_01003",
+   "restaurant_id": "r_010",
+   "name": "Közlenmiş Patlıcan Salatası",
+   "category_name": "Meze",
+   "price": "120",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_01004",
+   "restaurant_id": "r_010",
+   "name": "Künefe",
+   "category_name": "Tatlı",
+   "price": "180",
+   "badges": [
+    "popular"
+   ],
+   "allergens": [
+    "gluten",
+    "milk",
+    "tree_nuts"
+   ]
+  },
+  {
+   "id": "m_01005",
+   "restaurant_id": "r_010",
+   "name": "Ezme",
+   "category_name": "Meze",
+   "price": "90",
+   "badges": [
+    "vegan",
+    "spicy"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_01100",
+   "restaurant_id": "r_011",
+   "name": "Adana Kebap",
+   "category_name": "Kebap",
+   "price": "545",
+   "badges": [
+    "spicy",
+    "halal"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_01101",
+   "restaurant_id": "r_011",
+   "name": "Urfa Kebap",
+   "category_name": "Kebap",
+   "price": "545",
+   "badges": [
+    "halal"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_01102",
+   "restaurant_id": "r_011",
+   "name": "Fıstıklı Kebap",
+   "category_name": "Kebap",
+   "price": "625",
+   "badges": [
+    "chef_special"
+   ],
+   "allergens": [
+    "tree_nuts"
+   ]
+  },
+  {
+   "id": "m_01103",
+   "restaurant_id": "r_011",
+   "name": "Közlenmiş Patlıcan Salatası",
+   "category_name": "Meze",
+   "price": "155",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_01104",
+   "restaurant_id": "r_011",
+   "name": "Künefe",
+   "category_name": "Tatlı",
+   "price": "235",
+   "badges": [
+    "popular"
+   ],
+   "allergens": [
+    "gluten",
+    "milk",
+    "tree_nuts"
+   ]
+  },
+  {
+   "id": "m_01105",
+   "restaurant_id": "r_011",
+   "name": "Ezme",
+   "category_name": "Meze",
+   "price": "115",
+   "badges": [
+    "vegan",
+    "spicy"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_01200",
+   "restaurant_id": "r_012",
+   "name": "Adana Kebap",
+   "category_name": "Kebap",
+   "price": "420",
+   "badges": [
+    "spicy",
+    "halal"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_01201",
+   "restaurant_id": "r_012",
+   "name": "Urfa Kebap",
+   "category_name": "Kebap",
+   "price": "420",
+   "badges": [
+    "halal"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_01202",
+   "restaurant_id": "r_012",
+   "name": "Fıstıklı Kebap",
+   "category_name": "Kebap",
+   "price": "480",
+   "badges": [
+    "chef_special"
+   ],
+   "allergens": [
+    "tree_nuts"
+   ]
+  },
+  {
+   "id": "m_01203",
+   "restaurant_id": "r_012",
+   "name": "Közlenmiş Patlıcan Salatası",
+   "category_name": "Meze",
+   "price": "120",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_01204",
+   "restaurant_id": "r_012",
+   "name": "Künefe",
+   "category_name": "Tatlı",
+   "price": "180",
+   "badges": [
+    "popular"
+   ],
+   "allergens": [
+    "gluten",
+    "milk",
+    "tree_nuts"
+   ]
+  },
+  {
+   "id": "m_01205",
+   "restaurant_id": "r_012",
+   "name": "Ezme",
+   "category_name": "Meze",
+   "price": "90",
+   "badges": [
+    "vegan",
+    "spicy"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_01300",
+   "restaurant_id": "r_013",
+   "name": "Adana Kebap",
+   "category_name": "Kebap",
+   "price": "545",
+   "badges": [
+    "spicy",
+    "halal"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_01301",
+   "restaurant_id": "r_013",
+   "name": "Urfa Kebap",
+   "category_name": "Kebap",
+   "price": "545",
+   "badges": [
+    "halal"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_01302",
+   "restaurant_id": "r_013",
+   "name": "Fıstıklı Kebap",
+   "category_name": "Kebap",
+   "price": "625",
+   "badges": [
+    "chef_special"
+   ],
+   "allergens": [
+    "tree_nuts"
+   ]
+  },
+  {
+   "id": "m_01303",
+   "restaurant_id": "r_013",
+   "name": "Közlenmiş Patlıcan Salatası",
+   "category_name": "Meze",
+   "price": "155",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_01304",
+   "restaurant_id": "r_013",
+   "name": "Künefe",
+   "category_name": "Tatlı",
+   "price": "235",
+   "badges": [
+    "popular"
+   ],
+   "allergens": [
+    "gluten",
+    "milk",
+    "tree_nuts"
+   ]
+  },
+  {
+   "id": "m_01305",
+   "restaurant_id": "r_013",
+   "name": "Ezme",
+   "category_name": "Meze",
+   "price": "115",
+   "badges": [
+    "vegan",
+    "spicy"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_02000",
+   "restaurant_id": "r_020",
+   "name": "Nohutlu Buddha Kase",
+   "category_name": "Ana Yemek",
+   "price": "310",
+   "badges": [
+    "vegan",
+    "gluten_free"
+   ],
+   "allergens": [
+    "sesame"
+   ]
+  },
+  {
+   "id": "m_02001",
+   "restaurant_id": "r_020",
+   "name": "Avokado Tost",
+   "category_name": "Kahvaltı",
+   "price": "245",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_02002",
+   "restaurant_id": "r_020",
+   "name": "Fıstık Ezmeli Smoothie",
+   "category_name": "İçecek",
+   "price": "195",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "peanuts"
+   ]
+  },
+  {
+   "id": "m_02003",
+   "restaurant_id": "r_020",
+   "name": "Zencefilli Limonata",
+   "category_name": "İçecek",
+   "price": "115",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_02004",
+   "restaurant_id": "r_020",
+   "name": "Mercimek Köftesi",
+   "category_name": "Meze",
+   "price": "170",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "gluten",
+    "celery"
+   ]
+  },
+  {
+   "id": "m_02100",
+   "restaurant_id": "r_021",
+   "name": "Nohutlu Buddha Kase",
+   "category_name": "Ana Yemek",
+   "price": "240",
+   "badges": [
+    "vegan",
+    "gluten_free"
+   ],
+   "allergens": [
+    "sesame"
+   ]
+  },
+  {
+   "id": "m_02101",
+   "restaurant_id": "r_021",
+   "name": "Avokado Tost",
+   "category_name": "Kahvaltı",
+   "price": "190",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_02102",
+   "restaurant_id": "r_021",
+   "name": "Fıstık Ezmeli Smoothie",
+   "category_name": "İçecek",
+   "price": "150",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "peanuts"
+   ]
+  },
+  {
+   "id": "m_02103",
+   "restaurant_id": "r_021",
+   "name": "Zencefilli Limonata",
+   "category_name": "İçecek",
+   "price": "90",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_02104",
+   "restaurant_id": "r_021",
+   "name": "Mercimek Köftesi",
+   "category_name": "Meze",
+   "price": "130",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "gluten",
+    "celery"
+   ]
+  },
+  {
+   "id": "m_02200",
+   "restaurant_id": "r_022",
+   "name": "Nohutlu Buddha Kase",
+   "category_name": "Ana Yemek",
+   "price": "190",
+   "badges": [
+    "vegan",
+    "gluten_free"
+   ],
+   "allergens": [
+    "sesame"
+   ]
+  },
+  {
+   "id": "m_02201",
+   "restaurant_id": "r_022",
+   "name": "Avokado Tost",
+   "category_name": "Kahvaltı",
+   "price": "150",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_02202",
+   "restaurant_id": "r_022",
+   "name": "Fıstık Ezmeli Smoothie",
+   "category_name": "İçecek",
+   "price": "120",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "peanuts"
+   ]
+  },
+  {
+   "id": "m_02203",
+   "restaurant_id": "r_022",
+   "name": "Zencefilli Limonata",
+   "category_name": "İçecek",
+   "price": "70",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_02204",
+   "restaurant_id": "r_022",
+   "name": "Mercimek Köftesi",
+   "category_name": "Meze",
+   "price": "105",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "gluten",
+    "celery"
+   ]
+  },
+  {
+   "id": "m_02300",
+   "restaurant_id": "r_023",
+   "name": "Nohutlu Buddha Kase",
+   "category_name": "Ana Yemek",
+   "price": "310",
+   "badges": [
+    "vegan",
+    "gluten_free"
+   ],
+   "allergens": [
+    "sesame"
+   ]
+  },
+  {
+   "id": "m_02301",
+   "restaurant_id": "r_023",
+   "name": "Avokado Tost",
+   "category_name": "Kahvaltı",
+   "price": "245",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_02302",
+   "restaurant_id": "r_023",
+   "name": "Fıstık Ezmeli Smoothie",
+   "category_name": "İçecek",
+   "price": "195",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "peanuts"
+   ]
+  },
+  {
+   "id": "m_02303",
+   "restaurant_id": "r_023",
+   "name": "Zencefilli Limonata",
+   "category_name": "İçecek",
+   "price": "115",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_02304",
+   "restaurant_id": "r_023",
+   "name": "Mercimek Köftesi",
+   "category_name": "Meze",
+   "price": "170",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "gluten",
+    "celery"
+   ]
+  },
+  {
+   "id": "m_03000",
+   "restaurant_id": "r_030",
+   "name": "Klasik Burger",
+   "category_name": "Burger",
+   "price": "340",
+   "badges": [
+    "popular"
+   ],
+   "allergens": [
+    "gluten",
+    "eggs",
+    "milk",
+    "sesame",
+    "mustard"
+   ]
+  },
+  {
+   "id": "m_03001",
+   "restaurant_id": "r_030",
+   "name": "Acılı Burger",
+   "category_name": "Burger",
+   "price": "360",
+   "badges": [
+    "spicy"
+   ],
+   "allergens": [
+    "gluten",
+    "eggs",
+    "milk",
+    "sesame"
+   ]
+  },
+  {
+   "id": "m_03002",
+   "restaurant_id": "r_030",
+   "name": "Sebze Burger",
+   "category_name": "Burger",
+   "price": "300",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "gluten",
+    "eggs"
+   ]
+  },
+  {
+   "id": "m_03003",
+   "restaurant_id": "r_030",
+   "name": "Patates Kızartması",
+   "category_name": "Yan Ürün",
+   "price": "110",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_03004",
+   "restaurant_id": "r_030",
+   "name": "Fıstık Ezmeli Milkshake",
+   "category_name": "İçecek",
+   "price": "160",
+   "badges": [],
+   "allergens": [
+    "peanuts",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_03100",
+   "restaurant_id": "r_031",
+   "name": "Klasik Burger",
+   "category_name": "Burger",
+   "price": "270",
+   "badges": [
+    "popular"
+   ],
+   "allergens": [
+    "gluten",
+    "eggs",
+    "milk",
+    "sesame",
+    "mustard"
+   ]
+  },
+  {
+   "id": "m_03101",
+   "restaurant_id": "r_031",
+   "name": "Acılı Burger",
+   "category_name": "Burger",
+   "price": "290",
+   "badges": [
+    "spicy"
+   ],
+   "allergens": [
+    "gluten",
+    "eggs",
+    "milk",
+    "sesame"
+   ]
+  },
+  {
+   "id": "m_03102",
+   "restaurant_id": "r_031",
+   "name": "Sebze Burger",
+   "category_name": "Burger",
+   "price": "240",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "gluten",
+    "eggs"
+   ]
+  },
+  {
+   "id": "m_03103",
+   "restaurant_id": "r_031",
+   "name": "Patates Kızartması",
+   "category_name": "Yan Ürün",
+   "price": "90",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_03104",
+   "restaurant_id": "r_031",
+   "name": "Fıstık Ezmeli Milkshake",
+   "category_name": "İçecek",
+   "price": "130",
+   "badges": [],
+   "allergens": [
+    "peanuts",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_03200",
+   "restaurant_id": "r_032",
+   "name": "Klasik Burger",
+   "category_name": "Burger",
+   "price": "340",
+   "badges": [
+    "popular"
+   ],
+   "allergens": [
+    "gluten",
+    "eggs",
+    "milk",
+    "sesame",
+    "mustard"
+   ]
+  },
+  {
+   "id": "m_03201",
+   "restaurant_id": "r_032",
+   "name": "Acılı Burger",
+   "category_name": "Burger",
+   "price": "360",
+   "badges": [
+    "spicy"
+   ],
+   "allergens": [
+    "gluten",
+    "eggs",
+    "milk",
+    "sesame"
+   ]
+  },
+  {
+   "id": "m_03202",
+   "restaurant_id": "r_032",
+   "name": "Sebze Burger",
+   "category_name": "Burger",
+   "price": "300",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "gluten",
+    "eggs"
+   ]
+  },
+  {
+   "id": "m_03203",
+   "restaurant_id": "r_032",
+   "name": "Patates Kızartması",
+   "category_name": "Yan Ürün",
+   "price": "110",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_03204",
+   "restaurant_id": "r_032",
+   "name": "Fıstık Ezmeli Milkshake",
+   "category_name": "İçecek",
+   "price": "160",
+   "badges": [],
+   "allergens": [
+    "peanuts",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_03300",
+   "restaurant_id": "r_033",
+   "name": "Klasik Burger",
+   "category_name": "Burger",
+   "price": "440",
+   "badges": [
+    "popular"
+   ],
+   "allergens": [
+    "gluten",
+    "eggs",
+    "milk",
+    "sesame",
+    "mustard"
+   ]
+  },
+  {
+   "id": "m_03301",
+   "restaurant_id": "r_033",
+   "name": "Acılı Burger",
+   "category_name": "Burger",
+   "price": "470",
+   "badges": [
+    "spicy"
+   ],
+   "allergens": [
+    "gluten",
+    "eggs",
+    "milk",
+    "sesame"
+   ]
+  },
+  {
+   "id": "m_03302",
+   "restaurant_id": "r_033",
+   "name": "Sebze Burger",
+   "category_name": "Burger",
+   "price": "390",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "gluten",
+    "eggs"
+   ]
+  },
+  {
+   "id": "m_03303",
+   "restaurant_id": "r_033",
+   "name": "Patates Kızartması",
+   "category_name": "Yan Ürün",
+   "price": "145",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_03304",
+   "restaurant_id": "r_033",
+   "name": "Fıstık Ezmeli Milkshake",
+   "category_name": "İçecek",
+   "price": "210",
+   "badges": [],
+   "allergens": [
+    "peanuts",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_04000",
+   "restaurant_id": "r_040",
+   "name": "Levrek Izgara",
+   "category_name": "Ana Yemek",
+   "price": "885",
+   "badges": [
+    "gluten_free"
+   ],
+   "allergens": [
+    "fish"
+   ]
+  },
+  {
+   "id": "m_04001",
+   "restaurant_id": "r_040",
+   "name": "Kalamar Tava",
+   "category_name": "Ara Sıcak",
+   "price": "580",
+   "badges": [],
+   "allergens": [
+    "molluscs",
+    "gluten",
+    "eggs"
+   ]
+  },
+  {
+   "id": "m_04002",
+   "restaurant_id": "r_040",
+   "name": "Karides Güveç",
+   "category_name": "Ara Sıcak",
+   "price": "645",
+   "badges": [],
+   "allergens": [
+    "crustaceans",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_04003",
+   "restaurant_id": "r_040",
+   "name": "Roka Salatası",
+   "category_name": "Salata",
+   "price": "240",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_04004",
+   "restaurant_id": "r_040",
+   "name": "Helva",
+   "category_name": "Tatlı",
+   "price": "205",
+   "badges": [],
+   "allergens": [
+    "sesame",
+    "tree_nuts"
+   ]
+  },
+  {
+   "id": "m_04100",
+   "restaurant_id": "r_041",
+   "name": "Levrek Izgara",
+   "category_name": "Ana Yemek",
+   "price": "675",
+   "badges": [
+    "gluten_free"
+   ],
+   "allergens": [
+    "fish"
+   ]
+  },
+  {
+   "id": "m_04101",
+   "restaurant_id": "r_041",
+   "name": "Kalamar Tava",
+   "category_name": "Ara Sıcak",
+   "price": "440",
+   "badges": [],
+   "allergens": [
+    "molluscs",
+    "gluten",
+    "eggs"
+   ]
+  },
+  {
+   "id": "m_04102",
+   "restaurant_id": "r_041",
+   "name": "Karides Güveç",
+   "category_name": "Ara Sıcak",
+   "price": "495",
+   "badges": [],
+   "allergens": [
+    "crustaceans",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_04103",
+   "restaurant_id": "r_041",
+   "name": "Roka Salatası",
+   "category_name": "Salata",
+   "price": "180",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_04104",
+   "restaurant_id": "r_041",
+   "name": "Helva",
+   "category_name": "Tatlı",
+   "price": "155",
+   "badges": [],
+   "allergens": [
+    "sesame",
+    "tree_nuts"
+   ]
+  },
+  {
+   "id": "m_04200",
+   "restaurant_id": "r_042",
+   "name": "Levrek Izgara",
+   "category_name": "Ana Yemek",
+   "price": "520",
+   "badges": [
+    "gluten_free"
+   ],
+   "allergens": [
+    "fish"
+   ]
+  },
+  {
+   "id": "m_04201",
+   "restaurant_id": "r_042",
+   "name": "Kalamar Tava",
+   "category_name": "Ara Sıcak",
+   "price": "340",
+   "badges": [],
+   "allergens": [
+    "molluscs",
+    "gluten",
+    "eggs"
+   ]
+  },
+  {
+   "id": "m_04202",
+   "restaurant_id": "r_042",
+   "name": "Karides Güveç",
+   "category_name": "Ara Sıcak",
+   "price": "380",
+   "badges": [],
+   "allergens": [
+    "crustaceans",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_04203",
+   "restaurant_id": "r_042",
+   "name": "Roka Salatası",
+   "category_name": "Salata",
+   "price": "140",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_04204",
+   "restaurant_id": "r_042",
+   "name": "Helva",
+   "category_name": "Tatlı",
+   "price": "120",
+   "badges": [],
+   "allergens": [
+    "sesame",
+    "tree_nuts"
+   ]
+  },
+  {
+   "id": "m_04300",
+   "restaurant_id": "r_043",
+   "name": "Levrek Izgara",
+   "category_name": "Ana Yemek",
+   "price": "520",
+   "badges": [
+    "gluten_free"
+   ],
+   "allergens": [
+    "fish"
+   ]
+  },
+  {
+   "id": "m_04301",
+   "restaurant_id": "r_043",
+   "name": "Kalamar Tava",
+   "category_name": "Ara Sıcak",
+   "price": "340",
+   "badges": [],
+   "allergens": [
+    "molluscs",
+    "gluten",
+    "eggs"
+   ]
+  },
+  {
+   "id": "m_04302",
+   "restaurant_id": "r_043",
+   "name": "Karides Güveç",
+   "category_name": "Ara Sıcak",
+   "price": "380",
+   "badges": [],
+   "allergens": [
+    "crustaceans",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_04303",
+   "restaurant_id": "r_043",
+   "name": "Roka Salatası",
+   "category_name": "Salata",
+   "price": "140",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_04304",
+   "restaurant_id": "r_043",
+   "name": "Helva",
+   "category_name": "Tatlı",
+   "price": "120",
+   "badges": [],
+   "allergens": [
+    "sesame",
+    "tree_nuts"
+   ]
+  },
+  {
+   "id": "m_05000",
+   "restaurant_id": "r_050",
+   "name": "Serpme Kahvaltı",
+   "category_name": "Kahvaltı",
+   "price": "650",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk",
+    "eggs",
+    "gluten",
+    "tree_nuts"
+   ]
+  },
+  {
+   "id": "m_05001",
+   "restaurant_id": "r_050",
+   "name": "Menemen",
+   "category_name": "Kahvaltı",
+   "price": "180",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "eggs"
+   ]
+  },
+  {
+   "id": "m_05002",
+   "restaurant_id": "r_050",
+   "name": "Simit",
+   "category_name": "Fırın",
+   "price": "30",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "gluten",
+    "sesame"
+   ]
+  },
+  {
+   "id": "m_05003",
+   "restaurant_id": "r_050",
+   "name": "Avokadolu Kase",
+   "category_name": "Kahvaltı",
+   "price": "210",
+   "badges": [
+    "vegan",
+    "gluten_free"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_05004",
+   "restaurant_id": "r_050",
+   "name": "Fıstık Ezmeli Pankek",
+   "category_name": "Tatlı",
+   "price": "200",
+   "badges": [],
+   "allergens": [
+    "peanuts",
+    "gluten",
+    "eggs",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_05100",
+   "restaurant_id": "r_051",
+   "name": "Serpme Kahvaltı",
+   "category_name": "Kahvaltı",
+   "price": "520",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk",
+    "eggs",
+    "gluten",
+    "tree_nuts"
+   ]
+  },
+  {
+   "id": "m_05101",
+   "restaurant_id": "r_051",
+   "name": "Menemen",
+   "category_name": "Kahvaltı",
+   "price": "145",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "eggs"
+   ]
+  },
+  {
+   "id": "m_05102",
+   "restaurant_id": "r_051",
+   "name": "Simit",
+   "category_name": "Fırın",
+   "price": "25",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "gluten",
+    "sesame"
+   ]
+  },
+  {
+   "id": "m_05103",
+   "restaurant_id": "r_051",
+   "name": "Avokadolu Kase",
+   "category_name": "Kahvaltı",
+   "price": "170",
+   "badges": [
+    "vegan",
+    "gluten_free"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_05104",
+   "restaurant_id": "r_051",
+   "name": "Fıstık Ezmeli Pankek",
+   "category_name": "Tatlı",
+   "price": "160",
+   "badges": [],
+   "allergens": [
+    "peanuts",
+    "gluten",
+    "eggs",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_05200",
+   "restaurant_id": "r_052",
+   "name": "Serpme Kahvaltı",
+   "category_name": "Kahvaltı",
+   "price": "1105",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk",
+    "eggs",
+    "gluten",
+    "tree_nuts"
+   ]
+  },
+  {
+   "id": "m_05201",
+   "restaurant_id": "r_052",
+   "name": "Menemen",
+   "category_name": "Kahvaltı",
+   "price": "305",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "eggs"
+   ]
+  },
+  {
+   "id": "m_05202",
+   "restaurant_id": "r_052",
+   "name": "Simit",
+   "category_name": "Fırın",
+   "price": "50",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "gluten",
+    "sesame"
+   ]
+  },
+  {
+   "id": "m_05203",
+   "restaurant_id": "r_052",
+   "name": "Avokadolu Kase",
+   "category_name": "Kahvaltı",
+   "price": "355",
+   "badges": [
+    "vegan",
+    "gluten_free"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_05204",
+   "restaurant_id": "r_052",
+   "name": "Fıstık Ezmeli Pankek",
+   "category_name": "Tatlı",
+   "price": "340",
+   "badges": [],
+   "allergens": [
+    "peanuts",
+    "gluten",
+    "eggs",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_05300",
+   "restaurant_id": "r_053",
+   "name": "Serpme Kahvaltı",
+   "category_name": "Kahvaltı",
+   "price": "1105",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk",
+    "eggs",
+    "gluten",
+    "tree_nuts"
+   ]
+  },
+  {
+   "id": "m_05301",
+   "restaurant_id": "r_053",
+   "name": "Menemen",
+   "category_name": "Kahvaltı",
+   "price": "305",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "eggs"
+   ]
+  },
+  {
+   "id": "m_05302",
+   "restaurant_id": "r_053",
+   "name": "Simit",
+   "category_name": "Fırın",
+   "price": "50",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "gluten",
+    "sesame"
+   ]
+  },
+  {
+   "id": "m_05303",
+   "restaurant_id": "r_053",
+   "name": "Avokadolu Kase",
+   "category_name": "Kahvaltı",
+   "price": "355",
+   "badges": [
+    "vegan",
+    "gluten_free"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_05304",
+   "restaurant_id": "r_053",
+   "name": "Fıstık Ezmeli Pankek",
+   "category_name": "Tatlı",
+   "price": "340",
+   "badges": [],
+   "allergens": [
+    "peanuts",
+    "gluten",
+    "eggs",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_06000",
+   "restaurant_id": "r_060",
+   "name": "Somon Sushi Seti",
+   "category_name": "Sushi",
+   "price": "520",
+   "badges": [],
+   "allergens": [
+    "fish",
+    "soybeans",
+    "sesame"
+   ]
+  },
+  {
+   "id": "m_06001",
+   "restaurant_id": "r_060",
+   "name": "Tavuklu Pad Thai",
+   "category_name": "Wok",
+   "price": "360",
+   "badges": [
+    "spicy"
+   ],
+   "allergens": [
+    "peanuts",
+    "eggs",
+    "soybeans"
+   ]
+  },
+  {
+   "id": "m_06002",
+   "restaurant_id": "r_060",
+   "name": "Sebzeli Noodle",
+   "category_name": "Wok",
+   "price": "290",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "gluten",
+    "soybeans"
+   ]
+  },
+  {
+   "id": "m_06003",
+   "restaurant_id": "r_060",
+   "name": "Miso Çorba",
+   "category_name": "Çorba",
+   "price": "120",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "soybeans"
+   ]
+  },
+  {
+   "id": "m_06004",
+   "restaurant_id": "r_060",
+   "name": "Edamame",
+   "category_name": "Başlangıç",
+   "price": "110",
+   "badges": [
+    "vegan",
+    "gluten_free"
+   ],
+   "allergens": [
+    "soybeans"
+   ]
+  },
+  {
+   "id": "m_06100",
+   "restaurant_id": "r_061",
+   "name": "Somon Sushi Seti",
+   "category_name": "Sushi",
+   "price": "415",
+   "badges": [],
+   "allergens": [
+    "fish",
+    "soybeans",
+    "sesame"
+   ]
+  },
+  {
+   "id": "m_06101",
+   "restaurant_id": "r_061",
+   "name": "Tavuklu Pad Thai",
+   "category_name": "Wok",
+   "price": "290",
+   "badges": [
+    "spicy"
+   ],
+   "allergens": [
+    "peanuts",
+    "eggs",
+    "soybeans"
+   ]
+  },
+  {
+   "id": "m_06102",
+   "restaurant_id": "r_061",
+   "name": "Sebzeli Noodle",
+   "category_name": "Wok",
+   "price": "230",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "gluten",
+    "soybeans"
+   ]
+  },
+  {
+   "id": "m_06103",
+   "restaurant_id": "r_061",
+   "name": "Miso Çorba",
+   "category_name": "Çorba",
+   "price": "95",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "soybeans"
+   ]
+  },
+  {
+   "id": "m_06104",
+   "restaurant_id": "r_061",
+   "name": "Edamame",
+   "category_name": "Başlangıç",
+   "price": "90",
+   "badges": [
+    "vegan",
+    "gluten_free"
+   ],
+   "allergens": [
+    "soybeans"
+   ]
+  },
+  {
+   "id": "m_06200",
+   "restaurant_id": "r_062",
+   "name": "Somon Sushi Seti",
+   "category_name": "Sushi",
+   "price": "415",
+   "badges": [],
+   "allergens": [
+    "fish",
+    "soybeans",
+    "sesame"
+   ]
+  },
+  {
+   "id": "m_06201",
+   "restaurant_id": "r_062",
+   "name": "Tavuklu Pad Thai",
+   "category_name": "Wok",
+   "price": "290",
+   "badges": [
+    "spicy"
+   ],
+   "allergens": [
+    "peanuts",
+    "eggs",
+    "soybeans"
+   ]
+  },
+  {
+   "id": "m_06202",
+   "restaurant_id": "r_062",
+   "name": "Sebzeli Noodle",
+   "category_name": "Wok",
+   "price": "230",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "gluten",
+    "soybeans"
+   ]
+  },
+  {
+   "id": "m_06203",
+   "restaurant_id": "r_062",
+   "name": "Miso Çorba",
+   "category_name": "Çorba",
+   "price": "95",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "soybeans"
+   ]
+  },
+  {
+   "id": "m_06204",
+   "restaurant_id": "r_062",
+   "name": "Edamame",
+   "category_name": "Başlangıç",
+   "price": "90",
+   "badges": [
+    "vegan",
+    "gluten_free"
+   ],
+   "allergens": [
+    "soybeans"
+   ]
+  },
+  {
+   "id": "m_06300",
+   "restaurant_id": "r_063",
+   "name": "Somon Sushi Seti",
+   "category_name": "Sushi",
+   "price": "520",
+   "badges": [],
+   "allergens": [
+    "fish",
+    "soybeans",
+    "sesame"
+   ]
+  },
+  {
+   "id": "m_06301",
+   "restaurant_id": "r_063",
+   "name": "Tavuklu Pad Thai",
+   "category_name": "Wok",
+   "price": "360",
+   "badges": [
+    "spicy"
+   ],
+   "allergens": [
+    "peanuts",
+    "eggs",
+    "soybeans"
+   ]
+  },
+  {
+   "id": "m_06302",
+   "restaurant_id": "r_063",
+   "name": "Sebzeli Noodle",
+   "category_name": "Wok",
+   "price": "290",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "gluten",
+    "soybeans"
+   ]
+  },
+  {
+   "id": "m_06303",
+   "restaurant_id": "r_063",
+   "name": "Miso Çorba",
+   "category_name": "Çorba",
+   "price": "120",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "soybeans"
+   ]
+  },
+  {
+   "id": "m_06304",
+   "restaurant_id": "r_063",
+   "name": "Edamame",
+   "category_name": "Başlangıç",
+   "price": "110",
+   "badges": [
+    "vegan",
+    "gluten_free"
+   ],
+   "allergens": [
+    "soybeans"
+   ]
+  },
+  {
+   "id": "m_07000",
+   "restaurant_id": "r_070",
+   "name": "Kuru Fasulye",
+   "category_name": "Ana Yemek",
+   "price": "210",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_07001",
+   "restaurant_id": "r_070",
+   "name": "Mercimek Çorbası",
+   "category_name": "Çorba",
+   "price": "105",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "celery"
+   ]
+  },
+  {
+   "id": "m_07002",
+   "restaurant_id": "r_070",
+   "name": "Karnıyarık",
+   "category_name": "Ana Yemek",
+   "price": "275",
+   "badges": [
+    "halal"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_07003",
+   "restaurant_id": "r_070",
+   "name": "Tereyağlı Pilav",
+   "category_name": "Yan Ürün",
+   "price": "90",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk"
+   ]
+  },
+  {
+   "id": "m_07004",
+   "restaurant_id": "r_070",
+   "name": "Sütlaç",
+   "category_name": "Tatlı",
+   "price": "125",
+   "badges": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "allergens": [
+    "milk"
+   ]
+  },
+  {
+   "id": "m_07100",
+   "restaurant_id": "r_071",
+   "name": "Kuru Fasulye",
+   "category_name": "Ana Yemek",
+   "price": "160",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_07101",
+   "restaurant_id": "r_071",
+   "name": "Mercimek Çorbası",
+   "category_name": "Çorba",
+   "price": "80",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "celery"
+   ]
+  },
+  {
+   "id": "m_07102",
+   "restaurant_id": "r_071",
+   "name": "Karnıyarık",
+   "category_name": "Ana Yemek",
+   "price": "210",
+   "badges": [
+    "halal"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_07103",
+   "restaurant_id": "r_071",
+   "name": "Tereyağlı Pilav",
+   "category_name": "Yan Ürün",
+   "price": "70",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk"
+   ]
+  },
+  {
+   "id": "m_07104",
+   "restaurant_id": "r_071",
+   "name": "Sütlaç",
+   "category_name": "Tatlı",
+   "price": "95",
+   "badges": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "allergens": [
+    "milk"
+   ]
+  },
+  {
+   "id": "m_07200",
+   "restaurant_id": "r_072",
+   "name": "Kuru Fasulye",
+   "category_name": "Ana Yemek",
+   "price": "160",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_07201",
+   "restaurant_id": "r_072",
+   "name": "Mercimek Çorbası",
+   "category_name": "Çorba",
+   "price": "80",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "celery"
+   ]
+  },
+  {
+   "id": "m_07202",
+   "restaurant_id": "r_072",
+   "name": "Karnıyarık",
+   "category_name": "Ana Yemek",
+   "price": "210",
+   "badges": [
+    "halal"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_07203",
+   "restaurant_id": "r_072",
+   "name": "Tereyağlı Pilav",
+   "category_name": "Yan Ürün",
+   "price": "70",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk"
+   ]
+  },
+  {
+   "id": "m_07204",
+   "restaurant_id": "r_072",
+   "name": "Sütlaç",
+   "category_name": "Tatlı",
+   "price": "95",
+   "badges": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "allergens": [
+    "milk"
+   ]
+  },
+  {
+   "id": "m_07300",
+   "restaurant_id": "r_073",
+   "name": "Kuru Fasulye",
+   "category_name": "Ana Yemek",
+   "price": "130",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_07301",
+   "restaurant_id": "r_073",
+   "name": "Mercimek Çorbası",
+   "category_name": "Çorba",
+   "price": "65",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": [
+    "celery"
+   ]
+  },
+  {
+   "id": "m_07302",
+   "restaurant_id": "r_073",
+   "name": "Karnıyarık",
+   "category_name": "Ana Yemek",
+   "price": "170",
+   "badges": [
+    "halal"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_07303",
+   "restaurant_id": "r_073",
+   "name": "Tereyağlı Pilav",
+   "category_name": "Yan Ürün",
+   "price": "55",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk"
+   ]
+  },
+  {
+   "id": "m_07304",
+   "restaurant_id": "r_073",
+   "name": "Sütlaç",
+   "category_name": "Tatlı",
+   "price": "75",
+   "badges": [
+    "vegetarian",
+    "gluten_free"
+   ],
+   "allergens": [
+    "milk"
+   ]
+  },
+  {
+   "id": "m_08000",
+   "restaurant_id": "r_080",
+   "name": "Haydari",
+   "category_name": "Meze",
+   "price": "185",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk"
+   ]
+  },
+  {
+   "id": "m_08001",
+   "restaurant_id": "r_080",
+   "name": "Fava",
+   "category_name": "Meze",
+   "price": "170",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_08002",
+   "restaurant_id": "r_080",
+   "name": "Ahtapot Izgara",
+   "category_name": "Ara Sıcak",
+   "price": "715",
+   "badges": [
+    "chef_special"
+   ],
+   "allergens": [
+    "molluscs"
+   ]
+  },
+  {
+   "id": "m_08003",
+   "restaurant_id": "r_080",
+   "name": "Muhammara",
+   "category_name": "Meze",
+   "price": "205",
+   "badges": [
+    "vegan",
+    "spicy"
+   ],
+   "allergens": [
+    "tree_nuts",
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_08004",
+   "restaurant_id": "r_080",
+   "name": "Midye Tava",
+   "category_name": "Ara Sıcak",
+   "price": "440",
+   "badges": [],
+   "allergens": [
+    "molluscs",
+    "gluten",
+    "eggs"
+   ]
+  },
+  {
+   "id": "m_08100",
+   "restaurant_id": "r_081",
+   "name": "Haydari",
+   "category_name": "Meze",
+   "price": "110",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk"
+   ]
+  },
+  {
+   "id": "m_08101",
+   "restaurant_id": "r_081",
+   "name": "Fava",
+   "category_name": "Meze",
+   "price": "100",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_08102",
+   "restaurant_id": "r_081",
+   "name": "Ahtapot Izgara",
+   "category_name": "Ara Sıcak",
+   "price": "420",
+   "badges": [
+    "chef_special"
+   ],
+   "allergens": [
+    "molluscs"
+   ]
+  },
+  {
+   "id": "m_08103",
+   "restaurant_id": "r_081",
+   "name": "Muhammara",
+   "category_name": "Meze",
+   "price": "120",
+   "badges": [
+    "vegan",
+    "spicy"
+   ],
+   "allergens": [
+    "tree_nuts",
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_08104",
+   "restaurant_id": "r_081",
+   "name": "Midye Tava",
+   "category_name": "Ara Sıcak",
+   "price": "260",
+   "badges": [],
+   "allergens": [
+    "molluscs",
+    "gluten",
+    "eggs"
+   ]
+  },
+  {
+   "id": "m_08200",
+   "restaurant_id": "r_082",
+   "name": "Haydari",
+   "category_name": "Meze",
+   "price": "145",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk"
+   ]
+  },
+  {
+   "id": "m_08201",
+   "restaurant_id": "r_082",
+   "name": "Fava",
+   "category_name": "Meze",
+   "price": "130",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_08202",
+   "restaurant_id": "r_082",
+   "name": "Ahtapot Izgara",
+   "category_name": "Ara Sıcak",
+   "price": "545",
+   "badges": [
+    "chef_special"
+   ],
+   "allergens": [
+    "molluscs"
+   ]
+  },
+  {
+   "id": "m_08203",
+   "restaurant_id": "r_082",
+   "name": "Muhammara",
+   "category_name": "Meze",
+   "price": "155",
+   "badges": [
+    "vegan",
+    "spicy"
+   ],
+   "allergens": [
+    "tree_nuts",
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_08204",
+   "restaurant_id": "r_082",
+   "name": "Midye Tava",
+   "category_name": "Ara Sıcak",
+   "price": "340",
+   "badges": [],
+   "allergens": [
+    "molluscs",
+    "gluten",
+    "eggs"
+   ]
+  },
+  {
+   "id": "m_08300",
+   "restaurant_id": "r_083",
+   "name": "Haydari",
+   "category_name": "Meze",
+   "price": "110",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk"
+   ]
+  },
+  {
+   "id": "m_08301",
+   "restaurant_id": "r_083",
+   "name": "Fava",
+   "category_name": "Meze",
+   "price": "100",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_08302",
+   "restaurant_id": "r_083",
+   "name": "Ahtapot Izgara",
+   "category_name": "Ara Sıcak",
+   "price": "420",
+   "badges": [
+    "chef_special"
+   ],
+   "allergens": [
+    "molluscs"
+   ]
+  },
+  {
+   "id": "m_08303",
+   "restaurant_id": "r_083",
+   "name": "Muhammara",
+   "category_name": "Meze",
+   "price": "120",
+   "badges": [
+    "vegan",
+    "spicy"
+   ],
+   "allergens": [
+    "tree_nuts",
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_08304",
+   "restaurant_id": "r_083",
+   "name": "Midye Tava",
+   "category_name": "Ara Sıcak",
+   "price": "260",
+   "badges": [],
+   "allergens": [
+    "molluscs",
+    "gluten",
+    "eggs"
+   ]
+  },
+  {
+   "id": "m_09000",
+   "restaurant_id": "r_090",
+   "name": "Fıstıklı Baklava",
+   "category_name": "Tatlı",
+   "price": "220",
+   "badges": [
+    "popular"
+   ],
+   "allergens": [
+    "gluten",
+    "tree_nuts",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_09001",
+   "restaurant_id": "r_090",
+   "name": "Fıstık Ezmeli Brownie",
+   "category_name": "Tatlı",
+   "price": "160",
+   "badges": [],
+   "allergens": [
+    "peanuts",
+    "gluten",
+    "eggs",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_09002",
+   "restaurant_id": "r_090",
+   "name": "Kazandibi",
+   "category_name": "Tatlı",
+   "price": "110",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk",
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_09003",
+   "restaurant_id": "r_090",
+   "name": "Meyve Salatası",
+   "category_name": "Tatlı",
+   "price": "120",
+   "badges": [
+    "vegan",
+    "gluten_free"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_09004",
+   "restaurant_id": "r_090",
+   "name": "Türk Kahvesi",
+   "category_name": "İçecek",
+   "price": "70",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_09100",
+   "restaurant_id": "r_091",
+   "name": "Fıstıklı Baklava",
+   "category_name": "Tatlı",
+   "price": "220",
+   "badges": [
+    "popular"
+   ],
+   "allergens": [
+    "gluten",
+    "tree_nuts",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_09101",
+   "restaurant_id": "r_091",
+   "name": "Fıstık Ezmeli Brownie",
+   "category_name": "Tatlı",
+   "price": "160",
+   "badges": [],
+   "allergens": [
+    "peanuts",
+    "gluten",
+    "eggs",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_09102",
+   "restaurant_id": "r_091",
+   "name": "Kazandibi",
+   "category_name": "Tatlı",
+   "price": "110",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk",
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_09103",
+   "restaurant_id": "r_091",
+   "name": "Meyve Salatası",
+   "category_name": "Tatlı",
+   "price": "120",
+   "badges": [
+    "vegan",
+    "gluten_free"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_09104",
+   "restaurant_id": "r_091",
+   "name": "Türk Kahvesi",
+   "category_name": "İçecek",
+   "price": "70",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_09200",
+   "restaurant_id": "r_092",
+   "name": "Fıstıklı Baklava",
+   "category_name": "Tatlı",
+   "price": "220",
+   "badges": [
+    "popular"
+   ],
+   "allergens": [
+    "gluten",
+    "tree_nuts",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_09201",
+   "restaurant_id": "r_092",
+   "name": "Fıstık Ezmeli Brownie",
+   "category_name": "Tatlı",
+   "price": "160",
+   "badges": [],
+   "allergens": [
+    "peanuts",
+    "gluten",
+    "eggs",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_09202",
+   "restaurant_id": "r_092",
+   "name": "Kazandibi",
+   "category_name": "Tatlı",
+   "price": "110",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk",
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_09203",
+   "restaurant_id": "r_092",
+   "name": "Meyve Salatası",
+   "category_name": "Tatlı",
+   "price": "120",
+   "badges": [
+    "vegan",
+    "gluten_free"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_09204",
+   "restaurant_id": "r_092",
+   "name": "Türk Kahvesi",
+   "category_name": "İçecek",
+   "price": "70",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_09300",
+   "restaurant_id": "r_093",
+   "name": "Fıstıklı Baklava",
+   "category_name": "Tatlı",
+   "price": "220",
+   "badges": [
+    "popular"
+   ],
+   "allergens": [
+    "gluten",
+    "tree_nuts",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_09301",
+   "restaurant_id": "r_093",
+   "name": "Fıstık Ezmeli Brownie",
+   "category_name": "Tatlı",
+   "price": "160",
+   "badges": [],
+   "allergens": [
+    "peanuts",
+    "gluten",
+    "eggs",
+    "milk"
+   ]
+  },
+  {
+   "id": "m_09302",
+   "restaurant_id": "r_093",
+   "name": "Kazandibi",
+   "category_name": "Tatlı",
+   "price": "110",
+   "badges": [
+    "vegetarian"
+   ],
+   "allergens": [
+    "milk",
+    "gluten"
+   ]
+  },
+  {
+   "id": "m_09303",
+   "restaurant_id": "r_093",
+   "name": "Meyve Salatası",
+   "category_name": "Tatlı",
+   "price": "120",
+   "badges": [
+    "vegan",
+    "gluten_free"
+   ],
+   "allergens": []
+  },
+  {
+   "id": "m_09304",
+   "restaurant_id": "r_093",
+   "name": "Türk Kahvesi",
+   "category_name": "İçecek",
+   "price": "70",
+   "badges": [
+    "vegan"
+   ],
+   "allergens": []
+  }
+ ],
+ "campaigns": [
+  {
+   "id": 1,
+   "restaurant_id": "r_001",
+   "title": "2 al 1 öde",
+   "description": "Salı-Perşembe 12:00-16:00",
+   "start_date": "2026-10-01T00:00:00",
+   "end_date": "2026-11-30T23:59:00"
+  },
+  {
+   "id": 2,
+   "restaurant_id": "r_002",
+   "title": "Hafta içi %20 indirim",
+   "description": "Salı-Perşembe 12:00-16:00",
+   "start_date": "2026-10-01T00:00:00",
+   "end_date": "2026-11-30T23:59:00"
+  },
+  {
+   "id": 3,
+   "restaurant_id": "r_020",
+   "title": "Öğrenciye %15",
+   "description": "Salı-Perşembe 12:00-16:00",
+   "start_date": "2026-10-01T00:00:00",
+   "end_date": "2026-11-30T23:59:00"
+  },
+  {
+   "id": 4,
+   "restaurant_id": "r_031",
+   "title": "Öğrenciye %15",
+   "description": "Salı-Perşembe 12:00-16:00",
+   "start_date": "2026-10-01T00:00:00",
+   "end_date": "2026-11-30T23:59:00"
+  },
+  {
+   "id": 5,
+   "restaurant_id": "r_043",
+   "title": "Hafta içi %20 indirim",
+   "description": "Salı-Perşembe 12:00-16:00",
+   "start_date": "2026-10-01T00:00:00",
+   "end_date": "2026-11-30T23:59:00"
+  },
+  {
+   "id": 6,
+   "restaurant_id": "r_050",
+   "title": "2 al 1 öde",
+   "description": "Salı-Perşembe 12:00-16:00",
+   "start_date": "2026-10-01T00:00:00",
+   "end_date": "2026-11-30T23:59:00"
+  },
+  {
+   "id": 7,
+   "restaurant_id": "r_071",
+   "title": "Öğrenciye %15",
+   "description": "Salı-Perşembe 12:00-16:00",
+   "start_date": "2026-10-01T00:00:00",
+   "end_date": "2026-11-30T23:59:00"
+  },
+  {
+   "id": 8,
+   "restaurant_id": "r_073",
+   "title": "Hafta içi %20 indirim",
+   "description": "Salı-Perşembe 12:00-16:00",
+   "start_date": "2026-10-01T00:00:00",
+   "end_date": "2026-11-30T23:59:00"
+  },
+  {
+   "id": 9,
+   "restaurant_id": "r_081",
+   "title": "Öğrenciye %15",
+   "description": "Salı-Perşembe 12:00-16:00",
+   "start_date": "2026-10-01T00:00:00",
+   "end_date": "2026-11-30T23:59:00"
+  },
+  {
+   "id": 10,
+   "restaurant_id": "r_090",
+   "title": "Hafta içi %20 indirim",
+   "description": "Salı-Perşembe 12:00-16:00",
+   "start_date": "2026-10-01T00:00:00",
+   "end_date": "2026-11-30T23:59:00"
+  },
+  {
+   "id": 11,
+   "restaurant_id": "r_091",
+   "title": "Öğrenciye %15",
+   "description": "Salı-Perşembe 12:00-16:00",
+   "start_date": "2026-10-01T00:00:00",
+   "end_date": "2026-11-30T23:59:00"
+  }
+ ],
+ "posts": [
+  {
+   "id": "pp_001",
+   "author": "gurme_kadikoy",
+   "restaurant_id": "r_000",
+   "created_at": "2026-08-22T19:00:00",
+   "caption": "Kıymalı Pide fena değil ama porsiyon küçük"
+  },
+  {
+   "id": "pp_002",
+   "author": "moda_lezzet",
+   "restaurant_id": "r_000",
+   "created_at": "2026-09-16T19:00:00",
+   "caption": "Fiyatına göre gayet iyi bir Acılı Lahmacun"
+  },
+  {
+   "id": "pp_003",
+   "author": "acikmis_ogrenci",
+   "restaurant_id": "r_002",
+   "created_at": "2026-08-20T19:00:00",
+   "caption": "Acılı Lahmacun fena değil ama porsiyon küçük"
+  },
+  {
+   "id": "pp_004",
+   "author": "moda_lezzet",
+   "restaurant_id": "r_011",
+   "created_at": "2026-09-15T19:00:00",
+   "caption": "Fiyatına göre gayet iyi bir Fıstıklı Kebap"
+  },
+  {
+   "id": "pp_005",
+   "author": "tolga_yemekte",
+   "restaurant_id": "r_011",
+   "created_at": "2026-07-23T19:00:00",
+   "caption": "Fiyatına göre gayet iyi bir Ezme"
+  },
+  {
+   "id": "pp_006",
+   "author": "gurme_kadikoy",
+   "restaurant_id": "r_012",
+   "created_at": "2026-08-24T19:00:00",
+   "caption": "Fiyatına göre gayet iyi bir Ezme"
+  },
+  {
+   "id": "pp_007",
+   "author": "gurme_kadikoy",
+   "restaurant_id": "r_012",
+   "created_at": "2026-09-16T19:00:00",
+   "caption": "Efsane Urfa Kebap, kesin tekrar geleceğim"
+  },
+  {
+   "id": "pp_008",
+   "author": "beyza.yer",
+   "restaurant_id": "r_020",
+   "created_at": "2026-09-08T19:00:00",
+   "caption": "Nohutlu Buddha Kase soğuk geldi, beklediğim gibi değildi"
+  },
+  {
+   "id": "pp_009",
+   "author": "acikmis_ogrenci",
+   "restaurant_id": "r_020",
+   "created_at": "2026-08-19T19:00:00",
+   "caption": "Efsane Nohutlu Buddha Kase, kesin tekrar geleceğim"
+  },
+  {
+   "id": "pp_010",
+   "author": "sokak_tadi",
+   "restaurant_id": "r_020",
+   "created_at": "2026-09-06T19:00:00",
+   "caption": "Mercimek Köftesi fena değil ama porsiyon küçük"
+  },
+  {
+   "id": "pp_011",
+   "author": "acikmis_ogrenci",
+   "restaurant_id": "r_021",
+   "created_at": "2026-07-20T19:00:00",
+   "caption": "Efsane Nohutlu Buddha Kase, kesin tekrar geleceğim"
+  },
+  {
+   "id": "pp_012",
+   "author": "moda_lezzet",
+   "restaurant_id": "r_022",
+   "created_at": "2026-10-13T19:00:00",
+   "caption": "Hayatımda yediğim en iyi Mercimek Köftesi 🔥"
+  },
+  {
+   "id": "pp_013",
+   "author": "beyza.yer",
+   "restaurant_id": "r_022",
+   "created_at": "2026-10-01T19:00:00",
+   "caption": "Fiyatına göre gayet iyi bir Avokado Tost"
+  },
+  {
+   "id": "pp_014",
+   "author": "gurme_kadikoy",
+   "restaurant_id": "r_031",
+   "created_at": "2026-10-16T19:00:00",
+   "caption": "Servis çok yavaştı, Sebze Burger idare eder"
+  },
+  {
+   "id": "pp_015",
+   "author": "acikmis_ogrenci",
+   "restaurant_id": "r_031",
+   "created_at": "2026-10-10T19:00:00",
+   "caption": "Hayatımda yediğim en iyi Acılı Burger 🔥"
+  },
+  {
+   "id": "pp_016",
+   "author": "acikmis_ogrenci",
+   "restaurant_id": "r_032",
+   "created_at": "2026-09-06T19:00:00",
+   "caption": "Efsane Sebze Burger, kesin tekrar geleceğim"
+  },
+  {
+   "id": "pp_017",
+   "author": "tolga_yemekte",
+   "restaurant_id": "r_033",
+   "created_at": "2026-08-23T19:00:00",
+   "caption": "Hayatımda yediğim en iyi Sebze Burger 🔥"
+  },
+  {
+   "id": "pp_018",
+   "author": "gurme_kadikoy",
+   "restaurant_id": "r_041",
+   "created_at": "2026-10-12T19:00:00",
+   "caption": "Efsane Roka Salatası, kesin tekrar geleceğim"
+  },
+  {
+   "id": "pp_019",
+   "author": "tolga_yemekte",
+   "restaurant_id": "r_041",
+   "created_at": "2026-09-17T19:00:00",
+   "caption": "Fiyatına göre gayet iyi bir Karides Güveç"
+  },
+  {
+   "id": "pp_020",
+   "author": "beyza.yer",
+   "restaurant_id": "r_042",
+   "created_at": "2026-09-24T19:00:00",
+   "caption": "Fiyatına göre gayet iyi bir Helva"
+  },
+  {
+   "id": "pp_021",
+   "author": "beyza.yer",
+   "restaurant_id": "r_043",
+   "created_at": "2026-08-15T19:00:00",
+   "caption": "Helva fena değil ama porsiyon küçük"
+  },
+  {
+   "id": "pp_022",
+   "author": "beyza.yer",
+   "restaurant_id": "r_050",
+   "created_at": "2026-08-07T19:00:00",
+   "caption": "Menemen soğuk geldi, beklediğim gibi değildi"
+  },
+  {
+   "id": "pp_023",
+   "author": "gurme_kadikoy",
+   "restaurant_id": "r_050",
+   "created_at": "2026-09-21T19:00:00",
+   "caption": "Fiyatına göre gayet iyi bir Serpme Kahvaltı"
+  },
+  {
+   "id": "pp_024",
+   "author": "moda_lezzet",
+   "restaurant_id": "r_050",
+   "created_at": "2026-08-13T19:00:00",
+   "caption": "Servis çok yavaştı, Simit idare eder"
+  },
+  {
+   "id": "pp_025",
+   "author": "sokak_tadi",
+   "restaurant_id": "r_052",
+   "created_at": "2026-09-18T19:00:00",
+   "caption": "Hayatımda yediğim en iyi Serpme Kahvaltı 🔥"
+  },
+  {
+   "id": "pp_026",
+   "author": "sokak_tadi",
+   "restaurant_id": "r_052",
+   "created_at": "2026-08-12T19:00:00",
+   "caption": "Servis çok yavaştı, Menemen idare eder"
+  },
+  {
+   "id": "pp_027",
+   "author": "tolga_yemekte",
+   "restaurant_id": "r_052",
+   "created_at": "2026-08-14T19:00:00",
+   "caption": "Simit soğuk geldi, beklediğim gibi değildi"
+  },
+  {
+   "id": "pp_028",
+   "author": "moda_lezzet",
+   "restaurant_id": "r_053",
+   "created_at": "2026-09-27T19:00:00",
+   "caption": "Menemen soğuk geldi, beklediğim gibi değildi"
+  },
+  {
+   "id": "pp_029",
+   "author": "moda_lezzet",
+   "restaurant_id": "r_060",
+   "created_at": "2026-09-24T19:00:00",
+   "caption": "Edamame soğuk geldi, beklediğim gibi değildi"
+  },
+  {
+   "id": "pp_030",
+   "author": "tolga_yemekte",
+   "restaurant_id": "r_060",
+   "created_at": "2026-08-24T19:00:00",
+   "caption": "Fiyatına göre gayet iyi bir Somon Sushi Seti"
+  },
+  {
+   "id": "pp_031",
+   "author": "acikmis_ogrenci",
+   "restaurant_id": "r_060",
+   "created_at": "2026-10-23T19:00:00",
+   "caption": "Sebzeli Noodle soğuk geldi, beklediğim gibi değildi"
+  },
+  {
+   "id": "pp_032",
+   "author": "beyza.yer",
+   "restaurant_id": "r_062",
+   "created_at": "2026-10-11T19:00:00",
+   "caption": "Hayatımda yediğim en iyi Somon Sushi Seti 🔥"
+  },
+  {
+   "id": "pp_033",
+   "author": "tolga_yemekte",
+   "restaurant_id": "r_062",
+   "created_at": "2026-10-05T19:00:00",
+   "caption": "Fiyatına göre gayet iyi bir Tavuklu Pad Thai"
+  },
+  {
+   "id": "pp_034",
+   "author": "beyza.yer",
+   "restaurant_id": "r_062",
+   "created_at": "2026-10-18T19:00:00",
+   "caption": "Efsane Tavuklu Pad Thai, kesin tekrar geleceğim"
+  },
+  {
+   "id": "pp_035",
+   "author": "tolga_yemekte",
+   "restaurant_id": "r_071",
+   "created_at": "2026-10-13T19:00:00",
+   "caption": "Servis çok yavaştı, Karnıyarık idare eder"
+  },
+  {
+   "id": "pp_036",
+   "author": "moda_lezzet",
+   "restaurant_id": "r_071",
+   "created_at": "2026-08-24T19:00:00",
+   "caption": "Karnıyarık soğuk geldi, beklediğim gibi değildi"
+  },
+  {
+   "id": "pp_037",
+   "author": "gurme_kadikoy",
+   "restaurant_id": "r_071",
+   "created_at": "2026-07-28T19:00:00",
+   "caption": "Karnıyarık fena değil ama porsiyon küçük"
+  },
+  {
+   "id": "pp_038",
+   "author": "beyza.yer",
+   "restaurant_id": "r_072",
+   "created_at": "2026-10-19T19:00:00",
+   "caption": "Mercimek Çorbası soğuk geldi, beklediğim gibi değildi"
+  },
+  {
+   "id": "pp_039",
+   "author": "acikmis_ogrenci",
+   "restaurant_id": "r_081",
+   "created_at": "2026-10-07T19:00:00",
+   "caption": "Fiyatına göre gayet iyi bir Muhammara"
+  },
+  {
+   "id": "pp_040",
+   "author": "acikmis_ogrenci",
+   "restaurant_id": "r_081",
+   "created_at": "2026-10-03T19:00:00",
+   "caption": "Haydari soğuk geldi, beklediğim gibi değildi"
+  },
+  {
+   "id": "pp_041",
+   "author": "tolga_yemekte",
+   "restaurant_id": "r_081",
+   "created_at": "2026-09-05T19:00:00",
+   "caption": "Ahtapot Izgara fena değil ama porsiyon küçük"
+  },
+  {
+   "id": "pp_042",
+   "author": "acikmis_ogrenci",
+   "restaurant_id": "r_083",
+   "created_at": "2026-08-30T19:00:00",
+   "caption": "Efsane Muhammara, kesin tekrar geleceğim"
+  },
+  {
+   "id": "pp_043",
+   "author": "acikmis_ogrenci",
+   "restaurant_id": "r_092",
+   "created_at": "2026-10-16T19:00:00",
+   "caption": "Hayatımda yediğim en iyi Kazandibi 🔥"
+  }
+ ]
+}

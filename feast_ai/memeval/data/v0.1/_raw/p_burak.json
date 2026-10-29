@@ -1,0 +1,231 @@
+{
+ "sessions": [
+  {
+   "session_index": 0,
+   "turns": [
+    {
+     "role": "user",
+     "text": "selam, bugün hava bayağı sıcaktı ya, ofiste klima da bozuldu üstüne",
+     "beats": [
+      "b_p_burak_24"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Kolay gelsin, öyle günlerde bir şey yemek bile zor geliyor. Yardımcı olabileceğim bir şey olursa buradayım.",
+     "beats": [
+      "b_p_burak_01"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 1,
+   "turns": [
+    {
+     "role": "user",
+     "text": "en sevdiğim mutfak deniz ürünleri, balık, ne olursa. bugün öğlen nerede yiyebilirim?",
+     "beats": [
+      "b_p_burak_02",
+      "b_p_burak_16"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Önerim Baklavacı Güllüoğlu Usta. Menüde Meyve Salatası var: 120 TL, vegan, glutensiz. Fenerbahçe semtinde, fiyat seviyesi ₺₺.",
+     "beats": [
+      "b_p_burak_17"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 2,
+   "turns": [
+    {
+     "role": "user",
+     "text": "dün öğlen Lagos Balık'ta karides güveç yedim, kaşarı bol bol koymuşlar",
+     "beats": [
+      "b_p_burak_06"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Bol kaşarlı karides güveç, harika! Afiyet olsun.",
+     "beats": [
+      "b_p_burak_07"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 3,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Fenerbahçe'de oturuyorum, bugün parkta bisiklete bindim bütün sabah",
+     "beats": [
+      "b_p_burak_04"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Fenerbahçe parkı bisiklet için birebir. Güzel bir pazar olmuş!",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 4,
+   "turns": [
+    {
+     "role": "user",
+     "text": "cumartesi akşamı, nerede yiyebilirim?",
+     "beats": [
+      "b_p_burak_18"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Tatlı Dünyası uygun olabilir: Kazandibi 110 TL, vejetaryen. Semt Fenerbahçe, fiyat seviyesi ₺₺.",
+     "beats": [
+      "b_p_burak_19"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 5,
+   "turns": [
+    {
+     "role": "user",
+     "text": "dün akşam İskele Lokantası'nda yemekten sonra helva yedim, tahin tadı tam kıvamındaydı",
+     "beats": [
+      "b_p_burak_08"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Yemek sonrası helva klasiği! Afiyet olsun.",
+     "beats": [
+      "b_p_burak_09"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 6,
+   "turns": [
+    {
+     "role": "user",
+     "text": "bu akşam nerede yiyebilirim?",
+     "beats": [
+      "b_p_burak_20"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Şuna bakabilirsin: Urfa Ocakbaşı. Fıstıklı Kebap 625 TL, menüde 'şefin önerisi' etiketli; Fenerbahçe semtinde, ₺₺₺. Bir postta @moda_lezzet şöyle yazmış: \"Fiyatına göre gayet iyi bir Fıstıklı Kebap\"",
+     "beats": [
+      "b_p_burak_21"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 7,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Fenerbahçe'den Cihangir'e taşındım bu hafta, sahili özleyeceğim ama",
+     "beats": [
+      "b_p_burak_05"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Hayırlı olsun! Cihangir'in de kendine has bir havası var.",
+     "beats": []
+    },
+    {
+     "role": "user",
+     "text": "bugün akşam da Akşam Meyhanesi'nde muhammara yedim yeni komşularla",
+     "beats": [
+      "b_p_burak_10"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Yeni mahallene güzel bir başlangıç. Afiyet olsun!",
+     "beats": [
+      "b_p_burak_11"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 8,
+   "turns": [
+    {
+     "role": "user",
+     "text": "dün öğlen Cihangir Meze Evi'nde fava yedim, zeytinyağı çok iyiydi",
+     "beats": [
+      "b_p_burak_12"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "İyi zeytinyağı favayı bambaşka yapıyor. Afiyet olsun!",
+     "beats": [
+      "b_p_burak_13"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bugün öğlen nerede yiyebilirim?",
+     "beats": [
+      "b_p_burak_22"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Önerim Tencere Kapak. Menüde Sütlaç var: 95 TL, vejetaryen, glutensiz. Cihangir semtinde, fiyat seviyesi ₺₺.",
+     "beats": [
+      "b_p_burak_23"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 9,
+   "turns": [
+    {
+     "role": "user",
+     "text": "rakı balık meze üçlüsü olmadan haftam geçmiyor, haftada iki kez kesin bir meyhanede otururum",
+     "beats": [
+      "b_p_burak_03"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Meze sofrası senin için vazgeçilmez, belli :)",
+     "beats": []
+    },
+    {
+     "role": "user",
+     "text": "ama bugün akşam Dün Gece Burger'de acılı burger yedim, değişiklik olsun dedim",
+     "beats": [
+      "b_p_burak_14"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Değişiklik iyidir! Afiyet olsun.",
+     "beats": [
+      "b_p_burak_15"
+     ]
+    }
+   ]
+  }
+ ]
+}

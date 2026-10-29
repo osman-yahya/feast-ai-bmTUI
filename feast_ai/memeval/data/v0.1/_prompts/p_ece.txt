@@ -1,0 +1,213 @@
+Sen bir eval veri seti icin gercekci Turkce sohbet yazarisin.
+Uygulama: feast, Istanbul'da restoran kesfi. Asistan: Mustachio - samimi, kisa (1-2 cumle) konusur.
+
+Kurallar:
+- Her oturum icin verilen "beat"leri SIRAYLA isle. Her beat tam olarak bir turda gecer ve o turun
+  "beats" listesine id'si yazilir. Beat'in rolu ile turun rolu ayni olmali.
+- Bir turda birden fazla beat olabilir; beat tasimayan kisa dolgu turlari ekleyebilirsin.
+- Oturum her zaman kullanici turuyla baslar. Oturum basina 2-8 tur.
+- Plan disinda kisisel bilgi EKLEME: alerji, diyet, evcil hayvan, adres, saglik, gidilen yer,
+  restoran adi. Beat'te gecmeyen hicbir restoran adini yazma.
+- "DOLAYLI" denen beat'lerde bilgiyi acikca soyleme, gunluk dille ima et.
+- Kullanicilar gercek insanlar gibi yazsin: bazen kucuk harf, diakritiksiz, kisa; ama Turkce dogal olsun.
+- Tarih ifadelerini (dun, gecen cuma...) beat'te verildigi gibi kullan; kendin tarih uydurma.
+- Asistan yalniz uygulamanin verisini bilir: yemek adi, fiyat, etiketler (vegan, glutensiz,
+  'populer', 'sefin onerisi'), semt, fiyat seviyesi. Puan, yorum, populerlik bilgisi YOK:
+  "meshur", "efsane", "cok sevilir", "herkes bayiliyor", "lezzetli" gibi degerlendirme YAZMA.
+  Baskasinin postunu aktarirsan yazariyla ve cift tirnak icinde aktar: @kullanici: "...".
+
+
+Kullanici: Ece. Asagidaki 10 oturumu yaz.
+
+[
+ {
+  "session_index": 0,
+  "tarih": "5 ağustos 2026 çarşamba 20:45",
+  "beats": [
+   {
+    "id": "b_p_ece_01",
+    "role": "user",
+    "talimat": "Kullanıcı susam yiyince rahatsızlandığını DOLAYLI ima eder (ör. nefesinin daraldığını, hastanelik olduğunu anlatır); 'alerji' kelimesini KULLANMAZ."
+   },
+   {
+    "id": "b_p_ece_02",
+    "role": "user",
+    "talimat": "Kullanıcı et yemediğini DOLAYLI belli eder (ör. 'et yemediğim için menüde ne var?')."
+   },
+   {
+    "id": "b_p_ece_03",
+    "role": "assistant",
+    "talimat": "Asistan kullanıcının söylediğini dikkate aldığını kısaca belirtir, öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 1,
+  "tarih": "10 ağustos 2026 pazartesi 13:45",
+  "beats": [
+   {
+    "id": "b_p_ece_04",
+    "role": "user",
+    "talimat": "Kullanıcı en sevdiği mutfağın kahvaltı olduğunu söyler."
+   },
+   {
+    "id": "b_p_ece_19",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_ece_20",
+    "role": "assistant",
+    "talimat": "Asistan 'Tokyo Sokağı' restoranını önerir. Gerekçe YALNIZ şu veri: Miso Çorba 120 TL (vegan); semt Moda; fiyat seviyesi ₺₺. Başka restoran adı GEÇİRMEZ. İstersen şu postu yazarıyla alıntılayabilirsin: @tolga_yemekte: \"Fiyatına göre gayet iyi bir Somon Sushi Seti\""
+   }
+  ]
+ },
+ {
+  "session_index": 2,
+  "tarih": "13 ağustos 2026 perşembe 13:15",
+  "beats": [
+   {
+    "id": "b_p_ece_09",
+    "role": "user",
+    "talimat": "Kullanıcı dün akşam 'Pazar Kahvaltı Evi' restoranında Avokadolu Kase yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_ece_10",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 3,
+  "tarih": "23 ağustos 2026 pazar 13:30",
+  "beats": [
+   {
+    "id": "b_p_ece_07",
+    "role": "user",
+    "talimat": "Kullanıcı Moda semtinde oturduğunu söyler."
+   }
+  ]
+ },
+ {
+  "session_index": 4,
+  "tarih": "4 eylül 2026 cuma 19:45",
+  "beats": [
+   {
+    "id": "b_p_ece_21",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_ece_22",
+    "role": "assistant",
+    "talimat": "Asistan 'Bambu' restoranını önerir. Gerekçe YALNIZ şu veri: Sebzeli Noodle 290 TL (vegan); semt Moda; fiyat seviyesi ₺₺. Başka restoran adı GEÇİRMEZ."
+   }
+  ]
+ },
+ {
+  "session_index": 5,
+  "tarih": "7 eylül 2026 pazartesi 12:30",
+  "beats": [
+   {
+    "id": "b_p_ece_06",
+    "role": "user",
+    "talimat": "Kullanıcı acılı yemeklerden hoşlanmadığını, midesini yaktığını söyler."
+   },
+   {
+    "id": "b_p_ece_11",
+    "role": "user",
+    "talimat": "Kullanıcı dün akşam 'Van Kahvaltı Salonu' restoranında Avokadolu Kase yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_ece_12",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 6,
+  "tarih": "22 eylül 2026 salı 12:45",
+  "beats": [
+   {
+    "id": "b_p_ece_23",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_ece_24",
+    "role": "assistant",
+    "talimat": "Asistan 'Filiz Vegan' restoranını önerir. Gerekçe YALNIZ şu veri: Mercimek Köftesi 105 TL (vegan); semt Moda; fiyat seviyesi ₺. Başka restoran adı GEÇİRMEZ. İstersen şu postu yazarıyla alıntılayabilirsin: @moda_lezzet: \"Hayatımda yediğim en iyi Mercimek Köftesi 🔥\""
+   }
+  ]
+ },
+ {
+  "session_index": 7,
+  "tarih": "18 ekim 2026 pazar 19:45",
+  "beats": [
+   {
+    "id": "b_p_ece_08",
+    "role": "user",
+    "talimat": "Kullanıcı Moda semtinden Fenerbahçe semtine taşındığını anlatır."
+   },
+   {
+    "id": "b_p_ece_13",
+    "role": "user",
+    "talimat": "Kullanıcı evvelsi gün öğlen 'Simitçi Dünyası' restoranında Menemen yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_ece_14",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 8,
+  "tarih": "19 ekim 2026 pazartesi 19:45",
+  "beats": [
+   {
+    "id": "b_p_ece_15",
+    "role": "user",
+    "talimat": "Kullanıcı dün akşam 'Muhallebici Moda' restoranında Kazandibi yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_ece_16",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   },
+   {
+    "id": "b_p_ece_25",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_ece_26",
+    "role": "assistant",
+    "talimat": "Asistan 'Tatlı Dünyası' restoranını önerir. Gerekçe YALNIZ şu veri: Kazandibi 110 TL (vejetaryen); semt Fenerbahçe; fiyat seviyesi ₺₺. Başka restoran adı GEÇİRMEZ."
+   }
+  ]
+ },
+ {
+  "session_index": 9,
+  "tarih": "25 ekim 2026 pazar 20:00",
+  "beats": [
+   {
+    "id": "b_p_ece_05",
+    "role": "user",
+    "talimat": "Kullanıcı tatlı sevdiğini DOLAYLI belli eder (ör. 'haftada iki kez yerim')."
+   },
+   {
+    "id": "b_p_ece_17",
+    "role": "user",
+    "talimat": "Kullanıcı bugün öğlen 'Cuma Pide' restoranında Kaşarlı Pide yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_ece_18",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ }
+]

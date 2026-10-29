@@ -1,0 +1,239 @@
+{
+ "sessions": [
+  {
+   "session_index": 0,
+   "turns": [
+    {
+     "role": "user",
+     "text": "merhaba! simit, tahin, humus gibi şeyler yediğimde boğazım kaşınıyor, bir kere yüzüm şişti hastaneye gittik. o yüzden susamlı hiçbir şey yemiyorum",
+     "beats": [
+      "b_p_ece_01"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bir de et yemediğim için menüde ne var diye hep uzun uzun bakıyorum",
+     "beats": [
+      "b_p_ece_02"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Anladım, susamlı ürünleri dışarıda tutup etsiz seçeneklere bakacağım.",
+     "beats": [
+      "b_p_ece_03"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 1,
+   "turns": [
+    {
+     "role": "user",
+     "text": "en sevdiğim öğün kahvaltı, kahvaltı mutfağı benim için bir numara. bugün öğlen nerede yiyebilirim?",
+     "beats": [
+      "b_p_ece_04",
+      "b_p_ece_19"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Önerim Tokyo Sokağı. Menüde Miso Çorba var: 120 TL, vegan. Moda semtinde, fiyat seviyesi ₺₺. Bir postta @tolga_yemekte şöyle yazmış: \"Fiyatına göre gayet iyi bir Somon Sushi Seti\"",
+     "beats": [
+      "b_p_ece_20"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 2,
+   "turns": [
+    {
+     "role": "user",
+     "text": "dün akşam Pazar Kahvaltı Evi'nde avokadolu kase yedim, akşam da kahvaltı servis ediyorlarmış",
+     "beats": [
+      "b_p_ece_09"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Akşam kahvaltısı ayrı bir keyif. Afiyet olsun!",
+     "beats": [
+      "b_p_ece_10"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 3,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Moda'da oturuyorum, bu sabah çay bahçesinde kitap okudum saatlerce",
+     "beats": [
+      "b_p_ece_07"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Moda'da çay bahçesinde kitap, harika bir pazar sabahı!",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 4,
+   "turns": [
+    {
+     "role": "user",
+     "text": "cuma akşamı, nerede yiyebilirim?",
+     "beats": [
+      "b_p_ece_21"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Bambu uygun olabilir: Sebzeli Noodle 290 TL, vegan. Semt Moda, fiyat seviyesi ₺₺.",
+     "beats": [
+      "b_p_ece_22"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 5,
+   "turns": [
+    {
+     "role": "user",
+     "text": "acılı yemekler hiç bana göre değil, midemi yakıyor. dün akşam Van Kahvaltı Salonu'nda avokadolu kase yedim neyse ki hiç acısı yoktu",
+     "beats": [
+      "b_p_ece_06",
+      "b_p_ece_11"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Acısız seçeneklere bakarım. Afiyet olsun!",
+     "beats": [
+      "b_p_ece_12"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 6,
+   "turns": [
+    {
+     "role": "user",
+     "text": "öğlen arası nerede yiyebilirim?",
+     "beats": [
+      "b_p_ece_23"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Şuna bakabilirsin: Filiz Vegan. Mercimek Köftesi 105 TL, vegan; Moda semtinde, ₺. Bir postta @moda_lezzet şöyle yazmış: \"Hayatımda yediğim en iyi Mercimek Köftesi 🔥\"",
+     "beats": [
+      "b_p_ece_24"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 7,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Moda'dan Fenerbahçe'ye taşındım! deniz hâlâ yakın, rahatladım",
+     "beats": [
+      "b_p_ece_08"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Hayırlı olsun! Fenerbahçe sahili de çok güzel.",
+     "beats": []
+    },
+    {
+     "role": "user",
+     "text": "evvelsi gün öğlen Simitçi Dünyası'nda menemen yedim, simite dokunmadım tabii",
+     "beats": [
+      "b_p_ece_13"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "İyi ki menemen varmış. Afiyet olsun!",
+     "beats": [
+      "b_p_ece_14"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 8,
+   "turns": [
+    {
+     "role": "user",
+     "text": "dün akşam Muhallebici Moda'da kazandibi yedim, eski mahallede tatlı molası",
+     "beats": [
+      "b_p_ece_15"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Kazandibi her zaman iyi fikir. Afiyet olsun!",
+     "beats": [
+      "b_p_ece_16"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bu akşam nerede yiyebilirim?",
+     "beats": [
+      "b_p_ece_25"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Önerim Tatlı Dünyası. Menüde Kazandibi var: 110 TL, vejetaryen. Fenerbahçe semtinde, fiyat seviyesi ₺₺.",
+     "beats": [
+      "b_p_ece_26"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 9,
+   "turns": [
+    {
+     "role": "user",
+     "text": "fark ettim ki tatlıcı vitrini gördüğümde duramıyorum, haftada iki kez kesin bir tatlıcıya giriyorum",
+     "beats": [
+      "b_p_ece_05"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Tatlı sevgin belli oluyor :)",
+     "beats": []
+    },
+    {
+     "role": "user",
+     "text": "bugün öğlen Cuma Pide'de kaşarlı pide yedim ama, pazar günü bile açıklar",
+     "beats": [
+      "b_p_ece_17"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Kaşarlı pide de iyi seçim. Afiyet olsun!",
+     "beats": [
+      "b_p_ece_18"
+     ]
+    }
+   ]
+  }
+ ]
+}

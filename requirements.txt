@@ -13,3 +13,6 @@ onnxruntime-genai>=0.14
 onnxruntime>=1.20
 tokenizers>=0.20
 numpy>=1.26
+
+# Optional: generating the Mustachio memory eval set (memeval gen) with Claude.
+anthropic>=2.3

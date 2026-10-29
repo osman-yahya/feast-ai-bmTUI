@@ -1,0 +1,227 @@
+{
+ "sessions": [
+  {
+   "session_index": 0,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Merhaba Mustachio. Bilmen gerekenler: süt alerjim var.",
+     "beats": [
+      "b_p_selin_01"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Yumurta alerjim de var. Bir de veganım zaten.",
+     "beats": [
+      "b_p_selin_02",
+      "b_p_selin_03"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Not aldım: süt ve yumurta alerjisi, vegan beslenme. Önerilerimi buna göre yapacağım.",
+     "beats": [
+      "b_p_selin_04"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 1,
+   "turns": [
+    {
+     "role": "user",
+     "text": "bitki bazlı kafeleri gezmek benim hobim gibi, haftada iki kez kesin yeni birine giderim. bugün nerede yiyebilirim?",
+     "beats": [
+      "b_p_selin_05",
+      "b_p_selin_18"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Önerim Akşam Meyhanesi. Menüde Fava var: 170 TL, vegan. Yeldeğirmeni semtinde, fiyat seviyesi ₺₺₺₺.",
+     "beats": [
+      "b_p_selin_19"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 2,
+   "turns": [
+    {
+     "role": "user",
+     "text": "dün akşam Yeşil Tabak'ta mercimek köftesi yedim, marulu bol bol verdiler",
+     "beats": [
+      "b_p_selin_08"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Bol marullu mercimek köftesi, klasik! Afiyet olsun.",
+     "beats": [
+      "b_p_selin_09"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 3,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Yeldeğirmeni'nde oturuyorum, sokaklardaki duvar resimleri yine değişmiş bugün",
+     "beats": [
+      "b_p_selin_07"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Yeldeğirmeni'nin duvarları açık hava galerisi gibi. Keyifli akşamlar!",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 4,
+   "turns": [
+    {
+     "role": "user",
+     "text": "akşam için bir yer lazım, nerede yiyebilirim?",
+     "beats": [
+      "b_p_selin_20"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "İskele Lokantası uygun olabilir: Roka Salatası 140 TL, vegan. Semt Yeldeğirmeni, fiyat seviyesi ₺₺. Bir postta @beyza.yer şöyle yazmış: \"Fiyatına göre gayet iyi bir Helva\"",
+     "beats": [
+      "b_p_selin_21"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 5,
+   "turns": [
+    {
+     "role": "user",
+     "text": "dün öğlen Tatlı Dünyası'nda meyve salatası yedim, mevsim meyveleriyle yapıyorlar",
+     "beats": [
+      "b_p_selin_10"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Mevsim meyvesiyle çok daha güzel oluyor. Afiyet olsun!",
+     "beats": [
+      "b_p_selin_11"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 6,
+   "turns": [
+    {
+     "role": "user",
+     "text": "bu akşam nerede yiyebilirim?",
+     "beats": [
+      "b_p_selin_22"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Şuna bakabilirsin: Karadeniz Pide Salonu. Şalgam 35 TL, vegan, acılı; Yeldeğirmeni semtinde, ₺.",
+     "beats": [
+      "b_p_selin_23"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 7,
+   "turns": [
+    {
+     "role": "user",
+     "text": "bugün öğlen Moda Yeşil Mutfak'ta avokado tost yedim, cumartesi kalabalığı vardı ama değdi",
+     "beats": [
+      "b_p_selin_12"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Beklemeye değmesine sevindim. Afiyet olsun!",
+     "beats": [
+      "b_p_selin_13"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 8,
+   "turns": [
+    {
+     "role": "user",
+     "text": "dün akşam Baklavacı Güllüoğlu Usta'ya gittik, ben baklava yiyemediğim için meyve salatası yedim",
+     "beats": [
+      "b_p_selin_14"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "İyi ki sana uygun bir şey varmış. Afiyet olsun!",
+     "beats": [
+      "b_p_selin_15"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bugün akşam için nerede yiyebilirim?",
+     "beats": [
+      "b_p_selin_24"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Önerim Wok & Roll. Menüde Miso Çorba var: 95 TL, vegan. Yeldeğirmeni semtinde, fiyat seviyesi ₺.",
+     "beats": [
+      "b_p_selin_25"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 9,
+   "turns": [
+    {
+     "role": "user",
+     "text": "itiraf: tatlıcılara bayılıyorum, haftada iki kez kesin bir tatlıcıya uğrarım, yiyebileceğim bir şey bulamasam bile",
+     "beats": [
+      "b_p_selin_06"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Tatlıcı turların belli oluyor :)",
+     "beats": []
+    },
+    {
+     "role": "user",
+     "text": "dün akşam Dün Gece Burger'de patates kızartması yedim, başka yiyebileceğim pek bir şey yoktu",
+     "beats": [
+      "b_p_selin_16"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Patates her zaman güvenli liman. Afiyet olsun!",
+     "beats": [
+      "b_p_selin_17"
+     ]
+    }
+   ]
+  }
+ ]
+}

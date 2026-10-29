@@ -169,6 +169,62 @@ def _cmd_compare(paths: list[str], out: str | None) -> int:
     return 0
 
 
+def _cmd_memeval(args) -> int:
+    from .memeval import schema
+
+    if args.memeval_command == "validate":
+        try:
+            dataset = schema.load(args.data)
+        except schema.DatasetError as exc:
+            print(f"load failed: {exc}", file=sys.stderr)
+            return 2
+        report = schema.validate(dataset)
+        print(schema.summary(dataset))
+        for line in report.warnings:
+            print(f"  warn   {line}")
+        for line in report.errors:
+            print(f"  ERROR  {line}")
+        print(f"\n{len(report.errors)} error(s), {len(report.warnings)} warning(s)")
+        return 0 if report.ok else 1
+    if args.memeval_command == "gen":
+        from pathlib import Path
+
+        from .memeval.gen import build
+        from .memeval.gen.llm import GenError
+
+        personas = [p for p in args.personas.split(",") if p] if args.personas else None
+        if args.export_prompts:
+            for path in build.export_prompts(Path(args.out), seed=args.seed, personas=personas):
+                print(path)
+            return 0
+        try:
+            report = build.build(Path(args.out), seed=args.seed, personas=personas,
+                                 dry_run=args.dry_run, force=args.force, offline=args.offline,
+                                 model=args.model)
+        except GenError as exc:
+            print(f"generation failed: {exc}", file=sys.stderr)
+            return 2
+        dataset = schema.load(args.out)
+        print(schema.summary(dataset))
+        for line in report.warnings:
+            print(f"  warn   {line}")
+        for line in report.errors:
+            print(f"  ERROR  {line}")
+        print(f"\n{len(report.errors)} error(s), {len(report.warnings)} warning(s)")
+        return 0 if report.ok else 1
+    if args.memeval_command == "render":
+        from pathlib import Path
+
+        from .memeval.render import render
+
+        out = Path(args.out) if args.out else Path(args.data) / "_review"
+        for path in render(schema.load(args.data), out):
+            print(path)
+        return 0
+    print("usage: feast-ai memeval {validate,gen,render} ...", file=sys.stderr)
+    return 2
+
+
 def _cmd_route(texts: list[str]) -> int:
     """Route sentences and print each decision - for tuning exemplars."""
     from .agent import start_router
@@ -421,6 +477,25 @@ def main(argv: list[str] | None = None) -> int:
     compare.add_argument("-o", "--out", help="output .html (default sessions/compare.html)")
     route = sub.add_parser("route", help="show how the intent router serves sentences")
     route.add_argument("texts", nargs="*", help="sentences (or one per line on stdin)")
+    memeval = sub.add_parser("memeval", help="Mustachio memory eval set (LongMemEval-style)")
+    memeval_sub = memeval.add_subparsers(dest="memeval_command")
+    validate = memeval_sub.add_parser("validate", help="check a dataset directory")
+    validate.add_argument("data", help="dataset directory, e.g. feast_ai/memeval/data/sample")
+    gen = memeval_sub.add_parser("gen", help="generate a dataset (plan in code, prose by Claude)")
+    gen.add_argument("--out", default="feast_ai/memeval/data/v0.1", help="dataset directory to write")
+    gen.add_argument("--seed", type=int, default=7)
+    gen.add_argument("--personas", default="", help="comma-separated persona ids (default: all)")
+    gen.add_argument("--dry-run", action="store_true",
+                     help="no model: beat instructions as text, to test the pipeline")
+    gen.add_argument("--force", action="store_true", help="rewrite cached histories")
+    gen.add_argument("--export-prompts", action="store_true",
+                     help="only write each persona's writer prompt to <out>/_prompts/")
+    gen.add_argument("--offline", action="store_true",
+                     help="never call the API: use <out>/_raw/*.json, fail on any problem")
+    gen.add_argument("--model", default="claude-opus-5-5", help="generator model")
+    render_cmd = memeval_sub.add_parser("render", help="write a dataset as Markdown for hand review")
+    render_cmd.add_argument("data", help="dataset directory")
+    render_cmd.add_argument("--out", default="", help="output directory (default <data>/_review)")
 
     args = parser.parse_args(argv)
 
@@ -440,6 +515,8 @@ def main(argv: list[str] | None = None) -> int:
         return _cmd_route(args.texts)
     if args.command == "compare":
         return _cmd_compare(args.runs, args.out)
+    if args.command == "memeval":
+        return _cmd_memeval(args)
 
     from .ui import FeastApp
 

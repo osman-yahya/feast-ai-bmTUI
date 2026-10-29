@@ -1,0 +1,225 @@
+{
+ "sessions": [
+  {
+   "session_index": 0,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Merhaba. Başta söyleyeyim, karides, yengeç, ıstakoz gibi kabuklu deniz ürünlerine alerjim var. Önerilerinde buna dikkat et lütfen.",
+     "beats": [
+      "b_p_mert_01"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Tamamdır, kabuklu deniz ürünlerini önerilerimin dışında tutacağım.",
+     "beats": [
+      "b_p_mert_02"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 1,
+   "turns": [
+    {
+     "role": "user",
+     "text": "en sevdiğim şey burger, net. öğlen arası bugün nerede yiyebilirim?",
+     "beats": [
+      "b_p_mert_03",
+      "b_p_mert_17"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Önerim Sushi Nami. Menüde Miso Çorba var: 95 TL, vegan. Beşiktaş semtinde, fiyat seviyesi ₺. Bir postta @beyza.yer şöyle yazmış: \"Hayatımda yediğim en iyi Somon Sushi Seti 🔥\"",
+     "beats": [
+      "b_p_mert_18"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 2,
+   "turns": [
+    {
+     "role": "user",
+     "text": "dün öğlen Antep Sofrası'na gittik iş arkadaşlarla, urfa kebap yedim. lavaşı tazeydi",
+     "beats": [
+      "b_p_mert_07"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Taze lavaşla urfa kebap, daha ne olsun. Afiyet olsun!",
+     "beats": [
+      "b_p_mert_08"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 3,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Beşiktaş'ta oturuyorum, bu akşam maç var diye sokaklar şimdiden kalabalık",
+     "beats": [
+      "b_p_mert_06"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Maç günü Beşiktaş başka oluyor. İyi seyirler!",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 4,
+   "turns": [
+    {
+     "role": "user",
+     "text": "bugün nerede yesem, fikrin var mı?",
+     "beats": [
+      "b_p_mert_19"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Fenerbahçe Balıkçısı uygun olabilir: Kalamar Tava 580 TL. Semt Beşiktaş, fiyat seviyesi ₺₺₺₺.",
+     "beats": [
+      "b_p_mert_20"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 5,
+   "turns": [
+    {
+     "role": "user",
+     "text": "acılı yemekler bana hiç gelmiyor bu arada, midemi yakıyor. dün akşam Urfa Ocakbaşı'nda ezme yedim mesela, yarım saat pişman oldum",
+     "beats": [
+      "b_p_mert_05",
+      "b_p_mert_09"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Geçmiş olsun! Bundan sonra acısız seçeneklere bakarım.",
+     "beats": [
+      "b_p_mert_10"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 6,
+   "turns": [
+    {
+     "role": "user",
+     "text": "pazar akşamı, canım dışarıda yemek istiyor. nereye gideyim?",
+     "beats": [
+      "b_p_mert_21"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Şuna bakabilirsin: Lagos Balık. Helva 120 TL; Beşiktaş semtinde, ₺₺.",
+     "beats": [
+      "b_p_mert_22"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "hmm bakarım",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 7,
+   "turns": [
+    {
+     "role": "user",
+     "text": "bugün öğlen Smash Bros'tan patates kızartması aldım, çıtır çıtırdı",
+     "beats": [
+      "b_p_mert_11"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Çıtır patates her zaman iyi fikir. Afiyet olsun!",
+     "beats": [
+      "b_p_mert_12"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 8,
+   "turns": [
+    {
+     "role": "user",
+     "text": "dün öğlen Burger Atölyesi'nde sebze burger yedim, et olmadan da fena değilmiş",
+     "beats": [
+      "b_p_mert_13"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Sürpriz olmuş! Arada değişiklik iyi geliyor.",
+     "beats": [
+      "b_p_mert_14"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bu akşam için nerede yiyebilirim?",
+     "beats": [
+      "b_p_mert_23"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Önerim Pideci Hasan. Menüde Lahmacun var: 80 TL. Beşiktaş semtinde, fiyat seviyesi ₺.",
+     "beats": [
+      "b_p_mert_24"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 9,
+   "turns": [
+    {
+     "role": "user",
+     "text": "aslında burgeri bırak, en sevdiğim mutfak kebap. bunu yeni fark ettim",
+     "beats": [
+      "b_p_mert_04"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Not ettim, kebap birinci sırada :)",
+     "beats": []
+    },
+    {
+     "role": "user",
+     "text": "ama bugün öğlen yine kebap yemedim, Pazar Kahvaltı Evi'nde avokadolu kase yedim. pazar günü oraya gitmek klişe oldu biraz",
+     "beats": [
+      "b_p_mert_15"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "İsmine yakışır bir pazar olmuş. Afiyet olsun!",
+     "beats": [
+      "b_p_mert_16"
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,203 @@
+Sen bir eval veri seti icin gercekci Turkce sohbet yazarisin.
+Uygulama: feast, Istanbul'da restoran kesfi. Asistan: Mustachio - samimi, kisa (1-2 cumle) konusur.
+
+Kurallar:
+- Her oturum icin verilen "beat"leri SIRAYLA isle. Her beat tam olarak bir turda gecer ve o turun
+  "beats" listesine id'si yazilir. Beat'in rolu ile turun rolu ayni olmali.
+- Bir turda birden fazla beat olabilir; beat tasimayan kisa dolgu turlari ekleyebilirsin.
+- Oturum her zaman kullanici turuyla baslar. Oturum basina 2-8 tur.
+- Plan disinda kisisel bilgi EKLEME: alerji, diyet, evcil hayvan, adres, saglik, gidilen yer,
+  restoran adi. Beat'te gecmeyen hicbir restoran adini yazma.
+- "DOLAYLI" denen beat'lerde bilgiyi acikca soyleme, gunluk dille ima et.
+- Kullanicilar gercek insanlar gibi yazsin: bazen kucuk harf, diakritiksiz, kisa; ama Turkce dogal olsun.
+- Tarih ifadelerini (dun, gecen cuma...) beat'te verildigi gibi kullan; kendin tarih uydurma.
+- Asistan yalniz uygulamanin verisini bilir: yemek adi, fiyat, etiketler (vegan, glutensiz,
+  'populer', 'sefin onerisi'), semt, fiyat seviyesi. Puan, yorum, populerlik bilgisi YOK:
+  "meshur", "efsane", "cok sevilir", "herkes bayiliyor", "lezzetli" gibi degerlendirme YAZMA.
+  Baskasinin postunu aktarirsan yazariyla ve cift tirnak icinde aktar: @kullanici: "...".
+
+
+Kullanici: Mert. Asagidaki 10 oturumu yaz.
+
+[
+ {
+  "session_index": 0,
+  "tarih": "1 ağustos 2026 cumartesi 13:45",
+  "beats": [
+   {
+    "id": "b_p_mert_01",
+    "role": "user",
+    "talimat": "Kullanıcı açıkça karides gibi kabuklu deniz ürünleri alerjisi olduğunu söyler."
+   },
+   {
+    "id": "b_p_mert_02",
+    "role": "assistant",
+    "talimat": "Asistan kullanıcının söylediğini dikkate aldığını kısaca belirtir, öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 1,
+  "tarih": "5 ağustos 2026 çarşamba 12:30",
+  "beats": [
+   {
+    "id": "b_p_mert_03",
+    "role": "user",
+    "talimat": "Kullanıcı en sevdiği mutfağın burger olduğunu söyler."
+   },
+   {
+    "id": "b_p_mert_17",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_mert_18",
+    "role": "assistant",
+    "talimat": "Asistan 'Sushi Nami' restoranını önerir. Gerekçe YALNIZ şu veri: Miso Çorba 95 TL (vegan); semt Beşiktaş; fiyat seviyesi ₺. Başka restoran adı GEÇİRMEZ. İstersen şu postu yazarıyla alıntılayabilirsin: @beyza.yer: \"Hayatımda yediğim en iyi Somon Sushi Seti 🔥\""
+   }
+  ]
+ },
+ {
+  "session_index": 2,
+  "tarih": "22 ağustos 2026 cumartesi 12:15",
+  "beats": [
+   {
+    "id": "b_p_mert_07",
+    "role": "user",
+    "talimat": "Kullanıcı dün öğlen 'Antep Sofrası' restoranında Urfa Kebap yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_mert_08",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 3,
+  "tarih": "2 eylül 2026 çarşamba 12:45",
+  "beats": [
+   {
+    "id": "b_p_mert_06",
+    "role": "user",
+    "talimat": "Kullanıcı Beşiktaş semtinde oturduğunu söyler."
+   }
+  ]
+ },
+ {
+  "session_index": 4,
+  "tarih": "17 eylül 2026 perşembe 12:00",
+  "beats": [
+   {
+    "id": "b_p_mert_19",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_mert_20",
+    "role": "assistant",
+    "talimat": "Asistan 'Fenerbahçe Balıkçısı' restoranını önerir. Gerekçe YALNIZ şu veri: Kalamar Tava 580 TL; semt Beşiktaş; fiyat seviyesi ₺₺₺₺. Başka restoran adı GEÇİRMEZ."
+   }
+  ]
+ },
+ {
+  "session_index": 5,
+  "tarih": "28 eylül 2026 pazartesi 20:30",
+  "beats": [
+   {
+    "id": "b_p_mert_05",
+    "role": "user",
+    "talimat": "Kullanıcı acılı yemeklerden hoşlanmadığını, midesini yaktığını söyler."
+   },
+   {
+    "id": "b_p_mert_09",
+    "role": "user",
+    "talimat": "Kullanıcı dün akşam 'Urfa Ocakbaşı' restoranında Ezme yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_mert_10",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 6,
+  "tarih": "4 ekim 2026 pazar 19:30",
+  "beats": [
+   {
+    "id": "b_p_mert_21",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_mert_22",
+    "role": "assistant",
+    "talimat": "Asistan 'Lagos Balık' restoranını önerir. Gerekçe YALNIZ şu veri: Helva 120 TL; semt Beşiktaş; fiyat seviyesi ₺₺. Başka restoran adı GEÇİRMEZ."
+   }
+  ]
+ },
+ {
+  "session_index": 7,
+  "tarih": "11 ekim 2026 pazar 12:45",
+  "beats": [
+   {
+    "id": "b_p_mert_11",
+    "role": "user",
+    "talimat": "Kullanıcı bugün öğlen 'Smash Bros' restoranında Patates Kızartması yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_mert_12",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 8,
+  "tarih": "14 ekim 2026 çarşamba 19:45",
+  "beats": [
+   {
+    "id": "b_p_mert_13",
+    "role": "user",
+    "talimat": "Kullanıcı dün öğlen 'Burger Atölyesi' restoranında Sebze Burger yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_mert_14",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   },
+   {
+    "id": "b_p_mert_23",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_mert_24",
+    "role": "assistant",
+    "talimat": "Asistan 'Pideci Hasan' restoranını önerir. Gerekçe YALNIZ şu veri: Lahmacun 80 TL; semt Beşiktaş; fiyat seviyesi ₺. Başka restoran adı GEÇİRMEZ."
+   }
+  ]
+ },
+ {
+  "session_index": 9,
+  "tarih": "18 ekim 2026 pazar 19:45",
+  "beats": [
+   {
+    "id": "b_p_mert_04",
+    "role": "user",
+    "talimat": "Kullanıcı artık en sevdiği mutfağın kebap olduğunu söyler (burger değil)."
+   },
+   {
+    "id": "b_p_mert_15",
+    "role": "user",
+    "talimat": "Kullanıcı bugün öğlen 'Pazar Kahvaltı Evi' restoranında Avokadolu Kase yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_mert_16",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ }
+]

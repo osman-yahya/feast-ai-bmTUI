@@ -1,0 +1,62 @@
+[
+ {
+  "key": "allergen",
+  "value": "peanuts",
+  "kind": "hard",
+  "valid_from": "2026-07-21",
+  "source": "inferred",
+  "source_turn_id": "t_p_elif_00_00"
+ },
+ {
+  "key": "diet",
+  "value": "vegetarian",
+  "kind": "hard",
+  "valid_from": "2026-07-21",
+  "source": "inferred",
+  "valid_until": "2026-08-23",
+  "status": "closed",
+  "source_turn_id": "t_p_elif_00_02"
+ },
+ {
+  "key": "likes",
+  "value": "vegan kafe",
+  "kind": "soft",
+  "valid_from": "2026-08-02",
+  "source": "inferred",
+  "source_turn_id": "t_p_elif_01_00"
+ },
+ {
+  "key": "home_area",
+  "value": "Moda",
+  "kind": "soft",
+  "valid_from": "2026-08-16",
+  "source": "explicit",
+  "valid_until": "2026-10-09",
+  "status": "closed",
+  "source_turn_id": "t_p_elif_03_00"
+ },
+ {
+  "key": "diet",
+  "value": "vegan",
+  "kind": "hard",
+  "valid_from": "2026-08-23",
+  "source": "explicit",
+  "source_turn_id": "t_p_elif_04_00"
+ },
+ {
+  "key": "home_area",
+  "value": "Kadıköy Çarşı",
+  "kind": "soft",
+  "valid_from": "2026-10-09",
+  "source": "explicit",
+  "source_turn_id": "t_p_elif_07_00"
+ },
+ {
+  "key": "likes",
+  "value": "uzakdoğu",
+  "kind": "soft",
+  "valid_from": "2026-10-17",
+  "source": "inferred",
+  "source_turn_id": "t_p_elif_09_00"
+ }
+]

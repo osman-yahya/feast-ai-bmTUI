@@ -1,0 +1,255 @@
+{
+ "sessions": [
+  {
+   "session_index": 0,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Selam! Ben normal ekmek, makarna, börek yediğimde günlerce kendime gelemiyorum, karnım şişiyor, bir keresinde hastanelik oldum. O yüzden un içeren şeylerden uzak duruyorum.",
+     "beats": [
+      "b_p_zeynep_01"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Ayrıca vejetaryenim, onu da bil.",
+     "beats": [
+      "b_p_zeynep_02"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "İkisini de not ettim: unlu ürünlerden uzak, vejetaryen seçenekler. Yardımcı olabileceğim bir şey olursa yaz.",
+     "beats": [
+      "b_p_zeynep_04"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 1,
+   "turns": [
+    {
+     "role": "user",
+     "text": "akşamları meze sofrasının başında oturmayı çok seviyorum, haftada iki kez kesin bir meyhaneye gidiyoruz arkadaşlarla. ama şimdi öğlen, bugün nerede yiyebilirim?",
+     "beats": [
+      "b_p_zeynep_05",
+      "b_p_zeynep_19"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Önerim Pazar Kahvaltı Evi. Menüde Menemen var: 180 TL, vejetaryen. Cihangir semtinde, fiyat seviyesi ₺₺. Bir postta @gurme_kadikoy şöyle yazmış: \"Fiyatına göre gayet iyi bir Serpme Kahvaltı\"",
+     "beats": [
+      "b_p_zeynep_20"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 2,
+   "turns": [
+    {
+     "role": "user",
+     "text": "dün akşam Serpme Bahçe'de avokadolu kase yedim, bahçesi çok tatlı",
+     "beats": [
+      "b_p_zeynep_09"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Bahçede akşam yemeği, harika! Afiyet olsun.",
+     "beats": [
+      "b_p_zeynep_10"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 3,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Cihangir'de oturuyorum, bugün yokuşları çıkarken bu semti neden seçtim diye düşündüm yine :)",
+     "beats": [
+      "b_p_zeynep_07"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Cihangir yokuşları spor yerine geçer :) Manzarası da buna değer.",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 4,
+   "turns": [
+    {
+     "role": "user",
+     "text": "büyük haber: artık veganım. vejetaryendim zaten ama süt ve yumurtayı da bıraktım.",
+     "beats": [
+      "b_p_zeynep_03"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Tebrikler! Bundan sonra vegan seçeneklere bakarım.",
+     "beats": []
+    },
+    {
+     "role": "user",
+     "text": "bu akşam bir yer lazım, nerede yiyebilirim?",
+     "beats": [
+      "b_p_zeynep_21"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Şekerci Cafer uygun olabilir: Meyve Salatası 120 TL, vegan, glutensiz. Semt Cihangir, fiyat seviyesi ₺₺.",
+     "beats": [
+      "b_p_zeynep_22"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 5,
+   "turns": [
+    {
+     "role": "user",
+     "text": "dün öğlen Cihangir Meze Evi'nde fava yedim, öğlen bile açıklarmış",
+     "beats": [
+      "b_p_zeynep_11"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Güzel keşif! Afiyet olsun.",
+     "beats": [
+      "b_p_zeynep_12"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 6,
+   "turns": [
+    {
+     "role": "user",
+     "text": "perşembe akşamı, nereye gideyim?",
+     "beats": [
+      "b_p_zeynep_23"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Şuna bakabilirsin: Kasap Burger. Patates Kızartması 90 TL, vegan; Cihangir semtinde, ₺. Bir postta @acikmis_ogrenci şöyle yazmış: \"Hayatımda yediğim en iyi Acılı Burger 🔥\"",
+     "beats": [
+      "b_p_zeynep_24"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "tamamdır",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 7,
+   "turns": [
+    {
+     "role": "user",
+     "text": "taşındım bu arada! Cihangir'den Beşiktaş'a geçtim, iş yerine yakın olsun diye",
+     "beats": [
+      "b_p_zeynep_08"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Hayırlı olsun! Yol derdi azalmış olur.",
+     "beats": []
+    },
+    {
+     "role": "user",
+     "text": "dün akşam da veda yemeği gibi Akşam Meyhanesi'nde fava yedik eski komşularla",
+     "beats": [
+      "b_p_zeynep_13"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Ne güzel bir veda olmuş. Afiyet olsun!",
+     "beats": [
+      "b_p_zeynep_14"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 8,
+   "turns": [
+    {
+     "role": "user",
+     "text": "dün öğlen Simitçi Dünyası'nda avokadolu kase yedim, simit yiyemiyorum ama kaseleri iyi",
+     "beats": [
+      "b_p_zeynep_15"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Kase seçeneği olması iyi olmuş. Afiyet olsun!",
+     "beats": [
+      "b_p_zeynep_16"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bugün öğlen nerede yiyebilirim?",
+     "beats": [
+      "b_p_zeynep_25"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Önerim Pideci Hasan. Menüde Şalgam var: 35 TL, vegan, acılı. Beşiktaş semtinde, fiyat seviyesi ₺.",
+     "beats": [
+      "b_p_zeynep_26"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 9,
+   "turns": [
+    {
+     "role": "user",
+     "text": "hafta sonu sabahları uzun uzun masa kurmadan duramıyorum, haftada iki kez kesin dışarıda kahvaltı ediyorum",
+     "beats": [
+      "b_p_zeynep_06"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Uzun kahvaltılar en güzeli. Bir sonraki için yer ararsan söyle.",
+     "beats": []
+    },
+    {
+     "role": "user",
+     "text": "dün öğlen Dün Gece Burger'de patates kızartması yedim bu arada, ismi komik ama öğlen de açık",
+     "beats": [
+      "b_p_zeynep_17"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "İsmi kafa karıştırıyor ama iyi ki denemişsin. Afiyet olsun!",
+     "beats": [
+      "b_p_zeynep_18"
+     ]
+    }
+   ]
+  }
+ ]
+}

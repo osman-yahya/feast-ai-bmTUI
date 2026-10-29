@@ -1,0 +1,213 @@
+Sen bir eval veri seti icin gercekci Turkce sohbet yazarisin.
+Uygulama: feast, Istanbul'da restoran kesfi. Asistan: Mustachio - samimi, kisa (1-2 cumle) konusur.
+
+Kurallar:
+- Her oturum icin verilen "beat"leri SIRAYLA isle. Her beat tam olarak bir turda gecer ve o turun
+  "beats" listesine id'si yazilir. Beat'in rolu ile turun rolu ayni olmali.
+- Bir turda birden fazla beat olabilir; beat tasimayan kisa dolgu turlari ekleyebilirsin.
+- Oturum her zaman kullanici turuyla baslar. Oturum basina 2-8 tur.
+- Plan disinda kisisel bilgi EKLEME: alerji, diyet, evcil hayvan, adres, saglik, gidilen yer,
+  restoran adi. Beat'te gecmeyen hicbir restoran adini yazma.
+- "DOLAYLI" denen beat'lerde bilgiyi acikca soyleme, gunluk dille ima et.
+- Kullanicilar gercek insanlar gibi yazsin: bazen kucuk harf, diakritiksiz, kisa; ama Turkce dogal olsun.
+- Tarih ifadelerini (dun, gecen cuma...) beat'te verildigi gibi kullan; kendin tarih uydurma.
+- Asistan yalniz uygulamanin verisini bilir: yemek adi, fiyat, etiketler (vegan, glutensiz,
+  'populer', 'sefin onerisi'), semt, fiyat seviyesi. Puan, yorum, populerlik bilgisi YOK:
+  "meshur", "efsane", "cok sevilir", "herkes bayiliyor", "lezzetli" gibi degerlendirme YAZMA.
+  Baskasinin postunu aktarirsan yazariyla ve cift tirnak icinde aktar: @kullanici: "...".
+
+
+Kullanici: Zeynep. Asagidaki 10 oturumu yaz.
+
+[
+ {
+  "session_index": 0,
+  "tarih": "30 temmuz 2026 perşembe 19:30",
+  "beats": [
+   {
+    "id": "b_p_zeynep_01",
+    "role": "user",
+    "talimat": "Kullanıcı gluten yiyince rahatsızlandığını DOLAYLI ima eder (ör. nefesinin daraldığını, hastanelik olduğunu anlatır); 'alerji' kelimesini KULLANMAZ."
+   },
+   {
+    "id": "b_p_zeynep_02",
+    "role": "user",
+    "talimat": "Kullanıcı açıkça vejetaryen olduğunu söyler."
+   },
+   {
+    "id": "b_p_zeynep_04",
+    "role": "assistant",
+    "talimat": "Asistan kullanıcının söylediğini dikkate aldığını kısaca belirtir, öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 1,
+  "tarih": "5 ağustos 2026 çarşamba 13:00",
+  "beats": [
+   {
+    "id": "b_p_zeynep_05",
+    "role": "user",
+    "talimat": "Kullanıcı meyhane sevdiğini DOLAYLI belli eder (ör. 'haftada iki kez yerim')."
+   },
+   {
+    "id": "b_p_zeynep_19",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_zeynep_20",
+    "role": "assistant",
+    "talimat": "Asistan 'Pazar Kahvaltı Evi' restoranını önerir. Gerekçe YALNIZ şu veri: Menemen 180 TL (vejetaryen); semt Cihangir; fiyat seviyesi ₺₺. Başka restoran adı GEÇİRMEZ. İstersen şu postu yazarıyla alıntılayabilirsin: @gurme_kadikoy: \"Fiyatına göre gayet iyi bir Serpme Kahvaltı\""
+   }
+  ]
+ },
+ {
+  "session_index": 2,
+  "tarih": "17 ağustos 2026 pazartesi 13:45",
+  "beats": [
+   {
+    "id": "b_p_zeynep_09",
+    "role": "user",
+    "talimat": "Kullanıcı dün akşam 'Serpme Bahçe' restoranında Avokadolu Kase yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_zeynep_10",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 3,
+  "tarih": "2 eylül 2026 çarşamba 12:15",
+  "beats": [
+   {
+    "id": "b_p_zeynep_07",
+    "role": "user",
+    "talimat": "Kullanıcı Cihangir semtinde oturduğunu söyler."
+   }
+  ]
+ },
+ {
+  "session_index": 4,
+  "tarih": "22 eylül 2026 salı 19:00",
+  "beats": [
+   {
+    "id": "b_p_zeynep_03",
+    "role": "user",
+    "talimat": "Kullanıcı artık vegan beslendiğini söyler (önceden vejetaryen idi; süt ve yumurtayı da bıraktı)."
+   },
+   {
+    "id": "b_p_zeynep_21",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_zeynep_22",
+    "role": "assistant",
+    "talimat": "Asistan 'Şekerci Cafer' restoranını önerir. Gerekçe YALNIZ şu veri: Meyve Salatası 120 TL (vegan, glutensiz); semt Cihangir; fiyat seviyesi ₺₺. Başka restoran adı GEÇİRMEZ."
+   }
+  ]
+ },
+ {
+  "session_index": 5,
+  "tarih": "25 eylül 2026 cuma 20:45",
+  "beats": [
+   {
+    "id": "b_p_zeynep_11",
+    "role": "user",
+    "talimat": "Kullanıcı dün öğlen 'Cihangir Meze Evi' restoranında Fava yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_zeynep_12",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 6,
+  "tarih": "1 ekim 2026 perşembe 20:30",
+  "beats": [
+   {
+    "id": "b_p_zeynep_23",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_zeynep_24",
+    "role": "assistant",
+    "talimat": "Asistan 'Kasap Burger' restoranını önerir. Gerekçe YALNIZ şu veri: Patates Kızartması 90 TL (vegan); semt Cihangir; fiyat seviyesi ₺. Başka restoran adı GEÇİRMEZ. İstersen şu postu yazarıyla alıntılayabilirsin: @acikmis_ogrenci: \"Hayatımda yediğim en iyi Acılı Burger 🔥\""
+   }
+  ]
+ },
+ {
+  "session_index": 7,
+  "tarih": "13 ekim 2026 salı 13:45",
+  "beats": [
+   {
+    "id": "b_p_zeynep_08",
+    "role": "user",
+    "talimat": "Kullanıcı Cihangir semtinden Beşiktaş semtine taşındığını anlatır."
+   },
+   {
+    "id": "b_p_zeynep_13",
+    "role": "user",
+    "talimat": "Kullanıcı dün akşam 'Akşam Meyhanesi' restoranında Fava yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_zeynep_14",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 8,
+  "tarih": "14 ekim 2026 çarşamba 13:30",
+  "beats": [
+   {
+    "id": "b_p_zeynep_15",
+    "role": "user",
+    "talimat": "Kullanıcı dün öğlen 'Simitçi Dünyası' restoranında Avokadolu Kase yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_zeynep_16",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   },
+   {
+    "id": "b_p_zeynep_25",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_zeynep_26",
+    "role": "assistant",
+    "talimat": "Asistan 'Pideci Hasan' restoranını önerir. Gerekçe YALNIZ şu veri: Şalgam 35 TL (vegan, acılı); semt Beşiktaş; fiyat seviyesi ₺. Başka restoran adı GEÇİRMEZ."
+   }
+  ]
+ },
+ {
+  "session_index": 9,
+  "tarih": "19 ekim 2026 pazartesi 20:45",
+  "beats": [
+   {
+    "id": "b_p_zeynep_06",
+    "role": "user",
+    "talimat": "Kullanıcı kahvaltı sevdiğini DOLAYLI belli eder (ör. 'haftada iki kez yerim')."
+   },
+   {
+    "id": "b_p_zeynep_17",
+    "role": "user",
+    "talimat": "Kullanıcı dün öğlen 'Dün Gece Burger' restoranında Patates Kızartması yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_zeynep_18",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ }
+]

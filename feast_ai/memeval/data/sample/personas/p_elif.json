@@ -1,0 +1,53 @@
+{
+ "id": "p_elif",
+ "name": "Elif",
+ "home_lat": 40.9876,
+ "home_lng": 29.0257,
+ "home_area": "Moda",
+ "saved_restaurants": [
+  {
+   "restaurant_id": "r_101",
+   "saved_at": "2026-09-06T20:10:00"
+  },
+  {
+   "restaurant_id": "r_103",
+   "saved_at": "2026-10-02T13:00:00"
+  }
+ ],
+ "saved_menu_items": [
+  {
+   "item_id": "m_1001",
+   "restaurant_id": "r_101",
+   "saved_at": "2026-09-06T20:12:00"
+  }
+ ],
+ "visited_restaurants": [
+  {
+   "restaurant_id": "r_101",
+   "visited_at": "2026-09-12T19:30:00"
+  },
+  {
+   "restaurant_id": "r_102",
+   "visited_at": "2026-10-23T20:15:00"
+  }
+ ],
+ "posts": [
+  {
+   "id": "po_1",
+   "restaurant_id": "r_101",
+   "created_at": "2026-09-12T19:45:00",
+   "text": "Buddha kase efsane"
+  }
+ ],
+ "shared_messages": [
+  {
+   "friend": "Aslı",
+   "restaurant_id": "r_101",
+   "sent_at": "2026-09-13T10:00:00"
+  }
+ ],
+ "friends": [
+  "Aslı",
+  "Emre"
+ ]
+}

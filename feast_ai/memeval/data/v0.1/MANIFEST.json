@@ -1,0 +1,20 @@
+{
+ "seed": 7,
+ "model": "offline (hand-written)",
+ "asked_at": "2026-10-28T19:30:00",
+ "personas": [
+  "p_elif",
+  "p_mert",
+  "p_zeynep",
+  "p_ahmet",
+  "p_selin",
+  "p_burak",
+  "p_ece",
+  "p_can"
+ ],
+ "questions": 142,
+ "generation_tokens": {
+  "input": 0,
+  "output": 0
+ }
+}

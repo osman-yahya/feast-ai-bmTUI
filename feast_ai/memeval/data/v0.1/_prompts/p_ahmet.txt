@@ -1,0 +1,208 @@
+Sen bir eval veri seti icin gercekci Turkce sohbet yazarisin.
+Uygulama: feast, Istanbul'da restoran kesfi. Asistan: Mustachio - samimi, kisa (1-2 cumle) konusur.
+
+Kurallar:
+- Her oturum icin verilen "beat"leri SIRAYLA isle. Her beat tam olarak bir turda gecer ve o turun
+  "beats" listesine id'si yazilir. Beat'in rolu ile turun rolu ayni olmali.
+- Bir turda birden fazla beat olabilir; beat tasimayan kisa dolgu turlari ekleyebilirsin.
+- Oturum her zaman kullanici turuyla baslar. Oturum basina 2-8 tur.
+- Plan disinda kisisel bilgi EKLEME: alerji, diyet, evcil hayvan, adres, saglik, gidilen yer,
+  restoran adi. Beat'te gecmeyen hicbir restoran adini yazma.
+- "DOLAYLI" denen beat'lerde bilgiyi acikca soyleme, gunluk dille ima et.
+- Kullanicilar gercek insanlar gibi yazsin: bazen kucuk harf, diakritiksiz, kisa; ama Turkce dogal olsun.
+- Tarih ifadelerini (dun, gecen cuma...) beat'te verildigi gibi kullan; kendin tarih uydurma.
+- Asistan yalniz uygulamanin verisini bilir: yemek adi, fiyat, etiketler (vegan, glutensiz,
+  'populer', 'sefin onerisi'), semt, fiyat seviyesi. Puan, yorum, populerlik bilgisi YOK:
+  "meshur", "efsane", "cok sevilir", "herkes bayiliyor", "lezzetli" gibi degerlendirme YAZMA.
+  Baskasinin postunu aktarirsan yazariyla ve cift tirnak icinde aktar: @kullanici: "...".
+
+
+Kullanici: Ahmet. Asagidaki 10 oturumu yaz.
+
+[
+ {
+  "session_index": 0,
+  "tarih": "31 temmuz 2026 cuma 19:15",
+  "beats": [
+   {
+    "id": "b_p_ahmet_01",
+    "role": "user",
+    "talimat": "Kullanıcı kuruyemiş (antep fıstığı, ceviz, fındık) yiyince rahatsızlandığını DOLAYLI ima eder (ör. nefesinin daraldığını, hastanelik olduğunu anlatır); 'alerji' kelimesini KULLANMAZ."
+   },
+   {
+    "id": "b_p_ahmet_02",
+    "role": "assistant",
+    "talimat": "Asistan kullanıcının söylediğini dikkate aldığını kısaca belirtir, öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 1,
+  "tarih": "19 ağustos 2026 çarşamba 12:45",
+  "beats": [
+   {
+    "id": "b_p_ahmet_03",
+    "role": "user",
+    "talimat": "Kullanıcı pide/lahmacun sevdiğini DOLAYLI belli eder (ör. 'haftada iki kez yerim')."
+   },
+   {
+    "id": "b_p_ahmet_18",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_ahmet_19",
+    "role": "assistant",
+    "talimat": "Asistan 'Antep Sofrası' restoranını önerir. Gerekçe YALNIZ şu veri: Ezme 90 TL (vegan, acılı); semt Kadıköy Çarşı; fiyat seviyesi ₺₺. Başka restoran adı GEÇİRMEZ."
+   }
+  ]
+ },
+ {
+  "session_index": 2,
+  "tarih": "5 eylül 2026 cumartesi 12:15",
+  "beats": [
+   {
+    "id": "b_p_ahmet_08",
+    "role": "user",
+    "talimat": "Kullanıcı dün öğlen 'Bizim Mutfak' restoranında Mercimek Çorbası yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_ahmet_09",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 3,
+  "tarih": "10 eylül 2026 perşembe 20:15",
+  "beats": [
+   {
+    "id": "b_p_ahmet_05",
+    "role": "user",
+    "talimat": "Kullanıcı Kadıköy Çarşı semtinde oturduğunu söyler."
+   }
+  ]
+ },
+ {
+  "session_index": 4,
+  "tarih": "14 eylül 2026 pazartesi 20:45",
+  "beats": [
+   {
+    "id": "b_p_ahmet_20",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_ahmet_21",
+    "role": "assistant",
+    "talimat": "Asistan 'Smash Bros' restoranını önerir. Gerekçe YALNIZ şu veri: Acılı Burger 360 TL (acılı); semt Kadıköy Çarşı; fiyat seviyesi ₺₺. Başka restoran adı GEÇİRMEZ. İstersen şu postu yazarıyla alıntılayabilirsin: @acikmis_ogrenci: \"Efsane Sebze Burger, kesin tekrar geleceğim\""
+   }
+  ]
+ },
+ {
+  "session_index": 5,
+  "tarih": "24 eylül 2026 perşembe 13:15",
+  "beats": [
+   {
+    "id": "b_p_ahmet_10",
+    "role": "user",
+    "talimat": "Kullanıcı dün öğlen 'Anne Eli Lokantası' restoranında Kuru Fasulye yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_ahmet_11",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 6,
+  "tarih": "25 eylül 2026 cuma 20:30",
+  "beats": [
+   {
+    "id": "b_p_ahmet_07",
+    "role": "user",
+    "talimat": "Kullanıcı kuruyemiş (antep fıstığı, ceviz, fındık) alerjisinin geçtiğini, doktorun testte temiz çıktığını söylediğini anlatır."
+   },
+   {
+    "id": "b_p_ahmet_22",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_ahmet_23",
+    "role": "assistant",
+    "talimat": "Asistan 'Muhallebici Moda' restoranını önerir. Gerekçe YALNIZ şu veri: Meyve Salatası 120 TL (vegan, glutensiz); semt Kadıköy Çarşı; fiyat seviyesi ₺₺. Başka restoran adı GEÇİRMEZ. İstersen şu postu yazarıyla alıntılayabilirsin: @acikmis_ogrenci: \"Hayatımda yediğim en iyi Kazandibi 🔥\""
+   }
+  ]
+ },
+ {
+  "session_index": 7,
+  "tarih": "8 ekim 2026 perşembe 13:00",
+  "beats": [
+   {
+    "id": "b_p_ahmet_06",
+    "role": "user",
+    "talimat": "Kullanıcı Kadıköy Çarşı semtinden Moda semtine taşındığını anlatır."
+   },
+   {
+    "id": "b_p_ahmet_12",
+    "role": "user",
+    "talimat": "Kullanıcı dün öğlen 'Karadeniz Pide Salonu' restoranında Acılı Lahmacun yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_ahmet_13",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ },
+ {
+  "session_index": 8,
+  "tarih": "10 ekim 2026 cumartesi 20:30",
+  "beats": [
+   {
+    "id": "b_p_ahmet_14",
+    "role": "user",
+    "talimat": "Kullanıcı dün akşam 'Cuma Pide' restoranında Acılı Lahmacun yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_ahmet_15",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   },
+   {
+    "id": "b_p_ahmet_24",
+    "role": "user",
+    "talimat": "Kullanıcı bugün nerede yiyebileceğini sorar."
+   },
+   {
+    "id": "b_p_ahmet_25",
+    "role": "assistant",
+    "talimat": "Asistan 'Fırın Pide' restoranını önerir. Gerekçe YALNIZ şu veri: Kıymalı Pide 440 TL (menüde 'popüler' etiketli); semt Moda; fiyat seviyesi ₺₺₺₺. Başka restoran adı GEÇİRMEZ."
+   }
+  ]
+ },
+ {
+  "session_index": 9,
+  "tarih": "23 ekim 2026 cuma 20:45",
+  "beats": [
+   {
+    "id": "b_p_ahmet_04",
+    "role": "user",
+    "talimat": "Kullanıcı ev yemekleri sevdiğini DOLAYLI belli eder (ör. 'haftada iki kez yerim')."
+   },
+   {
+    "id": "b_p_ahmet_16",
+    "role": "user",
+    "talimat": "Kullanıcı dün akşam 'Dün Gece Burger' restoranında Klasik Burger yediğini anlatır (restoran adını aynen yaz)."
+   },
+   {
+    "id": "b_p_ahmet_17",
+    "role": "assistant",
+    "talimat": "Asistan kısa ve doğal bir karşılık verir, yeni öneri YAPMAZ."
+   }
+  ]
+ }
+]
