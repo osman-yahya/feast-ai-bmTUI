@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seven Ways to Use Tools</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* A 1280x720 stage scaled to the window. Each method slide is a clip: the
+   animation explains the mechanism, a subtitle names the current step. */
+:root{
+  color-scheme: light;
+  --paper:#f5f7fc; --card:#ffffff; --ink:#1d2440; --muted:#5a6280; --faint:#8e95ad; --line:#dde2ee;
+  --direct:#2a78d6; --active:#eb6834; --classes:#1baf7a; --decision:#eda100; --active2:#e87ba4;
+  --hier:#6250d6; --routed:#008300;
+  --direct-t:#dcebfb; --active-t:#fde4d8; --classes-t:#d6f3e7; --decision-t:#fdeec9; --active2-t:#fbe3ec;
+  --hier-t:#e5e1fa; --routed-t:#d9efd9;
+  --ok:#0f7a4a; --ok-t:#dcf3e6; --bad:#c62e2e; --bad-t:#fbe2e1;
+  --display:"Fredoka","Segoe UI","Trebuchet MS",system-ui,sans-serif;
+  --body:"Nunito","Segoe UI",system-ui,-apple-system,sans-serif;
+  --mono:"JetBrains Mono","Cascadia Mono",Consolas,ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--paper);color:var(--ink);font:16px/1.45 var(--body);overflow:hidden}
+#viewport{position:fixed;inset:0 0 58px 0;display:flex;align-items:center;justify-content:center}
+#stage{position:relative;width:1280px;height:720px;flex:none;transform-origin:center center;
+  background:radial-gradient(circle at 1px 1px,#dfe4f0 1.2px,transparent 1.3px) 0 0/26px 26px,var(--paper);border-radius:18px;overflow:hidden}
+.slide{position:absolute;inset:0;display:none}
+.slide.on{display:block}
+.abs{position:absolute}
+
+/* ---------- type ---------- */
+h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1{font-size:64px;line-height:1.02;font-weight:700}
+h2{font-size:40px;line-height:1.05;font-weight:600;margin-top:8px}
+h3{font-size:19px;font-weight:600}
+.head{position:absolute;left:64px;top:34px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font:700 13px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;
+  padding:7px 12px;border:2.5px solid var(--ink);border-radius:999px;background:var(--k,#fff)}
+.kicker i{width:10px;height:10px;border-radius:50%;background:var(--kc,var(--ink));border:2px solid var(--ink)}
+.lbl{position:absolute;font:700 13px/1.25 var(--body);color:var(--muted);white-space:nowrap}
+.lbl b{color:var(--ink);font:600 22px var(--display)}
+.big{font:600 26px/1 var(--display);color:var(--ink)}
+
+/* subtitles: one short line per step, like a clip */
+.subs{position:absolute;left:0;right:0;top:640px;height:46px;display:grid;place-items:center;pointer-events:none}
+.subs span{grid-area:1/1;font:700 19px/1 var(--body);color:#fff;background:var(--ink);padding:12px 20px;border-radius:999px;white-space:nowrap}
+/* results of the method, top right */
+.badges{position:absolute;right:64px;top:44px;display:flex;gap:10px}
+.bdg{background:#fff;border:3px solid var(--ink);border-radius:14px;box-shadow:3px 3px 0 var(--ink);padding:6px 12px;text-align:center;min-width:104px}
+.bdg b{display:block;font:700 24px/1.1 var(--display);color:var(--c,var(--ink))}
+.bdg span{display:block;font:700 11px/1.2 var(--body);color:var(--muted);letter-spacing:.03em}
+
+/* ---------- cartoon objects ---------- */
+.card{position:absolute;background:var(--card);border:3px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 var(--ink)}
+.char{position:absolute}
+.char svg{display:block;overflow:visible}
+.phone{position:absolute;width:230px;height:450px;border:4px solid var(--ink);border-radius:36px;background:#fff;box-shadow:6px 6px 0 var(--ink);overflow:hidden}
+.phone .notch{position:absolute;top:9px;left:50%;width:70px;height:15px;margin-left:-35px;background:var(--ink);border-radius:10px}
+.phone .pbar{padding:34px 14px 8px;font:700 16px var(--display);border-bottom:2.5px solid var(--line)}
+.phone .pbar::after{content:".";color:var(--active)}
+.phone .chat{padding:10px;display:flex;flex-direction:column;gap:9px}
+.bub{max-width:88%;padding:7px 10px;border-radius:14px;font-size:13.5px;line-height:1.35;border:2px solid var(--ink);background:var(--direct-t)}
+.bub.abs{max-width:none;white-space:nowrap;border-bottom-right-radius:4px}
+.bub.ai{background:#fff;border-bottom-left-radius:4px}
+.bub .row{font-size:12px;padding:4px 0;border-top:1.5px dashed var(--line)}
+.bub .row:first-of-type{border-top:0}
+.chip{position:absolute;white-space:nowrap;font:600 13px/1 var(--mono);padding:8px 11px;background:#fff;border:2.5px solid var(--ink);border-radius:10px;box-shadow:3px 3px 0 var(--ink)}
+.chip.ok{background:var(--ok-t)}
+.chip.ok::after{content:" ✓";color:var(--ok);font-weight:700}
+.tag{position:absolute;white-space:nowrap;font:800 11px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border-radius:999px;border:2px solid var(--ink);background:#fff}
+.stamp{position:absolute;font:800 14px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--bad);border:3px solid var(--bad);border-radius:8px;padding:6px 9px;background:rgba(255,255,255,.92);transform:rotate(-8deg)}
+.traveler{position:absolute;left:0;top:0;offset-anchor:center;offset-rotate:0deg;offset-distance:100%;opacity:0;z-index:6}
+.traveler.keep{opacity:1}
+.dot{width:20px;height:20px;border-radius:50%;border:3px solid var(--ink);background:var(--c,var(--hier))}
+.callcard{position:absolute;font:600 14px/1.35 var(--mono);background:#fff;border:3px solid var(--ink);border-radius:12px;padding:11px 13px;box-shadow:4px 4px 0 var(--ink);white-space:nowrap}
+.caret::after{content:"▍";animation:caret .9s steps(1) infinite;color:var(--muted)}
+.zz{position:absolute;font:700 22px var(--display);color:var(--hier)}
+
+/* the context window: a strip of token blocks */
+.ctx{position:absolute;display:flex;gap:4px}
+.seg{position:relative;height:54px;flex:none;border:3px solid var(--ink);border-radius:10px;overflow:hidden;background:#fff}
+.seg.dash{border-style:dashed;background:transparent}
+.seg>.sw{position:absolute;left:0;top:0;bottom:0;width:var(--w,100%);background:var(--sc,var(--direct-t))}
+.seg>.cells{position:absolute;inset:0;z-index:1;background:repeating-linear-gradient(90deg,transparent 0 10px,rgba(29,36,64,.13) 10px 12px)}
+.seg>.bad{position:absolute;inset:0;z-index:2;background:repeating-linear-gradient(45deg,rgba(198,46,46,.42) 0 7px,rgba(255,255,255,.3) 7px 14px)}
+.seg>.sw.re{z-index:3}
+.seg>.lab{position:absolute;inset:0;z-index:4;display:flex;align-items:center;gap:6px;padding:0 9px;font:800 12.5px/1.1 var(--body);white-space:nowrap}
+.okm{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--ok);color:#fff;font:800 11px/1 var(--body)}
+.tok{position:absolute;display:flex;flex-wrap:wrap;gap:6px}
+.tok span{font:600 14px/1 var(--mono);padding:7px 8px;border:2.5px solid var(--ink);border-radius:8px;background:#fff;box-shadow:2px 2px 0 var(--ink)}
+.tile{position:absolute;width:32px;height:40px;border:2.5px solid var(--ink);border-radius:7px;background:#fff;box-shadow:2px 2px 0 var(--ink)}
+.tile::before{content:"";position:absolute;left:6px;right:6px;top:9px;height:14px;background:repeating-linear-gradient(180deg,var(--ink) 0 2px,transparent 2px 6px);opacity:.45}
+.tile.hl{background:var(--classes-t);outline:3px solid var(--classes);outline-offset:2px}
+.piece{position:absolute;height:44px;border:2.5px solid var(--ink);border-radius:8px;display:grid;place-items:center;font:800 11px/1.05 var(--body);text-align:center;padding:0 4px}
+.cands{position:absolute;background:#fff;border:3px solid var(--ink);border-radius:14px;box-shadow:5px 5px 0 var(--ink);padding:10px 14px}
+.cands .hd{font:700 12px var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.cand{position:relative;display:grid;grid-template-columns:190px 1fr 140px;gap:10px;align-items:center;height:34px}
+.cand code{font:600 15px var(--mono)}
+.cand .b{height:14px;border-radius:7px;background:#eef1f8;border:2px solid var(--ink);overflow:hidden}
+.cand .b i{display:block;height:100%;width:var(--w);background:var(--active2)}
+.cand .m{font:800 12px var(--body);white-space:nowrap}
+.cand .m.y{color:var(--ok)} .cand .m.n{color:var(--bad)}
+.cand .strike{position:absolute;left:-4px;right:136px;top:50%;height:3px;margin-top:-1px;background:var(--bad);border-radius:2px;transform-origin:left center}
+.cand .pick{position:absolute;inset:0 -6px;border:3px solid var(--ok);border-radius:9px}
+.outbox{position:absolute;background:#fff;border:3px solid var(--ink);border-radius:14px;box-shadow:5px 5px 0 var(--ink);padding:14px 18px;font:600 20px/1.5 var(--mono)}
+.outbox .pre{color:var(--faint)}
+.outbox .gen{color:var(--ok);background:var(--ok-t);border-radius:4px}
+.ichip{position:absolute;font:600 12px/1 var(--mono);padding:6px 8px;border:2px solid var(--ink);border-radius:8px;background:var(--hier-t);white-space:nowrap}
+.bin{position:absolute;width:145px;height:58px;border:3px solid var(--ink);border-radius:0 0 16px 16px;border-top:0;background:var(--classes-t);display:grid;place-items:center;font:700 16px var(--mono)}
+.hb{display:grid;grid-template-columns:110px 1fr 70px;align-items:center;gap:10px;margin:7px 0}
+.hb .k{font-size:13.5px;font-weight:700;color:var(--muted)}
+.hb .v{font:700 19px var(--display);font-variant-numeric:tabular-nums}
+.hb .bt{height:24px;border:2.5px solid var(--ink);border-radius:7px;background:#fff;overflow:hidden}
+.hb .bt i{display:block;height:100%;width:var(--w);background:var(--c)}
+.legend{display:flex;gap:16px;font:700 13px var(--body);color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border:2px solid var(--ink);border-radius:3px;margin-right:6px;vertical-align:-1px}
+.vdot{position:absolute;width:13px;height:13px;border-radius:50%;border:2px solid var(--ink)}
+.panel{position:absolute;background:#fff;border:3px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 var(--ink);padding:12px 16px}
+.panel h3{display:flex;justify-content:space-between;align-items:baseline}
+.panel h3 small{font:600 12px var(--body);color:var(--faint)}
+.rrow{display:grid;grid-template-columns:150px 1fr 64px;gap:10px;align-items:center;margin-top:11px}
+.rrow .k{font-size:13px;font-weight:700;display:flex;align-items:center;gap:7px;white-space:nowrap}
+.rrow .k i{width:11px;height:11px;border-radius:50%;border:2px solid var(--ink);flex:none}
+.rrow .bt{height:22px;border-radius:6px;background:#eef1f8;overflow:hidden;border:2px solid var(--ink)}
+.rrow .bt i{display:block;height:100%;width:var(--w);background:var(--c)}
+.rrow .v{font:700 16px var(--display);text-align:right;font-variant-numeric:tabular-nums}
+.take{position:absolute;width:560px;height:150px;background:#fff;border:3px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 var(--ink);padding:16px 18px 14px 82px}
+.take .badge{position:absolute;left:18px;top:18px;width:46px;height:46px;border-radius:12px;border:3px solid var(--ink);background:var(--c)}
+.take .who{font:800 12px var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.take h3{font-size:24px;margin-top:2px}
+.take .nums{display:flex;gap:18px;margin-top:10px}
+.take .nums b{font:700 22px var(--display)}
+.take .nums span{display:block;font:700 11.5px var(--body);color:var(--muted)}
+.nexts{position:absolute;left:64px;top:520px;display:flex;gap:12px;flex-wrap:wrap;width:1152px;align-items:center}
+.nexts .chip{position:static;font-family:var(--body);font-weight:700}
+.cores{display:grid;grid-template-columns:repeat(5,30px);gap:7px}
+.cores span{width:30px;height:30px;border:2.5px solid var(--ink);border-radius:7px;background:#eef1f7}
+.cores span.lit{background:var(--direct)}
+.scoreic{position:absolute;display:flex;align-items:center;gap:10px;font:700 17px var(--display)}
+.scoreic i{width:40px;height:40px;border-radius:50%;border:3px solid var(--ink);display:grid;place-items:center;font:800 19px var(--display);font-style:normal}
+
+/* ---------- animation primitives (run while the slide has .play) ---------- */
+.play .an{animation-duration:var(--t,.6s);animation-delay:var(--d,0s);animation-fill-mode:both;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.play .pop{animation-name:pop;animation-timing-function:cubic-bezier(.3,1.55,.5,1)}
+.play .rise{animation-name:rise}
+.play .fade{animation-name:fade}
+.play .fly{animation-name:fly}
+.play .flyout{animation-name:flyout;animation-timing-function:cubic-bezier(.6,0,.8,.4)}
+.play .inout{animation-name:inout;animation-timing-function:linear}
+.play .capio{animation-name:capio;animation-timing-function:linear}
+.play .caplast{animation-name:caplast}
+.play .travel{animation-name:travel;animation-timing-function:cubic-bezier(.45,0,.35,1)}
+.play .travelk{animation-name:travelk;animation-timing-function:cubic-bezier(.45,0,.35,1)}
+.play .grow{animation-name:grow;transform-origin:left center}
+.play .growy{animation-name:growy;transform-origin:center bottom}
+.play .fill{animation-name:fillw;animation-timing-function:linear}
+.play .stamp.an{animation-name:stamp;animation-timing-function:cubic-bezier(.3,1.6,.5,1)}
+.play .draw{animation-name:draw;stroke-dasharray:var(--len);stroke-dashoffset:0}
+.play .dim{animation-name:dim}
+.play .think .bulb{animation:bulb .42s ease-in-out var(--bd,2s) 7 alternate}
+.play .writes .arm-r{animation:scribble .22s ease-in-out var(--wd,3s) 8 alternate;transform-box:fill-box;transform-origin:0 0}
+.play .wobble{animation:wobble .5s ease-in-out var(--d,0s) infinite alternate}
+.play .tick{animation:tick 1s steps(12) var(--d,0s) var(--n,2)}
+.robot .eyes{transform-box:fill-box;transform-origin:center;animation:blink 3.8s infinite}
+.sleep .robot .eyes{animation:none;transform:scaleY(.15)}
+.play .sleep.wake .robot .eyes{animation:wake .3s linear var(--wk,5s) both}
+@keyframes pop{0%{opacity:0;transform:scale(.4)}100%{opacity:1;transform:scale(1)}}
+@keyframes rise{0%{opacity:0;transform:translateY(22px)}100%{opacity:1;transform:none}}
+@keyframes fade{0%{opacity:0}100%{opacity:1}}
+@keyframes fly{0%{opacity:0;transform:translate(var(--fx,0),var(--fy,0)) scale(var(--fs,.6)) rotate(var(--fr,0deg))}100%{opacity:1;transform:none}}
+@keyframes flyout{0%{opacity:1;transform:none}100%{opacity:0;transform:translate(var(--ox,0),var(--oy,0)) scale(var(--os,.5))}}
+@keyframes inout{0%{opacity:0;transform:scale(.7)}10%{opacity:1;transform:scale(1)}88%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.92)}}
+@keyframes capio{0%{opacity:0;transform:translateY(10px)}6%{opacity:1;transform:none}94%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-6px)}}
+@keyframes caplast{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:none}}
+@keyframes travel{0%{offset-distance:0%;opacity:0}8%{opacity:1}88%{opacity:1}100%{offset-distance:100%;opacity:0}}
+@keyframes travelk{0%{offset-distance:0%;opacity:0}8%{opacity:1}100%{offset-distance:100%;opacity:1}}
+@keyframes grow{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+@keyframes growy{0%{transform:scaleY(0)}100%{transform:scaleY(1)}}
+@keyframes fillw{0%{width:0}100%{width:var(--w)}}
+@keyframes stamp{0%{opacity:0;transform:scale(2.3) rotate(-18deg)}100%{opacity:1;transform:scale(1) rotate(-8deg)}}
+@keyframes draw{0%{stroke-dashoffset:var(--len)}100%{stroke-dashoffset:0}}
+@keyframes dim{to{opacity:.32}}
+@keyframes bulb{0%{fill:#fff}100%{fill:#ffd23f}}
+@keyframes scribble{0%{transform:rotate(0)}100%{transform:rotate(-14deg)}}
+@keyframes wobble{0%{transform:rotate(-3deg)}100%{transform:rotate(3deg)}}
+@keyframes tick{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+@keyframes wake{0%{transform:scaleY(.15)}100%{transform:scaleY(1)}}
+@keyframes caret{50%{opacity:0}}
+@media (prefers-reduced-motion: reduce){
+  .play .an,.play .think .bulb,.play .writes .arm-r,.play .wobble,.play .tick,.robot .eyes{animation:none!important}
+  .rm-hide{display:none!important}
+  .traveler:not(.keep){display:none}
+}
+
+/* ---------- title ---------- */
+.title-block{position:absolute;left:72px;top:170px;width:560px}
+.title-block .sub1{font:700 20px var(--body);color:var(--muted);margin-top:20px}
+.hint{margin-top:30px;font-size:14px;color:var(--muted)}
+kbd{font:700 12px var(--mono);border:2px solid var(--ink);border-bottom-width:3.5px;border-radius:6px;padding:1px 6px;background:#fff;color:var(--ink)}
+
+/* ---------- controls ---------- */
+#controls{position:fixed;left:0;right:0;bottom:0;height:58px;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 max(16px,env(safe-area-inset-left,0px));background:var(--paper)}
+#controls button{font:700 14px var(--body);color:var(--ink);background:#fff;border:2.5px solid var(--ink);border-radius:10px;height:38px;min-width:42px;padding:0 12px;cursor:pointer;box-shadow:2px 2px 0 var(--ink)}
+#controls button:active{transform:translate(2px,2px);box-shadow:none}
+#controls button:focus-visible{outline:3px solid var(--direct);outline-offset:2px}
+#controls button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.dots{display:flex;gap:6px;margin:0 6px}
+.dots button{width:12px!important;min-width:0!important;height:12px!important;padding:0!important;border-radius:50%!important;box-shadow:none!important;border:2px solid var(--ink)!important;background:#fff}
+.dots button.cur{background:var(--ink)!important}
+#counter{font:700 13px var(--mono);color:var(--muted);min-width:56px;text-align:center}
+#progress{position:fixed;left:0;bottom:58px;height:4px;background:var(--active);width:0}
+@media (max-width:700px){.dots{display:none}}
+</style>
+</head>
+<body>
+<div id="viewport"><div id="stage">
+
+<!-- 1 ─ TITLE -->
+<section class="slide" data-dur="8" aria-label="Title">
+  <div class="title-block">
+    <div class="kicker an rise" style="--d:.1s"><i style="--kc:var(--active)"></i>feast AI · bitirme</div>
+    <h1 class="an rise" style="--d:.25s;margin-top:22px">Seven ways to teach a phone-sized model to use tools</h1>
+    <div class="sub1 an rise" style="--d:.45s">Gemma 4 E2B · 15 tools · 3 cores · 4&nbsp;GB</div>
+    <div class="hint an fade" style="--d:1.2s"><kbd>→</kbd> next &nbsp;·&nbsp; <kbd>P</kbd> play as a clip &nbsp;·&nbsp; <kbd>R</kbd> replay &nbsp;·&nbsp; <kbd>F</kbd> full screen</div>
+  </div>
+  <div class="phone an pop" style="left:680px;top:110px;--d:.3s">
+    <div class="notch"></div><div class="pbar">feast</div>
+    <div class="chat">
+      <div class="bub an pop" style="--d:.9s;align-self:flex-end;border-bottom-right-radius:4px"><span data-type="Kaydedilenlerimi gösterir misin?" data-d="1.1" data-cps="20"></span></div>
+      <div class="bub ai an pop" style="--d:5.3s"><b>Kaydedilenler · 17</b>
+        <div class="row">Karadeniz Pide Salonu</div><div class="row">Fıstıklı Katmer</div><div class="row">Moda Pide</div></div>
+    </div>
+  </div>
+  <div class="traveler an travel" data-char="env" style="--d:2.8s;--t:1.3s;offset-path:path('M 892 180 C 990 140, 1060 250, 1105 350')"></div>
+  <div class="char an pop think writes" data-char="robot" data-c="#2a78d6" style="left:1045px;top:330px;--d:.5s;--bd:3.6s;--wd:3.9s"></div>
+  <div class="chip ok an pop" style="left:945px;top:540px;--d:4.4s">open_screen({"screen": "saved"})</div>
+</section>
+
+<!-- 2 ─ SETUP -->
+<section class="slide" data-dur="8" aria-label="The test bench">
+  <div class="head"><div class="kicker an rise"><i></i>The test bench</div><h2 class="an rise" style="--d:.1s">One phone, one model</h2></div>
+  <div class="card an pop" style="left:64px;top:160px;width:250px;height:190px;padding:16px;--d:.3s">
+    <div class="cores"><span class="lit an pop" style="--d:.8s"></span><span></span><span class="lit an pop" style="--d:.95s"></span><span></span><span class="lit an pop" style="--d:1.1s"></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="big" style="margin-top:14px">3 cores</div>
+  </div>
+  <div class="card an pop" style="left:64px;top:378px;width:250px;height:150px;padding:16px;--d:.5s">
+    <div style="position:relative;height:26px;border:3px solid var(--ink);border-radius:8px">
+      <div class="an fill" style="position:absolute;left:0;top:0;bottom:0;width:70%;--w:70%;--d:1.3s;--t:1.2s;background:var(--direct-t);border-right:2.5px solid var(--ink)"></div>
+      <div class="an fade" style="position:absolute;left:70%;top:-9px;bottom:-9px;border-left:3px dashed var(--bad);--d:2.5s"></div></div>
+    <div class="big" style="margin-top:14px">4 GB</div>
+    <div class="lbl" style="position:static;margin-top:6px">ceiling 2,867 MB</div>
+  </div>
+  <div class="char an pop" data-char="robot" data-c="#2a78d6" style="left:600px;top:250px;--d:1.4s"></div>
+  <div class="lbl an fade" style="left:607px;top:425px;--d:1.6s"><b>Gemma 4 E2B</b></div>
+  <div id="toolarc" style="position:absolute;left:350px;top:138px;width:640px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px"></div>
+  <div class="bub abs an fly" style="left:1030px;top:200px;--d:3.2s;--fx:60px;--fy:0">Kanka çok acıktım yaa 😅</div>
+  <div class="bub abs an fly" style="left:1062px;top:246px;--d:3.4s;--fx:60px;--fy:0">evet aynen böyle at</div>
+  <div class="bub abs an fly" style="left:1044px;top:292px;--d:3.6s;--fx:60px;--fy:0">Kendi konumuma dön</div>
+  <div class="bub abs an fly" style="left:1098px;top:338px;--d:3.8s;--fx:60px;--fy:0">saat kaç oldu</div>
+  <div class="lbl an fade" style="left:1044px;top:392px;--d:4s"><b data-count="91" data-d="4" data-t="1">91</b> test messages</div>
+  <div class="scoreic an pop" style="left:440px;top:560px;--d:5.2s"><i style="background:var(--ok-t);color:var(--ok)">✓</i>exact</div>
+  <div class="scoreic an pop" style="left:590px;top:560px;--d:5.4s"><i style="background:var(--bad-t);color:var(--bad)">!</i>hallucinated</div>
+  <div class="scoreic an pop" style="left:790px;top:560px;--d:5.6s"><i style="background:var(--bad-t);color:var(--bad)">✋</i>unsafe send</div>
+  <div class="subs"><span data-at=".4">a budget phone: 3 cores, 4 GB</span><span data-at="1.6">one small model, 15 tools to pick from</span><span data-at="3.2">91 test messages, never used for tuning</span><span data-at="5.2">every answer is scored three ways</span></div>
+</section>
+
+<!-- 3 ─ PROBLEM -->
+<section class="slide" data-dur="8" aria-label="What goes wrong">
+  <div class="head"><div class="kicker an rise" style="--k:var(--bad-t)"><i style="--kc:var(--bad)"></i>The problem</div><h2 class="an rise" style="--d:.1s">Small models don't fail quietly</h2></div>
+  <div class="char an pop think" data-char="robot" data-c="#2a78d6" style="left:250px;top:280px;--d:.3s;--bd:.8s"></div>
+  <div class="callcard an fly" style="left:470px;top:150px;--d:1.2s;--fx:-180px;--fy:190px">screen_open({"screen": "saved"})</div>
+  <div class="stamp an" style="left:770px;top:210px;--d:1.9s;--t:.45s">no such tool</div>
+  <div class="callcard an fly" style="left:470px;top:262px;--d:2.4s;--fx:-180px;--fy:80px">{"name": "query", "tags": ["kahvalti"]}</div>
+  <div class="stamp an" style="left:790px;top:322px;--d:3.1s;--t:.45s">invented tool</div>
+  <div class="callcard an fly" style="left:470px;top:374px;--d:3.6s;--fx:-180px;--fy:-30px">set_active_location({"location": "Beşiktaş"})</div>
+  <div class="stamp an" style="left:780px;top:434px;--d:4.3s;--t:.45s">invented argument</div>
+  <div class="callcard an fly" style="left:470px;top:486px;--d:4.8s;--fx:-180px;--fy:-140px">send_message_to_friends(["Ahmet"], …)</div>
+  <div class="stamp an" style="left:770px;top:546px;--d:5.5s;--t:.45s">sent before asking</div>
+  <div class="subs"><span data-at=".4">real Gemma outputs from our runs</span><span data-at="1.8">every call is checked against the tool's definition</span></div>
+</section>
+
+<!-- 4 ─ DIRECT -->
+<section class="slide" data-dur="9" aria-label="Method 1: Direct">
+  <div class="head"><div class="kicker an rise" style="--k:var(--direct-t)"><i style="--kc:var(--direct)"></i>Method 1</div><h2 class="an rise" style="--d:.1s">Direct</h2></div>
+  <div class="badges"><div class="bdg an pop" style="--d:7.4s;--c:var(--direct)"><b>0.44 s</b><span>first token</span></div><div class="bdg an pop" style="--d:7.6s;--c:var(--direct)"><b>71%</b><span>exact</span></div><div class="bdg an pop" style="--d:7.8s;--c:var(--bad)"><b>7</b><span>hallucinated / 91</span></div></div>
+  <div class="char an pop think writes" data-char="robot" data-c="#2a78d6" style="left:64px;top:240px;--d:.3s;--bd:3.2s;--wd:5s"></div>
+  <div id="tiles4" data-x="250" data-y="196" data-d=".5" data-hl="4.2"></div>
+  <div class="tag an pop" style="left:236px;top:160px;--d:4.3s;background:var(--classes-t)">search_restaurants</div>
+  <svg class="abs" width="1280" height="720" style="left:0;top:0;pointer-events:none" data-arcs data-from="923,262" data-tiles="250,236" data-d="3" data-step=".05" data-color="#1d2440"></svg>
+  <div class="ctx" style="left:250px;top:262px">
+    <div class="seg an pop" style="width:550px;--sc:var(--direct-t);--d:.6s"><i class="sw"></i><i class="cells"></i><span class="lab">system prompt · 15 tools · 1,156 tokens <span class="okm an pop" style="--d:1s">✓</span></span></div>
+    <div class="seg an pop" style="width:70px;--sc:#eef1f7;--d:.75s"><i class="sw"></i><i class="cells"></i><span class="lab">context</span></div>
+    <div class="seg an pop" style="width:90px;--sc:var(--active-t);--d:2.1s"><i class="sw an fill" style="--w:100%;--d:2.3s;--t:.45s"></i><i class="cells"></i><span class="lab">message</span></div>
+  </div>
+  <div class="an pop" style="position:absolute;left:960px;top:170px;--d:1.4s"><div class="bub abs an flyout" style="position:relative;--d:2s;--t:.45s;--ox:-60px;--oy:90px;--os:.4">yakında açık kahvaltıcı var mı</div></div>
+  <div class="lbl an pop" style="left:884px;top:326px;--d:2.6s">only <b>21</b> new tokens</div>
+  <div class="tok" style="left:250px;top:400px;width:900px" data-toks='&lt;tool_call&gt;|{"name":|"search_restaurants",|"arguments":|{"query":|"kahvaltı",|"open_now":|true}}|&lt;/tool_call&gt;' data-d="5" data-step=".22"></div>
+  <div class="subs"><span data-at=".4">the prompt with all 15 tools is already cached</span><span data-at="1.8">so only the new message is computed</span><span data-at="3">but every message is read against all 15 tools</span><span data-at="5">then the call comes out token by token, ~16 a second</span></div>
+</section>
+
+<!-- 5 ─ ROUTER FIRST -->
+<section class="slide" data-dur="12" aria-label="Method 2: Router first">
+  <div class="head"><div class="kicker an rise" style="--k:var(--hier-t)"><i style="--kc:var(--hier)"></i>Method 2</div><h2 class="an rise" style="--d:.1s">Router first, with shortcuts</h2></div>
+  <div class="badges"><div class="bdg an pop" style="--d:10.6s;--c:var(--hier)"><b>25 ms</b><span>routing</span></div><div class="bdg an pop" style="--d:10.8s;--c:var(--ok)"><b>14 / 60</b><span>no model needed</span></div><div class="bdg an pop" style="--d:11s;--c:var(--hier)"><b>+15–22</b><span>points, small models</span></div></div>
+  <div class="bub abs an inout rm-hide" style="left:64px;top:150px;--d:.4s;--t:1.4s">Kaydedilenlerimi gösterir misin?</div>
+  <div class="bub abs an inout rm-hide" style="left:64px;top:150px;--d:6.4s;--t:1.2s">Yakında lahmacun kaç para?</div>
+  <div class="char an pop" data-char="router" style="left:64px;top:220px;--d:.3s"><div class="abs" style="left:32px;top:80px;width:156px;height:56px;display:grid;place-items:center;font:600 13px var(--mono);color:#8fe3ff"><span class="an inout rm-hide" style="--d:1.6s;--t:.9s">encoding…</span></div></div>
+  <div id="vec5" data-x="84" data-y="476" data-d="2"></div>
+  <div class="lbl an fade" style="left:84px;top:560px;--d:2.4s">768 numbers</div>
+  <div class="card an pop" style="left:380px;top:132px;width:520px;height:440px;--d:.6s" id="map5"></div>
+  <div class="traveler keep an travelk" style="--d:2.7s;--t:1s;offset-path:path('M 170 500 C 300 520, 400 300, 548 255')"><div class="dot" style="--c:var(--hier)"></div></div>
+  <div class="traveler keep an travelk" style="--d:7.8s;--t:1s;offset-path:path('M 170 500 C 300 560, 450 500, 573 445')"><div class="dot" style="--c:var(--classes)"></div></div>
+  <svg class="abs an fade" style="left:900px;top:186px;--d:4.6s" width="60" height="40" aria-hidden="true"><path class="an draw" style="--len:90;--d:4.6s;--t:.4s" d="M2 30 L20 6 L32 26 L56 4" fill="none" stroke="#eda100" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <div class="chip ok an pop" style="left:960px;top:150px;--d:4.9s">open_screen(saved)</div>
+  <div class="tag an pop" style="left:968px;top:196px;--d:5.1s;background:var(--decision-t)">no model · 25 ms</div>
+  <div class="char sleep wake an pop think" data-char="robot" data-c="#6250d6" style="left:1010px;top:280px;--d:.5s;--wk:9.2s;--bd:9.4s"></div>
+  <span class="zz an inout rm-hide" style="left:1130px;top:268px;--d:1s;--t:8s">z</span><span class="zz an inout rm-hide" style="left:1150px;top:244px;--d:1.3s;--t:7.7s;font-size:17px">z</span>
+  <svg class="abs an fade" style="left:905px;top:420px;--d:9s" width="100" height="40" aria-hidden="true"><path d="M4 20 H86 M72 8 L88 20 L72 32" fill="none" stroke="#1d2440" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <div class="chip an fly" style="left:965px;top:466px;--d:9.6s;--fx:-60px;--fy:-20px;background:var(--hier-t)">search_menu_items</div>
+  <div class="chip an fly" style="left:965px;top:508px;--d:9.75s;--fx:-60px;--fy:-50px;background:var(--hier-t)">search_restaurants</div>
+  <div class="chip an fly" style="left:965px;top:550px;--d:9.9s;--fx:-60px;--fy:-80px;background:var(--hier-t)">set_active_location</div>
+  <div class="subs"><span data-at=".4">a small Turkish encoder reads the message first</span><span data-at="2">it turns the sentence into 768 numbers</span><span data-at="2.9">and lands next to example sentences that mean the same</span><span data-at="4.6">trivial and sure: answered with no model at all</span><span data-at="6.4">otherwise…</span><span data-at="9">…the model wakes up with only that group's 3 tools</span></div>
+</section>
+
+<!-- 6 ─ ROUTED PROMPT → SNAPSHOT -->
+<section class="slide" data-dur="12" aria-label="Method 3: Router picks the prompt">
+  <div class="head"><div class="kicker an rise" style="--k:var(--routed-t)"><i style="--kc:var(--routed)"></i>Method 3</div><h2 class="an rise" style="--d:.1s">The router picks the prompt</h2></div>
+  <div class="badges"><div class="bdg an pop" style="--d:10s;--c:var(--routed)"><b>3.79→1.93 s</b><span>first token</span></div><div class="bdg an pop" style="--d:10.2s;--c:var(--routed)"><b>65 / 61%</b><span>exact</span></div><div class="bdg an pop" style="--d:10.4s;--c:var(--direct)"><b>71%</b><span>direct</span></div></div>
+  <div class="tag an pop" style="left:64px;top:160px;--d:.3s">without snapshot</div>
+  <div class="ctx" style="left:64px;top:190px">
+    <div class="seg an pop" style="width:380px;--sc:var(--routed-t);--d:.4s"><i class="sw"></i><i class="cells"></i><i class="bad an fade" style="--d:2.3s"></i><i class="sw re an fill" style="--w:100%;--d:2.9s;--t:2.4s"></i>
+      <span class="lab"><span class="an flyout" style="--d:2.6s;--t:.3s;--oy:-10px">menu_search prompt</span><span class="an pop" style="position:absolute;left:9px;--d:2.9s">saved_open prompt</span></span></div>
+    <div class="seg an pop" style="width:60px;--sc:#eef1f7;--d:.5s"><i class="sw"></i><i class="cells"></i><i class="bad an fade" style="--d:2.35s"></i><i class="sw re an fill" style="--w:100%;--d:5.3s;--t:.35s"></i><span class="lab">ctx</span></div>
+    <div class="seg an pop" style="width:100px;--sc:#eef1f7;--d:.6s"><i class="sw"></i><i class="cells"></i><i class="bad an fade" style="--d:2.4s"></i><i class="sw re an fill" style="--w:100%;--d:5.65s;--t:.45s"></i><span class="lab">history</span></div>
+    <div class="seg an pop" style="width:80px;--sc:var(--active-t);--d:1.6s"><i class="sw"></i><i class="cells"></i><i class="bad an fade" style="--d:2.45s"></i><i class="sw re an fill" style="--w:100%;--d:6.1s;--t:.35s"></i><span class="lab">message</span></div>
+  </div>
+  <div class="bub abs an pop" style="left:730px;top:150px;--d:1.4s">kaydettiklerimi aç</div>
+  <div class="tag an pop" style="left:740px;top:196px;--d:1.8s;background:var(--hier-t)">router → saved_open</div>
+  <div class="stamp an" style="left:330px;top:168px;--d:2.4s;--t:.45s">cache miss</div>
+  <div class="char an pop" data-char="clock" data-cd="2.9" data-cn="3.5" style="left:1000px;top:166px;--d:2.8s"></div>
+  <div class="lbl an fade" style="left:1080px;top:190px;--d:2.9s">first token<br><b data-count="3.79" data-dec="2" data-suf=" s" data-d="2.9" data-t="3.5">3.79 s</b></div>
+
+  <div class="tag an pop" style="left:64px;top:330px;--d:6.6s">with KV snapshots</div>
+  <div class="card an pop" style="left:64px;top:450px;width:420px;height:150px;--d:6.7s;background:#eef1f7;padding:10px 14px">
+    <div class="lbl" style="position:static">flash storage</div>
+    <div class="char" data-char="cart" data-label="food" style="left:16px;top:44px"></div>
+    <div class="char" data-char="cart" data-label="posts" style="left:120px;top:44px"></div>
+    <div class="char" data-char="cart" data-label="people" style="left:224px;top:44px"></div>
+  </div>
+  <div class="ctx" style="left:64px;top:360px">
+    <div class="seg dash an pop" style="width:380px;--d:6.8s"><i class="sw an pop" style="--sc:var(--routed-t);--d:7.9s"></i><i class="cells"></i><span class="lab"><span class="an pop" style="--d:7.9s">saved_open prompt · restored in 0.15 s</span></span></div>
+    <div class="seg an pop" style="width:60px;--sc:#eef1f7;--d:6.9s"><i class="sw an fill" style="--w:100%;--d:8.1s;--t:.3s"></i><i class="cells"></i><span class="lab">ctx</span></div>
+    <div class="seg an pop" style="width:100px;--sc:#eef1f7;--d:7s"><i class="sw an fill" style="--w:100%;--d:8.4s;--t:.35s"></i><i class="cells"></i><span class="lab">history</span></div>
+    <div class="seg an pop" style="width:80px;--sc:var(--active-t);--d:7.1s"><i class="sw an fill" style="--w:100%;--d:8.75s;--t:.3s"></i><i class="cells"></i><span class="lab">message</span></div>
+  </div>
+  <div class="traveler an travel" data-char="cart" data-label="saved" style="--d:7s;--t:1s;offset-path:path('M 380 540 C 420 470, 300 420, 254 387')"></div>
+  <div class="char an pop" data-char="clock" data-cd="7" data-cn="2" style="left:1000px;top:336px;--d:6.9s"></div>
+  <div class="lbl an fade" style="left:1080px;top:360px;--d:7s">first token<br><b data-count="1.93" data-dec="2" data-suf=" s" data-d="7" data-t="2">1.93 s</b></div>
+  <div class="subs"><span data-at=".4">the model always answers, with a short prompt per intent</span><span data-at="1.4">a new intent changes the prompt at token 1</span><span data-at="2.4">the cache misses: everything is read again</span><span data-at="6.6">fix: keep every prompt's KV snapshot on flash</span><span data-at="7.9">restore it, then read only the new part</span><span data-at="9.6">faster, but a shorter list alone wasn't more accurate</span></div>
+</section>
+
+<!-- 7 ─ DECISION 2.0 -->
+<section class="slide" data-dur="11" aria-label="Method 4: Decision 2.0">
+  <div class="head"><div class="kicker an rise" style="--k:var(--decision-t)"><i style="--kc:var(--decision)"></i>Method 4</div><h2 class="an rise" style="--d:.1s">Decision 2.0 router</h2></div>
+  <div class="badges"><div class="bdg an pop" style="--d:9.4s;--c:var(--decision)"><b>70%</b><span>right class</span></div><div class="bdg an pop" style="--d:9.6s;--c:var(--decision)"><b>1.7 s</b><span>per message</span></div><div class="bdg an pop" style="--d:9.8s;--c:var(--bad)"><b>6.4 GB</b><span>paged in</span></div></div>
+  <div class="an inout rm-hide" style="position:absolute;left:0;top:0;--d:1.5s;--t:2.1s"><svg class="abs" width="1280" height="720" style="left:0;top:0" data-arcs data-from="204,262" data-tos="513,262;599,262;685,262;771,262;857,262;943,262" data-d="1.6" data-step=".12" data-color="#c98500"></svg></div>
+  <div class="ctx" style="left:64px;top:262px">
+    <div class="seg an pop" style="width:280px;--sc:var(--decision-t);--d:.4s"><i class="sw"></i><i class="cells"></i><i class="bad an fade" style="--d:3.4s"></i><i class="sw re an fill" style="--w:100%;--d:3.8s;--t:.5s"></i>
+      <span class="lab" style="font-weight:700"><span class="an flyout" style="--d:3.2s;--t:.3s;--oy:-10px">kanka şu kaydettiğim yerleri bi açsana</span><span class="an pop" style="position:absolute;left:9px;--d:3.4s">bunlardan hangisi açık?</span></span></div>
+    <div class="seg an pop" style="width:120px;--sc:#eef1f7;--d:.55s"><i class="sw"></i><i class="cells"></i><i class="bad an fade" style="--d:3.45s"></i><i class="sw re an fill" style="--w:100%;--d:4.3s;--t:.2s"></i><span class="lab">which class?</span></div>
+    <div class="seg an pop" style="width:82px;--sc:#f3f5fa;--d:.7s"><i class="sw"></i><i class="cells"></i><i class="bad an fade" style="--d:3.5s"></i><i class="sw re an fill" style="--w:100%;--d:4.5s;--t:.12s"></i><span class="lab">food</span></div>
+    <div class="seg an pop" style="width:82px;--sc:#f3f5fa;--d:.8s"><i class="sw"></i><i class="cells"></i><i class="bad an fade" style="--d:3.5s"></i><i class="sw re an fill" style="--w:100%;--d:4.62s;--t:.12s"></i><span class="lab">saved</span></div>
+    <div class="seg an pop" style="width:82px;--sc:#f3f5fa;--d:.9s"><i class="sw"></i><i class="cells"></i><i class="bad an fade" style="--d:3.55s"></i><i class="sw re an fill" style="--w:100%;--d:4.74s;--t:.12s"></i><span class="lab">people</span></div>
+    <div class="seg an pop" style="width:82px;--sc:#f3f5fa;--d:1s"><i class="sw"></i><i class="cells"></i><i class="bad an fade" style="--d:3.55s"></i><i class="sw re an fill" style="--w:100%;--d:4.86s;--t:.12s"></i><span class="lab">posts</span></div>
+    <div class="seg an pop" style="width:82px;--sc:#f3f5fa;--d:1.1s"><i class="sw"></i><i class="cells"></i><i class="bad an fade" style="--d:3.6s"></i><i class="sw re an fill" style="--w:100%;--d:4.98s;--t:.12s"></i><span class="lab">navigate</span></div>
+    <div class="seg an pop" style="width:82px;--sc:#f3f5fa;--d:1.2s"><i class="sw"></i><i class="cells"></i><i class="bad an fade" style="--d:3.6s"></i><i class="sw re an fill" style="--w:100%;--d:5.1s;--t:.12s"></i><span class="lab">talk</span></div>
+  </div>
+  <div id="bars7" data-x="472" data-step="86" data-y="256" data-v=".07,.58,.09,.05,.17,.04" data-d="5.5"></div>
+  <div class="lbl an fade" style="left:1040px;top:282px;--d:6.4s">illustration</div>
+  <div class="char an pop" data-char="clock" data-cd="1" data-cn="4.4" style="left:1120px;top:140px;--d:.6s"></div>
+  <div class="lbl an fade" style="left:1112px;top:232px;--d:.8s"><b data-count="1.7" data-dec="1" data-suf=" s" data-d="1" data-t="4.4">1.7 s</b></div>
+  <div class="lbl an fade" style="left:64px;top:410px;--d:7s">4 GB phone · 2,867 MB ceiling</div>
+  <div class="an fade" style="position:absolute;left:64px;top:436px;width:560px;height:36px;border:3px solid var(--ink);border-radius:9px;background:#fff;--d:7s"></div>
+  <div class="an grow" style="position:absolute;left:67px;top:439px;width:304px;height:30px;background:var(--direct-t);border-right:2.5px solid var(--ink);--d:7.1s;--t:.7s;font:800 12px/30px var(--body);padding-left:8px">Gemma 4 E2B</div>
+  <div class="an fly" style="position:absolute;left:371px;top:439px;width:87px;height:30px;background:var(--decision);font:800 11px/30px var(--body);text-align:center;--d:7.6s;--fy:-46px">router</div>
+  <div class="an fade" style="position:absolute;left:459px;top:420px;height:66px;border-left:3px dashed var(--bad);--d:7.6s"></div>
+  <div class="an fade" style="position:absolute;left:464px;top:441px;width:92px;height:26px;border:2.5px dashed var(--ink);border-radius:6px;background:repeating-linear-gradient(45deg,var(--direct-t) 0 6px,#fff 6px 12px);--d:8s"></div>
+  <svg class="abs an fade" style="left:496px;top:472px;--d:8.2s" width="30" height="40" aria-hidden="true"><path d="M15 2 V32 M6 22 L15 35 L24 22" fill="none" stroke="#c62e2e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <div class="char an pop" data-char="drum" style="left:472px;top:512px;--d:8.4s"></div>
+  <div class="lbl an fade" style="left:572px;top:540px;--d:8.6s"><b data-count="6.4" data-dec="1" data-suf=" GB" data-d="8.6" data-t="1.2">6.4 GB</b> paged in</div>
+  <div class="subs"><span data-at=".4">message, question and every option go in as one prompt</span><span data-at="1.6">each option is read in light of the message…</span><span data-at="3.2">…so a new message means reading it all again</span><span data-at="5.5">out comes one probability per option, no text</span><span data-at="7">640 MB more on a 4 GB phone pushes Gemma out to storage</span></div>
+</section>
+
+<!-- 8 ─ CLASSES -->
+<section class="slide" data-dur="12" aria-label="Method 5: Better classes, better prompts">
+  <div class="head"><div class="kicker an rise" style="--k:var(--classes-t)"><i style="--kc:var(--classes)"></i>Method 5</div><h2 class="an rise" style="--d:.1s">Better classes, prompts that say more</h2></div>
+  <div class="badges"><div class="bdg an pop" style="--d:10.4s;--c:var(--classes)"><b>87%</b><span>exact</span></div><div class="bdg an pop" style="--d:10.6s;--c:var(--ok)"><b>0</b><span>hallucinated</span></div><div class="bdg an pop" style="--d:10.8s;--c:var(--classes)"><b>1.84 s</b><span>first token</span></div></div>
+  <div class="ichip an flyout" style="left:64px;top:126px;--d:1.4s;--ox:3px;--oy:128px">restaurant_search</div>
+  <div class="ichip an flyout" style="left:234px;top:126px;--d:1.5s;--ox:-145px;--oy:128px">menu_search</div>
+  <div class="ichip an flyout" style="left:384px;top:126px;--d:1.6s;--ox:-127px;--oy:128px">saved_open</div>
+  <div class="ichip an flyout" style="left:514px;top:126px;--d:1.7s;--ox:-264px;--oy:128px">saved_search</div>
+  <div class="ichip an flyout" style="left:64px;top:166px;--d:1.8s;--ox:369px;--oy:88px">friends</div>
+  <div class="ichip an flyout" style="left:174px;top:166px;--d:1.9s;--ox:230px;--oy:88px">suggested_users</div>
+  <div class="ichip an flyout" style="left:354px;top:166px;--d:2s;--ox:226px;--oy:88px">context_info</div>
+  <div class="ichip an flyout" style="left:484px;top:166px;--d:2.1s;--ox:110px;--oy:88px">chitchat</div>
+  <div class="ichip an flyout" style="left:584px;top:166px;--d:2.2s;--ox:-4px;--oy:88px">out_of_scope</div>
+  <div class="bin an pop" style="left:64px;top:236px;--d:2.5s">food</div>
+  <div class="bin an pop" style="left:229px;top:236px;--d:2.6s">saved</div>
+  <div class="bin an pop" style="left:394px;top:236px;--d:2.7s">people</div>
+  <div class="bin an pop" style="left:559px;top:236px;--d:2.8s">talk</div>
+  <div class="card an pop" style="left:860px;top:130px;width:356px;height:150px;--d:.5s;background:#eef1f7;padding:10px 14px">
+    <div class="lbl" style="position:static">flash storage</div>
+    <div class="char" data-char="cart" data-label="saved" style="left:16px;top:44px"></div>
+    <div class="char" data-char="cart" data-label="posts" style="left:120px;top:44px"></div>
+  </div>
+  <div class="lbl an pop" style="left:64px;top:334px;--d:5.2s">food prompt · 964 tokens</div>
+  <div class="ctx" style="left:64px;top:360px">
+    <div class="seg dash an pop" style="width:600px;--d:3s"></div>
+    <div class="seg an pop" style="width:60px;--sc:#eef1f7;--d:3.1s"><i class="sw"></i><i class="cells"></i><span class="lab">ctx</span></div>
+    <div class="seg an pop" style="width:80px;--sc:var(--active-t);--d:3.2s"><i class="sw"></i><i class="cells"></i><span class="lab">message</span></div>
+  </div>
+  <div class="piece an fly" style="left:73px;top:365px;width:80px;background:var(--classes-t);--d:3.4s;--fx:26px;--fy:-127px">TASK</div>
+  <div class="piece an fly" style="left:157px;top:365px;width:150px;background:#f3f5fa;--d:3.7s;--fx:-93px;--fy:-127px">manual<br>search_menu_items</div>
+  <div class="piece an fly" style="left:311px;top:365px;width:150px;background:#f3f5fa;--d:4s;--fx:-247px;--fy:-127px">manual<br>search_restaurants</div>
+  <div class="piece an fly" style="left:465px;top:365px;width:110px;background:#f3f5fa;--d:4.3s;--fx:-381px;--fy:-127px">manual<br>set_location</div>
+  <div class="piece an fly" style="left:579px;top:365px;width:78px;background:var(--decision-t);--d:4.6s;--fx:-481px;--fy:-127px">RULES</div>
+  <div class="traveler keep an travelk" data-char="cart" data-label="food" style="--d:5.6s;--t:1s;offset-path:path('M 360 386 C 600 300, 900 360, 1124 213')"></div>
+  <div class="bub abs an pop" style="left:64px;top:462px;--d:6.8s">ucuz döner var mı?</div>
+  <div class="tag an pop" style="left:64px;top:506px;--d:7.1s;background:var(--routed-t)">food · restore snapshot</div>
+  <div class="bub abs an pop" style="left:420px;top:462px;--d:7.9s">150'yi geçmesin ama</div>
+  <div class="tag an pop" style="left:420px;top:506px;--d:8.2s;background:var(--ok-t);color:var(--ok)">same class · keep the cache</div>
+  <div class="chip ok an pop" style="left:330px;top:554px;--d:8.7s">search_menu_items({"query": "döner", "max_price": 150})</div>
+  <div class="bub abs an pop" style="left:880px;top:462px;--d:9.2s">kaydettiklerimi aç</div>
+  <div class="tag an pop" style="left:880px;top:506px;--d:9.5s;background:var(--routed-t)">saved · restore snapshot</div>
+  <div class="subs"><span data-at=".4">19 intents become 13 classes, cut by what the model must do</span><span data-at="3.2">each class prompt: its tools' manuals plus its rules</span><span data-at="5.6">computed once, kept as a KV snapshot</span><span data-at="6.8">per message: restore when the class changes, else keep the cache</span></div>
+</section>
+
+<!-- 9 ─ HYPOTHESIS -->
+<section class="slide" data-dur="8" aria-label="Right class, fewer mistakes">
+  <div class="head"><div class="kicker an rise" style="--k:var(--classes-t)"><i style="--kc:var(--classes)"></i>The hypothesis</div><h2 class="an rise" style="--d:.1s">Right class + its own prompt</h2></div>
+  <div id="dots9"></div>
+  <div class="lbl an fade" style="left:64px;top:150px;--d:.6s"><b data-count="74" data-d=".6" data-t="1">74</b> turns · router right</div>
+  <div class="lbl an fade" style="left:64px;top:430px;--d:2.2s;color:var(--bad)"><b data-count="13" data-d="2.2" data-t=".6">13</b> turns · router wrong</div>
+  <div class="legend an fade abs" style="left:560px;top:150px;--d:.6s"><span><i style="background:var(--classes)"></i>class prompt</span><span><i style="background:var(--direct)"></i>direct, same turns</span></div>
+  <div class="abs" style="left:560px;top:190px;width:656px">
+    <div class="hb"><span class="k">exact</span><span class="bt" style="--c:var(--classes)"><i class="an grow" style="--w:93%;--d:2.4s;--t:1s"></i></span><span class="v" data-count="93" data-suf="%" data-d="2.4">93%</span></div>
+    <div class="hb"><span class="k"></span><span class="bt" style="--c:var(--direct)"><i class="an grow" style="--w:73%;--d:2.6s;--t:1s"></i></span><span class="v" data-count="73" data-suf="%" data-d="2.6">73%</span></div>
+    <div class="hb" style="margin-top:16px"><span class="k">hallucinated</span><span class="bt" style="--c:var(--classes)"><i style="--w:0%"></i></span><span class="v" style="color:var(--ok)">0</span></div>
+    <div class="hb"><span class="k"></span><span class="bt" style="--c:var(--bad)"><i class="an grow" style="--w:50%;--d:3s;--t:1s"></i></span><span class="v" style="color:var(--bad)" data-count="5" data-d="3">5</span></div>
+  </div>
+  <div class="abs" style="left:560px;top:450px;width:656px">
+    <div class="hb"><span class="k">exact</span><span class="bt" style="--c:var(--classes)"><i class="an grow" style="--w:46%;--d:4.6s;--t:1s"></i></span><span class="v" data-count="46" data-suf="%" data-d="4.6">46%</span></div>
+    <div class="hb"><span class="k"></span><span class="bt" style="--c:var(--direct)"><i class="an grow" style="--w:62%;--d:4.8s;--t:1s"></i></span><span class="v" data-count="62" data-suf="%" data-d="4.8">62%</span></div>
+  </div>
+  <div class="subs"><span data-at=".4">the same turns, split by whether the router was right</span><span data-at="2.4">right class: its prompt beats the all-tools prompt</span><span data-at="4.6">wrong class: it does worse, so router accuracy decides</span></div>
+</section>
+
+<!-- 10 ─ ACTIVE -->
+<section class="slide" data-dur="12" aria-label="Method 6: Active prompting">
+  <div class="head"><div class="kicker an rise" style="--k:var(--active-t)"><i style="--kc:var(--active)"></i>Method 6</div><h2 class="an rise" style="--d:.1s">Active prompting</h2></div>
+  <div class="badges"><div class="bdg an pop" style="--d:10.6s;--c:var(--active)"><b>73–74%</b><span>exact</span></div><div class="bdg an pop" style="--d:10.8s;--c:var(--ok)"><b>0–1</b><span>hallucinated</span></div><div class="bdg an pop" style="--d:11s;--c:var(--active)"><b>4.0 s</b><span>first token</span></div></div>
+  <div class="char an pop think writes" data-char="robot" data-c="#eb6834" style="left:64px;top:150px;--d:.3s;--bd:1s;--wd:6.8s"></div>
+  <div class="ctx" style="left:230px;top:330px">
+    <div class="seg an pop" style="width:300px;--sc:var(--active-t);--d:.4s"><i class="sw"></i><i class="cells"></i><span class="lab">tool index · 15 names <span class="okm">✓</span></span></div>
+    <div class="seg an pop" style="width:80px;--sc:#eef1f7;--d:.5s"><i class="sw"></i><i class="cells"></i><span class="lab">history</span></div>
+    <div class="seg an pop" style="width:70px;--sc:var(--direct-t);--d:.6s"><i class="sw"></i><i class="cells"></i><span class="lab">msg</span></div>
+    <div class="an pop" style="--d:2.6s"><div class="seg an flyout" style="width:90px;--sc:var(--active-t);--d:8.5s;--oy:-140px;--os:.7"><i class="sw"></i><i class="cells"></i><span class="lab">&lt;use&gt;</span></div></div>
+    <div class="an pop" style="--d:3.8s"><div class="seg an flyout" style="width:230px;--sc:var(--active);--d:8.6s;--oy:-150px;--os:.7"><i class="sw an fill" style="--w:100%;--d:3.9s;--t:2.7s"></i><i class="cells"></i><span class="lab">manual · ~280 tokens</span></div></div>
+  </div>
+  <div class="seg an pop" style="position:absolute;left:692px;top:330px;width:150px;--sc:var(--ok-t);--d:9.1s"><i class="sw"></i><i class="cells"></i><span class="lab">the call</span></div>
+  <div class="tok an flyout" style="left:692px;top:256px;--d:2.4s;--t:.3s;--oy:70px;--os:.6" data-toks="&lt;use&gt;|search_menu_items|&lt;/use&gt;" data-d="1.4" data-step=".25"></div>
+  <div class="an fly" style="position:absolute;left:880px;top:150px;--d:3s;--fx:220px;--fy:-80px;--fr:20deg"><div class="an flyout" style="--d:3.6s;--t:.4s;--ox:-20px;--oy:170px;--os:.3"><div class="char" data-char="book" style="position:relative"></div></div></div>
+  <div class="tok an flyout" style="left:230px;top:430px;width:900px;--d:8.8s;--t:.4s;--ox:400px;--oy:-90px;--os:.3" data-toks='&lt;tool_call&gt;|{"name":|"search_menu_items",|"arguments":|{"query":|"künefe",|"sort_by":|"price_asc"}}|&lt;/tool_call&gt;' data-d="6.8" data-step=".2"></div>
+  <div class="bub abs an pop" style="left:960px;top:200px;--d:10s">sıradaki mesaj…</div>
+  <div class="tag an pop" style="left:240px;top:296px;--d:10.2s;background:var(--ok-t);color:var(--ok)">still cached ✓</div>
+  <div class="subs"><span data-at=".4">pass A: the model sees only tool names</span><span data-at="1.4">and names the one it needs</span><span data-at="3">fork: the app appends that tool's manual</span><span data-at="6.8">pass B: it writes the call with the manual in view</span><span data-at="8.5">backtrack: the manual leaves, the call stays</span><span data-at="10">the next message still reuses the cache</span></div>
+</section>
+
+<!-- 11 ─ ACTIVE v2 -->
+<section class="slide" data-dur="13" aria-label="Method 7: Active prompting v2">
+  <div class="head"><div class="kicker an rise" style="--k:var(--active2-t)"><i style="--kc:var(--active2)"></i>Method 7</div><h2 class="an rise" style="--d:.1s">Active prompting v2: on rails</h2></div>
+  <div class="badges"><div class="bdg an pop" style="--d:11.6s;--c:var(--active2)"><b>85%</b><span>exact</span></div><div class="bdg an pop" style="--d:11.8s;--c:var(--ok)"><b>0</b><span>hallucinated</span></div><div class="bdg an pop" style="--d:12s;--c:var(--active2)"><b>3.43 s</b><span>reply</span></div></div>
+  <div class="outbox an inout rm-hide" style="left:64px;top:140px;width:1152px;min-height:76px;--d:.3s;--t:3.5s">&lt;use&gt;<span class="gen" data-type="search_menu_items" data-d="2.7" data-cps="40"></span></div>
+  <div class="outbox an pop" style="left:64px;top:140px;width:1152px;min-height:76px;--d:3.9s"><span class="pre" data-type='&lt;tool_call&gt;{"name": "search_menu_items", "arguments": ' data-d="4" data-cps="300"></span><span class="gen" data-type='{"query": "künefe", ' data-d="6.2" data-cps="22"></span><span class="gen" data-type='"sort_by": ' data-d="7.1" data-cps="30"></span><span class="gen" data-type='"price_asc"}' data-d="8.3" data-cps="22"></span><span class="pre" data-type="}&lt;/tool_call&gt;" data-d="9" data-cps="200"></span></div>
+  <div class="cands an inout rm-hide" style="left:64px;top:270px;width:570px;--d:.6s;--t:3.2s">
+    <div class="hd">next token</div>
+    <div class="cand"><code>search_restaurants</code><span class="b"><i class="an grow" style="--w:62%;--d:.9s"></i></span><span class="m y an fade" style="--d:1.8s">tool ✓</span></div>
+    <div class="cand"><code>search_menu_items</code><span class="b"><i class="an grow" style="--w:70%;--d:1s"></i></span><span class="m y an fade" style="--d:1.8s">tool ✓</span><i class="pick an pop" style="--d:2.5s"></i></div>
+    <div class="cand"><code class="an dim" style="--d:1.9s">screen_open</code><span class="b an dim" style="--d:1.9s"><i class="an grow" style="--w:38%;--d:1.1s"></i></span><span class="m n an fade" style="--d:1.9s">not a tool</span><i class="strike an grow" style="--d:1.8s;--t:.35s"></i></div>
+    <div class="cand"><code>Merhaba!</code><span class="b"><i class="an grow" style="--w:16%;--d:1.2s"></i></span><span class="m y an fade" style="--d:1.8s">plain text ✓</span></div>
+  </div>
+  <div class="cands an inout rm-hide" style="left:64px;top:270px;width:570px;--d:5s;--t:2s">
+    <div class="hd">next argument</div>
+    <div class="cand"><code>"query"</code><span class="b"><i class="an grow" style="--w:66%;--d:5.2s"></i></span><span class="m y an fade" style="--d:5.7s">argument ✓</span><i class="pick an pop" style="--d:6s"></i></div>
+    <div class="cand"><code class="an dim" style="--d:5.7s">"price"</code><span class="b an dim" style="--d:5.7s"><i class="an grow" style="--w:44%;--d:5.25s"></i></span><span class="m n an fade" style="--d:5.7s">no such argument</span><i class="strike an grow" style="--d:5.6s;--t:.35s"></i></div>
+    <div class="cand"><code>"sort_by"</code><span class="b"><i class="an grow" style="--w:30%;--d:5.3s"></i></span><span class="m y an fade" style="--d:5.7s">argument ✓</span></div>
+    <div class="cand"><code class="an dim" style="--d:5.7s">"city"</code><span class="b an dim" style="--d:5.7s"><i class="an grow" style="--w:20%;--d:5.35s"></i></span><span class="m n an fade" style="--d:5.7s">no such argument</span><i class="strike an grow" style="--d:5.65s;--t:.35s"></i></div>
+  </div>
+  <div class="cands an inout rm-hide" style="left:64px;top:270px;width:570px;--d:7.2s;--t:2s">
+    <div class="hd">value for sort_by</div>
+    <div class="cand"><code>"price_asc"</code><span class="b"><i class="an grow" style="--w:58%;--d:7.4s"></i></span><span class="m y an fade" style="--d:7.9s">allowed ✓</span><i class="pick an pop" style="--d:8.2s"></i></div>
+    <div class="cand"><code class="an dim" style="--d:7.9s">"cheapest"</code><span class="b an dim" style="--d:7.9s"><i class="an grow" style="--w:52%;--d:7.45s"></i></span><span class="m n an fade" style="--d:7.9s">not in the list</span><i class="strike an grow" style="--d:7.8s;--t:.35s"></i></div>
+    <div class="cand"><code>"price_desc"</code><span class="b"><i class="an grow" style="--w:14%;--d:7.5s"></i></span><span class="m y an fade" style="--d:7.9s">allowed ✓</span></div>
+  </div>
+  <div class="tag an inout rm-hide" style="left:652px;top:286px;--d:1.7s;--t:7.6s;background:var(--active2-t)">grammar</div>
+  <div class="cands an pop" style="left:660px;top:380px;width:556px;--d:9.6s">
+    <div class="hd">restaurant_id, after a list of venues</div>
+    <div class="cand"><code>"r_481"</code><span class="b"><i class="an grow" style="--w:50%;--d:9.8s"></i></span><span class="m y an fade" style="--d:10.3s">shown in the chat ✓</span></div>
+    <div class="cand"><code class="an dim" style="--d:10.3s">"r_123"</code><span class="b an dim" style="--d:10.3s"><i class="an grow" style="--w:42%;--d:9.85s"></i></span><span class="m n an fade" style="--d:10.3s">never shown</span><i class="strike an grow" style="--d:10.2s;--t:.35s"></i></div>
+  </div>
+  <div class="tag an pop" style="left:64px;top:236px;--d:4s;background:#eef1f7">grey = written by the app</div>
+  <div class="subs"><span data-at=".4">pass A: the next token must start a real tool name…</span><span data-at="1.7">…the grammar masks everything else</span><span data-at="3.9">pass B: the app writes the start of the call itself</span><span data-at="5">only real argument names can come next</span><span data-at="7.2">and only allowed values</span><span data-at="9.6">ids must be ones the chat has already shown</span></div>
+</section>
+
+<!-- 12 ─ RESULTS -->
+<section class="slide" data-dur="9" aria-label="Results">
+  <div class="head"><div class="kicker an rise"><i></i>Benchmark · 91 messages</div><h2 class="an rise" style="--d:.1s">Results</h2></div>
+  <div class="panel an rise" style="left:64px;top:150px;width:566px;height:226px;--d:.3s" data-chart="exact"><h3>Exact answers <small>higher is better</small></h3></div>
+  <div class="panel an rise" style="left:650px;top:150px;width:566px;height:226px;--d:.45s" data-chart="halluc"><h3>Hallucinated calls <small>lower is better</small></h3></div>
+  <div class="panel an rise" style="left:64px;top:404px;width:566px;height:226px;--d:.6s" data-chart="ttft"><h3>First token, median <small>lower is better</small></h3></div>
+  <div class="panel an rise" style="left:650px;top:404px;width:566px;height:226px;--d:.75s" data-chart="reply"><h3>Full reply, median <small>lower is better</small></h3></div>
+  <div class="lbl" style="left:64px;top:654px;font-weight:600;color:var(--faint)">Gemma 4 E2B · 3 cores · 4 GB · greedy · Decision 2.0 from the earlier run (direct 73% there)</div>
+</section>
+
+<!-- 13 ─ TAKEAWAYS -->
+<section class="slide" data-dur="8" aria-label="Takeaways">
+  <div class="head"><div class="kicker an rise"><i style="--kc:var(--active)"></i>For feast mobile</div><h2 class="an rise" style="--d:.1s">Pick by budget</h2></div>
+  <div class="take an pop" style="left:64px;top:150px;--d:.4s;--c:var(--direct)"><div class="badge"></div><div class="who">Fastest</div><h3>Direct</h3>
+    <div class="nums"><div><b style="color:var(--direct)">0.44 s</b><span>first token</span></div><div><b style="color:var(--bad)">7</b><span>hallucinated</span></div></div></div>
+  <div class="take an pop" style="left:656px;top:150px;--d:.7s;--c:var(--active2)"><div class="badge"></div><div class="who">Best, no router</div><h3>Active prompting v2</h3>
+    <div class="nums"><div><b style="color:var(--active2)">85%</b><span>exact</span></div><div><b style="color:var(--ok)">0</b><span>hallucinated</span></div><div><b>3.4 s</b><span>reply</span></div></div></div>
+  <div class="take an pop" style="left:64px;top:330px;--d:1s;--c:var(--classes)"><div class="badge"></div><div class="who">Best, with a router</div><h3>Classes + YTÜ COSMOS</h3>
+    <div class="nums"><div><b style="color:var(--classes)">84–87%</b><span>exact</span></div><div><b style="color:var(--ok)">0–1</b><span>hallucinated</span></div><div><b>1.8 s</b><span>first token</span></div></div></div>
+  <div class="take an pop" style="left:656px;top:330px;--d:1.3s;--c:var(--decision)"><div class="badge"></div><div class="who">Too heavy for 4 GB</div><h3>Decision 2.0</h3>
+    <div class="nums"><div><b style="color:var(--decision)">1.7 s</b><span>per message</span></div><div><b style="color:var(--bad)">6.4 GB</b><span>paged in</span></div></div></div>
+  <div class="nexts"><span class="lbl" style="position:static;font-size:15px">Next</span>
+    <span class="chip an pop" style="--d:1.8s">run the tools for real</span><span class="chip an pop" style="--d:1.95s">a fresh test set</span>
+    <span class="chip an pop" style="--d:2.1s">check ids in the judge</span><span class="chip an pop" style="--d:2.25s">v2's grammar inside class prompts</span></div>
+</section>
+
+</div></div>
+
+<div id="progress"></div>
+<nav id="controls" aria-label="Slide controls">
+  <button id="prev" aria-label="Previous slide">◀</button>
+  <div class="dots" id="dots"></div>
+  <button id="next" aria-label="Next slide">▶</button>
+  <span id="counter" aria-live="polite">1 / 13</span>
+  <button id="replay" aria-label="Replay this slide's animation">↻ Replay</button>
+  <button id="auto" aria-pressed="false" aria-label="Play as a clip">▶ Play clip</button>
+  <button id="full" aria-label="Full screen">⛶</button>
+</nav>
+
+<script>
+(() => {
+  const INK = "#1d2440";
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const el = (html) => { const t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstChild; };
+
+  // ---------- characters ----------
+  const CHAR = {
+    robot: (o) => `<svg class="robot" viewBox="0 0 130 165" width="${130 * o.s}" height="${165 * o.s}" aria-hidden="true">
+      <line x1="65" y1="20" x2="65" y2="36" stroke="${INK}" stroke-width="4" stroke-linecap="round"/>
+      <circle class="bulb" cx="65" cy="14" r="8" fill="#fff" stroke="${INK}" stroke-width="3"/>
+      <rect x="17" y="36" width="96" height="70" rx="24" fill="#fff" stroke="${INK}" stroke-width="4"/>
+      <rect x="29" y="48" width="72" height="46" rx="15" fill="${INK}"/>
+      <g class="eyes"><ellipse cx="51" cy="68" rx="6" ry="8" fill="#8fe3ff"/><ellipse cx="79" cy="68" rx="6" ry="8" fill="#8fe3ff"/></g>
+      <path d="M56 83 q9 6 18 0" stroke="#8fe3ff" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path class="arm-l" d="M33 122 q-20 2 -22 22" stroke="${INK}" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path class="arm-r" d="M97 122 q20 2 22 22" stroke="${INK}" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <rect x="33" y="110" width="64" height="48" rx="16" fill="${o.c}" stroke="${INK}" stroke-width="4"/>
+      <text x="65" y="140" text-anchor="middle" fill="#fff" font-family="Fredoka,Segoe UI,sans-serif" font-weight="700" font-size="17">E2B</text></svg>`,
+    router: () => `<svg viewBox="0 0 220 235" width="220" height="235" aria-hidden="true">
+      <path d="M30 6 H190 L138 62 H82 Z" fill="#ece9fb" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/>
+      <rect x="14" y="62" width="192" height="134" rx="18" fill="#d9d3f7" stroke="${INK}" stroke-width="4"/>
+      <rect x="32" y="80" width="156" height="56" rx="10" fill="${INK}"/>
+      <circle cx="46" cy="166" r="7" fill="#6250d6" stroke="${INK}" stroke-width="2.5"/><circle cx="68" cy="166" r="7" fill="#1baf7a" stroke="${INK}" stroke-width="2.5"/><circle cx="90" cy="166" r="7" fill="#eda100" stroke="${INK}" stroke-width="2.5"/>
+      <text x="152" y="171" text-anchor="middle" fill="${INK}" font-family="Fredoka,Segoe UI,sans-serif" font-weight="700" font-size="13">ModernBERT</text>
+      <path d="M44 196 v24 M176 196 v24" stroke="${INK}" stroke-width="6" stroke-linecap="round"/></svg>`,
+    env: () => `<svg viewBox="0 0 46 32" width="46" height="32" aria-hidden="true"><rect x="2" y="2" width="42" height="28" rx="5" fill="#fff" stroke="${INK}" stroke-width="3"/><path d="M4 5 L23 19 L42 5" fill="none" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/></svg>`,
+    book: () => `<svg viewBox="0 0 112 84" width="112" height="84" aria-hidden="true"><path d="M56 14 C41 4 19 4 6 10 V74 C19 68 41 68 56 78 Z" fill="#fde4d8" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/><path d="M56 14 C71 4 93 4 106 10 V74 C93 68 71 68 56 78 Z" fill="#fff" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/><path d="M16 24 h28 M16 34 h28 M16 44 h22 M16 54 h26 M68 24 h28 M68 34 h28 M68 44 h20 M68 54 h26" stroke="#eb6834" stroke-width="3" stroke-linecap="round"/></svg>`,
+    cart: (o) => `<svg viewBox="0 0 124 80" width="93" height="60" aria-hidden="true"><path d="M6 6 H100 L118 24 V74 H6 Z" fill="#d9efd9" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/><rect x="16" y="16" width="80" height="38" rx="6" fill="#fff" stroke="${INK}" stroke-width="3"/><text x="56" y="34" text-anchor="middle" fill="${INK}" font-family="JetBrains Mono,Consolas,monospace" font-weight="700" font-size="13">KV</text><text x="56" y="49" text-anchor="middle" fill="${INK}" font-family="Nunito,Segoe UI,sans-serif" font-weight="800" font-size="12">${o.label || ""}</text><path d="M22 66 h8 M38 66 h8 M54 66 h8 M70 66 h8 M86 66 h8" stroke="${INK}" stroke-width="4"/></svg>`,
+    drum: () => `<svg class="wobble" viewBox="0 0 90 96" width="80" height="85" aria-hidden="true" style="--d:8.5s;transform-origin:45px 90px"><path d="M6 16 V80 C6 92 84 92 84 80 V16" fill="#eef1f7" stroke="${INK}" stroke-width="4"/><ellipse cx="45" cy="16" rx="39" ry="11" fill="#fff" stroke="${INK}" stroke-width="4"/><path d="M6 40 C6 52 84 52 84 40 M6 62 C6 74 84 74 84 62" stroke="${INK}" stroke-width="3" fill="none"/></svg>`,
+    clock: (o) => `<svg viewBox="0 0 70 84" width="66" height="80" aria-hidden="true"><rect x="28" y="2" width="14" height="9" rx="3" fill="${INK}"/><circle cx="35" cy="48" r="31" fill="#fff" stroke="${INK}" stroke-width="4"/><circle cx="35" cy="48" r="3" fill="${INK}"/><line class="tick" x1="35" y1="48" x2="35" y2="25" stroke="#c62e2e" stroke-width="4" stroke-linecap="round" style="--d:${o.cd}s;--n:${o.cn};transform-origin:35px 48px"/></svg>`,
+  };
+  document.querySelectorAll("[data-char]").forEach(n => {
+    const d = n.dataset;
+    n.insertAdjacentHTML("afterbegin", CHAR[d.char]({c: d.c || "#2a78d6", s: +(d.s || 1), label: d.label, cd: d.cd || 0, cn: d.cn || 2}));
+  });
+
+  // ---------- generated scene parts ----------
+  const TOOLS = ["search_restaurants", "search_menu_items", "get_restaurant_details", "get_menu_item_details", "get_directions",
+    "set_active_location", "search_posts", "ask_about_posts", "search_saved", "search_shared_items", "search_chat_memory",
+    "list_friends", "get_suggested_users", "open_screen", "send_message_to_friends"];
+  // slide 2: the 15 tools fanned over the robot
+  const arc = document.getElementById("toolarc");
+  TOOLS.forEach((t, i) => arc.appendChild(el(`<div class="chip an pop" style="position:static;font-size:11px;padding:6px 8px;--d:${(1.7 + i * .07).toFixed(2)}s;${i === 14 ? "background:var(--bad-t)" : ""}">${t}</div>`)));
+  // slide 4: 15 tool tiles
+  const t4 = document.getElementById("tiles4");
+  for (let i = 0; i < 15; i++) t4.appendChild(el(`<div class="tile an pop" style="left:${+t4.dataset.x + i * 37}px;top:${t4.dataset.y}px;--d:${(+t4.dataset.d + i * .03).toFixed(2)}s"></div>`));
+  t4.appendChild(el(`<div class="tile hl an pop" style="left:${t4.dataset.x}px;top:${t4.dataset.y}px;--d:${t4.dataset.hl}s"></div>`));
+  // attention arcs
+  document.querySelectorAll("svg[data-arcs]").forEach(svg => {
+    const [fx, fy] = svg.dataset.from.split(",").map(Number);
+    let tos;
+    if (svg.dataset.tiles) { const [x0, y0] = svg.dataset.tiles.split(",").map(Number); tos = TOOLS.map((_, i) => [x0 + 16 + i * 37, y0]); }
+    else tos = svg.dataset.tos.split(";").map(p => p.split(",").map(Number));
+    const d0 = +svg.dataset.d, st = +svg.dataset.step, col = svg.dataset.color;
+    svg.innerHTML = tos.map(([x, y], i) => {
+      const cx = (fx + x) / 2, cy = Math.min(fy, y) - 40 - Math.abs(fx - x) * .12;
+      const len = Math.round(1.15 * (Math.hypot(x - fx, y - fy) + Math.hypot(cx - fx, cy - fy) + Math.hypot(x - cx, y - cy)) / 2);
+      return `<path class="an draw" style="--len:${len};--d:${(d0 + i * st).toFixed(2)}s;--t:.5s" d="M${fx} ${fy} Q${cx} ${cy} ${x} ${y}" fill="none" stroke="${col}" stroke-opacity=".55" stroke-width="2.5" stroke-linecap="round"/>`;
+    }).join("");
+  });
+  // slide 5: embedding vector and the meaning map
+  const v5 = document.getElementById("vec5");
+  [18, 30, 12, 26, 34, 10, 22, 28, 16, 32, 14, 24, 20, 30].forEach((h, i) =>
+    v5.appendChild(el(`<div class="an growy" style="position:absolute;left:${+v5.dataset.x + i * 13}px;top:${+v5.dataset.y + 40 - h}px;width:9px;height:${h}px;background:var(--hier);border:2px solid var(--ink);border-radius:3px;--d:${(+v5.dataset.d + i * .03).toFixed(2)}s"></div>`)));
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const CL = [["saved", 140, 120], ["navigate", 250, 80], ["people", 400, 120], ["food", 170, 320], ["posts", 330, 290], ["talk", 430, 360]];
+  let svg = `<svg width="514" height="434" style="position:absolute;left:0;top:0" aria-hidden="true">`;
+  const pts = {};
+  CL.forEach(([name, cx, cy]) => {
+    pts[name] = [];
+    for (let k = 0; k < 9; k++) { const a = rnd() * 6.28, r = 12 + rnd() * 30; pts[name].push([cx + r * Math.cos(a), cy + r * Math.sin(a)]); }
+    svg += pts[name].map(([x, y]) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" fill="#c7cde0" stroke="${INK}" stroke-width="1.5"/>`).join("");
+    svg += `<text x="${cx}" y="${cy + 54}" text-anchor="middle" font-family="Nunito,Segoe UI,sans-serif" font-weight="800" font-size="13" fill="#5a6280">${name}</text>`;
+  });
+  const near = (name, x, y, n) => pts[name].map(p => [Math.hypot(p[0] - x, p[1] - y), p]).sort((a, b) => a[0] - b[0]).slice(0, n).map(a => a[1]);
+  const link = (from, list, d, col, dash) => list.map(([x, y], i) => {
+    const len = Math.ceil(Math.hypot(x - from[0], y - from[1])) + 4;
+    return `<line class="an draw" style="--len:${len};--d:${(d + i * .12).toFixed(2)}s;--t:.35s" x1="${from[0]}" y1="${from[1]}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="${col}" stroke-width="3" ${dash ? 'stroke-dasharray="5 5"' : ""} stroke-linecap="round"/>`;
+  }).join("");
+  const m1 = [165, 120], m2 = [190, 310];
+  svg += link(m1, near("saved", ...m1, 3), 3.7, "#6250d6") + link(m1, near("navigate", ...m1, 1), 4.1, "#8e95ad", true);
+  svg += near("saved", ...m1, 9).map(([x, y], i) => `<circle class="an pop" style="--d:${(3.9 + i * .03).toFixed(2)}s" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" fill="#6250d6" stroke="${INK}" stroke-width="1.5"/>`).join("");
+  svg += link(m2, near("food", ...m2, 3), 8.8, "#1baf7a");
+  svg += near("food", ...m2, 9).map(([x, y], i) => `<circle class="an pop" style="--d:${(9 + i * .03).toFixed(2)}s" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" fill="#1baf7a" stroke="${INK}" stroke-width="1.5"/>`).join("");
+  svg += `</svg>`;
+  document.getElementById("map5").insertAdjacentHTML("beforeend", svg +
+    `<div class="tag an pop" style="left:22px;top:42px;--d:4s;background:var(--hier-t)">saved_open 0.78</div>` +
+    `<div class="tag an pop" style="left:290px;top:30px;--d:4.3s">navigate 0.75 · same action</div>` +
+    `<div class="tag an pop" style="left:30px;top:392px;--d:9.1s;background:var(--classes-t)">menu_search 0.81</div>` +
+    `<div class="lbl" style="left:0;top:446px">meaning space · 212 example sentences</div>`);
+  // slide 7: one probability per option
+  const b7 = document.getElementById("bars7"), vals = b7.dataset.v.split(",").map(Number);
+  vals.forEach((v, i) => {
+    const h = Math.round(v / .58 * 130), x = +b7.dataset.x + i * +b7.dataset.step + 21, d = +b7.dataset.d + i * .1;
+    b7.appendChild(el(`<div class="an growy" style="position:absolute;left:${x}px;top:${+b7.dataset.y - h}px;width:40px;height:${h}px;background:${i === 1 ? "var(--decision)" : "var(--decision-t)"};border:2.5px solid var(--ink);border-radius:6px 6px 0 0;--d:${d.toFixed(2)}s;--t:.7s"></div>`));
+    b7.appendChild(el(`<div class="lbl an fade" style="left:${x - 2}px;top:${+b7.dataset.y - h - 22}px;--d:${(d + .5).toFixed(2)}s;color:var(--ink)">${v.toFixed(2)}</div>`));
+  });
+  // slide 9: one dot per turn
+  const d9 = document.getElementById("dots9");
+  for (let i = 0; i < 74; i++) d9.appendChild(el(`<div class="vdot an pop" style="left:${64 + (i % 19) * 20}px;top:${180 + Math.floor(i / 19) * 20}px;background:var(--classes);--d:${(.6 + i * .012).toFixed(3)}s"></div>`));
+  for (let i = 0; i < 13; i++) d9.appendChild(el(`<div class="vdot an pop" style="left:${64 + i * 20}px;top:460px;background:var(--bad-t);--d:${(2.2 + i * .03).toFixed(2)}s"></div>`));
+  // token output, one chip per token
+  document.querySelectorAll("[data-toks]").forEach(box => {
+    const d0 = +box.dataset.d, st = +box.dataset.step;
+    box.dataset.toks.split("|").forEach((t, i) => { const s = el(`<span class="an pop" style="--d:${(d0 + i * st).toFixed(2)}s;--t:.35s"></span>`); s.textContent = t; box.appendChild(s); });
+  });
+  // slide 12: results, from the run files
+  const PIPE = [["Direct", "var(--direct)"], ["Active", "var(--active)"], ["Active v2", "var(--active2)"], ["Classes · COSMOS", "var(--classes)"], ["Classes · Decision", "var(--decision)"]];
+  const DATA = {
+    exact: {v: [71, 73, 85, 84, 85], max: 100, f: v => v + "%"},
+    halluc: {v: [7, 0, 0, 1, 0], max: 8, f: v => String(v)},
+    ttft: {v: [0.44, 4.03, 2.80, 1.83, 3.46], max: 5, f: v => v.toFixed(2) + " s"},
+    reply: {v: [2.31, 5.49, 3.43, 3.44, 5.07], max: 6, f: v => v.toFixed(2) + " s"},
+  };
+  document.querySelectorAll("[data-chart]").forEach((panel, p) => {
+    const d = DATA[panel.dataset.chart];
+    panel.insertAdjacentHTML("beforeend", PIPE.map(([name, col], i) =>
+      `<div class="rrow"><span class="k"><i style="background:${col}"></i>${name}</span><span class="bt"><i class="an grow" style="--w:${Math.max(d.v[i] / d.max * 100, d.v[i] ? 1.5 : 0)}%;--c:${col};--d:${(1 + p * .25 + i * .12).toFixed(2)}s;--t:.9s"></i></span><span class="v">${d.f(d.v[i])}</span></div>`).join(""));
+  });
+  // subtitles: each line shows until the next one starts
+  document.querySelectorAll(".subs").forEach(box => {
+    const items = [...box.children];
+    items.forEach((s, i) => {
+      const at = +s.dataset.at, next = i < items.length - 1 ? +items[i + 1].dataset.at : null;
+      s.classList.add("an", next === null ? "caplast" : "capio");
+      s.style.setProperty("--d", at + "s");
+      if (next !== null) { s.style.setProperty("--t", (next - at) + "s"); s.classList.add("rm-hide"); }
+    });
+  });
+
+  // ---------- deck ----------
+  const stage = document.getElementById("stage");
+  const slides = [...document.querySelectorAll(".slide")];
+  const dots = document.getElementById("dots"), counter = document.getElementById("counter");
+  const autoBtn = document.getElementById("auto"), progress = document.getElementById("progress");
+  let cur = -1, run = 0, timers = [], auto = false, autoTimer = 0;
+  slides.forEach((s, i) => {
+    const b = document.createElement("button");
+    b.setAttribute("aria-label", `Slide ${i + 1}: ${s.getAttribute("aria-label")}`);
+    b.addEventListener("click", () => show(i));
+    dots.appendChild(b);
+    s.querySelectorAll("[data-type]").forEach(n => { n.dataset.full = n.dataset.type; n.textContent = n.dataset.type; });
+  });
+  const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+  function typeIt(n, id) {
+    const txt = n.dataset.full, d = +(n.dataset.d || 0), cps = +(n.dataset.cps || 30);
+    if (reduce) { n.textContent = txt; return; }
+    n.textContent = "";
+    later(() => {
+      let i = 0;
+      n.classList.add("caret");
+      const step = () => { if (id !== run) return; n.textContent = txt.slice(0, ++i); if (i < txt.length) later(step, 1000 / cps); else n.classList.remove("caret"); };
+      step();
+    }, d * 1000);
+  }
+  function countUp(n, id) {
+    const to = +n.dataset.count, dec = +(n.dataset.dec || 0), d = +(n.dataset.d || 0), dur = +(n.dataset.t || 1.1) * 1000, suf = n.dataset.suf || "";
+    const put = v => { n.textContent = v.toFixed(dec) + suf; };
+    if (reduce) { put(to); return; }
+    put(0);
+    later(() => {
+      let t0 = null;
+      const f = now => {
+        if (id !== run) return;
+        if (t0 === null) t0 = now;
+        const k = Math.max(0, Math.min(1, (now - t0) / dur));
+        put(to * (1 - Math.pow(1 - k, 3)));
+        if (k < 1) requestAnimationFrame(f);
+      };
+      requestAnimationFrame(f);
+    }, d * 1000);
+    // the final value lands even if frames stop (background tab, capture)
+    later(() => { if (id === run) put(to); }, d * 1000 + dur + 120);
+  }
+  function play(s) {
+    run++;
+    timers.forEach(clearTimeout); timers = [];
+    s.classList.remove("play"); void s.offsetWidth; s.classList.add("play");
+    s.querySelectorAll(".caret").forEach(n => n.classList.remove("caret"));
+    s.querySelectorAll("[data-type]").forEach(n => typeIt(n, run));
+    s.querySelectorAll("[data-count]").forEach(n => countUp(n, run));
+    clearTimeout(autoTimer);
+    progress.style.transition = "none"; progress.style.width = "0";
+    if (auto) {
+      const ms = (+(s.dataset.dur || 8) + 1.5) * 1000;
+      requestAnimationFrame(() => { progress.style.transition = `width ${ms}ms linear`; progress.style.width = "100%"; });
+      autoTimer = setTimeout(() => { if (cur < slides.length - 1) show(cur + 1); else setAuto(false); }, ms);
+    }
+  }
+  function show(i) {
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    if (cur >= 0) slides[cur].classList.remove("on", "play");
+    cur = i; slides[i].classList.add("on"); play(slides[i]);
+    [...dots.children].forEach((b, k) => b.classList.toggle("cur", k === i));
+    counter.textContent = `${i + 1} / ${slides.length}`;
+    try { history.replaceState(null, "", "#" + (i + 1)); } catch (e) {}
+  }
+  function setAuto(on) {
+    auto = on; autoBtn.setAttribute("aria-pressed", String(on)); autoBtn.textContent = on ? "❚❚ Pause" : "▶ Play clip";
+    if (on) play(slides[cur]); else { clearTimeout(autoTimer); progress.style.transition = "none"; progress.style.width = "0"; }
+  }
+  document.getElementById("prev").onclick = () => show(cur - 1);
+  document.getElementById("next").onclick = () => show(cur + 1);
+  document.getElementById("replay").onclick = () => play(slides[cur]);
+  autoBtn.onclick = () => setAuto(!auto);
+  document.getElementById("full").onclick = () => { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen?.().catch(() => {}); };
+  addEventListener("keydown", e => {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    const k = e.key;
+    if (["ArrowRight", "PageDown", " ", "Enter"].includes(k)) { e.preventDefault(); show(cur + 1); }
+    else if (["ArrowLeft", "PageUp", "Backspace"].includes(k)) { e.preventDefault(); show(cur - 1); }
+    else if (k === "Home") show(0); else if (k === "End") show(slides.length - 1);
+    else if (k === "r" || k === "R") play(slides[cur]);
+    else if (k === "p" || k === "P") setAuto(!auto);
+    else if (k === "f" || k === "F") document.getElementById("full").click();
+  });
+  let x0 = null;
+  addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, {passive: true});
+  addEventListener("touchend", e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; x0 = null; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); });
+  const fit = () => { stage.style.transform = `scale(${Math.min(innerWidth / 1280, (innerHeight - 58) / 720)})`; };
+  addEventListener("resize", fit); fit();
+  const start = parseInt(location.hash.slice(1), 10);
+  show(Number.isFinite(start) ? start - 1 : 0);
+})();
+</script>
+</body>
+</html>
