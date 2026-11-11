@@ -221,7 +221,32 @@ def _cmd_memeval(args) -> int:
         for path in render(schema.load(args.data), out):
             print(path)
         return 0
-    print("usage: feast-ai memeval {validate,gen,render} ...", file=sys.stderr)
+    if args.memeval_command == "run":
+        from .engine.server import EngineError
+        from .memeval.runner import RunConfig, run
+
+        split = lambda text: tuple(x for x in text.split(",") if x)  # noqa: E731
+        cfg = RunConfig(data=args.data, model_id=args.model_id, condition=args.condition,
+                        tools=args.tools, profile=args.profile, cores=args.cores,
+                        ram_gb=args.ram_gb, limit=args.limit, personas=split(args.personas),
+                        categories=split(args.categories), max_tokens=args.max_tokens,
+                        arm=args.arm, k=args.k, memory_budget=args.memory_budget)
+        try:
+            out = asyncio.run(run(cfg))
+        except EngineError as exc:
+            print(f"run failed: {exc}", file=sys.stderr)
+            return 2
+        print(f"\nRun saved to {out}")
+        return 0
+    if args.memeval_command == "report":
+        from pathlib import Path
+
+        from .memeval.report import write_report
+
+        out = write_report([Path(d) for d in args.runs], Path(args.out) if args.out else None)
+        print(f"Report written to {out / 'report.md'}")
+        return 0
+    print("usage: feast-ai memeval {validate,gen,render,run,report} ...", file=sys.stderr)
     return 2
 
 
@@ -496,6 +521,27 @@ def main(argv: list[str] | None = None) -> int:
     render_cmd = memeval_sub.add_parser("render", help="write a dataset as Markdown for hand review")
     render_cmd.add_argument("data", help="dataset directory")
     render_cmd.add_argument("--out", default="", help="output directory (default <data>/_review)")
+    run_cmd = memeval_sub.add_parser("run", help="answer a dataset's questions with a model, headless")
+    run_cmd.add_argument("model_id", help="catalog id, e.g. gemma-4-e2b")
+    run_cmd.add_argument("--data", default="feast_ai/memeval/data/v0.1")
+    run_cmd.add_argument("--condition", default="none", choices=["none", "oracle", "full", "always", "gated"],
+                         help="what MEMORY holds; always/gated use the memory engine")
+    run_cmd.add_argument("--arm", default="facts+raw", choices=["raw", "facts", "facts+raw"],
+                         help="engine conditions: retrieved turns, consolidated facts, or both")
+    run_cmd.add_argument("--k", type=int, default=8, help="retrieved turns (engine conditions)")
+    run_cmd.add_argument("--memory-budget", type=int, default=900, help="MEMORY tokens (approx)")
+    run_cmd.add_argument("--tools", default="off", choices=["off", "all"],
+                         help="off: plain answers; all: every agent tool offered, calls recorded")
+    run_cmd.add_argument("--profile", default="", help="device profile (budget, midrange, ...)")
+    run_cmd.add_argument("--cores", type=int, default=0)
+    run_cmd.add_argument("--ram-gb", type=float, default=0.0, help="device RAM; turns the ceiling on")
+    run_cmd.add_argument("--limit", type=int, default=0, help="N questions spread over categories")
+    run_cmd.add_argument("--personas", default="", help="comma-separated persona ids")
+    run_cmd.add_argument("--categories", default="", help="comma-separated categories")
+    run_cmd.add_argument("--max-tokens", type=int, default=256)
+    report_cmd = memeval_sub.add_parser("report", help="score runs and write a comparison report")
+    report_cmd.add_argument("runs", nargs="+", help="run directories under FEAST_AI_HOME/evals")
+    report_cmd.add_argument("--out", default="", help="report directory (default evals/report-<time>)")
 
     args = parser.parse_args(argv)
 
