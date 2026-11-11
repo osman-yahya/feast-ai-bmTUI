@@ -177,9 +177,17 @@ async def extract(client, session, names) -> tuple[str, list[dict]]:
     return raw, parse_ops(raw)
 
 
-async def build_store(client, ds: Dataset, persona: str, until: str, log=print) -> MemoryStore:
-    """Replay a persona's history up to ``until``: sessions and erasures in time order."""
+async def build_store(client, ds: Dataset, persona: str, until: str, log=print,
+                      reuse: MemoryStore | None = None) -> MemoryStore:
+    """Replay a persona's history up to ``until``: sessions and erasures in time order.
+
+    A session ``reuse`` already consolidated replays its recorded ops instead
+    of asking the SLM again - v0.2 is v0.1 plus filler, so the v0.1 sessions
+    come out exactly as before.  With no ``client``, a session ``reuse`` does
+    not know is kept as episodes only (no facts): the retrieval eval's path,
+    which needs no model and gets the same episodes a full build would."""
     names = memory_names(ds)
+    recorded = {e["session"]: e for e in (reuse.log if reuse else []) if "session" in e}
     cuisines = cuisine_index(ds)
     store = MemoryStore(persona=persona)
     events = [(s.started_at, "session", s) for s in ds.sessions.get(persona, []) if s.started_at < until]
@@ -193,9 +201,19 @@ async def build_store(client, ds: Dataset, persona: str, until: str, log=print) 
             spans = resolve(t.text, ref, names)
             store.episodes.append(Episode(t.turn_id, t.ts, t.role, annotate(link(t.text, cuisines), ref, names),
                                           [f"{s.first}..{s.last}" for s in spans]))
+        first_user = next((t for t in item.turns if t.role == "user"), item.turns[0])
+        if item.session_id in recorded:
+            rec = recorded[item.session_id]
+            done = [[op, key, value, apply(store, op, key, value, first_user.turn_id, first_user.ts[:10])]
+                    if result != "DROPPED" else [op, key, value, result]
+                    for op, key, value, result in rec["ops"]]
+            store.log.append({"session": item.session_id, "raw": rec["raw"], "ops": done, "replayed": True})
+            continue
+        if client is None:
+            store.log.append({"session": item.session_id, "raw": None, "ops": [], "episodes_only": True})
+            continue
         raw, ops = await extract(client, item, names)
         done = []
-        first_user = next((t for t in item.turns if t.role == "user"), item.turns[0])
         for o in ops:
             value = canonical(o["key"], o["value"])
             if value is None:
@@ -208,22 +226,35 @@ async def build_store(client, ds: Dataset, persona: str, until: str, log=print) 
     return store
 
 
-def store_path(root: Path, model_id: str, persona: str) -> Path:
-    return root / "memstore" / model_id / f"{persona}.json"
+#: The dataset a later version extends; its stores are replayed, not rebuilt.
+BASE_VERSION = "v0.1"
 
 
-async def build_stores(client, ds: Dataset, model_id: str, root: Path, log=print) -> dict[str, MemoryStore]:
-    """One store per persona, built once per model and cached under ``root``."""
+def store_path(root: Path, model_id: str, persona: str, version: str = BASE_VERSION) -> Path:
+    """v0.1 stores stay where they were; other dataset versions get a folder."""
+    base = root / "memstore" / model_id
+    return (base if version == BASE_VERSION else base / version) / f"{persona}.json"
+
+
+async def build_stores(client, ds: Dataset, model_id: str, root: Path, log=print,
+                       save: bool = True) -> dict[str, MemoryStore]:
+    """One store per persona, built once per model and dataset version and
+    cached under ``root``.  A newer version reuses the v0.1 store's
+    consolidation for the sessions they share (:func:`build_store`)."""
+    version = Path(ds.root).name
     stores = {}
     for pid in sorted(ds.personas):
-        path = store_path(root, model_id, pid)
+        path = store_path(root, model_id, pid, version)
         if path.exists():
             stores[pid] = MemoryStore.load(path)
             continue
+        base = store_path(root, model_id, pid)
+        reuse = MemoryStore.load(base) if version != BASE_VERSION and base.exists() else None
         until = max((q.asked_at for q in ds.questions if q.persona == pid), default="9999")
-        log(f"Consolidating {pid}…")
-        stores[pid] = await build_store(client, ds, pid, until, log)
-        stores[pid].save(path)
+        log(f"Consolidating {pid} ({version}{', replaying ' + BASE_VERSION if reuse else ''})…")
+        stores[pid] = await build_store(client, ds, pid, until, log, reuse)
+        if save:
+            stores[pid].save(path)
     return stores
 
 

@@ -1,0 +1,45 @@
+[
+ {
+  "key": "allergen",
+  "value": "crustaceans",
+  "kind": "hard",
+  "valid_from": "2026-08-01",
+  "source": "explicit",
+  "source_turn_id": "t_p_mert_00_00"
+ },
+ {
+  "key": "likes",
+  "value": "burger",
+  "kind": "soft",
+  "valid_from": "2026-08-05",
+  "source": "explicit",
+  "valid_until": "2026-10-18",
+  "status": "closed",
+  "source_turn_id": "t_p_mert_01_00"
+ },
+ {
+  "key": "home_area",
+  "value": "Beşiktaş",
+  "kind": "soft",
+  "valid_from": "2026-09-02",
+  "source": "explicit",
+  "status": "deleted",
+  "source_turn_id": "t_p_mert_03_00"
+ },
+ {
+  "key": "dislikes",
+  "value": "acılı",
+  "kind": "soft",
+  "valid_from": "2026-09-28",
+  "source": "explicit",
+  "source_turn_id": "t_p_mert_05_00"
+ },
+ {
+  "key": "likes",
+  "value": "kebap",
+  "kind": "soft",
+  "valid_from": "2026-10-18",
+  "source": "explicit",
+  "source_turn_id": "t_p_mert_09_00"
+ }
+]

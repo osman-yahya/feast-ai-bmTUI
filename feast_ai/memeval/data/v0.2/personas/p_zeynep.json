@@ -1,0 +1,80 @@
+{
+ "id": "p_zeynep",
+ "name": "Zeynep",
+ "home_lat": 41.043,
+ "home_lng": 29.005,
+ "home_area": "Beşiktaş",
+ "saved_restaurants": [
+  {
+   "restaurant_id": "r_031",
+   "saved_at": "2026-10-01T20:32:00"
+  }
+ ],
+ "saved_menu_items": [],
+ "visited_restaurants": [
+  {
+   "restaurant_id": "r_051",
+   "visited_at": "2026-08-16T21:45:00"
+  },
+  {
+   "restaurant_id": "r_080",
+   "visited_at": "2026-10-12T21:45:00"
+  },
+  {
+   "restaurant_id": "r_030",
+   "visited_at": "2026-10-18T14:45:00"
+  },
+  {
+   "restaurant_id": "r_001",
+   "visited_at": "2026-10-22T20:00:00"
+  },
+  {
+   "restaurant_id": "r_032",
+   "visited_at": "2026-08-11T20:00:00"
+  }
+ ],
+ "posts": [
+  {
+   "id": "po_p_zeynep_0",
+   "restaurant_id": "r_051",
+   "created_at": "2026-08-16T21:45:00",
+   "text": "Bayıldım"
+  },
+  {
+   "id": "po_p_zeynep_1",
+   "restaurant_id": "r_080",
+   "created_at": "2026-10-12T21:45:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_zeynep_2",
+   "restaurant_id": "r_030",
+   "created_at": "2026-10-18T14:45:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_zeynep_3",
+   "restaurant_id": "r_001",
+   "created_at": "2026-10-22T20:00:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_zeynep_4",
+   "restaurant_id": "r_032",
+   "created_at": "2026-08-11T20:00:00",
+   "text": "Porsiyonlar küçük"
+  }
+ ],
+ "shared_messages": [
+  {
+   "friend": "Ece",
+   "restaurant_id": "r_051",
+   "sent_at": "2026-08-17T20:45:00"
+  }
+ ],
+ "friends": [
+  "Ece",
+  "Burak"
+ ],
+ "memory_deletions": []
+}

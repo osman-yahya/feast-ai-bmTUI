@@ -1,0 +1,80 @@
+{
+ "id": "p_burak",
+ "name": "Burak",
+ "home_lat": 41.032,
+ "home_lng": 28.983,
+ "home_area": "Cihangir",
+ "saved_restaurants": [
+  {
+   "restaurant_id": "r_072",
+   "saved_at": "2026-10-18T13:02:00"
+  }
+ ],
+ "saved_menu_items": [],
+ "visited_restaurants": [
+  {
+   "restaurant_id": "r_043",
+   "visited_at": "2026-09-09T14:30:00"
+  },
+  {
+   "restaurant_id": "r_080",
+   "visited_at": "2026-10-08T21:30:00"
+  },
+  {
+   "restaurant_id": "r_030",
+   "visited_at": "2026-10-25T21:00:00"
+  },
+  {
+   "restaurant_id": "r_023",
+   "visited_at": "2026-10-18T20:00:00"
+  },
+  {
+   "restaurant_id": "r_053",
+   "visited_at": "2026-09-17T20:00:00"
+  }
+ ],
+ "posts": [
+  {
+   "id": "po_p_burak_0",
+   "restaurant_id": "r_043",
+   "created_at": "2026-09-09T14:30:00",
+   "text": "Tekrar gelirim"
+  },
+  {
+   "id": "po_p_burak_1",
+   "restaurant_id": "r_080",
+   "created_at": "2026-10-08T21:30:00",
+   "text": "Bayıldım"
+  },
+  {
+   "id": "po_p_burak_2",
+   "restaurant_id": "r_030",
+   "created_at": "2026-10-25T21:00:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_burak_3",
+   "restaurant_id": "r_023",
+   "created_at": "2026-10-18T20:00:00",
+   "text": "Bayıldım"
+  },
+  {
+   "id": "po_p_burak_4",
+   "restaurant_id": "r_053",
+   "created_at": "2026-09-17T20:00:00",
+   "text": "Bayıldım"
+  }
+ ],
+ "shared_messages": [
+  {
+   "friend": "Zeynep",
+   "restaurant_id": "r_043",
+   "sent_at": "2026-09-10T13:30:00"
+  }
+ ],
+ "friends": [
+  "Zeynep",
+  "Can"
+ ],
+ "memory_deletions": []
+}

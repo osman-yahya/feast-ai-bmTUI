@@ -13,10 +13,16 @@ engine runs use) and is scored on:
 Evidence turns a KVKK erasure removed from the store are not counted; a
 question whose evidence is all gone is skipped.  The gate's query expansion
 for recommendations is kept for the lexical side, as in ``runner``.
+
+A dataset version with no saved stores (v0.2 = v0.1 + filler) is replayed
+from the v0.1 stores, the filler as episodes only - the episodes are what a
+full consolidation would store, only the filler's facts are skipped (see
+:func:`consolidate.build_store`).
 """
 
 from __future__ import annotations
 
+import asyncio
 import json
 import statistics
 import time
@@ -26,10 +32,9 @@ from pathlib import Path
 
 from ..paths import ENCODERS_DIR, HOME
 from ..encoders import EMBED_QUERY_PREFIX
-from .engine.consolidate import memory_names, store_path
+from .engine.consolidate import build_stores, memory_names
 from .engine.embed import Encoder, EncoderSpec, Reranker, doc_text, retrieve_dense
 from .engine.gate import gate
-from .engine.store import MemoryStore
 from .schema import load
 
 DATA = Path(__file__).parent / "data" / "v0.1"
@@ -38,12 +43,27 @@ RECOMMEND_EXPANSION = " alerji diyet vegan vejetaryen sevmem"
 
 def encoder_specs() -> dict[str, EncoderSpec]:
     d = ENCODERS_DIR / "modernbert-tr-embed"
+    e5 = ENCODERS_DIR / "multilingual-e5-base"
+    eg = ENCODERS_DIR / "embeddinggemma-300m"
     return {
         # The model card's retrieval setup: instruction on the query only.
         "mbert-asym": EncoderSpec("mbert-asym", d, query_prefix=EMBED_QUERY_PREFIX),
         # The router's finding (encoders.py): the prefix on both sides.
         "mbert-sym": EncoderSpec("mbert-sym", d, query_prefix=EMBED_QUERY_PREFIX,
                                  doc_prefix=EMBED_QUERY_PREFIX),
+        # multilingual-e5-base (Xenova int8 ONNX): the card's query/passage
+        # pair, and "query:" on both sides, its advice for symmetric tasks.
+        "e5-asym": EncoderSpec("e5-asym", e5, query_prefix="query: ", doc_prefix="passage: ",
+                               onnx_file="onnx/model_quantized.onnx"),
+        "e5-sym": EncoderSpec("e5-sym", e5, query_prefix="query: ", doc_prefix="query: ",
+                              onnx_file="onnx/model_quantized.onnx"),
+        # EmbeddingGemma-300m (onnx-community export, returns sentence_embedding):
+        # the card's retrieval prompts, and its sentence-similarity prompt on both sides.
+        "egemma-asym": EncoderSpec("egemma-asym", eg, query_prefix="task: search result | query: ",
+                                   doc_prefix="title: none | text: ", onnx_file="onnx/model_quantized.onnx"),
+        "egemma-sym": EncoderSpec("egemma-sym", eg, query_prefix="task: sentence similarity | query: ",
+                                  doc_prefix="task: sentence similarity | query: ",
+                                  onnx_file="onnx/model_quantized.onnx"),
     }
 
 
@@ -77,6 +97,26 @@ ARMS_SYM = (
     Arm("rrf · asym", "rrf", "mbert-asym"),
     Arm("rrf · sym", "rrf", "mbert-sym"),
 )
+#: The long-history test (v0.2): the v0.1 baseline against the sym arms.
+ARMS_LONG = (
+    Arm("bm25 (v0.1)", "bm25"),
+    Arm("dense · sym", "dense", "mbert-sym"),
+    Arm("hybrid 0.5 · sym", "hybrid", "mbert-sym", 0.5),
+    Arm("rrf · sym", "rrf", "mbert-sym"),
+)
+#: Other encoders under the same measurement; an arm whose model is not on
+#: disk is skipped (EmbeddingGemma needs a Hugging Face licence and token).
+ARMS_ENCODERS = (
+    Arm("bm25 (v0.1)", "bm25"),
+    Arm("rrf · mbert-sym", "rrf", "mbert-sym"),
+    Arm("dense · e5-asym", "dense", "e5-asym"),
+    Arm("rrf · e5-asym", "rrf", "e5-asym"),
+    Arm("rrf · e5-sym", "rrf", "e5-sym"),
+    Arm("dense · egemma-asym", "dense", "egemma-asym"),
+    Arm("rrf · egemma-asym", "rrf", "egemma-asym"),
+    Arm("rrf · egemma-sym", "rrf", "egemma-sym"),
+)
+ARM_SETS = {"all": ARMS, "sym": ARMS_SYM, "long": ARMS_LONG, "encoders": ARMS_ENCODERS}
 
 
 def run(data: Path = DATA, model_id: str = "gemma-4-e2b", k: int = 8, threads: int = 6,
@@ -90,15 +130,22 @@ def run(data: Path = DATA, model_id: str = "gemma-4-e2b", k: int = 8, threads: i
 
     ds = load(data)
     names = memory_names(ds)
-    stores = {pid: MemoryStore.load(store_path(HOME, model_id, pid)) for pid in ds.personas}
+    stores = asyncio.run(build_stores(None, ds, model_id, HOME, log=lambda m: None, save=False))
     proc = psutil.Process()
     rss0 = proc.memory_info().rss
     specs = encoder_specs()
     cache = HOME / "memstore" / model_id / "vectors"
     encoders: dict[str, Encoder] = {}
+    encoder_rss: dict[str, float] = {}
+    missing = {a.encoder for a in arms if a.encoder and not (specs[a.encoder].dir / specs[a.encoder].onnx_file).exists()}
+    for name in sorted(missing):
+        log(f"  skipping {name}: {specs[name].dir / specs[name].onnx_file} not found")
+    arms = tuple(a for a in arms if a.encoder not in missing)
     for a in arms:
         if a.encoder and a.encoder not in encoders:
+            r0 = proc.memory_info().rss
             encoders[a.encoder] = Encoder(specs[a.encoder], threads, cache)
+            encoder_rss[a.encoder] = (proc.memory_info().rss - r0) / 2**20
     rss_enc = proc.memory_info().rss
     reranker = Reranker(ENCODERS_DIR / "modernbert-tr-reranker", threads) if any(a.rerank for a in arms) else None
     rss_all = proc.memory_info().rss
@@ -120,14 +167,16 @@ def run(data: Path = DATA, model_id: str = "gemma-4-e2b", k: int = 8, threads: i
     results = {}
     pooled = [e for s in stores.values() for e in s.episodes]
     for a in arms:
-        rows = []
+        rows, ms = [], []
         enc = encoders.get(a.encoder)
         for q, evidence in queries:
             lexical = q.question + (RECOMMEND_EXPANSION if gate(q.question) == "recommend" else "")
             pool = pooled if haystack == "all" else stores[q.persona].episodes
+            t1 = time.perf_counter()
             ranked = retrieve_dense(pool, q.question, q.asked_at, 50, names,
                                     mode=a.mode, encoder=enc, lexical_query=lexical, weight=a.weight,
                                     reranker=reranker if a.rerank else None)
+            ms.append((time.perf_counter() - t1) * 1000)
             ids = [e.turn_id for e in ranked]
             top = set(ids[:k])
             first = next((i + 1 for i, t in enumerate(ids) if t in evidence), None)
@@ -136,8 +185,10 @@ def run(data: Path = DATA, model_id: str = "gemma-4-e2b", k: int = 8, threads: i
                          "hit": float(bool(top & set(evidence))), "mrr": 1 / first if first else 0.0})
         results[a.name] = summarize(rows)
         results[a.name]["rows"] = rows
+        # Ask-time cost end to end: BM25 + question embedding + fusion (doc vectors are cached).
+        results[a.name]["ms_p50"] = statistics.median(ms)
         log(f"  {a.name:<22} recall@{k} {results[a.name]['recall']:.0%}  hit {results[a.name]['hit']:.0%}"
-            f"  mrr {results[a.name]['mrr']:.2f}")
+            f"  mrr {results[a.name]['mrr']:.2f}  {results[a.name]['ms_p50']:.0f} ms")
 
     cost = {"index_s": index_s, "episodes": sum(len(s.episodes) for s in stores.values()),
             "encoder_rss_mb": (rss_enc - rss0) / 2**20, "reranker_rss_mb": (rss_all - rss_enc) / 2**20,
@@ -146,10 +197,12 @@ def run(data: Path = DATA, model_id: str = "gemma-4-e2b", k: int = 8, threads: i
         qs = sorted(enc.query_ms)
         cost[f"{name}_query_ms_p50"] = qs[len(qs) // 2] if qs else None
         cost[f"{name}_load_ms"] = enc.load_ms
+        cost[f"{name}_rss_mb"] = encoder_rss[name]
     if reranker and reranker.call_ms:
         cs = sorted(reranker.call_ms)
         cost["rerank_ms_p50"] = cs[len(cs) // 2]
-    report = {"k": k, "queries": len(queries), "haystack": haystack, "cost": cost, "arms": results}
+    report = {"k": k, "queries": len(queries), "haystack": haystack, "dataset": Path(data).name,
+              "cost": cost, "arms": results}
     if out:
         out.mkdir(parents=True, exist_ok=True)
         (out / "retrieval.json").write_text(json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -179,10 +232,13 @@ def render(report: dict) -> str:
     names = list(arms)
     pct = lambda x: "–" if x is None else f"{x:.0%}"
     head = "| | " + " | ".join(names) + " |\n|---|" + "---:|" * len(names) + "\n"
-    out = [f"# Getirme karşılaştırması (k={report['k']}, {report['queries']} soru)\n",
+    out = [f"# Getirme karşılaştırması ({report.get('dataset', 'v0.1')}, k={report['k']}, "
+           f"{report['queries']} soru)\n",
            head + f"| **recall@{report['k']}** | " + " | ".join(f"**{pct(arms[n]['recall'])}**" for n in names) + " |",
            "| hit@k | " + " | ".join(pct(arms[n]["hit"]) for n in names) + " |",
-           "| MRR | " + " | ".join(f"{arms[n]['mrr']:.2f}" for n in names) + " |"]
+           "| MRR | " + " | ".join(f"{arms[n]['mrr']:.2f}" for n in names) + " |",
+           "| ms/soru (p50) | " + " | ".join(f"{arms[n]['ms_p50']:.0f}" if "ms_p50" in arms[n] else "–"
+                                         for n in names) + " |"]
     cats = sorted({c for n in names for c in arms[n]["by_category"]})
     out.append("\n## Kategori bazında recall@k\n\n" + head.rstrip("\n"))
     for c in cats:
@@ -200,11 +256,17 @@ def render(report: dict) -> str:
 
 
 if __name__ == "__main__":
-    import sys
+    import argparse
     from datetime import datetime
 
-    haystack = sys.argv[1] if len(sys.argv) > 1 else "persona"
-    which = ARMS_SYM if "sym" in sys.argv[2:] else ARMS
-    out = HOME / "evals" / f"retrieval-{datetime.now():%Y%m%d-%H%M%S}-{haystack}"
-    run(arms=which, haystack=haystack, out=out)
-    print(f"Report written to {out / 'retrieval.md'}")
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("haystack", nargs="?", default="persona", choices=("persona", "all"))
+    ap.add_argument("arms", nargs="?", default="all", choices=tuple(ARM_SETS))
+    ap.add_argument("--data", default=str(DATA))
+    ap.add_argument("--k", default="8", help="comma-separated, one report per k")
+    a = ap.parse_args()
+    stamp = f"{datetime.now():%Y%m%d-%H%M%S}"
+    for k in map(int, a.k.split(",")):
+        out = HOME / "evals" / f"retrieval-{stamp}-{Path(a.data).name}-{a.haystack}-k{k}"
+        run(Path(a.data), k=k, arms=ARM_SETS[a.arms], haystack=a.haystack, out=out)
+        print(f"Report written to {out / 'retrieval.md'}")

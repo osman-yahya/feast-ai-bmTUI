@@ -3,6 +3,8 @@
 ``python -m feast_ai memeval report RUN_DIR [RUN_DIR ...]`` - each run is
 scored with :mod:`feast_ai.memeval.score` (``scores.jsonl`` lands next to its
 ``predictions.jsonl``) and the runs become columns, keyed by condition.
+Runs over several dataset versions get the version in their column name,
+and ``--retrieval`` adds ``retrieval_eval`` reports as a table beside them.
 The report is in Turkish: it is what goes in front of reviewers.
 """
 
@@ -34,17 +36,21 @@ def _p(xs: list[float], q: float) -> float:
     return xs[min(len(xs) - 1, int(q * len(xs)))] if xs else 0.0
 
 
-def label(meta: dict) -> str:
+def label(meta: dict, version: bool = False) -> str:
     c = meta["config"]
     name = COND_TR.get(c["condition"], c["condition"])
-    return f"{name} · {c['arm']}" if c["condition"] in ("always", "gated") else name
+    if c["condition"] in ("always", "gated"):
+        name += f" · {c['arm']}" + (f" · {c['retriever']}" if c.get("retriever", "bm25") != "bm25" else "")
+    return f"{Path(meta['dataset']).name} · {name}" if version else name
 
 
 def _order(run: dict) -> tuple:
     c = run["meta"]["config"]
     arms = ("raw", "facts", "facts+raw")
-    return (ORDER.index(c["condition"]) if c["condition"] in ORDER else 99,
-            arms.index(c.get("arm", "raw")) if c["condition"] in ("always", "gated") else 0)
+    return (Path(run["meta"]["dataset"]).name,
+            ORDER.index(c["condition"]) if c["condition"] in ORDER else 99,
+            arms.index(c.get("arm", "raw")) if c["condition"] in ("always", "gated") else 0,
+            c.get("retriever", "bm25") != "bm25")
 
 
 def score_run(run_dir: Path) -> dict:
@@ -62,7 +68,7 @@ def score_run(run_dir: Path) -> dict:
     return {"meta": meta, "rows": rows, "dataset": ds}
 
 
-def summarize(run: dict) -> dict:
+def summarize(run: dict, version: bool = False) -> dict:
     rows, meta = run["rows"], run["meta"]
     scored = [r for r in rows if r["result"]["score"] is not None]
     answerable = [r for r in scored if r["category"] not in ("abstention", "deleted_info")]
@@ -77,7 +83,8 @@ def summarize(run: dict) -> dict:
     opinion = [r for r in rows if r["category"] == "attributed_opinion"]
     with_ev = [r for r in done if r["evidence_turn_ids"] and r["memory_turns"]]
     return {
-        "condition": meta["config"]["condition"], "label": label(meta), "run_id": meta["run_id"],
+        "condition": meta["config"]["condition"], "label": label(meta, version), "run_id": meta["run_id"],
+        "dataset": Path(meta["dataset"]).name,
         "n": len(rows), "facts_eval": meta.get("facts_eval"), "consolidate_s": meta.get("consolidate_s"),
         "accuracy": sum(r["result"]["score"] for r in scored) / len(scored) if scored else 0.0,
         "by_category": {c: (sum(v) / len(v) if v and v[0] is not None else None, len(v))
@@ -126,24 +133,54 @@ def _examples(runs: list[dict], per_cat: int = 1) -> list[str]:
 
 
 def _write_path(sums: list[dict]) -> list[str]:
-    fe = max((s for s in sums if s["facts_eval"]), key=lambda s: s["consolidate_s"] or 0, default=None)
-    if not fe:
-        return []
+    versions = sorted({s["dataset"] for s in sums})
+    out = []
+    for version in versions:
+        fe = max((s for s in sums if s["facts_eval"] and s["dataset"] == version),
+                 key=lambda s: s["consolidate_s"] or 0, default=None)
+        if fe:
+            out.append(_write_path_line(fe, version if len(versions) > 1 else ""))
+    return ["\n## Yazma yolu (konsolidasyon, facts_gold'a göre)\n\n", *out] if out else []
+
+
+def _write_path_line(fe: dict, version: str) -> str:
     f = fe["facts_eval"]
-    return ["\n## Yazma yolu (konsolidasyon, facts_gold'a göre)\n\n",
-            f"Oturum sonu çıkarımı aynı model yapar, kod kanonikleştirir ve uygular. "
+    return ((f"**{version}:** " if version else "")
+            + f"Oturum sonu çıkarımı aynı model yapar, kod kanonikleştirir ve uygular. "
             f"Olgu kesinliği **{100 * f['precision']:.0f}%**, kapsama **{100 * f['recall']:.0f}%** "
             f"({f['tp']} doğru, {f['fp']} fazla, {f['fn']} eksik); eşleşen olguların son durumu "
             f"(açık/kapalı/silindi) {100 * f['status_accuracy']:.0f}% doğru. "
             f"{f['facts']} olgu, {f['episodes']} bölüm; konsolidasyon "
-            + (f"{fe['consolidate_s']:.0f} s ({fe['consolidate_s'] / max(1, f.get('sessions', 0)):.1f} s/oturum).\n"
-               if (fe["consolidate_s"] or 0) > 1 else "bu koşularda önbellekten okundu.\n")]
+            + (f"{fe['consolidate_s']:.0f} s ({fe['consolidate_s'] / max(1, f.get('sessions', 0)):.1f} s/oturum).\n\n"
+               if (fe["consolidate_s"] or 0) > 1 else "bu koşularda önbellekten okundu.\n\n"))
 
 
-def write_report(run_dirs: list[Path], out: Path | None = None) -> Path:
+def _retrieval(paths: list[Path]) -> list[str]:
+    """``retrieval_eval`` reports, one row per (dataset, k, retriever)."""
+    if not paths:
+        return []
+    out = ["\n## Getirme (Gemma'sız, etiketli kanıt turları)\n\n",
+           "Her soru kendi personasının bölümleri içinde sıralanır; recall@k = kanıt turlarının "
+           "ilk k'daki payı. Süre: soru başına BM25 + soru vektörü + birleştirme (tur vektörleri "
+           "oturum sonunda bir kez hesaplanır).\n\n",
+           "| Veri | k | Getirici | recall@k | hit@k | MRR | dolaylı kanıt | güvenlik | ms/soru |\n"
+           "|---|---:|---|---:|---:|---:|---:|---:|---:|\n"]
+    for p in paths:
+        r = json.loads((p / "retrieval.json" if p.is_dir() else p).read_text(encoding="utf-8"))
+        for name, a in r["arms"].items():
+            ind = a["by_tag"].get("indirect_evidence", {}).get("recall")
+            saf = a["by_category"].get("safety", {}).get("recall")
+            out.append(f"| {r.get('dataset', 'v0.1')} | {r['k']} | {name} | {_pct([a['recall']])} | "
+                       f"{_pct([a['hit']])} | {a['mrr']:.2f} | {_pct([ind])} | {_pct([saf])} | "
+                       + (f"{a['ms_p50']:.0f}" if "ms_p50" in a else "–") + " |\n")
+    return out
+
+
+def write_report(run_dirs: list[Path], out: Path | None = None, retrieval: list[Path] = ()) -> Path:
     runs = [score_run(Path(d)) for d in run_dirs]
     runs.sort(key=_order)
-    sums = [summarize(r) for r in runs]
+    versions = sorted({Path(r["meta"]["dataset"]).name for r in runs})
+    sums = [summarize(r, len(versions) > 1) for r in runs]
     out = out or EVALS_DIR / f"report-{time.strftime('%Y%m%d-%H%M%S')}"
     out.mkdir(parents=True, exist_ok=True)
     m0, ds = runs[0]["meta"], runs[0]["dataset"]
@@ -153,17 +190,21 @@ def write_report(run_dirs: list[Path], out: Path | None = None) -> Path:
     def line(label: str, values) -> str:
         return f"| {label} | " + " | ".join(values) + " |\n"
 
+    sizes = {Path(r["meta"]["dataset"]).name: r["dataset"] for r in runs}
     md = [f"# Mustachio bellek değerlendirmesi — {m0['model_name']}\n",
-          f"Veri: `{Path(m0['dataset']).name}` · {len(ds.personas)} persona · "
-          f"{sum(len(v) for v in ds.sessions.values())} oturum · {len(ds.questions)} soru  \n"
+          "Veri: " + " · ".join(f"`{v}` {sum(len(x) for x in d.sessions.values())} oturum / "
+                                f"{sum(len(s.turns) for x in d.sessions.values() for s in x)} tur"
+                                for v, d in sizes.items())
+          + f" · {len(ds.personas)} persona · {len(ds.questions)} soru  \n"
           f"Model: {m0['model_name']} ({m0['quant']}) · profil {m0['profile']} · "
           f"{m0['threads']} çekirdek · bağlam {m0['context_size']} · greedy (temperature 0)  \n"
           f"Araçlar: {m0['config']['tools']} · koşular: " + ", ".join(f"`{s['run_id']}`" for s in sums) + "\n",
           "Koşullar: **bellek yok** = MEMORY boş; **oracle** = yalnız kanıtı içeren oturumlar "
           "(okuma tavanı); **hepsini koy** = tüm geçmiş ham; **her zaman** = bellek motoru, kapısız; "
           "**kapılı** = bellek motoru, müdahale kapısıyla. Kollar: raw = getirilen ham turlar "
-          "(tarihleri kodla çözülmüş), facts = konsolide olgular, facts+raw = ikisi. Prompt'un geri kalanı koşullar arasında "
-          "bayt bayt aynıdır.\n",
+          "(tarihleri kodla çözülmüş), facts = konsolide olgular, facts+raw = ikisi. Getirici: "
+          "varsayılan BM25 (v0.1), rrf = BM25 ile ModernBERT-TR vektör sıralamasının RRF birleşimi. "
+          "Prompt'un geri kalanı koşullar arasında bayt bayt aynıdır.\n",
           "## Doğruluk (deterministik puan)\n", head,
           line("**Genel (puanlanan 8 kategori)**", [f"**{100 * s['accuracy']:.0f}%**" for s in sums])]
     for c in CATEGORIES:
@@ -182,7 +223,7 @@ def write_report(run_dirs: list[Path], out: Path | None = None) -> Path:
            "\n## Hata modları (etiketli sorularda doğruluk)\n", head]
     for t in sorted({t for s in sums for t in s["by_tag"]}):
         md.append(line(t, [_pct([s["by_tag"].get(t)]) for s in sums]))
-    md += [*_write_path(sums), "\n## Rubrikli kategoriler — sert alt kontroller\n",
+    md += [*_retrieval(list(retrieval)), *_write_path(sums), "\n## Rubrikli kategoriler — sert alt kontroller\n",
            "Tercih, güvenlik ve atıflı görüş tam puanı hakem aşamasında; burada yalnız koddan "
            "ölçülebilen ihlaller.\n\n", head,
            line("Atıfsız övgü ('meşhur', 'efsane'…)", [_pct([s["ungrounded"]]) for s in sums]),
@@ -212,7 +253,13 @@ def write_report(run_dirs: list[Path], out: Path | None = None) -> Path:
            "beklenen hatasıdır, bellek motoru bunu düzeltmelidir.\n",
            "- Bilinen karışıklık (v0.1): CONTEXT'teki konum etiketi personanın güncel semti. "
            "Bu yüzden 'hangi semtte oturuyorum' soruları bellek olmadan da cevaplanabiliyor ve evini "
-           "silen kullanıcıda konum adı geçebiliyor. v0.2'de GPS konumu ile ev semti ayrılacak.\n"]
+           "silen kullanıcıda konum adı geçebiliyor. v0.2 (v0.1 + şablon dolgu) bunu devralır; "
+           "GPS konumu ile ev semtinin ayrılması sonraki sürüme kaldı.\n"]
+    if "v0.2" in versions:
+        md.append("- v0.2 = v0.1 + persona başına 50 şablon dolgu oturumu (saat, fiyat, konum, kampanya "
+                  "soruları; `gen/filler.py`). Sorular ve altın olgular v0.1 ile aynıdır; dolgu hiçbir "
+                  "cevabı değiştirmeyecek biçimde kurallıdır. v0.1 oturumlarının konsolidasyonu kayıtlı "
+                  "op'lardan yeniden oynatılır, dolgu oturumları Gemma ile konsolide edilir.\n")
     # Blank line before every heading, table and paragraph that follows a block.
     text = re.sub(r"\n(?=## |\| \| |Koşullar:|Tercih, güvenlik|TTFT masaüstü|\*\*)", "\n\n", "".join(md))
     (out / "report.md").write_text(re.sub(r"\n{3,}", "\n\n", text), encoding="utf-8")

@@ -1,0 +1,81 @@
+{
+ "id": "p_can",
+ "name": "Can",
+ "home_lat": 41.043,
+ "home_lng": 29.005,
+ "home_area": "Beşiktaş",
+ "saved_restaurants": [],
+ "saved_menu_items": [],
+ "visited_restaurants": [
+  {
+   "restaurant_id": "r_013",
+   "visited_at": "2026-07-29T21:00:00"
+  },
+  {
+   "restaurant_id": "r_030",
+   "visited_at": "2026-10-08T14:15:00"
+  },
+  {
+   "restaurant_id": "r_050",
+   "visited_at": "2026-10-17T14:00:00"
+  },
+  {
+   "restaurant_id": "r_003",
+   "visited_at": "2026-10-13T20:00:00"
+  },
+  {
+   "restaurant_id": "r_041",
+   "visited_at": "2026-09-10T20:00:00"
+  }
+ ],
+ "posts": [
+  {
+   "id": "po_p_can_0",
+   "restaurant_id": "r_013",
+   "created_at": "2026-07-29T21:00:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_can_1",
+   "restaurant_id": "r_030",
+   "created_at": "2026-10-08T14:15:00",
+   "text": "Tekrar gelirim"
+  },
+  {
+   "id": "po_p_can_2",
+   "restaurant_id": "r_050",
+   "created_at": "2026-10-17T14:00:00",
+   "text": "Tekrar gelirim"
+  },
+  {
+   "id": "po_p_can_3",
+   "restaurant_id": "r_003",
+   "created_at": "2026-10-13T20:00:00",
+   "text": "Tekrar gelirim"
+  },
+  {
+   "id": "po_p_can_4",
+   "restaurant_id": "r_041",
+   "created_at": "2026-09-10T20:00:00",
+   "text": "Tekrar gelirim"
+  }
+ ],
+ "shared_messages": [
+  {
+   "friend": "Mert",
+   "restaurant_id": "r_013",
+   "sent_at": "2026-07-30T20:00:00"
+  }
+ ],
+ "friends": [
+  "Mert",
+  "Burak"
+ ],
+ "memory_deletions": [
+  {
+   "key": "home_area",
+   "value": "Beşiktaş",
+   "at": "2026-10-09T21:15:00"
+  }
+ ]
+}

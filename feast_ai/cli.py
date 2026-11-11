@@ -230,7 +230,8 @@ def _cmd_memeval(args) -> int:
                         tools=args.tools, profile=args.profile, cores=args.cores,
                         ram_gb=args.ram_gb, limit=args.limit, personas=split(args.personas),
                         categories=split(args.categories), max_tokens=args.max_tokens,
-                        arm=args.arm, k=args.k, memory_budget=args.memory_budget)
+                        arm=args.arm, k=args.k, memory_budget=args.memory_budget,
+                        retriever=args.retriever)
         try:
             out = asyncio.run(run(cfg))
         except EngineError as exc:
@@ -243,7 +244,8 @@ def _cmd_memeval(args) -> int:
 
         from .memeval.report import write_report
 
-        out = write_report([Path(d) for d in args.runs], Path(args.out) if args.out else None)
+        out = write_report([Path(d) for d in args.runs], Path(args.out) if args.out else None,
+                           [Path(d) for d in args.retrieval])
         print(f"Report written to {out / 'report.md'}")
         return 0
     print("usage: feast-ai memeval {validate,gen,render,run,report} ...", file=sys.stderr)
@@ -529,6 +531,8 @@ def main(argv: list[str] | None = None) -> int:
     run_cmd.add_argument("--arm", default="facts+raw", choices=["raw", "facts", "facts+raw"],
                          help="engine conditions: retrieved turns, consolidated facts, or both")
     run_cmd.add_argument("--k", type=int, default=8, help="retrieved turns (engine conditions)")
+    run_cmd.add_argument("--retriever", default="bm25", choices=["bm25", "rrf"],
+                         help="raw-turn ranking: BM25 (v0.1) or BM25+encoder RRF (engine conditions)")
     run_cmd.add_argument("--memory-budget", type=int, default=900, help="MEMORY tokens (approx)")
     run_cmd.add_argument("--tools", default="off", choices=["off", "all"],
                          help="off: plain answers; all: every agent tool offered, calls recorded")
@@ -542,6 +546,8 @@ def main(argv: list[str] | None = None) -> int:
     report_cmd = memeval_sub.add_parser("report", help="score runs and write a comparison report")
     report_cmd.add_argument("runs", nargs="+", help="run directories under FEAST_AI_HOME/evals")
     report_cmd.add_argument("--out", default="", help="report directory (default evals/report-<time>)")
+    report_cmd.add_argument("--retrieval", nargs="*", default=[],
+                            help="retrieval_eval report directories to tabulate beside the runs")
 
     args = parser.parse_args(argv)
 

@@ -27,7 +27,10 @@ prefill is the memory's doing:
 
 The engine conditions take an ``arm`` - ``raw`` (retrieved turns), ``facts``
 (consolidated facts) or ``facts+raw`` - and their stores are built once per
-model by replaying each persona's sessions through the same server.
+model and dataset version by replaying each persona's sessions through the
+same server.  ``retriever`` picks how the raw turns are ranked: ``bm25``
+(v0.1) or ``rrf``, BM25 fused with the ModernBERT-TR encoder
+(:mod:`feast_ai.memeval.engine.embed`, chosen by ``retrieval_eval``).
 
 The model sees the persona's state as the agent prompt's CONTEXT block, with
 the clock frozen at the question's ``asked_at`` - "geçen cuma" must resolve
@@ -50,6 +53,7 @@ EVALS_DIR = HOME / "evals"
 CONDITIONS = ("none", "oracle", "full", "always", "gated")
 ENGINE_CONDITIONS = ("always", "gated")
 ARMS = ("raw", "facts", "facts+raw")
+RETRIEVERS = ("bm25", "rrf")
 TOOL_MODES = ("off", "all")
 DAY_EN = ("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
 
@@ -134,9 +138,11 @@ def agent_context(ds: Dataset, q: Question):
     )
 
 
-def engine_memory(store, q: Question, cfg: "RunConfig", names: tuple[str, ...]) -> tuple[str, dict, str]:
+def engine_memory(store, q: Question, cfg: "RunConfig", names: tuple[str, ...],
+                  encoder=None) -> tuple[str, dict, str]:
     """MEMORY block, handles and gate decision from a consolidated store."""
     from .engine.assemble import assemble
+    from .engine.embed import retrieve_dense
     from .engine.gate import gate
     from .engine.retrieve import retrieve
 
@@ -149,7 +155,11 @@ def engine_memory(store, q: Question, cfg: "RunConfig", names: tuple[str, ...]) 
     ranked = []
     if "raw" in cfg.arm:
         query = q.question + (" alerji diyet vegan vejetaryen sevmem" if decision == "recommend" else "")
-        ranked = retrieve(store.episodes, query, q.asked_at, cfg.k, names)
+        if cfg.retriever == "rrf":
+            ranked = retrieve_dense(store.episodes, q.question, q.asked_at, cfg.k, names,
+                                    mode="rrf", encoder=encoder, lexical_query=query)
+        else:
+            ranked = retrieve(store.episodes, query, q.asked_at, cfg.k, names)
     return (*assemble(facts, ranked, cfg.memory_budget), decision)
 
 
@@ -192,6 +202,7 @@ class RunConfig:
     thinking: str = "off"
     arm: str = "facts+raw"          # engine conditions only
     k: int = 8                      # retrieved turns
+    retriever: str = "bm25"         # bm25 | rrf
     memory_budget: int = 900        # MEMORY tokens, approx
 
 
@@ -250,7 +261,11 @@ async def run(cfg: RunConfig, log=print) -> Path:
     engine = cfg.condition in ENGINE_CONDITIONS
     if engine and cfg.arm not in ARMS:
         raise EngineError(f"arm '{cfg.arm}' is not one of {', '.join(ARMS)}")
+    if cfg.retriever not in RETRIEVERS:
+        raise EngineError(f"retriever '{cfg.retriever}' is not one of {', '.join(RETRIEVERS)}")
     cond = f"{cfg.condition}-{cfg.arm.replace('+', '')}" if engine else cfg.condition
+    if engine and cfg.retriever != "bm25":
+        cond += f"-{cfg.retriever}"
     run_id = time.strftime("%Y%m%d-%H%M%S") + f"-{cfg.model_id}-{cond}-{cfg.tools}"
     out = EVALS_DIR / run_id
     out.mkdir(parents=True, exist_ok=True)
@@ -269,11 +284,18 @@ async def run(cfg: RunConfig, log=print) -> Path:
     rows: list[Row] = []
     stores: dict = {}
     names: tuple[str, ...] = ()
+    encoder = None
+    if engine and cfg.retriever == "rrf" and "raw" in cfg.arm:
+        from .engine.embed import Encoder
+        from .retrieval_eval import encoder_specs
+
+        encoder = Encoder(encoder_specs()["mbert-sym"], settings.cpu_budget_cores,
+                          HOME / "memstore" / cfg.model_id / "vectors")
 
     def prompt(q: Question) -> tuple[dict, dict, str]:
         if not engine:
             return (*sections(ds, q, cfg.condition, cfg.tools), "")
-        block, handles, decision = engine_memory(stores[q.persona], q, cfg, names)
+        block, handles, decision = engine_memory(stores[q.persona], q, cfg, names, encoder)
         return (*sections(ds, q, cfg.condition, cfg.tools, (block, handles)), decision)
 
     try:
@@ -339,5 +361,7 @@ async def run(cfg: RunConfig, log=print) -> Path:
                 peak_rss=sampler.stats.peak_rss, cpu_avg=sampler.stats.avg_cpu_device,
                 avg_prompt_tokens=sum(r.prompt_tokens for r in done) / len(done) if done else 0,
                 avg_ttft_s=sum(r.ttft_s for r in done) / len(done) if done else 0)
+    if encoder is not None and encoder.query_ms:
+        meta["encoder_query_ms_p50"] = sorted(encoder.query_ms)[len(encoder.query_ms) // 2]
     (out / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
     return out
