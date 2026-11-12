@@ -1,0 +1,68 @@
+[
+ {
+  "key": "allergen",
+  "value": "crustaceans",
+  "kind": "hard",
+  "valid_from": "2026-05-09",
+  "source": "inferred",
+  "source_turn_id": "t_p_ipek_00_00"
+ },
+ {
+  "key": "allergen",
+  "value": "molluscs",
+  "kind": "hard",
+  "valid_from": "2026-05-09",
+  "source": "inferred",
+  "source_turn_id": "t_p_ipek_00_01"
+ },
+ {
+  "key": "diet",
+  "value": "vegetarian",
+  "kind": "hard",
+  "valid_from": "2026-05-15",
+  "source": "inferred",
+  "source_turn_id": "t_p_ipek_02_04"
+ },
+ {
+  "key": "likes",
+  "value": "uzakdoğu",
+  "kind": "soft",
+  "valid_from": "2026-05-23",
+  "source": "inferred",
+  "source_turn_id": "t_p_ipek_03_00"
+ },
+ {
+  "key": "home_area",
+  "value": "Yeldeğirmeni",
+  "kind": "soft",
+  "valid_from": "2026-05-31",
+  "source": "explicit",
+  "valid_until": "2026-08-06",
+  "status": "closed",
+  "source_turn_id": "t_p_ipek_04_04"
+ },
+ {
+  "key": "dislikes",
+  "value": "acılı",
+  "kind": "soft",
+  "valid_from": "2026-07-01",
+  "source": "explicit",
+  "source_turn_id": "t_p_ipek_12_06"
+ },
+ {
+  "key": "home_area",
+  "value": "Cihangir",
+  "kind": "soft",
+  "valid_from": "2026-08-06",
+  "source": "explicit",
+  "source_turn_id": "t_p_ipek_22_04"
+ },
+ {
+  "key": "likes",
+  "value": "tatlı",
+  "kind": "soft",
+  "valid_from": "2026-08-29",
+  "source": "explicit",
+  "source_turn_id": "t_p_ipek_26_04"
+ }
+]

@@ -1,0 +1,51 @@
+[
+ {
+  "key": "allergen",
+  "value": "peanuts",
+  "kind": "hard",
+  "valid_from": "2026-05-07",
+  "source": "inferred",
+  "source_turn_id": "t_p_kerem_00_00"
+ },
+ {
+  "key": "allergen",
+  "value": "sesame",
+  "kind": "hard",
+  "valid_from": "2026-05-07",
+  "source": "inferred",
+  "source_turn_id": "t_p_kerem_00_01"
+ },
+ {
+  "key": "likes",
+  "value": "uzakdoğu",
+  "kind": "soft",
+  "valid_from": "2026-05-21",
+  "source": "explicit",
+  "source_turn_id": "t_p_kerem_03_02"
+ },
+ {
+  "key": "home_area",
+  "value": "Cihangir",
+  "kind": "soft",
+  "valid_from": "2026-05-23",
+  "source": "explicit",
+  "status": "deleted",
+  "source_turn_id": "t_p_kerem_04_04"
+ },
+ {
+  "key": "dislikes",
+  "value": "acılı",
+  "kind": "soft",
+  "valid_from": "2026-06-22",
+  "source": "explicit",
+  "source_turn_id": "t_p_kerem_12_00"
+ },
+ {
+  "key": "likes",
+  "value": "burger",
+  "kind": "soft",
+  "valid_from": "2026-08-31",
+  "source": "explicit",
+  "source_turn_id": "t_p_kerem_26_06"
+ }
+]

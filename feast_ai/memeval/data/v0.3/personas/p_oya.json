@@ -1,0 +1,124 @@
+{
+ "id": "p_oya",
+ "name": "Oya",
+ "home_lat": 40.9868,
+ "home_lng": 29.0256,
+ "home_area": "Moda",
+ "saved_restaurants": [
+  {
+   "restaurant_id": "r_032",
+   "saved_at": "2026-06-21T19:02:00"
+  },
+  {
+   "restaurant_id": "r_060",
+   "saved_at": "2026-08-30T13:27:00"
+  }
+ ],
+ "saved_menu_items": [],
+ "visited_restaurants": [
+  {
+   "restaurant_id": "r_090",
+   "visited_at": "2026-06-10T21:55:00"
+  },
+  {
+   "restaurant_id": "r_062",
+   "visited_at": "2026-06-19T14:40:00"
+  },
+  {
+   "restaurant_id": "r_070",
+   "visited_at": "2026-07-17T21:10:00"
+  },
+  {
+   "restaurant_id": "r_031",
+   "visited_at": "2026-08-06T14:25:00"
+  },
+  {
+   "restaurant_id": "r_093",
+   "visited_at": "2026-09-21T14:40:00"
+  },
+  {
+   "restaurant_id": "r_091",
+   "visited_at": "2026-10-17T14:00:00"
+  },
+  {
+   "restaurant_id": "r_011",
+   "visited_at": "2026-10-25T20:00:00"
+  },
+  {
+   "restaurant_id": "r_053",
+   "visited_at": "2026-09-09T20:00:00"
+  },
+  {
+   "restaurant_id": "r_032",
+   "visited_at": "2026-06-24T20:00:00"
+  }
+ ],
+ "posts": [
+  {
+   "id": "po_p_oya_0",
+   "restaurant_id": "r_090",
+   "created_at": "2026-06-10T21:55:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_oya_1",
+   "restaurant_id": "r_062",
+   "created_at": "2026-06-19T14:40:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_oya_2",
+   "restaurant_id": "r_070",
+   "created_at": "2026-07-17T21:10:00",
+   "text": "Tekrar gelirim"
+  },
+  {
+   "id": "po_p_oya_3",
+   "restaurant_id": "r_031",
+   "created_at": "2026-08-06T14:25:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_oya_4",
+   "restaurant_id": "r_093",
+   "created_at": "2026-09-21T14:40:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_oya_5",
+   "restaurant_id": "r_091",
+   "created_at": "2026-10-17T14:00:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_oya_6",
+   "restaurant_id": "r_011",
+   "created_at": "2026-10-25T20:00:00",
+   "text": "Tekrar gelirim"
+  },
+  {
+   "id": "po_p_oya_7",
+   "restaurant_id": "r_053",
+   "created_at": "2026-09-09T20:00:00",
+   "text": "Tekrar gelirim"
+  },
+  {
+   "id": "po_p_oya_8",
+   "restaurant_id": "r_032",
+   "created_at": "2026-06-24T20:00:00",
+   "text": "Porsiyonlar küçük"
+  }
+ ],
+ "shared_messages": [
+  {
+   "friend": "Aylin",
+   "restaurant_id": "r_090",
+   "sent_at": "2026-06-11T20:55:00"
+  }
+ ],
+ "friends": [
+  "Aylin",
+  "Murat"
+ ],
+ "memory_deletions": []
+}

@@ -1,0 +1,115 @@
+{
+ "id": "p_murat",
+ "name": "Murat",
+ "home_lat": 41.043,
+ "home_lng": 29.005,
+ "home_area": "Beşiktaş",
+ "saved_restaurants": [],
+ "saved_menu_items": [],
+ "visited_restaurants": [
+  {
+   "restaurant_id": "r_003",
+   "visited_at": "2026-05-14T14:55:00"
+  },
+  {
+   "restaurant_id": "r_021",
+   "visited_at": "2026-06-22T21:25:00"
+  },
+  {
+   "restaurant_id": "r_013",
+   "visited_at": "2026-07-26T14:25:00"
+  },
+  {
+   "restaurant_id": "r_041",
+   "visited_at": "2026-09-02T21:40:00"
+  },
+  {
+   "restaurant_id": "r_001",
+   "visited_at": "2026-09-16T14:00:00"
+  },
+  {
+   "restaurant_id": "r_000",
+   "visited_at": "2026-10-15T14:25:00"
+  },
+  {
+   "restaurant_id": "r_093",
+   "visited_at": "2026-10-19T20:00:00"
+  },
+  {
+   "restaurant_id": "r_043",
+   "visited_at": "2026-08-16T20:00:00"
+  },
+  {
+   "restaurant_id": "r_080",
+   "visited_at": "2026-07-13T20:00:00"
+  }
+ ],
+ "posts": [
+  {
+   "id": "po_p_murat_0",
+   "restaurant_id": "r_003",
+   "created_at": "2026-05-14T14:55:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_murat_1",
+   "restaurant_id": "r_021",
+   "created_at": "2026-06-22T21:25:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_murat_2",
+   "restaurant_id": "r_013",
+   "created_at": "2026-07-26T14:25:00",
+   "text": "Bayıldım"
+  },
+  {
+   "id": "po_p_murat_3",
+   "restaurant_id": "r_041",
+   "created_at": "2026-09-02T21:40:00",
+   "text": "Tekrar gelirim"
+  },
+  {
+   "id": "po_p_murat_4",
+   "restaurant_id": "r_001",
+   "created_at": "2026-09-16T14:00:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_murat_5",
+   "restaurant_id": "r_000",
+   "created_at": "2026-10-15T14:25:00",
+   "text": "Tekrar gelirim"
+  },
+  {
+   "id": "po_p_murat_6",
+   "restaurant_id": "r_093",
+   "created_at": "2026-10-19T20:00:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_murat_7",
+   "restaurant_id": "r_043",
+   "created_at": "2026-08-16T20:00:00",
+   "text": "Bayıldım"
+  },
+  {
+   "id": "po_p_murat_8",
+   "restaurant_id": "r_080",
+   "created_at": "2026-07-13T20:00:00",
+   "text": "Fena değil"
+  }
+ ],
+ "shared_messages": [
+  {
+   "friend": "Oya",
+   "restaurant_id": "r_003",
+   "sent_at": "2026-05-15T13:55:00"
+  }
+ ],
+ "friends": [
+  "Oya",
+  "Ahmet"
+ ],
+ "memory_deletions": []
+}

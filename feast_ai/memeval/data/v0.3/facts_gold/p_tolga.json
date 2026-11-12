@@ -1,0 +1,45 @@
+[
+ {
+  "key": "allergen",
+  "value": "fish",
+  "kind": "hard",
+  "valid_from": "2026-05-06",
+  "source": "inferred",
+  "valid_until": "2026-07-23",
+  "status": "closed",
+  "source_turn_id": "t_p_tolga_00_00"
+ },
+ {
+  "key": "allergen",
+  "value": "tree_nuts",
+  "kind": "hard",
+  "valid_from": "2026-05-06",
+  "source": "inferred",
+  "source_turn_id": "t_p_tolga_00_01"
+ },
+ {
+  "key": "likes",
+  "value": "burger",
+  "kind": "soft",
+  "valid_from": "2026-05-20",
+  "source": "inferred",
+  "source_turn_id": "t_p_tolga_03_02"
+ },
+ {
+  "key": "home_area",
+  "value": "Fenerbahçe",
+  "kind": "soft",
+  "valid_from": "2026-05-21",
+  "source": "explicit",
+  "status": "deleted",
+  "source_turn_id": "t_p_tolga_04_04"
+ },
+ {
+  "key": "likes",
+  "value": "meyhane",
+  "kind": "soft",
+  "valid_from": "2026-08-23",
+  "source": "inferred",
+  "source_turn_id": "t_p_tolga_26_04"
+ }
+]

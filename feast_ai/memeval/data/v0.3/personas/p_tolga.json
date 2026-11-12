@@ -1,0 +1,121 @@
+{
+ "id": "p_tolga",
+ "name": "Tolga",
+ "home_lat": 40.974,
+ "home_lng": 29.039,
+ "home_area": "Fenerbahçe",
+ "saved_restaurants": [],
+ "saved_menu_items": [],
+ "visited_restaurants": [
+  {
+   "restaurant_id": "r_032",
+   "visited_at": "2026-05-22T14:55:00"
+  },
+  {
+   "restaurant_id": "r_062",
+   "visited_at": "2026-06-09T14:40:00"
+  },
+  {
+   "restaurant_id": "r_081",
+   "visited_at": "2026-07-11T21:25:00"
+  },
+  {
+   "restaurant_id": "r_011",
+   "visited_at": "2026-08-30T21:10:00"
+  },
+  {
+   "restaurant_id": "r_080",
+   "visited_at": "2026-09-22T21:25:00"
+  },
+  {
+   "restaurant_id": "r_082",
+   "visited_at": "2026-10-18T21:10:00"
+  },
+  {
+   "restaurant_id": "r_010",
+   "visited_at": "2026-10-23T20:00:00"
+  },
+  {
+   "restaurant_id": "r_002",
+   "visited_at": "2026-08-23T20:00:00"
+  },
+  {
+   "restaurant_id": "r_012",
+   "visited_at": "2026-07-08T20:00:00"
+  }
+ ],
+ "posts": [
+  {
+   "id": "po_p_tolga_0",
+   "restaurant_id": "r_032",
+   "created_at": "2026-05-22T14:55:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_tolga_1",
+   "restaurant_id": "r_062",
+   "created_at": "2026-06-09T14:40:00",
+   "text": "Tekrar gelirim"
+  },
+  {
+   "id": "po_p_tolga_2",
+   "restaurant_id": "r_081",
+   "created_at": "2026-07-11T21:25:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_tolga_3",
+   "restaurant_id": "r_011",
+   "created_at": "2026-08-30T21:10:00",
+   "text": "Tekrar gelirim"
+  },
+  {
+   "id": "po_p_tolga_4",
+   "restaurant_id": "r_080",
+   "created_at": "2026-09-22T21:25:00",
+   "text": "Bayıldım"
+  },
+  {
+   "id": "po_p_tolga_5",
+   "restaurant_id": "r_082",
+   "created_at": "2026-10-18T21:10:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_tolga_6",
+   "restaurant_id": "r_010",
+   "created_at": "2026-10-23T20:00:00",
+   "text": "Bayıldım"
+  },
+  {
+   "id": "po_p_tolga_7",
+   "restaurant_id": "r_002",
+   "created_at": "2026-08-23T20:00:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_tolga_8",
+   "restaurant_id": "r_012",
+   "created_at": "2026-07-08T20:00:00",
+   "text": "Fena değil"
+  }
+ ],
+ "shared_messages": [
+  {
+   "friend": "Burak",
+   "restaurant_id": "r_032",
+   "sent_at": "2026-05-23T13:55:00"
+  }
+ ],
+ "friends": [
+  "Burak",
+  "İpek"
+ ],
+ "memory_deletions": [
+  {
+   "key": "home_area",
+   "value": "Fenerbahçe",
+   "at": "2026-07-29T14:00:00"
+  }
+ ]
+}

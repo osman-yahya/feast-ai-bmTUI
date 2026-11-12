@@ -1,0 +1,1999 @@
+{
+ "sessions": [
+  {
+   "session_index": 0,
+   "turns": [
+    {
+     "role": "user",
+     "text": "merhaba, Fırın Pide salı günü kaça kadar açık acaba? gece geç saatlere kadar çalışıyorum da bazen akşam yemeğini çok geç yiyorum",
+     "beats": [
+      "b_p_nil_050"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Merhaba! Fırın Pide salı 11:00-23:30 arası açık.",
+     "beats": [
+      "b_p_nil_051"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bir de şunu söylemem lazım: geçen ay bir tatlının üstündeki cevizlerden sonra dilim şişti, nefes almakta zorlandım, gece acile gittim. o yüzden ceviz, fındık, antep fıstığı gibi şeylerden çok uzak durmam gerekiyor artık",
+     "beats": [
+      "b_p_nil_001"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Çok geçmiş olsun! Bundan sonra kuruyemiş içeren yemeklere ayrıca dikkat edeceğim.",
+     "beats": [
+      "b_p_nil_002"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Tatlı Dünyası'nda türk kahvesi kaç lira? çeviri yaparken kahvesiz duramıyorum",
+     "beats": [
+      "b_p_nil_052"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Tatlı Dünyası'nda Türk Kahvesi 70 TL.",
+     "beats": [
+      "b_p_nil_053"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "şu an çevirdiğim roman o kadar uzun cümlelerle dolu ki her paragraf bir labirent gibi, yazar noktayı hiç sevmiyor galiba",
+     "beats": [
+      "b_p_nil_054"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Kolay gelsin, sabır isteyen bir iş gibi görünüyor!",
+     "beats": [
+      "b_p_nil_055"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "gerçekten öyle, teşekkürler",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 1,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Dün Gece Burger'de patates kızartması kaç lira?",
+     "beats": [
+      "b_p_nil_056"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Dün Gece Burger'de Patates Kızartması 110 TL.",
+     "beats": [
+      "b_p_nil_057"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "tamam, teşekkürler",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 2,
+   "turns": [
+    {
+     "role": "user",
+     "text": "bu arada et, süt, yumurta hiçbirini tüketmiyorum, hayvansal hiçbir şey yok tabağımda; menülere bakarken bunu bilmen iyi olur",
+     "beats": [
+      "b_p_nil_003"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Not ettim, bundan sonra hayvansal ürün içermeyen seçeneklere göre bakacağım.",
+     "beats": [
+      "b_p_nil_004"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkür ederim",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 3,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Eski Dostlar'ın menüsünde meze olarak ne var?",
+     "beats": [
+      "b_p_nil_058"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Eski Dostlar'da meze olarak Fava var, 100 TL.",
+     "beats": [
+      "b_p_nil_059"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Fırın Pide'de içecek olarak ne var?",
+     "beats": [
+      "b_p_nil_060"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Fırın Pide'de içecek olarak Şalgam var, 75 TL.",
+     "beats": [
+      "b_p_nil_061"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "en sevdiğim mutfak vegan kafeler; sakin, sessiz, laptopla oturup saatlerce çalışabildiğim yerler bana çok iyi geliyor",
+     "beats": [
+      "b_p_nil_005"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Çok güzel, aklımda tutarım.",
+     "beats": []
+    },
+    {
+     "role": "user",
+     "text": "bu gece teslim var, editör sabah dokuzda dosyayı bekliyor, kahve stokumu kontrol etmem lazım",
+     "beats": [
+      "b_p_nil_062"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Kolay gelsin, umarım rahat yetişir!",
+     "beats": [
+      "b_p_nil_063"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "umarım",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 4,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Rakı Sofrası cuma kaça kadar açık?",
+     "beats": [
+      "b_p_nil_064"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Rakı Sofrası cuma 17:00-02:00 arası açık.",
+     "beats": [
+      "b_p_nil_065"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Ateş Kebap'ta kampanya var mı?",
+     "beats": [
+      "b_p_nil_066"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Ateş Kebap için uygulamada kampanya kaydı yok.",
+     "beats": [
+      "b_p_nil_067"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Cihangir'de oturuyorum bu arada, yokuşlu sokakları seviyorum ama market alışverişinde pek sevmiyorum açıkçası",
+     "beats": [
+      "b_p_nil_007"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Haha anlaşıldı, Cihangir'i not aldım.",
+     "beats": []
+    },
+    {
+     "role": "user",
+     "text": "bu hafta sonu hiçbir şey çevirmeyeceğim diye kendime söz verdim, bakalım tutabilecek miyim",
+     "beats": [
+      "b_p_nil_068"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Umarım tutarsın, biraz dinlenmek iyi gelir!",
+     "beats": [
+      "b_p_nil_069"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "göreceğiz 🙂",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 5,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Şekerci Cafer'de meyve salatası kaç lira?",
+     "beats": [
+      "b_p_nil_070"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Şekerci Cafer'de Meyve Salatası 120 TL.",
+     "beats": [
+      "b_p_nil_071"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Cihangir Meze Evi'nin menüsünde meze olarak ne var?",
+     "beats": [
+      "b_p_nil_072"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Cihangir Meze Evi'nde meze olarak Fava var, 100 TL.",
+     "beats": [
+      "b_p_nil_073"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "evvelsi gün öğlen Wok & Roll'da sebzeli noodle yedim, uyandığımda ilk iş oraya gittim aslında, benim için kahvaltı gibiydi",
+     "beats": [
+      "b_p_nil_010"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun, güzel bir güne başlangıç olmuş!",
+     "beats": [
+      "b_p_nil_011"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "öyle oldu",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 6,
+   "turns": [
+    {
+     "role": "user",
+     "text": "bugün nerede yiyebilirim?",
+     "beats": [
+      "b_p_nil_038"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Şekerci Cafer'e bakabilirsin: Meyve Salatası 120 TL, vegan ve glutensiz etiketli. Cihangir'de, fiyat seviyesi ₺₺.",
+     "beats": [
+      "b_p_nil_039"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "hafif bir şey iyi olur, teşekkürler",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 7,
+   "turns": [
+    {
+     "role": "user",
+     "text": "bugün bir sözleşme çevirisi geldi, hukuk terimleri beni biraz yoracak gibi",
+     "beats": [
+      "b_p_nil_074"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Kolay gelsin, araya küçük molalar koymayı unutma.",
+     "beats": [
+      "b_p_nil_075"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Tatlı Dünyası'nda içecek olarak ne var?",
+     "beats": [
+      "b_p_nil_076"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Tatlı Dünyası'nda içecek olarak Türk Kahvesi var, 70 TL.",
+     "beats": [
+      "b_p_nil_077"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürler",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 8,
+   "turns": [
+    {
+     "role": "user",
+     "text": "dün öğlen Bambu'da miso çorba içtim, uzun bir geceden sonra sıcacık bir çorba gibisi yok",
+     "beats": [
+      "b_p_nil_012"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun, iyi gelmiştir!",
+     "beats": [
+      "b_p_nil_013"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Rakı Sofrası'nda fava kaç lira?",
+     "beats": [
+      "b_p_nil_078"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Rakı Sofrası'nda Fava 130 TL.",
+     "beats": [
+      "b_p_nil_079"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Tatlı Dünyası cuma kaça kadar açık?",
+     "beats": [
+      "b_p_nil_080"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Tatlı Dünyası cuma 10:00-00:00 arası açık.",
+     "beats": [
+      "b_p_nil_081"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 9,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Tarlabaşı'nda yine trafik durmuş, taksi yarım saattir aynı yerde, yürüsem daha hızlı olurdu galiba",
+     "beats": [
+      "b_p_nil_082"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Geçmiş olsun, umarım çabuk açılır.",
+     "beats": [
+      "b_p_nil_083"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "umarım",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 10,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Kasap Burger'de patates kızartması kaç lira?",
+     "beats": [
+      "b_p_nil_084"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Kasap Burger'de Patates Kızartması 90 TL.",
+     "beats": [
+      "b_p_nil_085"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bugün nerede yiyebilirim?",
+     "beats": [
+      "b_p_nil_040"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Kasap Burger'e bakabilirsin: Patates Kızartması 90 TL, vegan etiketli. Cihangir'de, fiyat seviyesi ₺.",
+     "beats": [
+      "b_p_nil_041"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Cihangir Meze Evi pazartesi açık mı?",
+     "beats": [
+      "b_p_nil_086"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Cihangir Meze Evi pazartesi 17:00-02:00 arası açık.",
+     "beats": [
+      "b_p_nil_087"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürler",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 11,
+   "turns": [
+    {
+     "role": "user",
+     "text": "hafta sonu bir arkadaşın kitap imza gününe katılacağım, onun ilk çeviri kitabı, çok heyecanlıyım",
+     "beats": [
+      "b_p_nil_088"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Ne güzel, keyifli bir gün dilerim!",
+     "beats": [
+      "b_p_nil_089"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "dün öğlen Esnaf Sofrası'nda mercimek çorbası içtim, sade ama içimi ısıttı",
+     "beats": [
+      "b_p_nil_014"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun!",
+     "beats": [
+      "b_p_nil_015"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 12,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Dün Gece Burger'de kampanya var mı?",
+     "beats": [
+      "b_p_nil_090"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Dün Gece Burger için uygulamada kampanya kaydı yok.",
+     "beats": [
+      "b_p_nil_091"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "dün gece bir dizinin ilk sezonunu bitirdim, altyazı çevirisi o kadar kötüydü ki kendimi tutamayıp kafamda düzelttim her cümleyi",
+     "beats": [
+      "b_p_nil_092"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Haha, tam bir meslek refleksi! Keyifli seyirler yine de.",
+     "beats": [
+      "b_p_nil_093"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Smash Bros salı kaça kadar açık?",
+     "beats": [
+      "b_p_nil_094"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Smash Bros salı 12:00-02:00 arası açık.",
+     "beats": [
+      "b_p_nil_095"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Baklavacı Güllüoğlu Usta'da kampanya var mı?",
+     "beats": [
+      "b_p_nil_096"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Baklavacı Güllüoğlu Usta'da şu an aktif kampanya yok; 1 ekim'de başlayacak Hafta içi %20 indirim (Salı-Perşembe 12:00-16:00) görünüyor.",
+     "beats": [
+      "b_p_nil_097"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "anladım",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 13,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Esnaf Lokantası pazar kaça kadar açık?",
+     "beats": [
+      "b_p_nil_098"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Esnaf Lokantası pazar 11:00-21:00 arası açık.",
+     "beats": [
+      "b_p_nil_099"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Muhallebici Moda nerede?",
+     "beats": [
+      "b_p_nil_100"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Muhallebici Moda Kadıköy Çarşı'da, fiyat seviyesi ₺₺.",
+     "beats": [
+      "b_p_nil_101"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 14,
+   "turns": [
+    {
+     "role": "user",
+     "text": "bütün gece eski bir Fransız filmini izledim, sabah oldu farkına bile varmadım",
+     "beats": [
+      "b_p_nil_102"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Keyifli bir gece olmuş, şimdi biraz uyumayı unutma!",
+     "beats": [
+      "b_p_nil_103"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Tatlı Dünyası'nda kampanya var mı?",
+     "beats": [
+      "b_p_nil_104"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Tatlı Dünyası için uygulamada kampanya kaydı yok.",
+     "beats": [
+      "b_p_nil_105"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Burger Atölyesi cumartesi açık mı?",
+     "beats": [
+      "b_p_nil_106"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Burger Atölyesi cumartesi 12:00-02:00 arası açık.",
+     "beats": [
+      "b_p_nil_107"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "cumartesi akşamı arkadaşım Ece ile yemeğe çıkacağız; Ece'nin yer fıstığı alerjisi var, benim değil, onun. ona göre bir yer seçmemiz gerekiyor",
+     "beats": [
+      "b_p_nil_008"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Ece için menülerde yer fıstığı içeren yemeklere dikkat etmek gerek.",
+     "beats": [
+      "b_p_nil_009"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Muhallebici Moda salı açık mı?",
+     "beats": [
+      "b_p_nil_108"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Muhallebici Moda salı 10:00-00:00 arası açık.",
+     "beats": [
+      "b_p_nil_109"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Urfa Ocakbaşı cumartesi kaça kadar açık?",
+     "beats": [
+      "b_p_nil_110"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Urfa Ocakbaşı cumartesi 12:00-00:30 arası açık.",
+     "beats": [
+      "b_p_nil_111"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürler",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 15,
+   "turns": [
+    {
+     "role": "user",
+     "text": "bu hafta sonu sahile inip kitap okumayı düşünüyorum, ekranlardan biraz uzaklaşmak istiyorum",
+     "beats": [
+      "b_p_nil_112"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Çok güzel bir plan, keyifli okumalar!",
+     "beats": [
+      "b_p_nil_113"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Pideci Hasan perşembe açık mı?",
+     "beats": [
+      "b_p_nil_114"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Pideci Hasan perşembe 11:00-23:30 arası açık.",
+     "beats": [
+      "b_p_nil_115"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "geçen cuma öğlen Moda Yeşil Mutfak'ta mercimek köftesi yedim, yanında bol yeşillik vardı",
+     "beats": [
+      "b_p_nil_016"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun!",
+     "beats": [
+      "b_p_nil_017"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Burger Atölyesi'nde patates kızartması kaç lira?",
+     "beats": [
+      "b_p_nil_116"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Burger Atölyesi'nde Patates Kızartması 145 TL.",
+     "beats": [
+      "b_p_nil_117"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürler",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 16,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Bizim Mutfak cuma kaça kadar açık?",
+     "beats": [
+      "b_p_nil_118"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Bizim Mutfak cuma 11:00-21:00 arası açık.",
+     "beats": [
+      "b_p_nil_119"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bugün nerede yiyebilirim?",
+     "beats": [
+      "b_p_nil_042"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Tencere Kapak'a bakabilirsin: Kuru Fasulye 160 TL, vegan etiketli. Cihangir'de, fiyat seviyesi ₺₺.",
+     "beats": [
+      "b_p_nil_043"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Serpme Bahçe'de fırın olarak ne var?",
+     "beats": [
+      "b_p_nil_120"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Serpme Bahçe'de fırın olarak Simit var, 25 TL.",
+     "beats": [
+      "b_p_nil_121"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Tatlı Dünyası nerede?",
+     "beats": [
+      "b_p_nil_122"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Tatlı Dünyası Fenerbahçe'de, fiyat seviyesi ₺₺.",
+     "beats": [
+      "b_p_nil_123"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "uzakmış biraz",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 17,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Fenerbahçe Balıkçısı nerede?",
+     "beats": [
+      "b_p_nil_124"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Fenerbahçe Balıkçısı Beşiktaş'ta, fiyat seviyesi ₺₺₺₺.",
+     "beats": [
+      "b_p_nil_125"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Dün Gece Burger salı kaça kadar açık?",
+     "beats": [
+      "b_p_nil_126"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Dün Gece Burger salı 12:00-02:00 arası açık.",
+     "beats": [
+      "b_p_nil_127"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "yeni bir müşteri geldi, teknik kılavuz çevirisi istiyor; sıkıcı ama iyi ödüyorlar, o yüzden kabul ettim",
+     "beats": [
+      "b_p_nil_128"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Kolay gelsin, hayırlı olsun!",
+     "beats": [
+      "b_p_nil_129"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "İskele Lokantası nerede?",
+     "beats": [
+      "b_p_nil_130"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "İskele Lokantası Yeldeğirmeni'nde, fiyat seviyesi ₺₺.",
+     "beats": [
+      "b_p_nil_131"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürler",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 18,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Bizim Mutfak nerede?",
+     "beats": [
+      "b_p_nil_132"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Bizim Mutfak Kadıköy Çarşı'da, fiyat seviyesi ₺.",
+     "beats": [
+      "b_p_nil_133"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Bizim Mutfak'ta kampanya var mı?",
+     "beats": [
+      "b_p_nil_134"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Bizim Mutfak'ta şu an aktif kampanya yok; 1 ekim'de başlayacak Hafta içi %20 indirim (Salı-Perşembe 12:00-16:00) görünüyor.",
+     "beats": [
+      "b_p_nil_135"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Tatlı Dünyası'nda türk kahvesi kaç liraydı?",
+     "beats": [
+      "b_p_nil_136"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Tatlı Dünyası'nda Türk Kahvesi 70 TL.",
+     "beats": [
+      "b_p_nil_137"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 19,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Simitçi Dünyası'nda avokadolu kase kaç lira?",
+     "beats": [
+      "b_p_nil_138"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Simitçi Dünyası'nda Avokadolu Kase 355 TL.",
+     "beats": [
+      "b_p_nil_139"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Fenerbahçe Balıkçısı pazar açık mı?",
+     "beats": [
+      "b_p_nil_140"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Fenerbahçe Balıkçısı pazar 12:00-23:59 arası açık.",
+     "beats": [
+      "b_p_nil_141"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Bizim Mutfak'ta mercimek çorbası kaç lira?",
+     "beats": [
+      "b_p_nil_142"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Bizim Mutfak'ta Mercimek Çorbası 65 TL.",
+     "beats": [
+      "b_p_nil_143"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "geçen cumartesi akşam Sushi Nami'de miso çorba içtim, sushi tarafına hiç bakmadım tabii",
+     "beats": [
+      "b_p_nil_018"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun!",
+     "beats": [
+      "b_p_nil_019"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürler",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 20,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Ateş Kebap'ta közlenmiş patlıcan salatası kaç lira?",
+     "beats": [
+      "b_p_nil_144"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Ateş Kebap'ta Közlenmiş Patlıcan Salatası 155 TL.",
+     "beats": [
+      "b_p_nil_145"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 21,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Bizim Mutfak'ın menüsünde ana yemek olarak ne var?",
+     "beats": [
+      "b_p_nil_146"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Bizim Mutfak'ta ana yemek olarak Kuru Fasulye var, 130 TL.",
+     "beats": [
+      "b_p_nil_147"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Sushi Nomi'nin menüsünde wok olarak ne var?",
+     "beats": [
+      "b_p_nil_148"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Sushi Nomi'de wok olarak Sebzeli Noodle var, 375 TL.",
+     "beats": [
+      "b_p_nil_149"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bugün nerede yiyebilirim?",
+     "beats": [
+      "b_p_nil_044"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Simitçi Dünyası'na bakabilirsin: Avokadolu Kase 355 TL, vegan ve glutensiz etiketli. Cihangir'de, fiyat seviyesi ₺₺₺₺.",
+     "beats": [
+      "b_p_nil_045"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Şekerci Cafer pazartesi açık mı?",
+     "beats": [
+      "b_p_nil_150"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Şekerci Cafer pazartesi 10:00-00:00 arası açık.",
+     "beats": [
+      "b_p_nil_151"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Pideci Hasan'da kampanya var mı?",
+     "beats": [
+      "b_p_nil_152"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Pideci Hasan'da şu an aktif kampanya yok; 1 ekim'de başlayacak Hafta içi %20 indirim (Salı-Perşembe 12:00-16:00) görünüyor.",
+     "beats": [
+      "b_p_nil_153"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "anladım, teşekkürler",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 22,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Rakı Sofrası'nın menüsünde meze olarak ne var?",
+     "beats": [
+      "b_p_nil_154"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Rakı Sofrası'nda meze olarak Fava var, 130 TL.",
+     "beats": [
+      "b_p_nil_155"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Şekerci Cafer pazar kaça kadar açık?",
+     "beats": [
+      "b_p_nil_156"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Şekerci Cafer pazar 10:00-00:00 arası açık.",
+     "beats": [
+      "b_p_nil_157"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Ateş Kebap'ın menüsünde meze olarak neler var?",
+     "beats": [
+      "b_p_nil_158"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Ateş Kebap'ta meze olarak Közlenmiş Patlıcan Salatası 155 TL ve Ezme 115 TL var.",
+     "beats": [
+      "b_p_nil_159"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 23,
+   "turns": [
+    {
+     "role": "user",
+     "text": "evvelsi gün akşam Filiz Vegan'da avokado tost yedim; gece mesaisine başlamadan önce tam ihtiyacım olan şeydi",
+     "beats": [
+      "b_p_nil_020"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun!",
+     "beats": [
+      "b_p_nil_021"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürler",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 24,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Pideci Hasan'da içecek olarak ne var?",
+     "beats": [
+      "b_p_nil_160"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Pideci Hasan'da içecek olarak Şalgam var, 35 TL.",
+     "beats": [
+      "b_p_nil_161"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Şekerci Cafer'de türk kahvesi kaç lira?",
+     "beats": [
+      "b_p_nil_162"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Şekerci Cafer'de Türk Kahvesi 70 TL.",
+     "beats": [
+      "b_p_nil_163"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "İskele Lokantası'nda salata olarak ne var?",
+     "beats": [
+      "b_p_nil_164"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "İskele Lokantası'nda salata olarak Roka Salatası var, 140 TL.",
+     "beats": [
+      "b_p_nil_165"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Simitçi Dünyası'nda kampanya var mı?",
+     "beats": [
+      "b_p_nil_166"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Simitçi Dünyası için uygulamada kampanya kaydı yok.",
+     "beats": [
+      "b_p_nil_167"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürler",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 25,
+   "turns": [
+    {
+     "role": "user",
+     "text": "bu gece yağmur yağacakmış, pencereyi açık bırakıp yağmur sesiyle çalışmayı seviyorum",
+     "beats": [
+      "b_p_nil_168"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Ne güzel, huzurlu bir çalışma gecesi olsun!",
+     "beats": [
+      "b_p_nil_169"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Serpme Bahçe'nin menüsünde kahvaltı olarak ne var?",
+     "beats": [
+      "b_p_nil_170"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Serpme Bahçe'de kahvaltı olarak Avokadolu Kase var, 170 TL.",
+     "beats": [
+      "b_p_nil_171"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 26,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Cihangir Meze Evi'nin menüsünde meze olarak ne var?",
+     "beats": [
+      "b_p_nil_172"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Cihangir Meze Evi'nde meze olarak Fava var, 100 TL.",
+     "beats": [
+      "b_p_nil_173"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Pideci Hasan cuma açık mı?",
+     "beats": [
+      "b_p_nil_174"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Pideci Hasan cuma kapalı.",
+     "beats": [
+      "b_p_nil_175"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Dün Gece Burger'de kampanya var mı?",
+     "beats": [
+      "b_p_nil_176"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Dün Gece Burger için uygulamada kampanya kaydı yok.",
+     "beats": [
+      "b_p_nil_177"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "fikrim değişti bu arada: artık en sevdiğim mutfak uzakdoğu, vegan kafeler değil. noodle ve sebzeli wok tabakları beni daha mutlu ediyor son zamanlarda",
+     "beats": [
+      "b_p_nil_006"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Anladım, not aldım.",
+     "beats": []
+    },
+    {
+     "role": "user",
+     "text": "Antep Sofrası'nın menüsünde meze olarak neler var?",
+     "beats": [
+      "b_p_nil_178"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Antep Sofrası'nda meze olarak Közlenmiş Patlıcan Salatası 120 TL ve Ezme 90 TL var.",
+     "beats": [
+      "b_p_nil_179"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bugün editörüm çeviriyi çok beğendiğini söyledi, uzun zamandır bu kadar sevinmemiştim",
+     "beats": [
+      "b_p_nil_180"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Tebrikler, emeğine sağlık!",
+     "beats": [
+      "b_p_nil_181"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 27,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Cihangir Meze Evi'nde fava kaç lira?",
+     "beats": [
+      "b_p_nil_182"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Cihangir Meze Evi'nde Fava 100 TL.",
+     "beats": [
+      "b_p_nil_183"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Akşam Meyhanesi'nde kampanya var mı?",
+     "beats": [
+      "b_p_nil_184"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Akşam Meyhanesi için uygulamada kampanya kaydı yok.",
+     "beats": [
+      "b_p_nil_185"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "hava bu akşam o kadar güzel ki balkonda çalışıyorum, şehir ışıkları da manzaraya ayrı bir hava katıyor",
+     "beats": [
+      "b_p_nil_186"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Ne güzel, keyifli bir akşam!",
+     "beats": [
+      "b_p_nil_187"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "geçen pazar öğlen Martı Balık'ta roka salatası yedim; menüde bana uygun tek şey oydu ama manzara güzeldi",
+     "beats": [
+      "b_p_nil_022"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun!",
+     "beats": [
+      "b_p_nil_023"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Şekerci Cafer'in menüsünde tatlı olarak ne var?",
+     "beats": [
+      "b_p_nil_188"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Şekerci Cafer'de tatlı olarak Meyve Salatası var, 120 TL.",
+     "beats": [
+      "b_p_nil_189"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Antep Sofrası'nda kampanya var mı?",
+     "beats": [
+      "b_p_nil_190"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Antep Sofrası için uygulamada kampanya kaydı yok.",
+     "beats": [
+      "b_p_nil_191"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 28,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Serpme Bahçe'nin menüsünde kahvaltı olarak ne vardı?",
+     "beats": [
+      "b_p_nil_192"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Serpme Bahçe'de kahvaltı olarak Avokadolu Kase var, 170 TL.",
+     "beats": [
+      "b_p_nil_193"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Fenerbahçe Balıkçısı'nda kampanya var mı?",
+     "beats": [
+      "b_p_nil_194"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Fenerbahçe Balıkçısı için uygulamada kampanya kaydı yok.",
+     "beats": [
+      "b_p_nil_195"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bugün nerede yiyebilirim?",
+     "beats": [
+      "b_p_nil_046"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Cihangir Meze Evi'ne bakabilirsin: Fava 100 TL, vegan etiketli. Beşiktaş'ta, fiyat seviyesi ₺₺. @acikmis_ogrenci da \"Fiyatına göre gayet iyi bir Muhammara\" yazmış.",
+     "beats": [
+      "b_p_nil_047"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Kasap Burger nerede?",
+     "beats": [
+      "b_p_nil_196"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Kasap Burger Cihangir'de, fiyat seviyesi ₺.",
+     "beats": [
+      "b_p_nil_197"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürler",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 29,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Kasap Burger neredeydi, unuttum",
+     "beats": [
+      "b_p_nil_198"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Kasap Burger Cihangir'de, fiyat seviyesi ₺.",
+     "beats": [
+      "b_p_nil_199"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Tencere Kapak nerede?",
+     "beats": [
+      "b_p_nil_200"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Tencere Kapak Cihangir'de, fiyat seviyesi ₺₺.",
+     "beats": [
+      "b_p_nil_201"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Martı Meze çarşamba kaça kadar açık?",
+     "beats": [
+      "b_p_nil_202"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Martı Meze çarşamba 12:00-23:59 arası açık.",
+     "beats": [
+      "b_p_nil_203"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "dün öğlen Yeşil Tabak'ta avokado tost yedim",
+     "beats": [
+      "b_p_nil_024"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun!",
+     "beats": [
+      "b_p_nil_025"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 30,
+   "turns": [
+    {
+     "role": "user",
+     "text": "cumartesi öğlen Lagos Balık'a gitmeyi planlıyoruz, arkadaşlar ısrar etti; daha önce hiç gitmedim",
+     "beats": [
+      "b_p_nil_034"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Lagos Balık cumartesi 12:00-23:59 arası açık.",
+     "beats": [
+      "b_p_nil_035"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürler",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 31,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Muhallebici Moda cumartesi açık mı?",
+     "beats": [
+      "b_p_nil_204"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Muhallebici Moda cumartesi 10:00-00:00 arası açık.",
+     "beats": [
+      "b_p_nil_205"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Cihangir Meze Evi pazar kaça kadar açık?",
+     "beats": [
+      "b_p_nil_206"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Cihangir Meze Evi pazar 17:00-02:00 arası açık.",
+     "beats": [
+      "b_p_nil_207"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Lagos Balık planı iptal oldu, gidemedik; arkadaşlardan biri hastalandı",
+     "beats": [
+      "b_p_nil_036"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Geçmiş olsun, başka zaman olur.",
+     "beats": [
+      "b_p_nil_037"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "İskele Lokantası perşembe açık mı?",
+     "beats": [
+      "b_p_nil_208"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "İskele Lokantası perşembe 12:00-23:59 arası açık.",
+     "beats": [
+      "b_p_nil_209"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 32,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Burger Atölyesi'nde yan ürün olarak ne var?",
+     "beats": [
+      "b_p_nil_210"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Burger Atölyesi'nde yan ürün olarak Patates Kızartması var, 145 TL.",
+     "beats": [
+      "b_p_nil_211"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürler",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 33,
+   "turns": [
+    {
+     "role": "user",
+     "text": "bu salı öğlen Bitki Kafe'de nohutlu buddha kase yedim, laptopla oturup iki saat çalıştım orada",
+     "beats": [
+      "b_p_nil_026"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun, verimli bir öğle olmuş!",
+     "beats": [
+      "b_p_nil_027"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Şekerci Cafer'de türk kahvesi kaç lira?",
+     "beats": [
+      "b_p_nil_212"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Şekerci Cafer'de Türk Kahvesi 70 TL.",
+     "beats": [
+      "b_p_nil_213"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "hava birden serinledi, sonbahar kokusu geliyor sokaklardan",
+     "beats": [
+      "b_p_nil_214"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Gerçekten öyle, ceketini yanına almayı unutma.",
+     "beats": [
+      "b_p_nil_215"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Smash Bros çarşamba kaça kadar açık?",
+     "beats": [
+      "b_p_nil_216"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Smash Bros çarşamba 12:00-02:00 arası açık.",
+     "beats": [
+      "b_p_nil_217"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürler",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 34,
+   "turns": [
+    {
+     "role": "user",
+     "text": "hafta sonu tamamen boşum, sonunda biraz uyuyabileceğim galiba",
+     "beats": [
+      "b_p_nil_218"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Ne güzel, iyi dinlenmeler!",
+     "beats": [
+      "b_p_nil_219"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "İskele Lokantası'nda salata olarak ne var?",
+     "beats": [
+      "b_p_nil_220"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "İskele Lokantası'nda salata olarak Roka Salatası var, 140 TL.",
+     "beats": [
+      "b_p_nil_221"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bugün nerede yiyebilirim?",
+     "beats": [
+      "b_p_nil_048"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Fenerbahçe Balıkçısı'na bakabilirsin: Roka Salatası 240 TL, vegan etiketli. Beşiktaş'ta, fiyat seviyesi ₺₺₺₺.",
+     "beats": [
+      "b_p_nil_049"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "biraz pahalı ama düşünürüm",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 35,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Burger Atölyesi pazar kaça kadar açık?",
+     "beats": [
+      "b_p_nil_222"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Burger Atölyesi pazar 12:00-02:00 arası açık.",
+     "beats": [
+      "b_p_nil_223"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Bitki Bahçe'de mercimek köftesi kaç lira?",
+     "beats": [
+      "b_p_nil_224"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Bitki Bahçe'de Mercimek Köftesi 170 TL.",
+     "beats": [
+      "b_p_nil_225"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "evvelsi gün öğlen Pazar Kahvaltı Evi'nde simit yedim, çayla birlikte",
+     "beats": [
+      "b_p_nil_028"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun!",
+     "beats": [
+      "b_p_nil_029"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürler",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 36,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Eski Dostlar'da fava kaç lira?",
+     "beats": [
+      "b_p_nil_226"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Eski Dostlar'da Fava 100 TL.",
+     "beats": [
+      "b_p_nil_227"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Rakı Sofrası'nın menüsünde meze olarak ne var?",
+     "beats": [
+      "b_p_nil_228"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Rakı Sofrası'nda meze olarak Fava var, 130 TL.",
+     "beats": [
+      "b_p_nil_229"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürler",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 37,
+   "turns": [
+    {
+     "role": "user",
+     "text": "dün öğlen Kebapçı Halil'de ezme yedim",
+     "beats": [
+      "b_p_nil_030"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun!",
+     "beats": [
+      "b_p_nil_031"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Burger Atölyesi nerede?",
+     "beats": [
+      "b_p_nil_230"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Burger Atölyesi Fenerbahçe'de, fiyat seviyesi ₺₺₺.",
+     "beats": [
+      "b_p_nil_231"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 38,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Fenerbahçe Balıkçısı nerede?",
+     "beats": [
+      "b_p_nil_232"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Fenerbahçe Balıkçısı Beşiktaş'ta, fiyat seviyesi ₺₺₺₺.",
+     "beats": [
+      "b_p_nil_233"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 39,
+   "turns": [
+    {
+     "role": "user",
+     "text": "hafta sonu için hiçbir planım yok, belki sadece sokaklarda yürür, fotoğraf çekerim",
+     "beats": [
+      "b_p_nil_234"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Kulağa çok huzurlu geliyor, keyifli bir hafta sonu dilerim!",
+     "beats": [
+      "b_p_nil_235"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "evvelsi gün akşam Tokyo Sokağı'nda edamame yedim",
+     "beats": [
+      "b_p_nil_032"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun!",
+     "beats": [
+      "b_p_nil_033"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürler",
+     "beats": []
+    }
+   ]
+  }
+ ]
+}

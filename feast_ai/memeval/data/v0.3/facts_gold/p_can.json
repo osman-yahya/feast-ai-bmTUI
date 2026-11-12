@@ -1,0 +1,43 @@
+[
+ {
+  "key": "allergen",
+  "value": "fish",
+  "kind": "hard",
+  "valid_from": "2026-05-05",
+  "source": "explicit",
+  "source_turn_id": "t_p_can_00_04"
+ },
+ {
+  "key": "allergen",
+  "value": "molluscs",
+  "kind": "hard",
+  "valid_from": "2026-05-05",
+  "source": "inferred",
+  "source_turn_id": "t_p_can_00_05"
+ },
+ {
+  "key": "likes",
+  "value": "kebap",
+  "kind": "soft",
+  "valid_from": "2026-05-28",
+  "source": "inferred",
+  "source_turn_id": "t_p_can_03_02"
+ },
+ {
+  "key": "home_area",
+  "value": "Beşiktaş",
+  "kind": "soft",
+  "valid_from": "2026-06-09",
+  "source": "explicit",
+  "status": "deleted",
+  "source_turn_id": "t_p_can_04_04"
+ },
+ {
+  "key": "likes",
+  "value": "burger",
+  "kind": "soft",
+  "valid_from": "2026-09-09",
+  "source": "explicit",
+  "source_turn_id": "t_p_can_26_04"
+ }
+]

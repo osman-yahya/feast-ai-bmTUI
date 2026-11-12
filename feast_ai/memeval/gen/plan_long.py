@@ -470,12 +470,18 @@ def build_plan(spec: PersonaSpec, world: dict, seed: int) -> Plan:
 
     persona = _app_state(spec, world, rng, ate_at, sessions, dates)
     plan = Plan(spec, sessions, persona, ate_at, recs)
-    plan.noise = {b.id for b in noise_beats}
+    plan.noise = noise_ids = {b.id for b in noise_beats}
     plan.banned = abst_stems
     buried = {b.id for s in S_BURIED for b in sessions[s].beats}
     plan.questions = _questions(plan, world, rng, home, move, allergy_end, diet_dates, items_of, fact_beats,
                                 abstentions, (friend, friend_allergen, friend_beat.id),
                                 (plan_name, dates[S_PLAN], plan_beat.id, cancel_beat.id), lookalike_q)
+    # A restaurant the plan picked can share a stem with an abstention topic
+    # ("Karadeniz Pide Salonu" / "Spor salonumun adı"): a lexical near miss.
+    named = " ".join(fold(b.instruction) for s in sessions for b in s.beats if b.id not in noise_ids)
+    for q in plan.questions:
+        if q["category"] == "abstention" and any(w in named for w in ABSTENTION_TOPICS.get(q["question"], ())):
+            q.setdefault("failure_tags", []).append("distractor")
     for q in plan.questions:
         if set(q.get("evidence_turn_ids", [])) & buried:
             q.setdefault("failure_tags", [])

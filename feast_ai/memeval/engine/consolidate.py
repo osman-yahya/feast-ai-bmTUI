@@ -242,6 +242,10 @@ async def build_stores(client, ds: Dataset, model_id: str, root: Path, log=print
     cached under ``root``.  A newer version reuses the v0.1 store's
     consolidation for the sessions they share (:func:`build_store`)."""
     version = Path(ds.root).name
+    # Only a dataset built on top of v0.1 (v0.2 = v0.1 + filler) shares its
+    # sessions; v0.3 reuses the same session ids for different chats.
+    manifest = Path(ds.root) / "MANIFEST.json"
+    derived = json.loads(manifest.read_text(encoding="utf-8")).get("derived_from") if manifest.exists() else None
     stores = {}
     for pid in sorted(ds.personas):
         path = store_path(root, model_id, pid, version)
@@ -249,7 +253,7 @@ async def build_stores(client, ds: Dataset, model_id: str, root: Path, log=print
             stores[pid] = MemoryStore.load(path)
             continue
         base = store_path(root, model_id, pid)
-        reuse = MemoryStore.load(base) if version != BASE_VERSION and base.exists() else None
+        reuse = MemoryStore.load(base) if derived == BASE_VERSION and base.exists() else None
         until = max((q.asked_at for q in ds.questions if q.persona == pid), default="9999")
         log(f"Consolidating {pid} ({version}{', replaying ' + BASE_VERSION if reuse else ''})…")
         stores[pid] = await build_store(client, ds, pid, until, log, reuse)

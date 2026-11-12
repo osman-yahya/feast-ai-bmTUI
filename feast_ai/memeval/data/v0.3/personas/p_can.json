@@ -1,0 +1,126 @@
+{
+ "id": "p_can",
+ "name": "Can",
+ "home_lat": 41.043,
+ "home_lng": 29.005,
+ "home_area": "Beşiktaş",
+ "saved_restaurants": [
+  {
+   "restaurant_id": "r_043",
+   "saved_at": "2026-06-19T21:27:00"
+  }
+ ],
+ "saved_menu_items": [],
+ "visited_restaurants": [
+  {
+   "restaurant_id": "r_012",
+   "visited_at": "2026-06-10T21:25:00"
+  },
+  {
+   "restaurant_id": "r_062",
+   "visited_at": "2026-07-09T21:55:00"
+  },
+  {
+   "restaurant_id": "r_013",
+   "visited_at": "2026-08-04T14:40:00"
+  },
+  {
+   "restaurant_id": "r_071",
+   "visited_at": "2026-09-13T21:25:00"
+  },
+  {
+   "restaurant_id": "r_033",
+   "visited_at": "2026-09-23T21:25:00"
+  },
+  {
+   "restaurant_id": "r_030",
+   "visited_at": "2026-10-09T14:25:00"
+  },
+  {
+   "restaurant_id": "r_052",
+   "visited_at": "2026-10-15T20:00:00"
+  },
+  {
+   "restaurant_id": "r_040",
+   "visited_at": "2026-09-11T20:00:00"
+  },
+  {
+   "restaurant_id": "r_002",
+   "visited_at": "2026-06-15T20:00:00"
+  }
+ ],
+ "posts": [
+  {
+   "id": "po_p_can_0",
+   "restaurant_id": "r_012",
+   "created_at": "2026-06-10T21:25:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_can_1",
+   "restaurant_id": "r_062",
+   "created_at": "2026-07-09T21:55:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_can_2",
+   "restaurant_id": "r_013",
+   "created_at": "2026-08-04T14:40:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_can_3",
+   "restaurant_id": "r_071",
+   "created_at": "2026-09-13T21:25:00",
+   "text": "Bayıldım"
+  },
+  {
+   "id": "po_p_can_4",
+   "restaurant_id": "r_033",
+   "created_at": "2026-09-23T21:25:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_can_5",
+   "restaurant_id": "r_030",
+   "created_at": "2026-10-09T14:25:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_can_6",
+   "restaurant_id": "r_052",
+   "created_at": "2026-10-15T20:00:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_can_7",
+   "restaurant_id": "r_040",
+   "created_at": "2026-09-11T20:00:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_can_8",
+   "restaurant_id": "r_002",
+   "created_at": "2026-06-15T20:00:00",
+   "text": "Porsiyonlar küçük"
+  }
+ ],
+ "shared_messages": [
+  {
+   "friend": "Mert",
+   "restaurant_id": "r_012",
+   "sent_at": "2026-06-11T20:25:00"
+  }
+ ],
+ "friends": [
+  "Mert",
+  "Burak"
+ ],
+ "memory_deletions": [
+  {
+   "key": "home_area",
+   "value": "Beşiktaş",
+   "at": "2026-08-18T11:00:00"
+  }
+ ]
+}

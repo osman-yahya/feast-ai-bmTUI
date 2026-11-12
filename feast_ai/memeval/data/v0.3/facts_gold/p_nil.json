@@ -1,0 +1,44 @@
+[
+ {
+  "key": "allergen",
+  "value": "tree_nuts",
+  "kind": "hard",
+  "valid_from": "2026-05-04",
+  "source": "inferred",
+  "source_turn_id": "t_p_nil_00_02"
+ },
+ {
+  "key": "diet",
+  "value": "vegan",
+  "kind": "hard",
+  "valid_from": "2026-05-06",
+  "source": "inferred",
+  "source_turn_id": "t_p_nil_02_00"
+ },
+ {
+  "key": "likes",
+  "value": "vegan kafe",
+  "kind": "soft",
+  "valid_from": "2026-05-29",
+  "source": "explicit",
+  "valid_until": "2026-08-19",
+  "status": "closed",
+  "source_turn_id": "t_p_nil_03_04"
+ },
+ {
+  "key": "home_area",
+  "value": "Cihangir",
+  "kind": "soft",
+  "valid_from": "2026-05-30",
+  "source": "explicit",
+  "source_turn_id": "t_p_nil_04_04"
+ },
+ {
+  "key": "likes",
+  "value": "uzakdoğu",
+  "kind": "soft",
+  "valid_from": "2026-08-19",
+  "source": "explicit",
+  "source_turn_id": "t_p_nil_26_06"
+ }
+]

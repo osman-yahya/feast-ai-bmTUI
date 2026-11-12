@@ -1,0 +1,115 @@
+{
+ "id": "p_zeynep",
+ "name": "Zeynep",
+ "home_lat": 41.043,
+ "home_lng": 29.005,
+ "home_area": "Beşiktaş",
+ "saved_restaurants": [],
+ "saved_menu_items": [],
+ "visited_restaurants": [
+  {
+   "restaurant_id": "r_083",
+   "visited_at": "2026-05-23T21:55:00"
+  },
+  {
+   "restaurant_id": "r_021",
+   "visited_at": "2026-06-15T21:40:00"
+  },
+  {
+   "restaurant_id": "r_050",
+   "visited_at": "2026-08-13T14:10:00"
+  },
+  {
+   "restaurant_id": "r_071",
+   "visited_at": "2026-09-11T21:10:00"
+  },
+  {
+   "restaurant_id": "r_081",
+   "visited_at": "2026-09-26T21:10:00"
+  },
+  {
+   "restaurant_id": "r_082",
+   "visited_at": "2026-10-15T21:55:00"
+  },
+  {
+   "restaurant_id": "r_032",
+   "visited_at": "2026-10-24T20:00:00"
+  },
+  {
+   "restaurant_id": "r_042",
+   "visited_at": "2026-08-24T20:00:00"
+  },
+  {
+   "restaurant_id": "r_092",
+   "visited_at": "2026-06-04T20:00:00"
+  }
+ ],
+ "posts": [
+  {
+   "id": "po_p_zeynep_0",
+   "restaurant_id": "r_083",
+   "created_at": "2026-05-23T21:55:00",
+   "text": "Tekrar gelirim"
+  },
+  {
+   "id": "po_p_zeynep_1",
+   "restaurant_id": "r_021",
+   "created_at": "2026-06-15T21:40:00",
+   "text": "Tekrar gelirim"
+  },
+  {
+   "id": "po_p_zeynep_2",
+   "restaurant_id": "r_050",
+   "created_at": "2026-08-13T14:10:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_zeynep_3",
+   "restaurant_id": "r_071",
+   "created_at": "2026-09-11T21:10:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_zeynep_4",
+   "restaurant_id": "r_081",
+   "created_at": "2026-09-26T21:10:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_zeynep_5",
+   "restaurant_id": "r_082",
+   "created_at": "2026-10-15T21:55:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_zeynep_6",
+   "restaurant_id": "r_032",
+   "created_at": "2026-10-24T20:00:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_zeynep_7",
+   "restaurant_id": "r_042",
+   "created_at": "2026-08-24T20:00:00",
+   "text": "Tekrar gelirim"
+  },
+  {
+   "id": "po_p_zeynep_8",
+   "restaurant_id": "r_092",
+   "created_at": "2026-06-04T20:00:00",
+   "text": "Tekrar gelirim"
+  }
+ ],
+ "shared_messages": [
+  {
+   "friend": "Ece",
+   "restaurant_id": "r_083",
+   "sent_at": "2026-05-24T20:55:00"
+  }
+ ],
+ "friends": [
+  "Ece",
+  "Burak"
+ ],
+ "memory_deletions": []
+}

@@ -1,0 +1,29 @@
+{
+ "seed": 7,
+ "profile": "long",
+ "model": "offline (hand-written)",
+ "asked_at": "2026-10-28T19:30:00",
+ "personas": [
+  "p_elif",
+  "p_mert",
+  "p_zeynep",
+  "p_ahmet",
+  "p_selin",
+  "p_burak",
+  "p_ece",
+  "p_can",
+  "p_deniz",
+  "p_kerem",
+  "p_aylin",
+  "p_oya",
+  "p_murat",
+  "p_ipek",
+  "p_tolga",
+  "p_nil"
+ ],
+ "questions": 433,
+ "generation_tokens": {
+  "input": 0,
+  "output": 0
+ }
+}

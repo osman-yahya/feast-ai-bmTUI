@@ -1,0 +1,46 @@
+[
+ {
+  "key": "allergen",
+  "value": "gluten",
+  "kind": "hard",
+  "valid_from": "2026-05-10",
+  "source": "inferred",
+  "source_turn_id": "t_p_oya_00_00"
+ },
+ {
+  "key": "likes",
+  "value": "ev yemekleri",
+  "kind": "soft",
+  "valid_from": "2026-06-04",
+  "source": "explicit",
+  "valid_until": "2026-08-06",
+  "status": "closed",
+  "source_turn_id": "t_p_oya_03_04"
+ },
+ {
+  "key": "home_area",
+  "value": "Kadıköy Çarşı",
+  "kind": "soft",
+  "valid_from": "2026-06-10",
+  "source": "explicit",
+  "valid_until": "2026-07-22",
+  "status": "closed",
+  "source_turn_id": "t_p_oya_04_06"
+ },
+ {
+  "key": "home_area",
+  "value": "Moda",
+  "kind": "soft",
+  "valid_from": "2026-07-22",
+  "source": "explicit",
+  "source_turn_id": "t_p_oya_22_02"
+ },
+ {
+  "key": "likes",
+  "value": "tatlı",
+  "kind": "soft",
+  "valid_from": "2026-08-06",
+  "source": "explicit",
+  "source_turn_id": "t_p_oya_26_06"
+ }
+]

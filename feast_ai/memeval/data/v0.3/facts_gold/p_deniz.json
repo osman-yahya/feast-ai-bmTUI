@@ -1,0 +1,52 @@
+[
+ {
+  "key": "allergen",
+  "value": "soybeans",
+  "kind": "hard",
+  "valid_from": "2026-05-04",
+  "source": "explicit",
+  "source_turn_id": "t_p_deniz_00_02"
+ },
+ {
+  "key": "diet",
+  "value": "vegetarian",
+  "kind": "hard",
+  "valid_from": "2026-05-17",
+  "source": "inferred",
+  "source_turn_id": "t_p_deniz_02_00"
+ },
+ {
+  "key": "likes",
+  "value": "meyhane",
+  "kind": "soft",
+  "valid_from": "2026-05-25",
+  "source": "explicit",
+  "source_turn_id": "t_p_deniz_03_06"
+ },
+ {
+  "key": "home_area",
+  "value": "Fenerbahçe",
+  "kind": "soft",
+  "valid_from": "2026-05-26",
+  "source": "explicit",
+  "valid_until": "2026-08-11",
+  "status": "closed",
+  "source_turn_id": "t_p_deniz_04_04"
+ },
+ {
+  "key": "home_area",
+  "value": "Yeldeğirmeni",
+  "kind": "soft",
+  "valid_from": "2026-08-11",
+  "source": "explicit",
+  "source_turn_id": "t_p_deniz_22_02"
+ },
+ {
+  "key": "likes",
+  "value": "ev yemekleri",
+  "kind": "soft",
+  "valid_from": "2026-08-21",
+  "source": "inferred",
+  "source_turn_id": "t_p_deniz_26_04"
+ }
+]

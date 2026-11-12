@@ -1,0 +1,120 @@
+{
+ "id": "p_deniz",
+ "name": "Deniz",
+ "home_lat": 40.9958,
+ "home_lng": 29.03,
+ "home_area": "Yeldeğirmeni",
+ "saved_restaurants": [
+  {
+   "restaurant_id": "r_042",
+   "saved_at": "2026-08-31T13:42:00"
+  }
+ ],
+ "saved_menu_items": [],
+ "visited_restaurants": [
+  {
+   "restaurant_id": "r_072",
+   "visited_at": "2026-05-30T21:25:00"
+  },
+  {
+   "restaurant_id": "r_021",
+   "visited_at": "2026-07-01T14:10:00"
+  },
+  {
+   "restaurant_id": "r_081",
+   "visited_at": "2026-07-29T21:40:00"
+  },
+  {
+   "restaurant_id": "r_011",
+   "visited_at": "2026-08-24T21:40:00"
+  },
+  {
+   "restaurant_id": "r_080",
+   "visited_at": "2026-09-30T21:40:00"
+  },
+  {
+   "restaurant_id": "r_083",
+   "visited_at": "2026-10-18T21:40:00"
+  },
+  {
+   "restaurant_id": "r_002",
+   "visited_at": "2026-10-22T20:00:00"
+  },
+  {
+   "restaurant_id": "r_020",
+   "visited_at": "2026-08-18T20:00:00"
+  },
+  {
+   "restaurant_id": "r_092",
+   "visited_at": "2026-06-26T20:00:00"
+  }
+ ],
+ "posts": [
+  {
+   "id": "po_p_deniz_0",
+   "restaurant_id": "r_072",
+   "created_at": "2026-05-30T21:25:00",
+   "text": "Bayıldım"
+  },
+  {
+   "id": "po_p_deniz_1",
+   "restaurant_id": "r_021",
+   "created_at": "2026-07-01T14:10:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_deniz_2",
+   "restaurant_id": "r_081",
+   "created_at": "2026-07-29T21:40:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_deniz_3",
+   "restaurant_id": "r_011",
+   "created_at": "2026-08-24T21:40:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_deniz_4",
+   "restaurant_id": "r_080",
+   "created_at": "2026-09-30T21:40:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_deniz_5",
+   "restaurant_id": "r_083",
+   "created_at": "2026-10-18T21:40:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_deniz_6",
+   "restaurant_id": "r_002",
+   "created_at": "2026-10-22T20:00:00",
+   "text": "Bayıldım"
+  },
+  {
+   "id": "po_p_deniz_7",
+   "restaurant_id": "r_020",
+   "created_at": "2026-08-18T20:00:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_deniz_8",
+   "restaurant_id": "r_092",
+   "created_at": "2026-06-26T20:00:00",
+   "text": "Fena değil"
+  }
+ ],
+ "shared_messages": [
+  {
+   "friend": "Kerem",
+   "restaurant_id": "r_072",
+   "sent_at": "2026-05-31T20:25:00"
+  }
+ ],
+ "friends": [
+  "Kerem",
+  "Elif"
+ ],
+ "memory_deletions": []
+}

@@ -1,0 +1,128 @@
+{
+ "id": "p_aylin",
+ "name": "Aylin",
+ "home_lat": 40.9868,
+ "home_lng": 29.0256,
+ "home_area": "Moda",
+ "saved_restaurants": [
+  {
+   "restaurant_id": "r_060",
+   "saved_at": "2026-08-02T20:57:00"
+  },
+  {
+   "restaurant_id": "r_032",
+   "saved_at": "2026-08-17T12:57:00"
+  },
+  {
+   "restaurant_id": "r_011",
+   "saved_at": "2026-10-04T13:57:00"
+  }
+ ],
+ "saved_menu_items": [],
+ "visited_restaurants": [
+  {
+   "restaurant_id": "r_021",
+   "visited_at": "2026-05-28T21:55:00"
+  },
+  {
+   "restaurant_id": "r_062",
+   "visited_at": "2026-07-11T21:40:00"
+  },
+  {
+   "restaurant_id": "r_023",
+   "visited_at": "2026-08-13T14:00:00"
+  },
+  {
+   "restaurant_id": "r_041",
+   "visited_at": "2026-09-01T21:25:00"
+  },
+  {
+   "restaurant_id": "r_071",
+   "visited_at": "2026-09-30T21:25:00"
+  },
+  {
+   "restaurant_id": "r_051",
+   "visited_at": "2026-10-13T14:10:00"
+  },
+  {
+   "restaurant_id": "r_012",
+   "visited_at": "2026-10-24T20:00:00"
+  },
+  {
+   "restaurant_id": "r_001",
+   "visited_at": "2026-09-17T20:00:00"
+  },
+  {
+   "restaurant_id": "r_053",
+   "visited_at": "2026-07-06T20:00:00"
+  }
+ ],
+ "posts": [
+  {
+   "id": "po_p_aylin_0",
+   "restaurant_id": "r_021",
+   "created_at": "2026-05-28T21:55:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_aylin_1",
+   "restaurant_id": "r_062",
+   "created_at": "2026-07-11T21:40:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_aylin_2",
+   "restaurant_id": "r_023",
+   "created_at": "2026-08-13T14:00:00",
+   "text": "Fena değil"
+  },
+  {
+   "id": "po_p_aylin_3",
+   "restaurant_id": "r_041",
+   "created_at": "2026-09-01T21:25:00",
+   "text": "Tekrar gelirim"
+  },
+  {
+   "id": "po_p_aylin_4",
+   "restaurant_id": "r_071",
+   "created_at": "2026-09-30T21:25:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_aylin_5",
+   "restaurant_id": "r_051",
+   "created_at": "2026-10-13T14:10:00",
+   "text": "Porsiyonlar küçük"
+  },
+  {
+   "id": "po_p_aylin_6",
+   "restaurant_id": "r_012",
+   "created_at": "2026-10-24T20:00:00",
+   "text": "Bayıldım"
+  },
+  {
+   "id": "po_p_aylin_7",
+   "restaurant_id": "r_001",
+   "created_at": "2026-09-17T20:00:00",
+   "text": "Tekrar gelirim"
+  },
+  {
+   "id": "po_p_aylin_8",
+   "restaurant_id": "r_053",
+   "created_at": "2026-07-06T20:00:00",
+   "text": "Fena değil"
+  }
+ ],
+ "shared_messages": [
+  {
+   "friend": "Zeynep",
+   "restaurant_id": "r_021",
+   "sent_at": "2026-05-29T20:55:00"
+  }
+ ],
+ "friends": [
+  "Zeynep",
+  "Oya"
+ ],
+ "memory_deletions": []
+}

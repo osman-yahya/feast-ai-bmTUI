@@ -1,0 +1,60 @@
+[
+ {
+  "key": "allergen",
+  "value": "sesame",
+  "kind": "hard",
+  "valid_from": "2026-05-11",
+  "source": "inferred",
+  "source_turn_id": "t_p_ece_00_02"
+ },
+ {
+  "key": "diet",
+  "value": "vegetarian",
+  "kind": "hard",
+  "valid_from": "2026-06-03",
+  "source": "explicit",
+  "source_turn_id": "t_p_ece_02_00"
+ },
+ {
+  "key": "likes",
+  "value": "kahvaltı",
+  "kind": "soft",
+  "valid_from": "2026-06-12",
+  "source": "inferred",
+  "source_turn_id": "t_p_ece_03_02"
+ },
+ {
+  "key": "home_area",
+  "value": "Moda",
+  "kind": "soft",
+  "valid_from": "2026-06-16",
+  "source": "explicit",
+  "valid_until": "2026-08-23",
+  "status": "closed",
+  "source_turn_id": "t_p_ece_04_04"
+ },
+ {
+  "key": "dislikes",
+  "value": "acılı",
+  "kind": "soft",
+  "valid_from": "2026-07-07",
+  "source": "explicit",
+  "source_turn_id": "t_p_ece_12_02"
+ },
+ {
+  "key": "home_area",
+  "value": "Fenerbahçe",
+  "kind": "soft",
+  "valid_from": "2026-08-23",
+  "source": "explicit",
+  "source_turn_id": "t_p_ece_22_02"
+ },
+ {
+  "key": "likes",
+  "value": "tatlı",
+  "kind": "soft",
+  "valid_from": "2026-09-11",
+  "source": "inferred",
+  "source_turn_id": "t_p_ece_26_04"
+ }
+]

@@ -1,0 +1,62 @@
+[
+ {
+  "key": "allergen",
+  "value": "gluten",
+  "kind": "hard",
+  "valid_from": "2026-05-06",
+  "source": "inferred",
+  "source_turn_id": "t_p_zeynep_00_02"
+ },
+ {
+  "key": "diet",
+  "value": "vegetarian",
+  "kind": "hard",
+  "valid_from": "2026-05-20",
+  "source": "inferred",
+  "valid_until": "2026-08-07",
+  "status": "closed",
+  "source_turn_id": "t_p_zeynep_02_06"
+ },
+ {
+  "key": "likes",
+  "value": "meyhane",
+  "kind": "soft",
+  "valid_from": "2026-05-21",
+  "source": "inferred",
+  "source_turn_id": "t_p_zeynep_03_00"
+ },
+ {
+  "key": "home_area",
+  "value": "Cihangir",
+  "kind": "soft",
+  "valid_from": "2026-05-24",
+  "source": "explicit",
+  "valid_until": "2026-08-24",
+  "status": "closed",
+  "source_turn_id": "t_p_zeynep_04_04"
+ },
+ {
+  "key": "diet",
+  "value": "vegan",
+  "kind": "hard",
+  "valid_from": "2026-08-07",
+  "source": "explicit",
+  "source_turn_id": "t_p_zeynep_17_04"
+ },
+ {
+  "key": "home_area",
+  "value": "Beşiktaş",
+  "kind": "soft",
+  "valid_from": "2026-08-24",
+  "source": "explicit",
+  "source_turn_id": "t_p_zeynep_22_00"
+ },
+ {
+  "key": "likes",
+  "value": "kahvaltı",
+  "kind": "soft",
+  "valid_from": "2026-09-05",
+  "source": "inferred",
+  "source_turn_id": "t_p_zeynep_26_06"
+ }
+]

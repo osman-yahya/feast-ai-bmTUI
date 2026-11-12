@@ -1,0 +1,51 @@
+[
+ {
+  "key": "allergen",
+  "value": "milk",
+  "kind": "hard",
+  "valid_from": "2026-05-04",
+  "source": "explicit",
+  "source_turn_id": "t_p_selin_00_00"
+ },
+ {
+  "key": "allergen",
+  "value": "eggs",
+  "kind": "hard",
+  "valid_from": "2026-05-04",
+  "source": "inferred",
+  "source_turn_id": "t_p_selin_00_01"
+ },
+ {
+  "key": "diet",
+  "value": "vegan",
+  "kind": "hard",
+  "valid_from": "2026-05-06",
+  "source": "explicit",
+  "source_turn_id": "t_p_selin_02_02"
+ },
+ {
+  "key": "likes",
+  "value": "vegan kafe",
+  "kind": "soft",
+  "valid_from": "2026-05-07",
+  "source": "inferred",
+  "source_turn_id": "t_p_selin_03_00"
+ },
+ {
+  "key": "home_area",
+  "value": "Yeldeğirmeni",
+  "kind": "soft",
+  "valid_from": "2026-05-08",
+  "source": "explicit",
+  "status": "deleted",
+  "source_turn_id": "t_p_selin_04_04"
+ },
+ {
+  "key": "likes",
+  "value": "tatlı",
+  "kind": "soft",
+  "valid_from": "2026-08-21",
+  "source": "inferred",
+  "source_turn_id": "t_p_selin_26_04"
+ }
+]
