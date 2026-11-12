@@ -1,0 +1,311 @@
+# Tolga
+
+## 0
+U [001] btw şunu söyleyeyim: geçen ay balık yedikten sonra boğazım şişti, nefes alamadım, ER'a gittik. o yüzden balıktan uzak duruyorum
+U [002] ceviz, fındık, antep fıstığı da aynı etkiyi yapıyor, onlardan da kaçıyorum
+A [003] Çok geçmiş olsun! İkisini de not ettim; balık ve kuruyemiş içeren yemeklere dikkat edeceğim.
+U [] thanks
+
+## 1
+U [051] hafta sonu bisikletle Adalar'a geçmeyi planlıyoruz, hava güzel olursa
+A [052] Harika plan, keyifli bir tur dilerim!
+U [053] Martı Balık'ta kampanya var mı?
+A [054] Martı Balık için uygulamada kampanya kaydı yok.
+
+## 2
+U [055] dün akşamki maç nice'ti, son dakika golüyle kazandık
+A [056] Ne güzel, heyecanlı bir maçmış!
+U [057] Serpme Bahçe'de avokadolu kase kaç para?
+A [058] Serpme Bahçe'de Avokadolu Kase 170 TL.
+U [059] Tokyo Sokağı salı açık mı?
+A [060] Tokyo Sokağı salı kapalı.
+U [] ok
+
+## 3
+U [061] Fırın Pide pazartesi kaça kadar açık?
+A [062] Fırın Pide pazartesi 11:00-23:30 arası açık.
+U [006] btw haftada iki kere burger yemeden olmuyor, oradayken de öyleydi
+A [] Haha anlaşıldı, aklımda.
+
+## 4
+U [063] Wok & Roll'da kampanya var mı?
+A [064] Wok & Roll için uygulamada kampanya kaydı yok.
+U [065] Yeşil Tabak'ta peki?
+A [066] Yeşil Tabak için de uygulamada kampanya kaydı yok.
+U [008] Fenerbahçe'de oturuyorum bu arada, döndüğümden beri burada
+A [] Tamam, Fenerbahçe'yi not aldım.
+U [067] Martı Balık nerede?
+A [068] Martı Balık Moda'da, fiyat seviyesi ₺₺₺.
+U [069] Muhallebici Moda'da tatlı olarak ne var?
+A [070] Muhallebici Moda'da tatlı olarak Kazandibi 110 TL ve Meyve Salatası 120 TL var.
+U [] ok thanks
+
+## 5
+U [071] Muhallebici Moda'da türk kahvesi kaç?
+A [072] Muhallebici Moda'da Türk Kahvesi 70 TL.
+U [011] evvelsi gün öğlen Smash Bros'ta klasik burger yedim, pretty good
+A [012] Afiyet olsun!
+
+## 6
+U [073] Moda Yeşil Mutfak nerede?
+A [074] Moda Yeşil Mutfak Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺.
+U [039] bugün nerede yiyebilirim?
+A [040] Van Kahvaltı Salonu'na bakabilirsin: Simit 50 TL, vegan etiketli. Fenerbahçe'de, fiyat seviyesi ₺₺₺₺. @sokak_tadi da "Hayatımda yediğim en iyi Serpme Kahvaltı 🔥" yazmış.
+U [075] akşam maç var, arkadaşlarla izleyeceğiz
+A [076] Keyifli seyirler!
+U [] cheers
+
+## 7
+U [077] Martı Balık pazar kaça kadar açık?
+A [078] Martı Balık pazar 12:00-23:59 arası açık.
+U [079] Bambu'da wok olarak ne var?
+A [080] Bambu'da wok olarak Tavuklu Pad Thai 360 TL ve Sebzeli Noodle 290 TL var.
+U [] ok
+
+## 8
+U [013] dün akşam Eski Dostlar'da haydari yedim, nice place
+A [014] Afiyet olsun!
+
+## 9
+U [081] Serpme Bahçe'de kahvaltı ne var?
+A [082] Serpme Bahçe'de kahvaltı olarak Menemen 145 TL ve Avokadolu Kase 170 TL var.
+U [083] Bizim Mutfak'ta tatlı ne var?
+A [084] Bizim Mutfak'ta tatlı olarak Sütlaç var, 75 TL.
+U [] ok
+
+## 10
+U [041] bugün nerede yiyebilirim?
+A [042] Baklavacı Güllüoğlu Usta'ya bakabilirsin: Kazandibi 110 TL, vejetaryen etiketli. Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [085] Tokyo Sokağı'nda kampanya var mı?
+A [086] Tokyo Sokağı için uygulamada kampanya kaydı yok.
+U [] ok
+
+## 11
+U [087] Yeşil Tabak'ta kahvaltı olarak ne var?
+A [088] Yeşil Tabak'ta kahvaltı olarak Avokado Tost var, 245 TL.
+U [015] bu salı öğlen Sushi Nami'de edamame yedim, sushi'ye dokunmadım tabii
+A [016] Afiyet olsun, iyi düşünmüşsün.
+U [] yeah
+
+## 12
+U [089] Fırın Pide salı açık mı?
+A [090] Fırın Pide salı 11:00-23:30 arası açık.
+
+## 13
+U [091] Fırın Pide'de lahmacun kaç?
+A [092] Fırın Pide'de Lahmacun 170 TL.
+U [093] Sushi Nomi salı kaça kadar açık?
+A [094] Sushi Nomi salı 12:00-23:00 arası açık.
+U [] ok
+
+## 14
+U [095] Bizim Mutfak perşembe açık mı?
+A [096] Bizim Mutfak perşembe 11:00-21:00 arası açık.
+U [097] Martı Balık'ta ara sıcak ne var?
+A [098] Martı Balık'ta ara sıcak olarak Kalamar Tava 440 TL ve Karides Güveç 495 TL var.
+U [009] cumartesi Burak'la yemeğe çıkıyoruz, Burak'ın yer fıstığı alerjisi var, benim değil onun, ona göre bir yer bakmamız lazım
+A [010] Burak için menülerde yer fıstığı içeren yemeklere dikkat etmek gerek.
+U [099] İskele Lokantası cuma kaça kadar açık?
+A [100] İskele Lokantası cuma 12:00-23:59 arası açık.
+U [] ok
+
+## 15
+U [101] Antep Sofrası salı açık mı?
+A [102] Antep Sofrası salı 12:00-00:30 arası açık.
+U [103] Serpme Bahçe çarşamba kaça kadar açık?
+A [104] Serpme Bahçe çarşamba 08:00-16:00 arası açık.
+U [017] dün öğlen Kasap Burger'de patates kızartması yedim
+A [018] Afiyet olsun!
+U [105] Moda Yeşil Mutfak'ta kampanya var mı?
+A [106] Moda Yeşil Mutfak'ta şu an aktif kampanya yok; 1 ekim'de başlayacak Öğrenciye %15 (Salı-Perşembe 12:00-16:00) görünüyor.
+U [] ok
+
+## 16
+U [107] Bambu nerede?
+A [108] Bambu Moda'da, fiyat seviyesi ₺₺.
+U [043] bugün nerede yiyebilirim?
+A [044] Esnaf Sofrası'na bakabilirsin: Kuru Fasulye 160 TL, vegan etiketli. Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [109] bu akşam maç var, kaçırmam
+A [110] Keyifli seyirler!
+
+## 17
+U [111] hafta sonu sahilde koşu yapacağım, sonra brunch belki
+A [112] Ne güzel, keyifli bir hafta sonu dilerim!
+U [113] Moda Yeşil Mutfak nerede?
+A [114] Moda Yeşil Mutfak Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺.
+U [115] Antep Sofrası nerede?
+A [116] Antep Sofrası Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [117] Kasap Köfte'de yan ürün ne var?
+A [118] Kasap Köfte'de yan ürün olarak Patates Kızartması var, 110 TL.
+U [119] Yeşil Tabak nerede?
+A [120] Yeşil Tabak Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺.
+U [121] Moda Yeşil Mutfak'ta meze olarak ne var?
+A [122] Moda Yeşil Mutfak'ta meze olarak Mercimek Köftesi var, 170 TL.
+
+## 18
+U [123] Fırın Pide perşembe açık mı?
+A [124] Fırın Pide perşembe 11:00-23:30 arası açık.
+U [] ok
+
+## 19
+U [125] Muhallebici Moda pazar kaça kadar açık?
+A [126] Muhallebici Moda pazar 10:00-00:00 arası açık.
+U [019] geçen cumartesi akşam Cihangir Meze Evi'nde haydari yedim, great night
+A [020] Afiyet olsun, keyifli bir akşam olmuş!
+U [127] Antep Sofrası'nda kampanya var mı?
+A [128] Antep Sofrası için uygulamada kampanya kaydı yok.
+
+## 20
+U [004] good news: doktora gittim, test temiz çıktı, balık alerjim geçmiş!
+A [005] Ne güzel haber! Not ettim, balığı artık kısıt olarak tutmuyorum.
+U [129] bugün işte deadline var, full gün toplantı
+A [130] Kolay gelsin, umarım rahat geçer.
+U [131] Tokyo Sokağı salı açık mı?
+A [132] Tokyo Sokağı salı kapalı.
+U [] ok
+
+## 21
+U [045] bugün nerede yiyebilirim?
+A [046] Tatlı Dünyası'na bakabilirsin: Fıstık Ezmeli Brownie 160 TL. Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [] tatlı mı, why not
+
+## 22
+U [133] Wok & Roll nerede?
+A [134] Wok & Roll Yeldeğirmeni'nde, fiyat seviyesi ₺.
+U [135] Fırın Pide nerede?
+A [136] Fırın Pide Moda'da, fiyat seviyesi ₺₺₺₺.
+
+## 23
+U [137] Tokyo Sokağı'nda kampanya var mı?
+A [138] Tokyo Sokağı için uygulamada kampanya kaydı yok.
+U [139] Bambu'da peki?
+A [140] Bambu için de uygulamada kampanya kaydı yok.
+U [021] evvelsi gün akşam Dün Gece Burger'de acılı burger yedim, spicy ama nice
+A [022] Afiyet olsun!
+U [141] Martı Balık'ta kampanya var mı?
+A [142] Martı Balık için uygulamada kampanya kaydı yok.
+U [] ok
+
+## 24
+U [143] Antep Sofrası'nda kampanya var mı?
+A [144] Antep Sofrası için uygulamada kampanya kaydı yok.
+U [145] Wok & Roll'da wok olarak ne var?
+A [146] Wok & Roll'da wok olarak Tavuklu Pad Thai 290 TL ve Sebzeli Noodle 230 TL var.
+U [147] Tokyo Sokağı'nda çorba ne var?
+A [148] Tokyo Sokağı'nda çorba olarak Miso Çorba var, 120 TL.
+U [149] Serpme Bahçe pazar açık mı?
+A [150] Serpme Bahçe pazar 08:00-16:00 arası açık.
+U [] ok
+
+## 25
+U [151] Martı Balık nerede?
+A [152] Martı Balık Moda'da, fiyat seviyesi ₺₺₺.
+U [] ok
+
+## 26
+U [153] İskele Lokantası'nda ara sıcak ne var?
+A [154] İskele Lokantası'nda ara sıcak olarak Kalamar Tava 340 TL ve Karides Güveç 380 TL var.
+U [155] Muhallebici Moda'da meyve salatası kaç?
+A [156] Muhallebici Moda'da Meyve Salatası 120 TL.
+U [007] btw haftada bir akşam meyhaneye gitmezsem olmuyor, meze ve muhabbet
+A [] Haha anlaşıldı, aklımda.
+U [157] köprü yine kilit, otobüs hiç hareket etmiyor
+A [158] Geçmiş olsun, sabır dilerim.
+U [159] Martı Balık'ta kampanya var mı?
+A [160] Martı Balık için uygulamada kampanya kaydı yok.
+
+## 27
+U [161] Fırın Pide'de kampanya var mı?
+A [162] Fırın Pide için uygulamada kampanya kaydı yok.
+U [163] Wok & Roll'da sebzeli noodle kaç?
+A [164] Wok & Roll'da Sebzeli Noodle 230 TL.
+U [023] evvelsi gün akşam Urfa Ocakbaşı'nda urfa kebap yedim
+A [024] Afiyet olsun!
+U [165] İskele Lokantası'nda karides güveç kaç?
+A [166] İskele Lokantası'nda Karides Güveç 380 TL.
+U [167] Tokyo Sokağı'nda kampanya var mı?
+A [168] Tokyo Sokağı için uygulamada kampanya kaydı yok.
+U [] ok
+
+## 28
+U [047] bugün nerede yiyebilirim?
+A [048] Tokyo Sokağı'na bakabilirsin: Miso Çorba 120 TL, vegan etiketli. Moda'da, fiyat seviyesi ₺₺. @tolga_yemekte da "Fiyatına göre gayet iyi bir Somon Sushi Seti" yazmış.
+U [] haha benim adaşım galiba
+
+## 29
+U [169] Urfa Sofrası cuma kaça kadar açık?
+A [170] Urfa Sofrası cuma 12:00-00:30 arası açık.
+U [025] dün öğlen Burger Atölyesi'nde klasik burger yedim
+A [026] Afiyet olsun!
+
+## 30
+U [171] Fırın Pide'de pide olarak ne var?
+A [172] Fırın Pide'de pide olarak Kıymalı Pide 440 TL ve Kaşarlı Pide 375 TL var.
+U [173] Serpme Bahçe'de kampanya var mı?
+A [174] Serpme Bahçe için uygulamada kampanya kaydı yok.
+U [175] Moda Yeşil Mutfak cumartesi açık mı?
+A [176] Moda Yeşil Mutfak cumartesi 09:00-22:00 arası açık.
+U [035] cumartesi akşamı Lagos Balık'a gitmeyi planlıyoruz, daha hiç gitmedim
+A [036] Lagos Balık cumartesi 12:00-23:59 arası açık.
+U [177] bu hafta işte çok yoğun, remote çalışıyorum
+A [178] Kolay gelsin!
+
+## 31
+U [037] Lagos Balık planı iptal oldu, gidemedik
+A [038] Olsun, başka zaman olur.
+
+## 32
+U [179] Muhallebici Moda çarşamba açık mı?
+A [180] Muhallebici Moda çarşamba 10:00-00:00 arası açık.
+U [181] Fırın Pide'de kampanya var mı?
+A [182] Fırın Pide için uygulamada kampanya kaydı yok.
+U [183] hava birden soğudu, sonbahar geldi
+A [184] Evet, ceketini yanına almakta fayda var.
+
+## 33
+U [185] Antep Sofrası'nda meze ne var?
+A [186] Antep Sofrası'nda meze olarak Közlenmiş Patlıcan Salatası 120 TL ve Ezme 90 TL var.
+U [187] dün maç berbattı, hakem kararları absurd
+A [188] Üzücü, bir dahakine umarım daha iyi olur.
+U [027] bu salı akşam Akşam Meyhanesi'nde ahtapot ızgara yedim
+A [028] Afiyet olsun!
+U [] cheers
+
+## 34
+U [189] Antep Sofrası nerede?
+A [190] Antep Sofrası Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [191] Muhallebici Moda'da kampanya var mı?
+A [192] Muhallebici Moda için uygulamada kampanya kaydı yok.
+U [049] bugün nerede yiyebilirim?
+A [050] Wok & Roll'a bakabilirsin: Somon Sushi Seti 415 TL. Yeldeğirmeni'nde, fiyat seviyesi ₺.
+U [193] hafta sonu tekne turu var arkadaşlarla
+A [194] Harika, keyifli bir tur dilerim!
+U [] thanks
+
+## 35
+U [195] Tokyo Sokağı'nda edamame kaç?
+A [196] Tokyo Sokağı'nda Edamame 110 TL.
+U [029] dün akşam Cuma Pide'de kaşarlı pide yedim
+A [030] Afiyet olsun!
+
+## 36
+U [197] Muhallebici Moda çarşamba kaça kadar açık?
+A [198] Muhallebici Moda çarşamba 10:00-00:00 arası açık.
+
+## 37
+U [031] evvelsi gün akşam Rakı Sofrası'nda haydari yedim
+A [032] Afiyet olsun!
+U [199] Martı Balık cumartesi açık mı?
+A [200] Martı Balık cumartesi 12:00-23:59 arası açık.
+U [201] Wok & Roll nerede?
+A [202] Wok & Roll Yeldeğirmeni'nde, fiyat seviyesi ₺.
+U [] ok
+
+## 38
+U [203] Wok & Roll'da çorba ne var?
+A [204] Wok & Roll'da çorba olarak Miso Çorba var, 95 TL.
+
+## 39
+U [033] evvelsi gün akşam Ateş Kebap'ta adana kebap yedim
+A [034] Afiyet olsun!
+U [] 👍
