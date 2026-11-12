@@ -240,6 +240,7 @@ def _posts(args: dict, data: AppData) -> tuple[bool, str]:
 
 def run_tool(name: str, args: dict, data: AppData) -> tuple[bool, str]:
     """``(ok, text for the model)``; a bad call gets an error the model can fix."""
+    name = name.removesuffix("()")             # "search_saved()": v0.3 run C, 6 of 8 saved-count calls
     if name not in ARGS:
         return False, f"error: no tool named '{name}'."
     unknown = sorted(set(args) - set(ARGS[name]))

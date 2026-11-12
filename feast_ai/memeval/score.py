@@ -111,7 +111,8 @@ def claimed_dates(text: str, today: date) -> list[date]:
 
 
 def numbers(text: str) -> list[int]:
-    f = fold(text)
+    # Not the digits of a date or a time: "Bu ay (2026-10-01..2026-10-28) 4 farklı restoran".
+    f = re.sub(r"\d{4}-\d{2}-\d{2}|\b\d{1,2}[:.]\d{2}\b", " ", fold(text))
     found = [int(n) for n in re.findall(r"\b\d+\b", f)]
     return found + [v for w, v in NUMBER_WORDS.items() if re.search(rf"\b{w}\b", f)]
 
