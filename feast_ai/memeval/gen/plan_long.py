@@ -213,7 +213,8 @@ def build_plan(spec: PersonaSpec, world: dict, seed: int) -> Plan:
     for n, (s, cuisine) in enumerate(zip((S_LIKE1, S_LIKE2), spec.likes)):
         label = W.CUISINES[cuisine]["label"]
         text = (f"Kullanıcı {label} sevdiğini DOLAYLI belli eder (ör. 'haftada iki kez yerim')."
-                if indirect() else f"Kullanıcı en sevdiği mutfağın {label} olduğunu söyler.")
+                if indirect() else f"Kullanıcı en sevdiği mutfağın {label} olduğunu söyler." if n == 0
+                else f"Kullanıcı {label} da çok sevdiğini söyler.")
         facts = [{"key": "likes", "value": label, "kind": "soft", "valid_from": dates[s].date().isoformat(),
                   "source": "inferred" if "DOLAYLI" in text else "explicit"}]
         if spec.likes_replace and n == 1:
@@ -249,9 +250,9 @@ def build_plan(spec: PersonaSpec, world: dict, seed: int) -> Plan:
     friend_allergen = next(a for a in ("peanuts", "gluten", "sesame", "milk", "fish", "eggs", "soybeans")
                            if a not in spec.allergies)
     friend_beat = unit(S_FRIEND, (
-        "user", f"Kullanıcı arkadaşı {friend} ile yemeğe çıkacağını ve {friend}'in "
+        "user", f"Kullanıcı arkadaşı {friend} ile yemeğe çıkacağını ve {genitive(friend)} "
                 f"{ALLERGEN_TR[friend_allergen]} alerjisi olduğunu anlatır; bu alerji KULLANICININ DEĞİL, "
-                f"{friend}'in olduğu cümleden açıkça anlaşılır.", None),
+                f"{genitive(friend)} olduğu cümleden açıkça anlaşılır.", None),
         ("assistant", f"Asistan {friend} için menüde dikkat edilmesi gerektiğini kısaca söyler, "
                       "restoran adı GEÇİRMEZ.", None))[0]
 
@@ -268,6 +269,8 @@ def build_plan(spec: PersonaSpec, world: dict, seed: int) -> Plan:
                    and r["name"] not in {a for _, a, _ in W.LOOKALIKES}
                    and any(item_ok(i, allergy, diet) for i in items_of[r["id"]])]
         options = [r for r in options if is_open(r, when)] or options
+        options = [r for r in options if any(item_ok(i, allergy, diet) and i["category_name"] != "İçecek"
+                                             for i in items_of[r["id"]])] or options
         liked = ([r for r in options if r["name"] in names]
                  or [r for r in options if W.cuisine_of(r["id"]) in prefer])
         pool = liked or options
@@ -289,6 +292,8 @@ def build_plan(spec: PersonaSpec, world: dict, seed: int) -> Plan:
     for n, s in enumerate(S_VISITS):
         days_before = rng.choice((0, 1, 1, 2)) if s >= N_SESSIONS - LATE else rng.choice((1, 2, 3))
         when = (dates[s] - timedelta(days=days_before)).replace(hour=rng.choice((13, 20)))
+        if when >= dates[s]:            # "bugün akşam" told at 09:00 has not happened yet
+            when -= timedelta(days=1)
         names: tuple[str, ...] = ()
         if n == len(S_VISITS) - 3:
             names = TRAP_NAMES
@@ -347,7 +352,7 @@ def build_plan(spec: PersonaSpec, world: dict, seed: int) -> Plan:
               and not any(t in fold(r["name"]) for t in abst_stems)]
         side = W.SIDE_OF[home_at(when)]
         near = [r for r in ok if W.SIDE_OF[r["area"]] == side]
-        return near if len(near) >= 4 else ok
+        return near if len(near) >= 12 else ok
 
     def menu_ok(r: dict) -> list[dict]:
         out = []
@@ -368,10 +373,18 @@ def build_plan(spec: PersonaSpec, world: dict, seed: int) -> Plan:
 
     noise_beats: list[Beat] = []
 
+    asked: dict[int, set] = {}
+
     def _noise(s: int, r: dict | None = None) -> list[Beat]:
         when = dates[s]
-        kind = rng.choice(("hours", "hours", "price", "menu", "where", "campaign", "chat"))
-        r = r or rng.choice(noise_pool(when))
+        for _ in range(20):
+            kind = rng.choice(("hours", "hours", "price", "menu", "where", "campaign")
+                              + (() if r else ("chat",)))
+            rr = r or rng.choice(noise_pool(when))
+            if (kind, rr["id"] if kind != "chat" else "") not in asked.setdefault(s, set()):
+                break
+        asked[s].add((kind, rr["id"] if kind != "chat" else ""))
+        r = rr
         name = r["name"]
         no_claim = " Kendisi hakkında bilgi VERMEZ, oraya gittiğini/yediğini SÖYLEMEZ."
         if kind == "chat":
@@ -402,9 +415,14 @@ def build_plan(spec: PersonaSpec, world: dict, seed: int) -> Plan:
                                           f"{'₺' * r['price_level']}.", [])]
         if kind == "campaign":
             camp = next((c for c in world["campaigns"] if c["restaurant_id"] == r["id"]), None)
-            answer = (f"'{camp['title']}' ({camp['description']}), "
-                      f"{camp['start_date'][:10]} - {camp['end_date'][:10]} arası" if camp
-                      else "uygulamada bu restoran için kampanya kaydı yok")
+            start = datetime.fromisoformat(camp["start_date"]) if camp else None
+            if not camp:
+                answer = "uygulamada bu restoran için kampanya kaydı yok"
+            elif when < start:
+                answer = (f"şu an aktif kampanya yok; {start.day} {MONTH_TR[start.month]}'de başlayacak "
+                          f"'{camp['title']}' ({camp['description']}) görünüyor")
+            else:
+                answer = f"'{camp['title']}' ({camp['description']}), {camp['end_date'][:10]} tarihine kadar"
             return [Beat("", "user", f"Kullanıcı '{name}' restoranında kampanya olup olmadığını sorar."
                                      + no_claim, []),
                     Beat("", "assistant", f"Asistan {name} için şunu söyler: {answer}.", [])]
@@ -463,6 +481,13 @@ def build_plan(spec: PersonaSpec, world: dict, seed: int) -> Plan:
             if "buried_evidence" not in q["failure_tags"]:
                 q["failure_tags"].append("buried_evidence")
     return plan
+
+
+def genitive(name: str) -> str:
+    """"Aslı" -> "Aslı'nın", "Emre" -> "Emre'nin", "Can" -> "Can'ın" (vowel harmony)."""
+    vowels = [c for c in name.lower() if c in "aıoueiöü"]
+    suffix = {"a": "ın", "ı": "ın", "e": "in", "i": "in", "o": "un", "u": "un", "ö": "ün", "ü": "ün"}[vowels[-1]]
+    return f"{name}'{'n' if name[-1].lower() in 'aıoueiöü' else ''}{suffix}"
 
 
 def is_open(r: dict, when: datetime) -> bool:
@@ -544,11 +569,11 @@ def _questions(plan, world, rng, home, move, allergy_end, diet_dates, items_of, 
         _q(plan, "user_info", "Yemekte neyi sevmediğimi söylemiştim?", "acılı yemekler.", "exact",
            expected_intent="history_recall", evidence_turn_ids=[fact_beats[("dislikes", "acılı")]])
     _q(plan, "user_info", f"{_cap(ALLERGEN_TR[friend_allergen])} alerjim var mıydı?",
-       f"{friend} ({friend}'in alerjisi; kullanıcının değil).", "exact", expected_intent="history_recall",
+       f"{friend} ({genitive(friend)} alerjisi; kullanıcının değil).", "exact", expected_intent="history_recall",
        evidence_turn_ids=[friend_bid]
        + ([fact_beats[("allergen", a)] for a in allergies_now[:1]]),
        failure_tags=["distractor"],
-       tolerance=f"Doğru cevap: hayır, o alerji arkadaşı {friend}'in. 'Evet, alerjin var' demek yanlış; "
+       tolerance=f"Doğru cevap: hayır, o alerji arkadaşı {genitive(friend)}. 'Evet, alerjin var' demek yanlış; "
                  "yalnız 'bilmiyorum' demek eksik.")
 
     # -- knowledge_update
@@ -663,11 +688,11 @@ def _questions(plan, world, rng, home, move, allergy_end, diet_dates, items_of, 
     both = {"allergens": sorted(set(allergies_now) | {friend_allergen}),
             **({"badges": constraints["badges"]} if "badges" in constraints else {})}
     _q(plan, "preference", f"{friend} ile akşam yemeğe çıkacağız, nereye gidelim?",
-       f"İkisine de uyan bir öneri: kullanıcının kısıtları ve {friend}'in "
+       f"İkisine de uyan bir öneri: kullanıcının kısıtları ve {genitive(friend)} "
        f"{ALLERGEN_TR[friend_allergen]} alerjisi.", "rubric", expected_intent="nearby_search",
        expected_tool_calls=[{"tool": "search_restaurants|search_menu_items", "args": {}}],
        evidence_turn_ids=evidence + [friend_bid], hard_constraints=both, failure_tags=["distractor"],
-       tolerance="; ".join([f"+1 {friend}'in alerjisi ({friend_allergen}) gözetilmiş"] + rubric[:-2]
+       tolerance="; ".join([f"+1 {genitive(friend)} alerjisi ({friend_allergen}) gözetilmiş"] + rubric[:-2]
                            + [rubric[-1]]))
 
     # -- abstention

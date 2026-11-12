@@ -1,0 +1,305 @@
+# Elif
+
+## 0
+U [001] geçen hafta bi tatlının içinde yer fıstığı varmış, yarım saat sonra nefesim daraldı, acile gittik 😬 artık çok dikkat ediyorum
+A [002] Çok geçmiş olsun! Bundan sonra yer fıstığı içeren yemekleri senin için ayrıca gözeteceğim.
+
+## 1
+U [054] Tatlı Dünyası'nda içecek olarak ne var?
+A [055] Tatlı Dünyası'nda içecek olarak Türk Kahvesi var, 70 TL.
+
+## 2
+U [056] burger atölyesi'nde patates kızartması kaç para?
+A [057] Burger Atölyesi'nde Patates Kızartması 145 TL.
+U [003] bu arada söylemedim galiba, ben vejetaryenim 🌱
+A [004] Not ettim, bundan sonra et içermeyen seçeneklere göre bakarım.
+U [058] köprü yine kilit, eve bir saatte varırım herhalde 🙃
+A [059] Kolay gelsin, trafikte sabır dilerim 🙂
+
+## 3
+U [007] en sevdiğim mutfak vegan kafeler bu arada, bi yere gidecek olsam ilk onlara bakarım
+A [] Anladım, aklımda tutarım 🙂
+
+## 4
+U [060] Martı Balık'ta kampanya var mı şu an?
+A [061] Martı Balık için uygulamada kampanya kaydı yok.
+U [062] Dün Gece Burger pazartesi açık mı, kaça kadar?
+A [063] Dün Gece Burger pazartesi 12:00-02:00 arası açık.
+U [064] yeni bir dizi başladım, bitmeden uyuyamıyorum 😅
+A [065] Olur öyle, iyi seyirler! Bölüm arasında acıkırsan buradayım.
+U [009] bu arada ben Moda'da oturuyorum, yakın yerler hep işime gelir
+A [] Tamam, Moda'yı not aldım.
+U [066] Burger Atölyesi'nde yan ürün olarak ne var?
+A [067] Burger Atölyesi'nde yan ürün olarak Patates Kızartması var, 145 TL.
+U [068] Cuma Pide'de içecek ne var?
+A [069] Cuma Pide'de içecek olarak Şalgam var, 45 TL.
+
+## 5
+U [014] geçen cumartesi öğlen Bambu'da miso çorba içtim, çok iyi geldi
+A [015] Afiyet olsun! Hafif bir öğle yemeği olmuş.
+U [] evet ya 🙂
+
+## 6
+U [042] bugün nerede yiyebilirim?
+A [043] Cuma Pide'ye bakabilirsin: Kaşarlı Pide 220 TL ve vejetaryen etiketli. Moda'da, fiyat seviyesi ₺₺. @moda_lezzet da "Fiyatına göre gayet iyi bir Acılı Lahmacun" yazmış.
+
+## 7
+U [070] Eski Dostlar nerede?
+A [071] Eski Dostlar Yeldeğirmeni'nde, fiyat seviyesi ₺₺.
+U [072] Serpme Bahçe'de avokadolu kase kaç lira?
+A [073] Serpme Bahçe'de Avokadolu Kase 170 TL.
+
+## 8
+U [074] Urfa Ocakbaşı'nda közlenmiş patlıcan salatası ne kadar?
+A [075] Urfa Ocakbaşı'nda Közlenmiş Patlıcan Salatası 155 TL.
+U [016] bu salı akşam Yeşil Tabak'ta nohutlu buddha kase yedim, bayağı doyurucuydu
+A [017] Afiyet olsun, doyurucu bir akşam yemeği olmuş 🙂
+U [076] Baklavacı Güllüoğlu Usta'da kampanya var mı?
+A [077] Baklavacı Güllüoğlu Usta'da şu an aktif kampanya yok; 1 ekim'de başlayacak Hafta içi %20 indirim (Salı-Perşembe 12:00-16:00) görünüyor.
+
+## 9
+U [078] Serpme Bahçe pazartesi açık mı? kaça kadar?
+A [079] Serpme Bahçe pazartesi 08:00-16:00 arası açık.
+
+## 10
+U [044] bugün nerede yiyebilirim sence?
+A [045] Fırın Pide'ye bakabilirsin: Kaşarlı Pide 375 TL, vejetaryen etiketli. Moda'da, fiyat seviyesi ₺₺₺₺.
+U [] biraz pahalıymış ama bakarım 👍
+
+## 11
+U [018] evvelsi gün akşam Sushi Nami'de edamame yedim, porsiyon tam kararındaydı
+A [019] Afiyet olsun! Hafif bir akşam olmuş.
+U [] 🙏
+
+## 12
+U [080] sabah sabah ne sıcak ya ☀️
+A [081] Gerçekten öyle, bol su içmeyi unutma 🙂
+U [082] Muhallebici Moda nerede bu arada?
+A [083] Muhallebici Moda Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+
+## 13
+U [084] Sushi Nomi pazar açık mı? kaça kadar?
+A [085] Sushi Nomi pazar 12:00-23:00 arası açık.
+U [086] Dün Gece Burger perşembe kaça kadar açık?
+A [087] Dün Gece Burger perşembe 12:00-02:00 arası açık.
+U [] süper, teşekkürler
+
+## 14
+U [088] Antep Sofrası nerede?
+A [089] Antep Sofrası Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [090] Cuma Pide'de kampanya var mı?
+A [091] Cuma Pide için uygulamada kampanya kaydı yok.
+U [012] cumartesi Aslı'yla yemeğe çıkacağız, onun gluten alerjisi var, benim değil ama ona göre bir yer lazım
+A [013] Aslı için menülerde gluten içeren yemeklere dikkat etmek gerek; glutensiz etiketli yemeklere bakabiliriz.
+U [092] Tatlı Dünyası'nda kampanya var mı?
+A [093] Tatlı Dünyası için uygulamada kampanya kaydı yok.
+U [094] Dün Gece Burger pazar açık mı?
+A [095] Dün Gece Burger pazar 12:00-02:00 arası açık.
+
+## 15
+U [096] Martı Balık cumartesi kaça kadar açık?
+A [097] Martı Balık cumartesi 12:00-23:59 arası açık.
+U [098] Dün Gece Burger'de patates kızartması kaç para?
+A [099] Dün Gece Burger'de Patates Kızartması 110 TL.
+U [020] evvelsi gün akşam Tokyo Sokağı'nda sebzeli noodle yedim bu arada, baya iyiydi
+A [021] Afiyet olsun, keyifli bir akşam olmuş 🙂
+U [100] dönüş yine trafik, otobüste 40 dakikadır bekliyorum 😩
+A [101] Geçmiş olsun, umarım yol çabuk açılır.
+U [102] Akşam Meyhanesi'nde kampanya var mı?
+A [103] Akşam Meyhanesi için uygulamada kampanya kaydı yok.
+U [] tamamdır, sağ ol
+
+## 16
+U [046] bugün nerede yiyebilirim?
+A [047] Martı Balık'a bakabilirsin: Roka Salatası 180 TL, vegan etiketli. Moda'da, fiyat seviyesi ₺₺₺. @gurme_kadikoy da "Efsane Roka Salatası, kesin tekrar geleceğim" yazmış.
+U [104] Burger Atölyesi perşembe açık mı?
+A [105] Burger Atölyesi perşembe 12:00-02:00 arası açık.
+U [106] Baklavacı Güllüoğlu Usta çarşamba kaça kadar açık?
+A [107] Baklavacı Güllüoğlu Usta çarşamba 10:00-00:00 arası açık.
+U [] ok teşekkürler 🙏
+
+## 17
+U [108] Smash Bros'ta kampanya var mı?
+A [109] Smash Bros için uygulamada kampanya kaydı yok.
+U [110] hafta sonu biraz dinlenmeyi düşünüyorum, çok yoğun geçti bu hafta
+A [111] Bunu hak ettin, iyi dinlenmeler 🙂
+U [112] Antep Sofrası'nda ezme ne kadar?
+A [113] Antep Sofrası'nda Ezme 90 TL.
+U [005] bu arada artık tamamen vegan beslenmeye başladım, süt ve yumurtayı da bıraktım. önceden vejetaryendim
+A [006] Not ettim, artık vegan seçeneklere göre bakarım 🌱
+U [114] Eski Dostlar'da kampanya var mı?
+A [115] Eski Dostlar için uygulamada kampanya kaydı yok.
+U [116] Baklavacı Güllüoğlu Usta nerede?
+A [117] Baklavacı Güllüoğlu Usta Fenerbahçe'de, fiyat seviyesi ₺₺.
+
+## 18
+U [118] Antep Sofrası pazartesi açık mı?
+A [119] Antep Sofrası pazartesi 12:00-00:30 arası açık.
+
+## 19
+U [022] dün akşam Filiz Vegan'da mercimek köftesi yedim 😋
+A [023] Afiyet olsun!
+
+## 20
+U [120] Tatlı Dünyası'nda kampanya var mı?
+A [121] Tatlı Dünyası için uygulamada kampanya kaydı yok.
+U [122] hafta sonu sahile inmek istiyorum, hava güzel olursa 🌊
+A [123] Çok iyi fikir, keyifli geçsin 🙂
+U [124] Martı Balık pazartesi açık mı?
+A [125] Martı Balık pazartesi 12:00-23:59 arası açık.
+U [126] Urfa Ocakbaşı'nda meze olarak ne var?
+A [127] Urfa Ocakbaşı'nda meze olarak Közlenmiş Patlıcan Salatası 155 TL ve Ezme 115 TL var.
+U [] tamam bakarım
+
+## 21
+U [128] Cuma Pide salı kaça kadar açık?
+A [129] Cuma Pide salı 11:00-23:30 arası açık.
+U [130] Dün Gece Burger'de yan ürün olarak ne var?
+A [131] Dün Gece Burger'de yan ürün olarak Patates Kızartması var, 110 TL.
+U [048] peki bugün nerede yiyebilirim?
+A [049] Antep Sofrası'na bakabilirsin: Közlenmiş Patlıcan Salatası 120 TL, vegan etiketli. Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [132] Baklavacı Güllüoğlu Usta'da içecek ne var?
+A [133] Baklavacı Güllüoğlu Usta'da içecek olarak Türk Kahvesi var, 70 TL.
+U [] okey 👍
+
+## 22
+U [134] Baklavacı Güllüoğlu Usta cuma kaça kadar açık?
+A [135] Baklavacı Güllüoğlu Usta cuma 10:00-00:00 arası açık.
+U [010] bu arada taşındım! Moda'dan Kadıköy Çarşı'ya geçtim 📦
+A [011] Yeni evin hayırlı olsun! Bundan sonra Kadıköy Çarşı'ya göre bakarım.
+U [] teşekkürler 🥰
+
+## 23
+U [136] Cuma Pide'de kampanya var mı?
+A [137] Cuma Pide için uygulamada kampanya kaydı yok.
+U [138] Akşam Meyhanesi çarşamba açık mı?
+A [139] Akşam Meyhanesi çarşamba 17:00-02:00 arası açık.
+U [024] dün akşam Bitki Kafe'de nohutlu buddha kase yedim yine 🥗
+A [025] Afiyet olsun, keyifli bir akşam olmuş.
+U [140] Fırın Pide cuma kaça kadar açık?
+A [141] Fırın Pide cuma 11:00-23:30 arası açık.
+U [142] Urfa Ocakbaşı'nda meze ne var?
+A [143] Urfa Ocakbaşı'nda meze olarak Közlenmiş Patlıcan Salatası 155 TL ve Ezme 115 TL var.
+
+## 24
+U [144] Bizim Mutfak'ta mercimek çorbası ne kadar?
+A [145] Bizim Mutfak'ta Mercimek Çorbası 65 TL.
+U [146] bugün yollar bomboş, cuma etkisi herhalde 😄
+A [147] Ne güzel, keyfini çıkar 🙂
+U [148] Fırın Pide nerede?
+A [149] Fırın Pide Moda'da, fiyat seviyesi ₺₺₺₺.
+U [150] Muhallebici Moda'da meyve salatası kaç para?
+A [151] Muhallebici Moda'da Meyve Salatası 120 TL.
+
+## 25
+U [152] Bizim Mutfak'ta çorba olarak ne var?
+A [153] Bizim Mutfak'ta çorba olarak Mercimek Çorbası var, 65 TL.
+U [154] Bitki Bahçe'de zencefilli limonata ne kadar?
+A [155] Bitki Bahçe'de Zencefilli Limonata 115 TL.
+U [156] Tatlı Dünyası'nda meyve salatası kaç para?
+A [157] Tatlı Dünyası'nda Meyve Salatası 120 TL.
+
+## 26
+U [158] Urfa Ocakbaşı nerede?
+A [159] Urfa Ocakbaşı Fenerbahçe'de, fiyat seviyesi ₺₺₺.
+U [160] Urfa Ocakbaşı'nda közlenmiş patlıcan salatası kaç para?
+A [161] Urfa Ocakbaşı'nda Közlenmiş Patlıcan Salatası 155 TL.
+U [008] bu arada uzakdoğu mutfağını da çok seviyorum, noodle falan
+A [] Not aldım 🙂
+U [162] Muhallebici Moda nerede?
+A [163] Muhallebici Moda Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [164] Martı Balık pazartesi açık mı?
+A [165] Martı Balık pazartesi 12:00-23:59 arası açık.
+
+## 27
+U [166] Dün Gece Burger'de kampanya var mı?
+A [167] Dün Gece Burger için uygulamada kampanya kaydı yok.
+U [168] Antep Sofrası'nda kampanya var mı peki?
+A [169] Antep Sofrası için de uygulamada kampanya kaydı yok.
+U [170] Serpme Bahçe çarşamba kaça kadar açık?
+A [171] Serpme Bahçe çarşamba 08:00-16:00 arası açık.
+U [026] bu çarşamba öğlen Esnaf Sofrası'nda kuru fasulye yedim, ev yemeği gibiydi
+A [027] Afiyet olsun, doyurucu bir öğle yemeği olmuş.
+U [172] Akşam Meyhanesi nerede?
+A [173] Akşam Meyhanesi Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺₺.
+U [174] Bizim Mutfak nerede?
+A [175] Bizim Mutfak Kadıköy Çarşı'da, fiyat seviyesi ₺.
+
+## 28
+U [050] bugün nerede yiyebilirim?
+A [051] Serpme Bahçe'ye bakabilirsin: Simit 25 TL, vegan etiketli. Kadıköy Çarşı'da, fiyat seviyesi ₺.
+
+## 29
+U [176] Esnaf Lokantası'nda kampanya var mı?
+A [177] Esnaf Lokantası için uygulamada kampanya kaydı yok.
+U [028] evvelsi gün akşam Tencere Kapak'ta kuru fasulye yedim bu arada
+A [029] Afiyet olsun 🙂
+U [178] Urfa Ocakbaşı nerede?
+A [179] Urfa Ocakbaşı Fenerbahçe'de, fiyat seviyesi ₺₺₺.
+
+## 30
+U [180] Cuma Pide'de kampanya var mı?
+A [181] Cuma Pide için uygulamada kampanya kaydı yok.
+U [038] cumartesi akşamı Rakı Sofrası'na gitmeyi planlıyoruz, daha önce hiç gitmedim
+A [039] Rakı Sofrası cumartesi 17:00-02:00 arası açık.
+U [182] Bizim Mutfak nerede?
+A [183] Bizim Mutfak Kadıköy Çarşı'da, fiyat seviyesi ₺.
+
+## 31
+U [040] Rakı Sofrası planı iptal oldu, gidemedik 😕
+A [041] Üzüldüm, başka bir zaman olur 🙂
+U [] umarım
+
+## 32
+U [184] Martı Balık cuma kaça kadar açık?
+A [185] Martı Balık cuma 12:00-23:59 arası açık.
+
+## 33
+U [186] sabah trafiği yine felaket 🚗
+A [187] Geçmiş olsun, sabır diliyorum.
+U [188] Fırın Pide cumartesi açık mı?
+A [189] Fırın Pide cumartesi 11:00-23:30 arası açık.
+U [190] Burger Atölyesi'nde yan ürün ne var?
+A [191] Burger Atölyesi'nde yan ürün olarak Patates Kızartması var, 145 TL.
+U [030] geçen cumartesi akşam Moda Yeşil Mutfak'ta avokado tost yedim bu arada
+A [031] Afiyet olsun!
+U [192] Muhallebici Moda perşembe kaça kadar açık?
+A [193] Muhallebici Moda perşembe 10:00-00:00 arası açık.
+
+## 34
+U [052] bugün nerede yiyebilirim?
+A [053] Anne Eli Lokantası'na bakabilirsin: Mercimek Çorbası 105 TL, vegan etiketli. Kadıköy Çarşı'da, fiyat seviyesi ₺₺₺.
+U [194] Bizim Mutfak nerede bu arada?
+A [195] Bizim Mutfak Kadıköy Çarşı'da, fiyat seviyesi ₺.
+U [] tamam 👍
+
+## 35
+U [196] Muhallebici Moda'da kampanya var mı?
+A [197] Muhallebici Moda için uygulamada kampanya kaydı yok.
+U [032] dün öğlen Pazar Kahvaltı Evi'nde avokadolu kase yedim 🥑
+A [033] Afiyet olsun, keyifli bir öğle olmuş.
+U [198] Bizim Mutfak'ta kampanya var mı?
+A [199] Bizim Mutfak'ta Hafta içi %20 indirim var (Salı-Perşembe 12:00-16:00), 30 kasım'a kadar.
+
+## 36
+U [200] Fırın Pide'de şalgam kaç para?
+A [201] Fırın Pide'de Şalgam 75 TL.
+U [] tamamdır
+
+## 37
+U [202] İskele Lokantası'nda salata olarak ne var?
+A [203] İskele Lokantası'nda salata olarak Roka Salatası var, 140 TL.
+U [034] dün akşam Wok & Roll'da edamame yedim bu arada
+A [035] Afiyet olsun 🙂
+U [204] Cuma Pide'de şalgam ne kadar?
+A [205] Cuma Pide'de Şalgam 45 TL.
+
+## 38
+U [206] Urfa Ocakbaşı cuma kaça kadar açık?
+A [207] Urfa Ocakbaşı cuma 12:00-00:30 arası açık.
+U [] süper
+
+## 39
+U [036] dün öğlen Ateş Kebap'ta közlenmiş patlıcan salatası yedim
+A [037] Afiyet olsun!
+U [] 🙌
