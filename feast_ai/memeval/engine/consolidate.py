@@ -187,6 +187,8 @@ async def build_store(client, ds: Dataset, persona: str, until: str, log=print,
     come out exactly as before.  With no ``client``, a session ``reuse`` does
     not know is kept as episodes only (no facts): the retrieval eval's path,
     which needs no model and gets the same episodes a full build would."""
+    from .constraints import hard_ops          # constraints reads this module's cue table
+
     names = memory_names(ds)
     recorded = {e["session"]: e for e in (reuse.log if reuse else []) if "session" in e}
     cuisines = cuisine_index(ds)
@@ -207,11 +209,14 @@ async def build_store(client, ds: Dataset, persona: str, until: str, log=print,
                                           told.pop().isoformat() if len(told) == 1 else ""))
             if t.role == "user":
                 store.visits += visits_in(t.text, ref, spans, restaurants, t.turn_id)
+                # Allergy and diet by rule, dated to the turn that says it (constraints.hard_ops).
+                for op, key, value in hard_ops(t.text):
+                    apply(store, op, key, value, t.turn_id, t.ts[:10])
         first_user = next((t for t in item.turns if t.role == "user"), item.turns[0])
         if item.session_id in recorded:
             rec = recorded[item.session_id]
             done = [[op, key, value, apply(store, op, key, value, first_user.turn_id, first_user.ts[:10])]
-                    if result != "DROPPED" else [op, key, value, result]
+                    if result != "DROPPED" and key not in HARD else [op, key, value, "RULE" if key in HARD else result]
                     for op, key, value, result in rec["ops"]]
             store.log.append({"session": item.session_id, "raw": rec["raw"], "ops": done, "replayed": True})
             continue
@@ -222,8 +227,8 @@ async def build_store(client, ds: Dataset, persona: str, until: str, log=print,
         done = []
         for o in ops:
             value = canonical(o["key"], o["value"])
-            if value is None:
-                done.append([o["op"], o["key"], o["value"], "DROPPED"])
+            if value is None or o["key"] in HARD:
+                done.append([o["op"], o["key"], o["value"], "RULE" if o["key"] in HARD else "DROPPED"])
                 continue
             done.append([o["op"], o["key"], value,
                          apply(store, o["op"], o["key"], value, first_user.turn_id, first_user.ts[:10])])
@@ -235,8 +240,9 @@ async def build_store(client, ds: Dataset, persona: str, until: str, log=print,
 #: The dataset a later version extends; its stores are replayed, not rebuilt.
 BASE_VERSION = "v0.1"
 #: Bump when code changes what a store holds besides the SLM's ops (date
-#: resolution, the visit log): cached stores are then refreshed by replay.
-STORE_REV = 2
+#: resolution, the visit log, allergy and diet by rule): cached stores are
+#: then refreshed by replay.
+STORE_REV = 3
 
 
 def store_path(root: Path, model_id: str, persona: str, version: str = BASE_VERSION) -> Path:

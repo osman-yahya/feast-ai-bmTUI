@@ -42,6 +42,7 @@ def label(meta: dict, version: bool = False) -> str:
     if c["condition"] in ("always", "gated"):
         name += f" · {c['arm']}" + (f" · {c['retriever']}" if c.get("retriever", "bm25") != "bm25" else "")
         name += " · tarih v2" if meta.get("store_rev", 0) >= 2 else ""
+        name += " · ayıklama" if c.get("prune") else ""
         name += " · ziyaret" if c.get("visits") else ""
     if c.get("tools") == "app":
         name += " · araç"

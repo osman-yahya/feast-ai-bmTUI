@@ -47,7 +47,7 @@ from datetime import datetime
 from pathlib import Path
 
 from ..paths import HOME
-from .engine.gate import wants_count
+from .engine.gate import tools_for
 from .engine.timeparse import annotate
 from .schema import Dataset, Question, load
 
@@ -55,7 +55,7 @@ EVALS_DIR = HOME / "evals"
 CONDITIONS = ("none", "oracle", "full", "always", "gated")
 ENGINE_CONDITIONS = ("always", "gated")
 ARMS = ("raw", "facts", "facts+raw")
-RETRIEVERS = ("bm25", "rrf")
+RETRIEVERS = ("bm25", "rrf", "auto")
 TOOL_MODES = ("off", "all")
 DAY_EN = ("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
 
@@ -141,6 +141,21 @@ def agent_context(ds: Dataset, q: Question):
     )
 
 
+def app_data(ds: Dataset, store, q: Question):
+    """What the app tools read for ``q``: logs, saved places, the constraints memory holds."""
+    from ..agent.text import fold
+    from .engine.constraints import constraints
+    from .engine.visits import recommendations
+    from .tools import AppData
+
+    p = ds.personas[q.persona]
+    restaurants = {fold(r.name): (r.id, r.name) for r in ds.world.restaurants}
+    return AppData(ds.world, visit_log(ds, store, q), p.saved_restaurants,
+                   recommendations(store.episodes, restaurants, q.asked_at),
+                   constraints(store, q.question, p.friends), (p.home_lat, p.home_lng),
+                   datetime.fromisoformat(q.asked_at))
+
+
 def visit_log(ds: Dataset, store, q: Question) -> list[dict]:
     """What the app recorded and what the user told, up to the question."""
     from .engine.visits import merged
@@ -154,8 +169,8 @@ def engine_memory(store, q: Question, cfg: "RunConfig", names: tuple[str, ...],
     """MEMORY block, handles and gate decision from a consolidated store."""
     from .engine.assemble import assemble
     from .engine.embed import retrieve_dense
-    from .engine.gate import gate
-    from .engine.retrieve import retrieve
+    from .engine.gate import gate, retriever_for
+    from .engine.retrieve import retrieve, searchable
 
     decision = gate(q.question) if cfg.condition == "gated" else "recall"
     if decision == "closed":
@@ -166,11 +181,14 @@ def engine_memory(store, q: Question, cfg: "RunConfig", names: tuple[str, ...],
     ranked = []
     if "raw" in cfg.arm:
         query = q.question + (" alerji diyet vegan vejetaryen sevmem" if decision == "recommend" else "")
-        if cfg.retriever == "rrf":
-            ranked = retrieve_dense(store.episodes, q.question, q.asked_at, cfg.k, names,
+        pool = searchable(store.episodes) if cfg.prune else store.episodes
+        mode = (retriever_for(q.question, q.asked_at, names, decision) if cfg.retriever == "auto"
+                else cfg.retriever)
+        if mode == "rrf":
+            ranked = retrieve_dense(pool, q.question, q.asked_at, cfg.k, names,
                                     mode="rrf", encoder=encoder, lexical_query=query)
         else:
-            ranked = retrieve(store.episodes, query, q.asked_at, cfg.k, names)
+            ranked = retrieve(pool, query, q.asked_at, cfg.k, names)
     seen = None
     if cfg.visits and ds is not None:
         from .engine.timeparse import resolve
@@ -182,7 +200,7 @@ def engine_memory(store, q: Question, cfg: "RunConfig", names: tuple[str, ...],
 
 
 def sections(ds: Dataset, q: Question, condition: str, tools: str,
-             memory: tuple[str, dict] | None = None, offer: bool = False) -> tuple[dict, dict]:
+             memory: tuple[str, dict] | None = None, offer: tuple[str, ...] = ()) -> tuple[dict, dict]:
     """The system prompt in order, static first: preamble + tools never change,
     MEMORY changes per persona (full) or per question (oracle), CONTEXT last."""
     from ..agent.prompts import CALL_FORMAT, NO_TOOLS, PREAMBLE
@@ -194,10 +212,10 @@ def sections(ds: Dataset, q: Question, condition: str, tools: str,
     if tools == "all":
         out["tools"] = "TOOLS  (* = required)\n\n" + render_tools(ALL_TOOL_NAMES, context.tags)
         out["call_format"] = CALL_FORMAT
-    elif tools == "app" and offer:                  # a count question: the two app tools
-        from .tools import APP_TOOLS
+    elif tools == "app" and offer:                  # the app tools this question needs
+        from .tools import tools_prompt
 
-        out["tools"] = APP_TOOLS
+        out["tools"] = tools_prompt(offer)
         out["call_format"] = CALL_FORMAT
     else:
         out["rules"] = NO_TOOLS
@@ -225,7 +243,8 @@ class RunConfig:
     thinking: str = "off"
     arm: str = "facts+raw"          # engine conditions only
     k: int = 8                      # retrieved turns
-    retriever: str = "bm25"         # bm25 | rrf
+    retriever: str = "bm25"         # bm25 | rrf | auto (per question, engine/gate.retriever_for)
+    prune: bool = False             # empty turns out of the index (engine/retrieve.searchable)
     visits: bool = False            # v lines from the visit log in MEMORY
     memory_budget: int = 900        # MEMORY tokens, approx
 
@@ -250,23 +269,21 @@ def select(ds: Dataset, cfg: RunConfig) -> list[Question]:
 
 
 async def _tool_loop(client, messages: list[dict], reply: str, stats: dict, row: Row,
-                     visits: list[dict], ds: Dataset, q: Question, generate) -> tuple[str, dict]:
+                     data, generate) -> tuple[str, dict]:
     """Run the app tools the model calls and let it answer from the results,
     under the phone agent's limits.  ``stats`` ends as the last call's, with
     the earlier calls' time added: TTFT is when the answer starts."""
     from ..agent.calls import extract
-    from .tools import MAX_INVALID_CALLS, MAX_TOOL_CALLS, RESULT_NOTE, run_app_tool
+    from .tools import MAX_INVALID_CALLS, MAX_TOOL_CALLS, RESULT_NOTE, run_tool
 
-    names = {r.id: r.name for r in ds.world.restaurants}
-    saved = ds.personas[q.persona].saved_restaurants
     invalid = 0
     while True:
         check = extract(reply)
-        if not check.is_call:
+        if not check.format:                    # extract() locates a call; only check_reply() sets status
             return reply, stats
         if not row.call:
             row.call, row.call_args = check.name, dict(check.args)
-        ok, result = (run_app_tool(check.name, check.args, visits, saved, names)
+        ok, result = (run_tool(check.name, check.args, data)
                       if check.status != "parse_error" else (False, "error: the call could not be read."))
         row.tool_steps += ok
         invalid += not ok
@@ -322,6 +339,8 @@ async def run(cfg: RunConfig, log=print) -> Path:
     cond = f"{cfg.condition}-{cfg.arm.replace('+', '')}" if engine else cfg.condition
     if engine and cfg.retriever != "bm25":
         cond += f"-{cfg.retriever}"
+    if engine and cfg.prune:
+        cond += "-prune"
     if engine and cfg.visits:
         cond += "-visits"
     run_id = time.strftime("%Y%m%d-%H%M%S") + f"-{cfg.model_id}-{cond}-{cfg.tools}"
@@ -343,7 +362,7 @@ async def run(cfg: RunConfig, log=print) -> Path:
     stores: dict = {}
     names: tuple[str, ...] = ()
     encoder = None
-    if engine and cfg.retriever == "rrf" and "raw" in cfg.arm:
+    if engine and cfg.retriever in ("rrf", "auto") and "raw" in cfg.arm:
         from .engine.embed import Encoder
         from .retrieval_eval import encoder_specs
 
@@ -354,8 +373,8 @@ async def run(cfg: RunConfig, log=print) -> Path:
         if not engine:
             return (*sections(ds, q, cfg.condition, cfg.tools), "")
         block, handles, decision = engine_memory(stores[q.persona], q, cfg, names, encoder, ds)
-        return (*sections(ds, q, cfg.condition, cfg.tools, (block, handles), wants_count(q.question)),
-                decision)
+        offer = tools_for(q.question, decision, names) if cfg.tools == "app" else ()
+        return (*sections(ds, q, cfg.condition, cfg.tools, (block, handles), offer), decision)
 
     try:
         if engine:
@@ -400,8 +419,7 @@ async def run(cfg: RunConfig, log=print) -> Path:
                     reply, stats = await _generate(client, messages, time.perf_counter())
                     if cfg.tools == "app" and "tools" in parts and not stats["error"]:
                         reply, stats = await _tool_loop(client, messages, reply, stats, row,
-                                                        visit_log(ds, stores[q.persona], q) if engine else [],
-                                                        ds, q, _generate)
+                                                        app_data(ds, stores[q.persona], q), _generate)
                     row.reply = reply
                     for key in ("prompt_tokens", "cached_tokens", "prefilled_tokens",
                                 "completion_tokens", "ttft_s", "latency_s", "prefill_tps",

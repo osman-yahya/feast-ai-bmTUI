@@ -30,6 +30,22 @@ WENT = re.compile(r"\b(?:yedi[mk]|icti[mk]|gitti[mk]|oturdu[mk]|denedi[mk]|ugrad
 NOT_WENT = re.compile(r"\b(?:gideme\w*|gitmedi\w*|yiyemedi\w*|iptal\w*|vazgec\w*)\b")
 
 
+#: An assistant turn that recommends: "... deneyebilirsin", "öneririm", "uygun olur".
+#: v0.3: the (turn, restaurant) pairs equal the app's own record of recommendation
+#: cards (``Session.recommended``), precision and recall 1.00.
+RECOMMENDS = re.compile(r"\b(?:oner\w*|tavsiye\w*|deneyebilir\w*|gidebilir\w*|bakabilir\w*|"
+                        r"tercih edebilir\w*|uygun\w*|harika bir secim\w*|guzel bir secim\w*)\b")
+
+
+def _named(folded: str, restaurants: dict[str, tuple[str, str]]) -> list[tuple[str, str]]:
+    found = []
+    for key in sorted(restaurants, key=len, reverse=True):      # longest name first
+        if re.search(r"\b" + re.escape(key), folded):
+            folded = folded.replace(key, "#" * len(key))
+            found.append(restaurants[key])
+    return found
+
+
 def visits_in(text: str, ref: datetime, spans: list[Span], restaurants: dict[str, tuple[str, str]],
               turn_id: str = "") -> list[dict]:
     """Visits a user turn reports. ``restaurants``: folded name -> (id, name)."""
@@ -39,13 +55,23 @@ def visits_in(text: str, ref: datetime, spans: list[Span], restaurants: dict[str
     days = [s.first for s in spans if s.first == s.last and s.first <= ref.date()]
     if len(set(days)) != 1:
         return []
-    found = []
-    for key in sorted(restaurants, key=len, reverse=True):      # longest name first
-        if re.search(r"\b" + re.escape(key), f):
-            f = f.replace(key, "#" * len(key))
-            found.append(restaurants[key])
     return [{"restaurant_id": rid, "restaurant": name, "date": days[0].isoformat(),
-             "turn_id": turn_id, "source": "chat"} for rid, name in found]
+             "turn_id": turn_id, "source": "chat"} for rid, name in _named(f, restaurants)]
+
+
+def recommendations(episodes, restaurants: dict[str, tuple[str, str]], until: str) -> list[dict]:
+    """The places the assistant recommended before ``until``, one line per
+    (restaurant, day), oldest first - read from the stored turns at ask time."""
+    out: dict[tuple[str, str], dict] = {}
+    for e in episodes:
+        if e.role != "assistant" or e.ts >= until:
+            continue
+        f = fold(e.text)
+        if RECOMMENDS.search(f):
+            for rid, name in _named(f, restaurants):
+                out.setdefault((rid, e.ts[:10]), {"restaurant_id": rid, "restaurant": name,
+                                                  "date": e.ts[:10], "turn_id": e.turn_id})
+    return sorted(out.values(), key=lambda v: (v["date"], v["restaurant"]))
 
 
 def merged(chat: list[dict], app: list[dict], names: dict[str, str], until: str) -> list[dict]:
@@ -57,9 +83,9 @@ def merged(chat: list[dict], app: list[dict], names: dict[str, str], until: str)
             out[(v["restaurant_id"], v["visited_at"][:10])] = {
                 "restaurant_id": v["restaurant_id"], "restaurant": names[v["restaurant_id"]],
                 "date": v["visited_at"][:10], "turn_id": "", "source": "app"}
-    for v in chat:
+    for v in chat:                              # told in chat wins: "source" says the user said it
         if v["date"] <= until[:10]:
-            out.setdefault((v["restaurant_id"], v["date"]), v)
+            out[(v["restaurant_id"], v["date"])] = v
     return sorted(out.values(), key=lambda v: (v["date"], v["restaurant"]))
 
 

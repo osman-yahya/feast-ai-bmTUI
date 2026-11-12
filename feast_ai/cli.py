@@ -232,7 +232,7 @@ def _cmd_memeval(args) -> int:
                         ram_gb=args.ram_gb, limit=args.limit, personas=split(args.personas),
                         categories=split(args.categories), max_tokens=args.max_tokens,
                         arm=args.arm, k=args.k, memory_budget=args.memory_budget,
-                        retriever=args.retriever, visits=args.visits)
+                        retriever=args.retriever, prune=args.prune, visits=args.visits)
         try:
             out = asyncio.run(run(cfg))
         except EngineError as exc:
@@ -556,12 +556,15 @@ def main(argv: list[str] | None = None) -> int:
     run_cmd.add_argument("--arm", default="facts+raw", choices=["raw", "facts", "facts+raw"],
                          help="engine conditions: retrieved turns, consolidated facts, or both")
     run_cmd.add_argument("--k", type=int, default=8, help="retrieved turns (engine conditions)")
-    run_cmd.add_argument("--retriever", default="bm25", choices=["bm25", "rrf"],
-                         help="raw-turn ranking: BM25 (v0.1) or BM25+encoder RRF (engine conditions)")
+    run_cmd.add_argument("--retriever", default="bm25", choices=["bm25", "rrf", "auto"],
+                         help="raw-turn ranking: BM25 (v0.1), BM25+encoder RRF, or auto: BM25 when the "
+                              "question names a place or a time or wants a recommendation, else RRF")
+    run_cmd.add_argument("--prune", action="store_true",
+                         help="engine conditions: leave empty turns (thanks, ok) out of the index")
     run_cmd.add_argument("--memory-budget", type=int, default=900, help="MEMORY tokens (approx)")
     run_cmd.add_argument("--tools", default="off", choices=["off", "all", "app"],
                          help="off: plain answers; all: every agent tool offered, calls recorded; "
-                              "app: count questions get my_visits/search_saved, run for real")
+                              "app: each question gets the app tools it needs (engine/gate.tools_for), run for real")
     run_cmd.add_argument("--visits", action="store_true",
                          help="engine conditions: show the visit log's lines for the question in MEMORY")
     run_cmd.add_argument("--profile", default="", help="device profile (budget, midrange, ...)")

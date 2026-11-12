@@ -67,6 +67,13 @@ def _month_window(month: int, ref: date) -> tuple[date, date]:
     return first, nxt - timedelta(days=1)
 
 
+def _months_back(day: date, n: int) -> date:
+    m = day.month - 1 - n
+    year, month = day.year + m // 12, m % 12 + 1
+    nxt = date(year + (month == 12), month % 12 + 1, 1)
+    return date(year, month, min(day.day, (nxt - timedelta(days=1)).day))
+
+
 def _mask(folded: str, names: tuple[str, ...]) -> str:
     for name in names:
         n = fold(name)
@@ -109,7 +116,10 @@ def resolve(text: str, ref: datetime | date, names: tuple[str, ...] = ()) -> lis
             first, last = _month_window((today.month - 2) % 12 + 1, today)
         elif g["span"]:
             n, unit = _n(g["span"]), g["spanunit"]
-            first, last = today - timedelta(days=n * {"gun": 1, "hafta": 7, "ay": 30}[unit]), today
+            if unit == "ay":                         # calendar months: "son iki ay" on 28 Oct is from 28 Aug
+                first, last = _months_back(today, n), today
+            else:
+                first, last = today - timedelta(days=n * {"gun": 1, "hafta": 7}[unit]), today
         elif g["this"]:
             if g["this"] == "hafta":
                 first, last = today - timedelta(days=today.weekday()), today

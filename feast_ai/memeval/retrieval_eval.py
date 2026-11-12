@@ -34,7 +34,8 @@ from ..paths import ENCODERS_DIR, HOME
 from ..encoders import EMBED_QUERY_PREFIX
 from .engine.consolidate import build_stores, memory_names
 from .engine.embed import Encoder, EncoderSpec, Reranker, doc_text, retrieve_dense
-from .engine.gate import gate
+from .engine.gate import gate, retriever_for
+from .engine.retrieve import searchable
 from .schema import load
 
 DATA = Path(__file__).parent / "data" / "v0.1"
@@ -74,6 +75,7 @@ class Arm:
     encoder: str = ""
     weight: float = 0.5
     rerank: bool = False
+    prune: bool = False
 
 
 ARMS = (
@@ -116,7 +118,17 @@ ARMS_ENCODERS = (
     Arm("rrf · egemma-asym", "rrf", "egemma-asym"),
     Arm("rrf · egemma-sym", "rrf", "egemma-sym"),
 )
-ARM_SETS = {"all": ARMS, "sym": ARMS_SYM, "long": ARMS_LONG, "encoders": ARMS_ENCODERS}
+#: v0.3: BM25 or RRF chosen per question (``auto``), and empty turns left out.
+ARMS_ROUTE = (
+    Arm("bm25 (v0.1)", "bm25"),
+    Arm("rrf · sym", "rrf", "mbert-sym"),
+    Arm("auto", "auto", "mbert-sym"),
+    Arm("bm25 + prune", "bm25", prune=True),
+    Arm("rrf + prune", "rrf", "mbert-sym", prune=True),
+    Arm("auto + prune", "auto", "mbert-sym", prune=True),
+)
+ARM_SETS = {"all": ARMS, "sym": ARMS_SYM, "long": ARMS_LONG, "encoders": ARMS_ENCODERS,
+            "route": ARMS_ROUTE}
 
 
 def run(data: Path = DATA, model_id: str = "gemma-4-e2b", k: int = 8, threads: int = 6,
@@ -170,11 +182,15 @@ def run(data: Path = DATA, model_id: str = "gemma-4-e2b", k: int = 8, threads: i
         rows, ms = [], []
         enc = encoders.get(a.encoder)
         for q, evidence in queries:
-            lexical = q.question + (RECOMMEND_EXPANSION if gate(q.question) == "recommend" else "")
+            decision = gate(q.question)
+            lexical = q.question + (RECOMMEND_EXPANSION if decision == "recommend" else "")
             pool = pooled if haystack == "all" else stores[q.persona].episodes
+            if a.prune:
+                pool = searchable(pool)
             t1 = time.perf_counter()
+            mode = retriever_for(q.question, q.asked_at, names, decision) if a.mode == "auto" else a.mode
             ranked = retrieve_dense(pool, q.question, q.asked_at, 50, names,
-                                    mode=a.mode, encoder=enc, lexical_query=lexical, weight=a.weight,
+                                    mode=mode, encoder=enc, lexical_query=lexical, weight=a.weight,
                                     reranker=reranker if a.rerank else None)
             ms.append((time.perf_counter() - t1) * 1000)
             ids = [e.turn_id for e in ranked]

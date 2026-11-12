@@ -55,6 +55,17 @@ class BM25:
         return s
 
 
+#: A turn with fewer content tokens than this and no date ("Teşekkürler!",
+#: "Afiyet olsun") is never evidence: v0.3, 525 of 3798 turns, 0 of 415
+#: evidence turns (at 4 tokens, 2 evidence turns would go).
+MIN_TOKENS = 3
+
+
+def searchable(episodes: list[Episode]) -> list[Episode]:
+    """``episodes`` without the empty turns, so they do not take MEMORY slots."""
+    return [e for e in episodes if e.dates or len(tokens(e.text)) >= MIN_TOKENS]
+
+
 def _days(e: Episode) -> list[tuple[date, date]]:
     out = [tuple(date.fromisoformat(x) for x in w.split("..")) for w in e.dates]
     return out or [(date.fromisoformat(e.ts[:10]),) * 2]
