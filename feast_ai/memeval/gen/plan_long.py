@@ -21,6 +21,7 @@ v0.1 (``plan.py``) is left untouched so it still rebuilds byte for byte.
 from __future__ import annotations
 
 import random
+import re
 from datetime import datetime, timedelta
 
 from ...agent.text import fold, tr_lower
@@ -809,4 +810,28 @@ def audit(plan: Plan, data: dict) -> list[str]:
             bad = [w for w in banned + tuple(plan.banned) if w in text]
             if bad:
                 problems.append(f"session {s['session_index']} turn {t_index}: everyday turn says {bad}")
+    return problems + data_kept(plan, data)
+
+
+def data_kept(plan: Plan, data: dict) -> list[str]:
+    """Every price, opening time, area and price level an assistant beat hands
+    the writer must reach its turn unchanged - a copied "₺₺" for "₺" would be
+    a wrong fact in an answer the eval later quotes."""
+    beats = {b.id: b for s in plan.sessions for b in s.beats}
+    problems = []
+    for s in data.get("sessions", []):
+        for t_index, turn in enumerate(s["turns"]):
+            if turn["role"] != "assistant":
+                continue
+            text, folded = turn["text"], fold(turn["text"])
+            runs = set(re.findall(r"₺+", text))
+            for bid in turn["beats"]:
+                instr = beats[bid].instruction if bid in beats else ""
+                want = re.findall(r"\d+ TL|\d\d:\d\d-\d\d:\d\d", instr)
+                want += [a for a in re.findall(r"semt(?:i söyler:)? ([^.;]+)", instr)]
+                want += ["kapalı"] if " kapalı" in instr else []
+                missing = [w for w in want if fold(w) not in folded]
+                missing += [r for r in re.findall(r"₺+", instr) if r not in runs]
+                if missing:
+                    problems.append(f"session {s['session_index']} turn {t_index}: {bid} lost {missing}")
     return problems

@@ -1,0 +1,327 @@
+# Murat
+
+## 0
+U [001] bi dakka, onemli: sutlu bisey yiyince midem kramp giriyo nefesim daraliyo, gecen sene sutlacdan sonra acile gittim. sutlu hicbisey olmaz yani
+A [002] Çok geçmiş olsun! Bundan sonra süt içeren yemeklere ayrıca dikkat edeceğim.
+U [048] yeşil tabak kampanya var mı
+A [049] Yeşil Tabak için uygulamada kampanya kaydı yok.
+U [] ok
+
+## 1
+U [050] smash bros nerde
+A [051] Smash Bros Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [] tmm
+
+## 2
+U [052] cihangir meze evi perşembe kaça kdr açık
+A [053] Cihangir Meze Evi perşembe 17:00-02:00 arası açık.
+U [054] burger atölyesi nerde
+A [055] Burger Atölyesi Fenerbahçe'de, fiyat seviyesi ₺₺₺.
+U [056] sushi nami nerde peki
+A [057] Sushi Nami Beşiktaş'ta, fiyat seviyesi ₺.
+U [058] tokyo sokağı nerde
+A [059] Tokyo Sokağı Moda'da, fiyat seviyesi ₺₺.
+U [] ok
+
+## 3
+U [003] en sevdiğim mutfak kebap bu arada, adana urfa farketmez
+A [] Anlaşıldı, aklımda.
+U [060] haftasonu müşteri yemeği var ugh
+A [061] Kolay gelsin, umarım verimli geçer.
+U [062] rakı sofrası'nda muhammara kaç
+A [063] Rakı Sofrası'nda Muhammara 155 TL.
+U [064] rakı sofrası nerde
+A [065] Rakı Sofrası Moda'da, fiyat seviyesi ₺₺₺.
+U [] tmm
+
+## 4
+U [066] bambu cumartesi açık mı
+A [067] Bambu cumartesi 12:00-23:00 arası açık.
+U [068] simitçi dünyası pazartesi kaça kdr
+A [069] Simitçi Dünyası pazartesi 08:00-16:00 arası açık.
+U [005] beşiktaştayım ben, ofis de evim de orda
+A [] Tamam, Beşiktaş'ı not aldım.
+U [070] baklavacı güllüoğlu usta kampanya var mı
+A [071] Baklavacı Güllüoğlu Usta'da şu an aktif kampanya yok; 1 ekim'de başlayacak Hafta içi %20 indirim (Salı-Perşembe 12:00-16:00) görünüyor.
+U [] ok
+
+## 5
+U [072] muhallebici moda içecek ne var
+A [073] Muhallebici Moda'da içecek olarak Türk Kahvesi var, 70 TL.
+U [008] bu perşembe öğlen fırın pide'de acılı lahmacun yedim, toplantı arası hızlı
+A [009] Afiyet olsun!
+U [] 👍
+
+## 6
+U [074] kasap burger perşembe açık mı
+A [075] Kasap Burger perşembe 12:00-02:00 arası açık.
+U [036] bugün nerde yiyebilirim
+A [037] Fenerbahçe Balıkçısı'na bakabilirsin: Helva 205 TL. Beşiktaş'ta, fiyat seviyesi ₺₺₺₺.
+U [] tatlıya gerek yok ama ok
+
+## 7
+U [076] serpme bahçe simit kaç
+A [077] Serpme Bahçe'de Simit 25 TL.
+U [078] iskele lokantası ana yemek ne var
+A [079] İskele Lokantası'nda ana yemek olarak Levrek Izgara var, 520 TL.
+U [080] tencere kapak nerde
+A [081] Tencere Kapak Cihangir'de, fiyat seviyesi ₺₺.
+U [] tmm
+
+## 8
+U [010] dün akşam urfa ocakbaşı'nda urfa kebap yedim, müşteriyle
+A [011] Afiyet olsun, umarım görüşme de iyi geçmiştir!
+U [] geçti 👍
+
+## 9
+U [082] baklavacı güllüoğlu usta türk kahvesi kaç
+A [083] Baklavacı Güllüoğlu Usta'da Türk Kahvesi 70 TL.
+U [084] burger atölyesi nerdeydi
+A [085] Burger Atölyesi Fenerbahçe'de, fiyat seviyesi ₺₺₺.
+U [] ok
+
+## 10
+U [086] urfa sofrası çarşamba açık mı
+A [087] Urfa Sofrası çarşamba 12:00-00:30 arası açık.
+U [038] bugün nerde yiyebilirim acil
+A [039] Lagos Balık'a bakabilirsin: Roka Salatası 140 TL, vegan etiketli. Beşiktaş'ta, fiyat seviyesi ₺₺.
+U [088] akşam maç var yetişmem lazım
+A [089] Keyifli seyirler, umarım yetişirsin!
+U [090] dün gece burger cuma kaça kdr
+A [091] Dün Gece Burger cuma 12:00-02:00 arası açık.
+U [] ok
+
+## 11
+U [012] dün akşam bitki kafe'de avokado tost yedim, eşim seçti
+A [013] Afiyet olsun!
+U [092] tatlı dünyası kampanya var mı
+A [093] Tatlı Dünyası için uygulamada kampanya kaydı yok.
+U [094] köprü yine kitlendi 40 dk dır bekliyorum
+A [095] Geçmiş olsun, sabır dilerim.
+U [] off
+
+## 12
+U [096] moda yeşil mutfak mercimek köftesi kaç
+A [097] Moda Yeşil Mutfak'ta Mercimek Köftesi 170 TL.
+U [098] burger atölyesi cumartesi açık mı
+A [099] Burger Atölyesi cumartesi 12:00-02:00 arası açık.
+U [100] trafik yine felaket toplantıya geç kalıcam
+A [101] Kolay gelsin, umarım çabuk açılır.
+
+## 13
+U [102] bitki bahçe pazar açık mı
+A [103] Bitki Bahçe pazar 09:00-22:00 arası açık.
+U [] ok
+
+## 14
+U [104] haftasonu ofiste kalıcam galiba, rapor var
+A [105] Kolay gelsin, araya biraz mola koymayı unutma.
+U [106] dün gece burger nerde
+A [107] Dün Gece Burger Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [006] cumartesi oya hanımla yemeğe çıkıcaz, oya'nın yer fıstığı alerjisi var, benim değil onun, ona göre bi yer bakmak lazım
+A [007] Oya için menülerde yer fıstığı içeren yemeklere dikkat etmek gerek.
+U [108] kasap burger kampanya var mı
+A [109] Kasap Burger'de şu an aktif kampanya yok; 1 ekim'de başlayacak Öğrenciye %15 (Salı-Perşembe 12:00-16:00) görünüyor.
+U [] ok tmm
+
+## 15
+U [110] yeşil tabak çarşamba açık mı
+A [111] Yeşil Tabak çarşamba 09:00-22:00 arası açık.
+U [112] yeşil tabak avokado tost kaç
+A [113] Yeşil Tabak'ta Avokado Tost 245 TL.
+U [014] evvelsi gün öğlen antep sofrası'nda adana kebap yedim, süperdi
+A [015] Afiyet olsun!
+U [114] haftasonu çocukları sahile götürücem
+A [115] Ne güzel, keyifli bir hafta sonu dilerim!
+U [] sağol
+
+## 16
+U [040] bugün nerde yiyebilirim
+A [041] Sushi Nami'ye bakabilirsin: Somon Sushi Seti 415 TL. Beşiktaş'ta, fiyat seviyesi ₺. @beyza.yer da "Hayatımda yediğim en iyi Somon Sushi Seti 🔥" yazmış.
+
+## 17
+U [116] akşam meyhanesi pazartesi açık mı
+A [117] Akşam Meyhanesi pazartesi 17:00-02:00 arası açık.
+U [118] burger atölyesi nerdeydi ya
+A [119] Burger Atölyesi Fenerbahçe'de, fiyat seviyesi ₺₺₺.
+U [120] tokyo sokağı cumartesi kaça kdr
+A [121] Tokyo Sokağı cumartesi 12:00-23:00 arası açık.
+U [122] tatlı dünyası nerde
+A [123] Tatlı Dünyası Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [124] kasap burger yan ürün ne var
+A [125] Kasap Burger'de yan ürün olarak Patates Kızartması var, 90 TL.
+U [126] tencere kapak mercimek çorbası kaç
+A [127] Tencere Kapak'ta Mercimek Çorbası 80 TL.
+
+## 18
+U [128] tencere kapak çarşamba açık mı
+A [129] Tencere Kapak çarşamba 11:00-21:00 arası açık.
+U [130] baklavacı güllüoğlu usta nerde
+A [131] Baklavacı Güllüoğlu Usta Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [132] bambu pazar açık mı
+A [133] Bambu pazar 12:00-23:00 arası açık.
+U [] tmm
+
+## 19
+U [016] geçen pazar öğlen ateş kebap'ta urfa kebap yedim
+A [017] Afiyet olsun!
+U [134] sushi nami pazar açık mı
+A [135] Sushi Nami pazar 12:00-23:00 arası açık.
+U [136] şekerci cafer çarşamba kaça kdr
+A [137] Şekerci Cafer çarşamba 10:00-00:00 arası açık.
+U [138] kasap burger salı açık mı
+A [139] Kasap Burger salı 12:00-02:00 arası açık.
+U [140] dün maç rezaletti hakem berbattı
+A [141] Üzücü, umarım sonraki maç daha iyi olur.
+U [] umarım
+
+## 20
+U [142] sushi nami somon sushi seti kaç
+A [143] Sushi Nami'de Somon Sushi Seti 415 TL.
+U [] ok
+
+## 21
+U [042] bugün nerde yiyebilirim
+A [043] Tencere Kapak'a bakabilirsin: Karnıyarık 210 TL, helal etiketli. Cihangir'de, fiyat seviyesi ₺₺.
+U [] olur
+
+## 22
+U [144] cihangir meze evi nerde
+A [145] Cihangir Meze Evi Beşiktaş'ta, fiyat seviyesi ₺₺.
+U [146] smash bros kampanya var mı
+A [147] Smash Bros için uygulamada kampanya kaydı yok.
+U [148] tencere kapak nerdeydi
+A [149] Tencere Kapak Cihangir'de, fiyat seviyesi ₺₺.
+U [] ok
+
+## 23
+U [150] iskele lokantası tatlı ne var
+A [151] İskele Lokantası'nda tatlı olarak Helva var, 120 TL.
+U [018] dün akşam pideci hasan'da lahmacun yedim
+A [019] Afiyet olsun!
+U [] 👍
+
+## 24
+U [152] şekerci cafer kampanya var mı
+A [153] Şekerci Cafer'de şu an aktif kampanya yok; 1 ekim'de başlayacak Öğrenciye %15 (Salı-Perşembe 12:00-16:00) görünüyor.
+U [154] tencere kapak cuma açık mı
+A [155] Tencere Kapak cuma kapalı.
+U [156] esnaf sofrası kampanya var mı
+A [157] Esnaf Sofrası'nda şu an aktif kampanya yok; 1 ekim'de başlayacak Öğrenciye %15 (Salı-Perşembe 12:00-16:00) görünüyor.
+U [] ok
+
+## 25
+U [158] moda yeşil mutfak kampanya var mı
+A [159] Moda Yeşil Mutfak'ta şu an aktif kampanya yok; 1 ekim'de başlayacak Öğrenciye %15 (Salı-Perşembe 12:00-16:00) görünüyor.
+
+## 26
+U [160] baklavacı güllüoğlu usta türk kahvesi kaçtı
+A [161] Baklavacı Güllüoğlu Usta'da Türk Kahvesi 70 TL.
+U [162] haftasonu yine fuar var, standdayım
+A [163] Kolay gelsin, umarım bereketli geçer!
+U [164] esnaf sofrası karnıyarık kaç
+A [165] Esnaf Sofrası'nda Karnıyarık 210 TL.
+U [004] bu arada pide lahmacun haftada iki kere şart bende, öğlenleri hep o
+A [] Anlaşıldı, aklımda.
+U [166] tencere kapak pazar açık mı
+A [167] Tencere Kapak pazar 11:00-21:00 arası açık.
+U [168] muhallebici moda nerde
+A [169] Muhallebici Moda Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [] tmm
+
+## 27
+U [170] eski dostlar çarşamba kaça kdr
+A [171] Eski Dostlar çarşamba 17:00-02:00 arası açık.
+U [172] baklavacı güllüoğlu usta nerdeydi
+A [173] Baklavacı Güllüoğlu Usta Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [020] bu çarşamba akşam martı balık'ta kalamar tava yedim
+A [021] Afiyet olsun!
+U [174] çeyrek sonu hedefleri tuttu sonunda
+A [175] Tebrikler, emeğine sağlık!
+U [176] burger atölyesi salı açık mı
+A [177] Burger Atölyesi salı 12:00-02:00 arası açık.
+U [] ok
+
+## 28
+U [044] bugün nerde yiyebilirim
+A [045] Cihangir Meze Evi'ne bakabilirsin: Fava 100 TL, vegan etiketli. Beşiktaş'ta, fiyat seviyesi ₺₺. @acikmis_ogrenci da "Fiyatına göre gayet iyi bir Muhammara" yazmış.
+
+## 29
+U [178] martı meze roka salatası kaç
+A [179] Martı Meze'de Roka Salatası 140 TL.
+U [022] evvelsi gün akşam kebapçı halil'de fıstıklı kebap yedim
+A [023] Afiyet olsun!
+U [] 👍
+
+## 30
+U [180] esnaf sofrası perşembe açık mı
+A [181] Esnaf Sofrası perşembe 11:00-21:00 arası açık.
+U [032] cumartesi öğlen wok & roll'a gitmeyi düşünüyoruz, daha gitmedim
+A [033] Wok & Roll cumartesi 12:00-23:00 arası açık.
+U [182] akşam derbi var
+A [183] Keyifli seyirler!
+U [] sağol
+
+## 31
+U [184] cihangir meze evi meze ne var
+A [185] Cihangir Meze Evi'nde meze olarak Fava 100 TL ve Muhammara 120 TL var.
+U [034] wok & roll iptal oldu gidemedik
+A [035] Olsun, başka zaman olur.
+U [] ok
+
+## 32
+U [186] dünkü maç kötüydü
+A [187] Üzücü, bir dahakine olur.
+U [188] cihangir meze evi nerdeydi
+A [189] Cihangir Meze Evi Beşiktaş'ta, fiyat seviyesi ₺₺.
+U [190] baklavacı güllüoğlu usta kampanya başladı mı
+A [191] Baklavacı Güllüoğlu Usta'da şu an aktif kampanya yok; 1 ekim'de başlayacak Hafta içi %20 indirim (Salı-Perşembe 12:00-16:00) görünüyor.
+U [] ok
+
+## 33
+U [024] bu çarşamba öğlen karadeniz pide salonu'nda lahmacun yedim
+A [025] Afiyet olsun!
+U [192] milli maç ne zaman ya
+A [193] Güncel maç saatini haberlerden kontrol edebilirsin 🙂
+U [] tmm
+
+## 34
+U [046] bugün nerde yiyebilirim
+A [047] Şekerci Cafer'e bakabilirsin: Meyve Salatası 120 TL, vegan ve glutensiz etiketli. Cihangir'de, fiyat seviyesi ₺₺.
+U [194] kasap burger nerde
+A [195] Kasap Burger Cihangir'de, fiyat seviyesi ₺.
+
+## 35
+U [026] dün öğlen pazar kahvaltı evi'nde simit yedim
+A [027] Afiyet olsun!
+
+## 36
+U [196] rakı sofrası kampanya var mı
+A [197] Rakı Sofrası için uygulamada kampanya kaydı yok.
+U [198] serpme bahçe nerde
+A [199] Serpme Bahçe Kadıköy Çarşı'da, fiyat seviyesi ₺.
+U [200] trafik yine kilit
+A [201] Geçmiş olsun!
+U [] off
+
+## 37
+U [028] bugün öğlen cuma pide'de lahmacun yedim
+A [029] Afiyet olsun!
+U [202] sushi nami nerdeydi
+A [203] Sushi Nami Beşiktaş'ta, fiyat seviyesi ₺.
+U [] ok
+
+## 38
+U [204] smash bros patates kızartması kaç
+A [205] Smash Bros'ta Patates Kızartması 110 TL.
+U [206] dün gece burger pazartesi açık mı
+A [207] Dün Gece Burger pazartesi 12:00-02:00 arası açık.
+U [208] sushi nami salı kaça kdr
+A [209] Sushi Nami salı 12:00-23:00 arası açık.
+
+## 39
+U [210] sushi nami edamame kaç
+A [211] Sushi Nami'de Edamame 90 TL.
+U [030] dün öğlen van kahvaltı salonu'nda menemen yedim
+A [031] Afiyet olsun!
+U [] 👍
