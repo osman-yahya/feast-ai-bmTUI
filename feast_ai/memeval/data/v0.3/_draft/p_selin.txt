@@ -1,0 +1,321 @@
+# Selin
+
+## 0
+U [001] bi şey söyliyim, benim süt alerjim var ya, sütlü hiçbişey olmaz
+U [002] bi de yumurtalı bişey yiyince yüzüm gözüm şişiyo, geçen sene acile gittim ondan, yumurtadan da uzak durmam lazım
+A [003] Anladım, ikisini de not ettim. Süt ve yumurta içeren yemeklere dikkat edeceğim.
+U [] teşekkürlerr
+
+## 1
+U [051] smash bros perşembe açık mı kaça kadar
+A [052] Smash Bros perşembe 12:00-02:00 arası açık.
+U [] süper ya
+
+## 2
+U [053] yeni dizi başladım ya bitiremiyorum çok iyi ya
+A [054] Keyifli seyirler, ara verince yemek molası da iyi gelir 🙂
+U [004] bu arada ben veganım bu arada, hayvansal hiçbişey yemiyorum
+A [005] Not ettim, bundan sonra vegan seçeneklere göre bakarım.
+
+## 3
+U [006] haftada en az iki kere vegan kafelere takılıyorum zaten ya, ders çalışmak için bile oraya gidiyorum
+A [] Ne güzel, aklımda tutarım.
+U [055] tokyo sokağı pazar açık mı
+A [056] Tokyo Sokağı pazar 12:00-23:00 arası açık.
+U [057] rakı sofrası salı kaça kadar açık
+A [058] Rakı Sofrası salı 17:00-02:00 arası açık.
+U [059] serpme bahçe cuma açık mı peki
+A [060] Serpme Bahçe cuma kapalı.
+
+## 4
+U [061] dün gece burger'de patates kızartması kaç para
+A [062] Dün Gece Burger'de Patates Kızartması 110 TL.
+U [063] ateş kebap'ta kampanya var mı
+A [064] Ateş Kebap için uygulamada kampanya kaydı yok.
+U [008] ben yeldeğirmeni'nde oturuyorum bu arada, yakın yerler iyi olur
+A [] Tamam, Yeldeğirmeni'ni not aldım.
+U [065] smash bros'ta yan ürün ne var
+A [066] Smash Bros'ta yan ürün olarak Patates Kızartması var, 110 TL.
+U [067] smash bros'ta kampanya var mı peki
+A [068] Smash Bros için uygulamada kampanya kaydı yok.
+U [] tmm ya
+
+## 5
+U [011] dün öğlen bitki kafe'de avokado tost yedim çok iyi ya
+A [012] Afiyet olsun!
+U [] 😋
+
+## 6
+U [069] esnaf sofrası'nda ana yemek ne var
+A [070] Esnaf Sofrası'nda ana yemek olarak Kuru Fasulye var, 160 TL.
+U [039] bugün nerde yiyebilirim
+A [040] Wok & Roll'a bakabilirsin: Edamame 90 TL, vegan ve glutensiz etiketli. Yeldeğirmeni'nde, fiyat seviyesi ₺.
+U [071] burger atölyesi'nde yan ürün ne var
+A [072] Burger Atölyesi'nde yan ürün olarak Patates Kızartması var, 145 TL.
+U [073] cuma pide pazartesi açık mı
+A [074] Cuma Pide pazartesi 11:00-23:30 arası açık.
+U [075] fırın pide'de kampanya var mı
+A [076] Fırın Pide için uygulamada kampanya kaydı yok.
+
+## 7
+U [077] bitki bahçe cuma kaça kadar açık
+A [078] Bitki Bahçe cuma 09:00-22:00 arası açık.
+U [079] fırın pide çarşamba açık mı
+A [080] Fırın Pide çarşamba 11:00-23:30 arası açık.
+U [081] dün gece burger'de kampanya var mı
+A [082] Dün Gece Burger için uygulamada kampanya kaydı yok.
+U [] okeyy
+
+## 8
+U [083] rakı sofrası nerde
+A [084] Rakı Sofrası Moda'da, fiyat seviyesi ₺₺₺.
+U [013] evvelsi gün akşam yeşil tabak'ta nohutlu buddha kase yedim, porsiyon kocamandı ya
+A [014] Afiyet olsun, doyurucu olmuş!
+U [085] burger atölyesi çarşamba açık mı
+A [086] Burger Atölyesi çarşamba 12:00-02:00 arası açık.
+U [] tamamm
+
+## 9
+U [087] serpme bahçe nerdeydi
+A [088] Serpme Bahçe Kadıköy Çarşı'da, fiyat seviyesi ₺.
+U [089] cuma açık mı serpme bahçe
+A [090] Serpme Bahçe cuma kapalı.
+U [091] stajda bugün çok yoruldum ya
+A [092] Kolay gelsin, biraz dinlenmeyi hak ettin.
+U [] hı hı
+
+## 10
+U [041] bugün nerde yiyebilirim
+A [042] İskele Lokantası'na bakabilirsin: Roka Salatası 140 TL, vegan etiketli. Yeldeğirmeni'nde, fiyat seviyesi ₺₺. @beyza.yer da "Fiyatına göre gayet iyi bir Helva" yazmış.
+U [093] urfa ocakbaşı'nda meze ne var
+A [094] Urfa Ocakbaşı'nda meze olarak Közlenmiş Patlıcan Salatası 155 TL ve Ezme 115 TL var.
+U [095] burger atölyesi'nde yan ürün ne vardı
+A [096] Burger Atölyesi'nde yan ürün olarak Patates Kızartması var, 145 TL.
+U [] tmm
+
+## 11
+U [097] smash bros cumartesi açık mı
+A [098] Smash Bros cumartesi 12:00-02:00 arası açık.
+U [015] bu salı akşam kasap burger'de patates kızartması yedim, başka yiyebileceğim bişey yoktu ya
+A [016] Afiyet olsun, en azından kızartma kurtardı 🙂
+U [] aynen
+
+## 12
+U [099] ateş kebap cuma kaça kadar açık
+A [100] Ateş Kebap cuma 12:00-00:30 arası açık.
+U [101] smash bros pazar açık mı
+A [102] Smash Bros pazar 12:00-02:00 arası açık.
+
+## 13
+U [103] kasap köfte cumartesi açık mı
+A [104] Kasap Köfte cumartesi 12:00-02:00 arası açık.
+
+## 14
+U [105] cuma pide'de şalgam kaç para
+A [106] Cuma Pide'de Şalgam 45 TL.
+U [107] cuma pide nerde
+A [108] Cuma Pide Moda'da, fiyat seviyesi ₺₺.
+U [109] bizim mutfak pazar açık mı
+A [110] Bizim Mutfak pazar 11:00-21:00 arası açık.
+U [009] cumartesi ahmet'le yemeğe çıkıcaz, onun yer fıstığı alerjisi var ya, benim değil onun, ona göre bakmak lazım
+A [010] Ahmet için menülerde yer fıstığı içeren yemeklere dikkat etmek gerek.
+U [111] fırın pide perşembe açık mı
+A [112] Fırın Pide perşembe 11:00-23:30 arası açık.
+U [113] smash bros perşembe kaça kadar
+A [114] Smash Bros perşembe 12:00-02:00 arası açık.
+U [] tmm teşekkürler
+
+## 15
+U [115] bizim mutfak çarşamba açık mı
+A [116] Bizim Mutfak çarşamba 11:00-21:00 arası açık.
+U [117] proje teslimi var yarın kafayı yicem ya
+A [118] Kolay gelsin, eminim yetiştirirsin!
+U [017] evvelsi gün akşam tatlı dünyası'nda meyve salatası yedim, çok iyi geldi ya
+A [018] Afiyet olsun, ferahlatıcı bir seçim!
+U [119] tokyo sokağı nerde
+A [120] Tokyo Sokağı Moda'da, fiyat seviyesi ₺₺.
+U [121] tokyo sokağı'nda sebzeli noodle kaç para
+A [122] Tokyo Sokağı'nda Sebzeli Noodle 290 TL.
+
+## 16
+U [123] tokyo sokağı'nda kampanya var mı
+A [124] Tokyo Sokağı için uygulamada kampanya kaydı yok.
+U [043] bugün nerde yiyebilirim
+A [044] Esnaf Sofrası'na bakabilirsin: Kuru Fasulye 160 TL, vegan etiketli. Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [125] rakı sofrası'nda kampanya var mı
+A [126] Rakı Sofrası için uygulamada kampanya kaydı yok.
+U [127] bugün mesai çok uzun sürdü ya
+A [128] Kolay gelsin, akşamı keyifli geçir.
+U [] sağol
+
+## 17
+U [129] rakı sofrası cuma kaça kadar açık
+A [130] Rakı Sofrası cuma 17:00-02:00 arası açık.
+U [131] ateş kebap nerde
+A [132] Ateş Kebap Kadıköy Çarşı'da, fiyat seviyesi ₺₺₺.
+U [133] smash bros'ta kampanya var mı
+A [134] Smash Bros için uygulamada kampanya kaydı yok.
+U [135] serpme bahçe nerdeydi ya unuttum
+A [136] Serpme Bahçe Kadıköy Çarşı'da, fiyat seviyesi ₺.
+U [] tmm
+
+## 18
+U [137] bizim mutfak pazartesi açık mı
+A [138] Bizim Mutfak pazartesi 11:00-21:00 arası açık.
+
+## 19
+U [019] evvelsi gün akşam baklavacı güllüoğlu usta'da meyve salatası yedim
+A [020] Afiyet olsun!
+
+## 20
+U [139] tokyo sokağı'nda miso çorba ne kadar
+A [140] Tokyo Sokağı'nda Miso Çorba 120 TL.
+U [141] bizim mutfak perşembe açık mı
+A [142] Bizim Mutfak perşembe 11:00-21:00 arası açık.
+U [] süper
+
+## 21
+U [045] bugün nerde yiyebilirim
+A [046] Eski Dostlar'a bakabilirsin: Muhammara 120 TL, vegan ve acılı etiketli. Yeldeğirmeni'nde, fiyat seviyesi ₺₺. @acikmis_ogrenci da "Efsane Muhammara, kesin tekrar geleceğim" yazmış.
+
+## 22
+U [143] ateş kebap cumartesi açık mı
+A [144] Ateş Kebap cumartesi 12:00-00:30 arası açık.
+U [145] esnaf sofrası'nda kampanya var mı
+A [146] Esnaf Sofrası'nda şu an aktif kampanya yok; 1 ekim'de başlayacak Öğrenciye %15 (Salı-Perşembe 12:00-16:00) görünüyor.
+U [147] tokyo sokağı nerdeydi
+A [148] Tokyo Sokağı Moda'da, fiyat seviyesi ₺₺.
+U [] öğrenci indirimi süper olur ya
+
+## 23
+U [149] tokyo sokağı'nda sebzeli noodle kaç paraydı
+A [150] Tokyo Sokağı'nda Sebzeli Noodle 290 TL.
+U [021] geçen cumartesi akşam filiz vegan'da mercimek köftesi yedim ya çok iyiydi
+A [022] Afiyet olsun!
+
+## 24
+U [151] fırın pide cuma açık mı
+A [152] Fırın Pide cuma 11:00-23:30 arası açık.
+
+## 25
+U [153] bizim mutfak'ta ana yemek ne var
+A [154] Bizim Mutfak'ta ana yemek olarak Kuru Fasulye var, 130 TL.
+U [155] cuma pide cuma açık mı
+A [156] Cuma Pide cuma 11:00-23:30 arası açık.
+U [157] cuma pide'de kampanya var mı
+A [158] Cuma Pide için uygulamada kampanya kaydı yok.
+U [159] burger atölyesi'nde patates kızartması kaç para
+A [160] Burger Atölyesi'nde Patates Kızartması 145 TL.
+U [161] tokyo sokağı'nda çorba ne var
+A [162] Tokyo Sokağı'nda çorba olarak Miso Çorba var, 120 TL.
+
+## 26
+U [163] hafta sonu sahile inicez arkadaşlarla
+A [164] Ne güzel, keyifli geçsin!
+U [165] ateş kebap'ta meze ne var
+A [166] Ateş Kebap'ta meze olarak Közlenmiş Patlıcan Salatası 155 TL ve Ezme 115 TL var.
+U [007] ya ben tatlısız yaşayamam, her gün bi tatlıcıya uğramasam olmuyo
+A [] Haha, anlaşıldı 🙂 Aklımda.
+U [167] fırın pide salı açık mı
+A [168] Fırın Pide salı 11:00-23:30 arası açık.
+
+## 27
+U [169] dizinin finali çok kötüydü ya
+A [170] Üzücü, finaller bazen hayal kırıklığı oluyor.
+U [171] serpme bahçe'de kampanya var mı
+A [172] Serpme Bahçe için uygulamada kampanya kaydı yok.
+U [173] esnaf sofrası nerde
+A [174] Esnaf Sofrası Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [023] dün akşam martı balık'ta roka salatası yedim
+A [024] Afiyet olsun!
+U [175] smash bros çarşamba açık mı
+A [176] Smash Bros çarşamba 12:00-02:00 arası açık.
+U [177] serpme bahçe nerdeydi bi daha
+A [178] Serpme Bahçe Kadıköy Çarşı'da, fiyat seviyesi ₺.
+U [] tmm
+
+## 28
+U [179] dün gece burger pazar açık mı
+A [180] Dün Gece Burger pazar 12:00-02:00 arası açık.
+U [181] dün gece burger nerde
+A [182] Dün Gece Burger Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [047] bugün nerde yiyebilirim
+A [048] Smash Bros'a bakabilirsin: Patates Kızartması 110 TL, vegan etiketli. Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [183] bizim mutfak'ta kampanya var mı
+A [184] Bizim Mutfak'ta şu an aktif kampanya yok; 1 ekim'de başlayacak Hafta içi %20 indirim (Salı-Perşembe 12:00-16:00) görünüyor.
+U [] okey
+
+## 29
+U [185] smash bros'ta kampanya var mı
+A [186] Smash Bros için uygulamada kampanya kaydı yok.
+U [187] martı meze nerde
+A [188] Martı Meze Beşiktaş'ta, fiyat seviyesi ₺₺.
+U [025] bu pazartesi öğlen şekerci cafer'de meyve salatası yedim
+A [026] Afiyet olsun!
+
+## 30
+U [035] cumartesi öğlen bambu'ya gitmeyi planlıyoruz, daha hiç gitmedim
+A [036] Bambu cumartesi 12:00-23:00 arası açık.
+U [189] serpme bahçe'de kahvaltı ne var
+A [190] Serpme Bahçe'de kahvaltı olarak Avokadolu Kase var, 170 TL.
+U [] süper
+
+## 31
+U [037] bambu planı iptal oldu ya gidemedik
+A [038] Olsun, başka zaman olur.
+U [191] urfa ocakbaşı nerde
+A [192] Urfa Ocakbaşı Fenerbahçe'de, fiyat seviyesi ₺₺₺.
+U [193] bizim mutfak'ta ana yemek ne var
+A [194] Bizim Mutfak'ta ana yemek olarak Kuru Fasulye var, 130 TL.
+U [195] bizim mutfak salı açık mı
+A [196] Bizim Mutfak salı 11:00-21:00 arası açık.
+U [] tmm
+
+## 32
+U [197] smash bros nerdeydi
+A [198] Smash Bros Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [] tmm
+
+## 33
+U [199] fırın pide'de içecek ne var
+A [200] Fırın Pide'de içecek olarak Şalgam var, 75 TL.
+U [027] bu salı öğlen muhallebici moda'da meyve salatası yedim
+A [028] Afiyet olsun!
+U [] 🍓
+
+## 34
+U [049] bugün nerde yiyebilirim
+A [050] Burger Atölyesi'ne bakabilirsin: Patates Kızartması 145 TL, vegan etiketli. Fenerbahçe'de, fiyat seviyesi ₺₺₺.
+U [201] serpme bahçe'de simit kaç para
+A [202] Serpme Bahçe'de Simit 25 TL.
+U [] tmm
+
+## 35
+U [203] rakı sofrası pazartesi açık mı
+A [204] Rakı Sofrası pazartesi kapalı.
+U [029] dün akşam akşam meyhanesi'nde fava yedim, çok iyiydi ya
+A [030] Afiyet olsun, keyifli bir akşam olmuş!
+U [] evett
+
+## 36
+U [205] smash bros nerdeydi ya
+A [206] Smash Bros Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [] tmm
+
+## 37
+U [031] dün öğlen moda yeşil mutfak'ta avokado tost yedim
+A [032] Afiyet olsun!
+U [] 🥑
+
+## 38
+U [207] rakı sofrası pazartesi açık mıydı
+A [208] Rakı Sofrası pazartesi kapalı.
+U [209] fırın pide cuma açık mı
+A [210] Fırın Pide cuma 11:00-23:30 arası açık.
+
+## 39
+U [211] ateş kebap'ta meze ne var
+A [212] Ateş Kebap'ta meze olarak Közlenmiş Patlıcan Salatası 155 TL ve Ezme 115 TL var.
+U [033] bugün öğlen antep sofrası'nda közlenmiş patlıcan salatası yedim
+A [034] Afiyet olsun!
+U [] 🙏

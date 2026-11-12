@@ -1,0 +1,301 @@
+# Burak
+
+## 0
+U [050] Smash Bros'ta kampanya var mı?!
+A [051] Smash Bros için uygulamada kampanya kaydı yok.
+U [052] İskele Lokantası perşembe kaça kadar açık?
+A [053] İskele Lokantası perşembe 12:00-23:59 arası açık.
+U [] Süper, sağ ol!
+
+## 1
+U [054] Yeşil Tabak nerede?
+A [055] Yeşil Tabak Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺.
+U [056] Hava bugün harika, sabah koşusu çok iyi geldi!
+A [057] Ne güzel, enerjik bir başlangıç olmuş!
+U [] Aynen!
+
+## 2
+U [058] Antep Sofrası salı açık mı?
+A [059] Antep Sofrası salı 12:00-00:30 arası açık.
+U [060] Bizim Mutfak nerede?
+A [061] Bizim Mutfak Kadıköy Çarşı'da, fiyat seviyesi ₺.
+U [001] Bu arada ben vejetaryenim, et yok bende!
+A [002] Not ettim, et içermeyen seçeneklere göre bakarım.
+U [] Harika!
+
+## 3
+U [003] Haftada en az bir akşam meyhane şart bende, meze olmadan olmuyor!
+A [] Anlaşıldı, aklımda!
+
+## 4
+U [062] Dün gece yeni diziye başladım, sabaha kadar izledim!
+A [063] Keyifli seyirler, uykunu da ihmal etme 🙂
+U [064] Wok & Roll cuma kaça kadar açık?
+A [065] Wok & Roll cuma 12:00-23:00 arası açık.
+U [066] Bizim Mutfak'ta kampanya var mı?
+A [067] Bizim Mutfak'ta şu an aktif kampanya yok; 1 ekim'de başlayacak Hafta içi %20 indirim (Salı-Perşembe 12:00-16:00) görünüyor.
+U [005] Ben Fenerbahçe'de oturuyorum bu arada!
+A [] Tamam, Fenerbahçe'yi not aldım.
+U [068] Serpme Bahçe cuma açık mı?
+A [069] Serpme Bahçe cuma kapalı.
+U [070] Bizim Mutfak'ta çorba ne var?
+A [071] Bizim Mutfak'ta çorba olarak Mercimek Çorbası var, 65 TL.
+
+## 5
+U [072] Sabah yağmur yağıyor, antrenmanı salona aldık!
+A [073] Kolay gelsin, içeride de iyi çalışılır!
+U [010] Geçen cuma öğlen Cuma Pide'de kaşarlı pide yedim, süperdi!
+A [011] Afiyet olsun!
+U [074] Tokyo Sokağı'nda başlangıç olarak ne var?
+A [075] Tokyo Sokağı'nda başlangıç olarak Edamame var, 110 TL.
+U [] Tamamdır!
+
+## 6
+U [038] Bugün nerede yiyebilirim?
+A [039] Urfa Ocakbaşı'na bakabilirsin: Ezme 115 TL, vegan ve acılı etiketli. Fenerbahçe'de, fiyat seviyesi ₺₺₺. @moda_lezzet da "Fiyatına göre gayet iyi bir Fıstıklı Kebap" yazmış.
+U [] Bakarım!
+
+## 7
+U [076] Antep Sofrası'nda meze ne var?
+A [077] Antep Sofrası'nda meze olarak Közlenmiş Patlıcan Salatası 120 TL ve Ezme 90 TL var.
+
+## 8
+U [078] Smash Bros'ta patates kızartması kaç para?
+A [079] Smash Bros'ta Patates Kızartması 110 TL.
+U [012] Dün akşam Fırın Pide'de kaşarlı pide yedim, antrenman sonrası ilaç gibi geldi!
+A [013] Afiyet olsun, enerjini toplamışsındır!
+U [] Kesinlikle!
+
+## 9
+U [080] Urfa Ocakbaşı nerede?
+A [081] Urfa Ocakbaşı Fenerbahçe'de, fiyat seviyesi ₺₺₺.
+U [] Tamam!
+
+## 10
+U [040] Bugün nerede yiyebilirim?
+A [041] Burger Atölyesi'ne bakabilirsin: Sebze Burger 390 TL, vejetaryen etiketli. Fenerbahçe'de, fiyat seviyesi ₺₺₺. @tolga_yemekte da "Hayatımda yediğim en iyi Sebze Burger 🔥" yazmış.
+U [] Olabilir!
+
+## 11
+U [014] Bu perşembe akşam Esnaf Sofrası'nda mercimek çorbası içtim!
+A [015] Afiyet olsun!
+U [] 👍
+
+## 12
+U [082] Smash Bros'ta yan ürün ne var?
+A [083] Smash Bros'ta yan ürün olarak Patates Kızartması var, 110 TL.
+U [084] Hafta sonu bisikletle sahil turu yapacağız!
+A [085] Harika plan, keyifli sürüşler!
+U [086] Tokyo Sokağı'nda miso çorba kaç para?
+A [087] Tokyo Sokağı'nda Miso Çorba 120 TL.
+
+## 13
+U [088] Esnaf Lokantası'nda kuru fasulye ne kadar?
+A [089] Esnaf Lokantası'nda Kuru Fasulye 160 TL.
+
+## 14
+U [090] Yeşil Tabak çarşamba açık mı?
+A [091] Yeşil Tabak çarşamba 09:00-22:00 arası açık.
+U [092] Bizim Mutfak'ta yan ürün ne var?
+A [093] Bizim Mutfak'ta yan ürün olarak Tereyağlı Pilav var, 55 TL.
+U [008] Cumartesi Zeynep'le yemeğe çıkıyoruz! Zeynep'in yer fıstığı alerjisi var, benim değil ama ona göre bakmamız lazım!
+A [009] Zeynep için menülerde yer fıstığı içeren yemeklere dikkat etmek gerek.
+U [094] İskele Lokantası pazar kaça kadar açık?
+A [095] İskele Lokantası pazar 12:00-23:59 arası açık.
+U [096] Yeşil Tabak'ta kampanya var mı?
+A [097] Yeşil Tabak için uygulamada kampanya kaydı yok.
+U [] Tamamdır!
+
+## 15
+U [098] Serpme Bahçe perşembe açık mı?
+A [099] Serpme Bahçe perşembe 08:00-16:00 arası açık.
+U [100] İskele Lokantası'nda roka salatası kaç para?
+A [101] İskele Lokantası'nda Roka Salatası 140 TL.
+U [016] Dün akşam Karadeniz Pide Salonu'nda kaşarlı pide yedim, yine pide!
+A [017] Afiyet olsun!
+U [102] Smash Bros cuma kaça kadar açık?
+A [103] Smash Bros cuma 12:00-02:00 arası açık.
+U [104] Ateş Kebap'ta ezme kaç para?
+A [105] Ateş Kebap'ta Ezme 115 TL.
+
+## 16
+U [106] Moda Yeşil Mutfak'ta zencefilli limonata ne kadar?
+A [107] Moda Yeşil Mutfak'ta Zencefilli Limonata 115 TL.
+U [042] Bugün nerede yiyebilirim?
+A [043] Tatlı Dünyası'na bakabilirsin: Meyve Salatası 120 TL, vegan ve glutensiz etiketli. Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [108] Ateş Kebap'ta meze ne var?
+A [109] Ateş Kebap'ta meze olarak Közlenmiş Patlıcan Salatası 155 TL ve Ezme 115 TL var.
+
+## 17
+U [110] Smash Bros nerede?
+A [111] Smash Bros Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [112] Smash Bros'ta sebze burger kaç para?
+A [113] Smash Bros'ta Sebze Burger 300 TL.
+U [114] Tokyo Sokağı'nda kampanya var mı?
+A [115] Tokyo Sokağı için uygulamada kampanya kaydı yok.
+U [116] Moda Yeşil Mutfak salı açık mı?
+A [117] Moda Yeşil Mutfak salı kapalı.
+U [118] Serpme Bahçe çarşamba kaça kadar açık?
+A [119] Serpme Bahçe çarşamba 08:00-16:00 arası açık.
+U [120] Muhallebici Moda'da meyve salatası kaç para?
+A [121] Muhallebici Moda'da Meyve Salatası 120 TL.
+
+## 18
+U [122] Smash Bros'ta kampanya var mı?
+A [123] Smash Bros için uygulamada kampanya kaydı yok.
+
+## 19
+U [018] Bu salı öğlen Pideci Hasan'da kaşarlı pide yedim!
+A [019] Afiyet olsun!
+U [] 🍕
+
+## 20
+U [124] Tokyo Sokağı'nda çorba ne var?
+A [125] Tokyo Sokağı'nda çorba olarak Miso Çorba var, 120 TL.
+U [126] Tatlı Dünyası cumartesi kaça kadar açık?
+A [127] Tatlı Dünyası cumartesi 10:00-00:00 arası açık.
+U [128] Hafta sonu kampa gidiyoruz, çadırlar hazır!
+A [129] Harika, keyifli bir kamp dilerim!
+
+## 21
+U [044] Bugün nerede yiyebilirim?
+A [045] Anne Eli Lokantası'na bakabilirsin: Mercimek Çorbası 105 TL, vegan etiketli. Kadıköy Çarşı'da, fiyat seviyesi ₺₺₺.
+U [130] Bambu'da miso çorba kaç para?
+A [131] Bambu'da Miso Çorba 120 TL.
+U [132] Bambu pazartesi açık mı?
+A [133] Bambu pazartesi 12:00-23:00 arası açık.
+U [] Tamam!
+
+## 22
+U [134] Fenerbahçe Balıkçısı'nda salata ne var?
+A [135] Fenerbahçe Balıkçısı'nda salata olarak Roka Salatası var, 240 TL.
+U [006] Büyük haber: Fenerbahçe'den Cihangir'e taşındım!
+A [007] Yeni evin hayırlı olsun! Bundan sonra Cihangir'e göre bakarım.
+U [136] Urfa Ocakbaşı cuma kaça kadar açık?
+A [137] Urfa Ocakbaşı cuma 12:00-00:30 arası açık.
+U [] Süper!
+
+## 23
+U [138] Ateş Kebap cumartesi açık mı?
+A [139] Ateş Kebap cumartesi 12:00-00:30 arası açık.
+U [020] Bu perşembe öğlen Lagos Balık'ta roka salatası yedim!
+A [021] Afiyet olsun, hafif bir öğle olmuş!
+U [] Aynen!
+
+## 24
+U [140] Sushi Nami'de kampanya var mı?
+A [141] Sushi Nami için uygulamada kampanya kaydı yok.
+U [142] Antep Sofrası cumartesi kaça kadar açık?
+A [143] Antep Sofrası cumartesi 12:00-00:30 arası açık.
+U [] Tamamdır!
+
+## 25
+U [144] İskele Lokantası'nda roka salatası ne kadar?
+A [145] İskele Lokantası'nda Roka Salatası 140 TL.
+U [146] Bitki Kafe çarşamba açık mı?
+A [147] Bitki Kafe çarşamba 09:00-22:00 arası açık.
+U [148] Yeşil Tabak'ta kampanya var mı?
+A [149] Yeşil Tabak için uygulamada kampanya kaydı yok.
+U [] Ok!
+
+## 26
+U [150] Pazar Kahvaltı Evi'nde kahvaltı olarak ne var?
+A [151] Pazar Kahvaltı Evi'nde kahvaltı olarak Serpme Kahvaltı 650 TL, Menemen 180 TL ve Avokadolu Kase 210 TL var.
+U [152] Dizinin yeni sezonu çıktı, akşam maraton!
+A [153] Keyifli seyirler!
+U [004] Bu arada haftada iki kere pide lahmacun yemeden duramıyorum!
+A [] Anlaşıldı, aklımda!
+U [154] Moda Yeşil Mutfak'ta nohutlu buddha kase kaç para?
+A [155] Moda Yeşil Mutfak'ta Nohutlu Buddha Kase 310 TL.
+U [156] Burger Atölyesi'nde sebze burger ne kadar?
+A [157] Burger Atölyesi'nde Sebze Burger 390 TL.
+
+## 27
+U [158] Kebapçı Halil nerede?
+A [159] Kebapçı Halil Cihangir'de, fiyat seviyesi ₺₺.
+U [160] İskele Lokantası'nda kampanya var mı?
+A [161] İskele Lokantası için uygulamada kampanya kaydı yok.
+U [162] Burger Atölyesi nerede?
+A [163] Burger Atölyesi Fenerbahçe'de, fiyat seviyesi ₺₺₺.
+U [022] Evvelsi gün akşam Martı Balık'ta roka salatası yedim!
+A [023] Afiyet olsun!
+U [164] İskele Lokantası'nda roka salatası kaç paraydı?
+A [165] İskele Lokantası'nda Roka Salatası 140 TL.
+U [166] Burger Atölyesi'nde yan ürün ne var?
+A [167] Burger Atölyesi'nde yan ürün olarak Patates Kızartması var, 145 TL.
+
+## 28
+U [168] Yeşil Tabak pazartesi açık mı?
+A [169] Yeşil Tabak pazartesi kapalı.
+U [046] Bugün nerede yiyebilirim?
+A [047] Şekerci Cafer'e bakabilirsin: Kazandibi 110 TL, vejetaryen etiketli. Cihangir'de, fiyat seviyesi ₺₺.
+U [] Tatlı mı, olur!
+
+## 29
+U [170] Martı Meze'de kampanya var mı?
+A [171] Martı Meze için uygulamada kampanya kaydı yok.
+U [024] Dün akşam Eski Dostlar'da muhammara yedim, biraz acıydı ama süperdi!
+A [025] Afiyet olsun!
+U [] 🔥
+
+## 30
+U [034] Cumartesi öğlen Baklavacı Güllüoğlu Usta'ya gitmeyi planlıyoruz, daha hiç gitmedim!
+A [035] Baklavacı Güllüoğlu Usta cumartesi 10:00-00:00 arası açık.
+
+## 31
+U [036] Baklavacı Güllüoğlu Usta planı iptal oldu, gidemedik!
+A [037] Olsun, başka bir zaman olur.
+U [] Mecbur!
+
+## 32
+U [172] Akşam derbi var, heyecandan duramıyorum!
+A [173] Keyifli seyirler, umarım güzel bir maç olur!
+U [] Olacak!
+
+## 33
+U [174] Tencere Kapak'ta yan ürün ne var?
+A [175] Tencere Kapak'ta yan ürün olarak Tereyağlı Pilav var, 70 TL.
+U [026] Dün akşam Rakı Sofrası'nda muhammara yedim!
+A [027] Afiyet olsun, keyifli bir akşam olmuş!
+U [] Aynen!
+
+## 34
+U [048] Bugün nerede yiyebilirim?
+A [049] Kebapçı Halil'e bakabilirsin: Közlenmiş Patlıcan Salatası 120 TL, vegan etiketli. Cihangir'de, fiyat seviyesi ₺₺. @gurme_kadikoy da "Fiyatına göre gayet iyi bir Ezme" yazmış.
+U [176] Burger Atölyesi salı açık mı?
+A [177] Burger Atölyesi salı 12:00-02:00 arası açık.
+U [] Tamam!
+
+## 35
+U [028] Dün öğlen Dün Gece Burger'de sebze burger yedim!
+A [029] Afiyet olsun!
+
+## 36
+U [178] Burger Atölyesi cumartesi kaça kadar açık?
+A [179] Burger Atölyesi cumartesi 12:00-02:00 arası açık.
+U [180] Kebapçı Halil'de közlenmiş patlıcan salatası kaç para?
+A [181] Kebapçı Halil'de Közlenmiş Patlıcan Salatası 120 TL.
+U [182] Kasap Burger nerede?
+A [183] Kasap Burger Cihangir'de, fiyat seviyesi ₺.
+U [184] Tatlı Dünyası'nda tatlı ne var?
+A [185] Tatlı Dünyası'nda tatlı olarak Kazandibi 110 TL ve Meyve Salatası 120 TL var.
+
+## 37
+U [030] Dün akşam Akşam Meyhanesi'nde haydari yedim!
+A [031] Afiyet olsun!
+U [] 🙌
+
+## 38
+U [186] Bu akşam milli maç var, kaçırmam!
+A [187] Keyifli seyirler!
+U [188] İskele Lokantası cumartesi açık mı?
+A [189] İskele Lokantası cumartesi 12:00-23:59 arası açık.
+U [] Süper!
+
+## 39
+U [190] Trafik felaket, yürüyerek gitmek daha hızlı!
+A [191] Yürüyüş de iyi gelir, kolay gelsin!
+U [032] Dün akşam Cihangir Meze Evi'nde haydari yedim!
+A [033] Afiyet olsun!
+U [192] Şekerci Cafer perşembe açık mı?
+A [193] Şekerci Cafer perşembe 10:00-00:00 arası açık.

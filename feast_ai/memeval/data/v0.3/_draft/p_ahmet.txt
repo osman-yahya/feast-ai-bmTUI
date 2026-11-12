@@ -1,0 +1,316 @@
+# Ahmet
+
+## 0
+U [001] gecen ay ceviz fistik ne varsa bir tabak yedim, bogazim sisti nefes alamadim yaa, hastanelik oldum. o gunden beri cerezlere elimi surmuyorum
+A [002] Çok geçmiş olsun! Bundan sonra kuruyemiş içeren yemeklere ayrıca dikkat edeceğim.
+U [052] baklavaci gulluoglu usta'da icecek ne var abi
+A [053] Baklavacı Güllüoğlu Usta'da içecek olarak Türk Kahvesi var, 70 TL.
+
+## 1
+U [054] smash bros'ta kampanya var mi
+A [055] Smash Bros için uygulamada kampanya kaydı yok.
+U [056] bambu nerede
+A [057] Bambu Moda'da, fiyat seviyesi ₺₺.
+U [058] aksam meyhanesi'nde kampanya var mi peki
+A [059] Akşam Meyhanesi için de uygulamada kampanya kaydı yok.
+U [] tamam sagol
+
+## 2
+U [060] wok & roll persembe acik mi abi
+A [061] Wok & Roll perşembe 12:00-23:00 arası açık.
+U [062] hafta sonu dukkani erken kapatip mangal yapicaz insallah
+A [063] Ne güzel, keyifli bir hafta sonu dilerim!
+U [] sagol
+
+## 3
+U [064] marti balik'ta kalamar tava kac para
+A [065] Martı Balık'ta Kalamar Tava 440 TL.
+U [005] ben haftada iki uc kere pide lahmacun yemeden duramam yaa, bizim aksam yemegi o
+A [] Anlaşıldı, aklımda tutarım.
+
+## 4
+U [066] aksam meyhanesi'nde kampanya var mi
+A [067] Akşam Meyhanesi için uygulamada kampanya kaydı yok.
+U [068] raki sofrasi carsamba acik mi kaca kadar
+A [069] Rakı Sofrası çarşamba 17:00-02:00 arası açık.
+U [070] serpme bahce'de kahvalti ne var
+A [071] Serpme Bahçe'de kahvaltı olarak Menemen 145 TL ve Avokadolu Kase 170 TL var.
+U [007] ben kadikoy carsi'da oturuyorum bu arada, dukkan da orda
+A [] Tamam, Kadıköy Çarşı'yı not aldım.
+U [072] tatli dunyasi'nda icecek ne var
+A [073] Tatlı Dünyası'nda içecek olarak Türk Kahvesi var, 70 TL.
+U [074] antep sofrasi'nda urfa kebap kac lira
+A [075] Antep Sofrası'nda Urfa Kebap 420 TL.
+U [] tamam
+
+## 5
+U [012] gecen cuma aksam firin pide'de lahmacun yedim abi, cok iyiydi
+A [013] Afiyet olsun!
+U [] sagol
+
+## 6
+U [040] bugun nerede yiyebilirim
+A [041] Muhallebici Moda'ya bakabilirsin: Kazandibi 110 TL, vejetaryen etiketli. Kadıköy Çarşı'da, fiyat seviyesi ₺₺. @acikmis_ogrenci da "Hayatımda yediğim en iyi Kazandibi 🔥" yazmış.
+U [076] urfa ocakbasi'nda meze ne var
+A [077] Urfa Ocakbaşı'nda meze olarak Közlenmiş Patlıcan Salatası 155 TL ve Ezme 115 TL var.
+U [078] iskele lokantasi nerede
+A [079] İskele Lokantası Yeldeğirmeni'nde, fiyat seviyesi ₺₺.
+
+## 7
+U [080] antep sofrasi nerede
+A [081] Antep Sofrası Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [] tamam yakinmis
+
+## 8
+U [082] antep sofrasi pazartesi acik mi
+A [083] Antep Sofrası pazartesi 12:00-00:30 arası açık.
+U [014] dun ogle bizim mutfak'ta kuru fasulye yedim, tam ev yemegi
+A [015] Afiyet olsun, doyurucu bir öğle yemeği olmuş.
+U [084] raki sofrasi'nda meze ne var
+A [085] Rakı Sofrası'nda meze olarak Haydari 145 TL ve Fava 130 TL var.
+U [] sagol
+
+## 9
+U [086] sabah sabah dukkan cok kalabalik, nefes alacak vakit yok
+A [087] Kolay gelsin, bereketli bir gün olsun!
+U [088] dun gece burger persembe acik mi
+A [089] Dün Gece Burger perşembe 12:00-02:00 arası açık.
+U [090] eski dostlar'da midye tava kac para
+A [091] Eski Dostlar'da Midye Tava 260 TL.
+U [092] yesil tabak'ta kampanya var mi
+A [093] Yeşil Tabak için uygulamada kampanya kaydı yok.
+U [094] antep sofrasi sali kaca kadar acik
+A [095] Antep Sofrası salı 12:00-00:30 arası açık.
+U [] tamam
+
+## 10
+U [042] bugun nerede yiyebilirim abi
+A [043] Smash Bros'a bakabilirsin: Sebze Burger 300 TL, vejetaryen etiketli. Kadıköy Çarşı'da, fiyat seviyesi ₺₺. @acikmis_ogrenci da "Efsane Sebze Burger, kesin tekrar geleceğim" yazmış.
+U [096] baklavaci gulluoglu usta sali acik mi
+A [097] Baklavacı Güllüoğlu Usta salı 10:00-00:00 arası açık.
+U [098] smash bros nerde
+A [099] Smash Bros Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [] tamam
+
+## 11
+U [016] evvelsi gun ogle esnaf sofrasi'nda mercimek corbasi ictim, ilac gibi geldi
+A [017] Afiyet olsun!
+U [100] muhallebici moda'da kazandibi ne kadar
+A [101] Muhallebici Moda'da Kazandibi 110 TL.
+U [] sagol
+
+## 12
+U [102] smash bros'ta kampanya var mi
+A [103] Smash Bros için uygulamada kampanya kaydı yok.
+
+## 13
+U [104] moda yesil mutfak'ta zencefilli limonata kac para
+A [105] Moda Yeşil Mutfak'ta Zencefilli Limonata 115 TL.
+U [106] baklavaci gulluoglu usta persembe acik mi
+A [107] Baklavacı Güllüoğlu Usta perşembe 10:00-00:00 arası açık.
+U [108] tokyo sokagi persembe acik mi peki
+A [109] Tokyo Sokağı perşembe 12:00-23:00 arası açık.
+U [110] esnaf lokantasi'nda kampanya var mi
+A [111] Esnaf Lokantası için uygulamada kampanya kaydı yok.
+
+## 14
+U [112] antep sofrasi'nda ezme kac lira
+A [113] Antep Sofrası'nda Ezme 90 TL.
+U [114] iskele lokantasi cuma kaca kadar acik
+A [115] İskele Lokantası cuma 12:00-23:59 arası açık.
+U [010] cumartesi murat'la yemege cikicaz, murat'in yer fistigi alerjisi var abi, bende yok ama ona gore yer bakmak lazim
+A [011] Murat için menülerde yer fıstığı içeren yemeklere dikkat etmek gerek.
+U [116] marti balik'ta kampanya var mi
+A [117] Martı Balık için uygulamada kampanya kaydı yok.
+U [] tamam
+A [] Rica ederim, iyi yemekler!
+U [] sagol
+
+## 15
+U [118] tokyo sokagi'nda miso corba kac para
+A [119] Tokyo Sokağı'nda Miso Çorba 120 TL.
+U [120] raki sofrasi pazartesi acik mi
+A [121] Rakı Sofrası pazartesi kapalı.
+U [018] dun ogle cuma pide'de kiymali pide yedim, firindan yeni cikmisti
+A [019] Afiyet olsun, sıcacık olmuş!
+U [122] smash bros cumartesi acik mi
+A [123] Smash Bros cumartesi 12:00-02:00 arası açık.
+U [124] muhallebici moda cumartesi kaca kadar acik
+A [125] Muhallebici Moda cumartesi 10:00-00:00 arası açık.
+U [] tamam sagol
+
+## 16
+U [044] bugun nerede yiyebilirim
+A [045] Serpme Bahçe'ye bakabilirsin: Fıstık Ezmeli Pankek 160 TL. Kadıköy Çarşı'da, fiyat seviyesi ₺.
+U [] bakarim
+
+## 17
+U [126] tatli dunyasi nerede
+A [127] Tatlı Dünyası Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [128] eski dostlar'da midye tava ne kadar
+A [129] Eski Dostlar'da Midye Tava 260 TL.
+U [130] moda yesil mutfak'ta avokado tost kac para
+A [131] Moda Yeşil Mutfak'ta Avokado Tost 245 TL.
+U [132] baklavaci gulluoglu usta pazartesi acik mi
+A [133] Baklavacı Güllüoğlu Usta pazartesi 10:00-00:00 arası açık.
+U [134] dun gece burger pazar acik mi
+A [135] Dün Gece Burger pazar 12:00-02:00 arası açık.
+
+## 18
+U [136] iskele lokantasi'nda kampanya var mi
+A [137] İskele Lokantası için uygulamada kampanya kaydı yok.
+U [] tamam
+
+## 19
+U [020] evvelsi gun aksam pideci hasan'da kiymali pide yedim yine
+A [021] Afiyet olsun!
+U [] sagol
+
+## 20
+U [003] sana bi haber vereyim, doktora gittim test yaptilar, kuruyemis alerjim gecmis yaa, temiz cikti. artik ceviz fistik yiyebilirmisim
+A [004] Ne güzel haber! Not ettim, artık kuruyemişi kısıt olarak tutmuyorum.
+
+## 21
+U [046] bugun nerede yiyebilirim
+A [047] Antep Sofrası'na bakabilirsin: Fıstıklı Kebap 480 TL, menüde 'şefin önerisi' etiketli. Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [138] tatli dunyasi cuma acik mi
+A [139] Tatlı Dünyası cuma 10:00-00:00 arası açık.
+U [] tamam
+
+## 22
+U [008] abi tasindim, kadikoy carsi'dan moda'ya gectik
+A [009] Yeni evin hayırlı olsun! Bundan sonra Moda'ya göre bakarım.
+U [] sagol
+
+## 23
+U [022] evvelsi gun aksam karadeniz pide salonu'nda kiymali pide yedim
+A [023] Afiyet olsun!
+U [140] tokyo sokagi'nda corba ne var
+A [141] Tokyo Sokağı'nda çorba olarak Miso Çorba var, 120 TL.
+U [] tamam
+
+## 24
+U [142] burger atolyesi cuma acik mi
+A [143] Burger Atölyesi cuma 12:00-02:00 arası açık.
+U [144] antep sofrasi sali kaca kadar acik
+A [145] Antep Sofrası salı 12:00-00:30 arası açık.
+U [146] serpme bahce nerede
+A [147] Serpme Bahçe Kadıköy Çarşı'da, fiyat seviyesi ₺.
+U [148] raki sofrasi'nda kampanya var mi
+A [149] Rakı Sofrası için uygulamada kampanya kaydı yok.
+U [150] eski dostlar'da ara sicak ne var
+A [151] Eski Dostlar'da ara sıcak olarak Ahtapot Izgara 420 TL ve Midye Tava 260 TL var.
+
+## 25
+U [152] aksam meyhanesi'nde kampanya var mi
+A [153] Akşam Meyhanesi için uygulamada kampanya kaydı yok.
+U [154] burger atolyesi nerede
+A [155] Burger Atölyesi Fenerbahçe'de, fiyat seviyesi ₺₺₺.
+U [156] bu aksam derbi var abi, dukkani erken kapatiyorum
+A [157] Keyifli seyirler, umarım güzel bir maç olur!
+U [158] urfa ocakbasi carsamba acik mi
+A [159] Urfa Ocakbaşı çarşamba 12:00-00:30 arası açık.
+U [] tamam
+
+## 26
+U [160] hava serinledi yaa, sabah ceketle ciktim
+A [161] Evet, sonbahar geliyor. Sıkı giyinmekte fayda var.
+U [162] smash bros'ta kampanya var mi
+A [163] Smash Bros için uygulamada kampanya kaydı yok.
+U [006] tencere yemegi olmadan olmuyor bende, kuru fasulye pilav haftada en az iki kere
+A [] Anlaşıldı, aklımda tutarım.
+U [164] dun gece burger persembe acik mi
+A [165] Dün Gece Burger perşembe 12:00-02:00 arası açık.
+
+## 27
+U [166] tatli dunyasi'nda kampanya var mi
+A [167] Tatlı Dünyası için uygulamada kampanya kaydı yok.
+U [168] dun gece burger nerede
+A [169] Dün Gece Burger Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [024] dun ogle sushi nami'de edamame yedim, oglan zorla goturdu ama fena degildi
+A [025] Afiyet olsun, farklı bir deneyim olmuş!
+U [170] urfa ocakbasi cumartesi acik mi
+A [171] Urfa Ocakbaşı cumartesi 12:00-00:30 arası açık.
+U [] tamam
+
+## 28
+U [048] bugun nerede yiyebilirim
+A [049] Bambu'ya bakabilirsin: Somon Sushi Seti 520 TL. Moda'da, fiyat seviyesi ₺₺.
+U [] bakariz
+
+## 29
+U [172] sushi nomi'de corba ne var
+A [173] Sushi Nomi'de çorba olarak Miso Çorba var, 155 TL.
+U [026] evvelsi gun aksam tencere kapak'ta sutlac yedim, annemin yaptigi gibiydi
+A [027] Afiyet olsun, tatlı bir kapanış olmuş!
+
+## 30
+U [036] cumartesi ogle lagos balik'a gitmeyi dusunuyoruz, daha hic gitmedim
+A [037] Lagos Balık cumartesi 12:00-23:59 arası açık.
+U [] tamam
+
+## 31
+U [038] lagos balik iptal oldu abi, gidemedik
+A [039] Olsun, başka bir zaman olur.
+
+## 32
+U [174] moda yesil mutfak'ta kampanya var mi
+A [175] Moda Yeşil Mutfak'ta şu an aktif kampanya yok; 1 ekim'de başlayacak Öğrenciye %15 (Salı-Perşembe 12:00-16:00) görünüyor.
+U [176] antep sofrasi'nda adana kebap kac para
+A [177] Antep Sofrası'nda Adana Kebap 420 TL.
+U [178] bambu pazartesi acik mi
+A [179] Bambu pazartesi 12:00-23:00 arası açık.
+U [180] tatli dunyasi'nda kampanya var mi
+A [181] Tatlı Dünyası için uygulamada kampanya kaydı yok.
+
+## 33
+U [182] bugun yagmur var, dukkan bos
+A [183] Geçmiş olsun, yarın daha hareketli olur umarım.
+U [028] bu persembe ogle anne eli lokantasi'nda mercimek corbasi ictim
+A [029] Afiyet olsun!
+U [184] smash bros'ta yan urun ne var
+A [185] Smash Bros'ta yan ürün olarak Patates Kızartması var, 110 TL.
+U [] tamam
+
+## 34
+U [186] urfa ocakbasi'nda ezme kac lira
+A [187] Urfa Ocakbaşı'nda Ezme 115 TL.
+U [050] bugun nerede yiyebilirim
+A [051] Tokyo Sokağı'na bakabilirsin: Miso Çorba 120 TL, vegan etiketli. Moda'da, fiyat seviyesi ₺₺. @tolga_yemekte da "Fiyatına göre gayet iyi bir Somon Sushi Seti" yazmış.
+U [] bakarim
+
+## 35
+U [030] dun ogle pazar kahvalti evi'nde simit yedim, cayla
+A [031] Afiyet olsun!
+U [] sagol
+
+## 36
+U [188] iskele lokantasi'nda kampanya var mi
+A [189] İskele Lokantası için uygulamada kampanya kaydı yok.
+U [190] yesil tabak'ta avokado tost kac para
+A [191] Yeşil Tabak'ta Avokado Tost 245 TL.
+U [192] tatli dunyasi'nda tatli ne var
+A [193] Tatlı Dünyası'nda tatlı olarak Kazandibi 110 TL ve Meyve Salatası 120 TL var.
+
+## 37
+U [194] serpme bahce pazartesi acik mi
+A [195] Serpme Bahçe pazartesi 08:00-16:00 arası açık.
+U [196] marti balik'ta levrek izgara kac para
+A [197] Martı Balık'ta Levrek Izgara 675 TL.
+U [198] bu ay ciro iyi gitti yaa, sukur
+A [199] Ne güzel, hayırlı olsun!
+U [032] dun ogle fenerbahce balikcisi'nda helva yedim
+A [033] Afiyet olsun!
+U [] sagol
+
+## 38
+U [200] baklavaci gulluoglu usta nerede
+A [201] Baklavacı Güllüoğlu Usta Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [202] hava yine kapali, yagmur yagacak gibi
+A [203] Şemsiyeni yanına almayı unutma.
+U [204] wok & roll'da sebzeli noodle kac lira
+A [205] Wok & Roll'da Sebzeli Noodle 230 TL.
+
+## 39
+U [034] dun ogle ates kebap'ta adana kebap yedim abi
+A [035] Afiyet olsun!
