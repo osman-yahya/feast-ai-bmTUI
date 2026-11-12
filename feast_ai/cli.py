@@ -256,15 +256,19 @@ def _cmd_memeval(args) -> int:
 
         try:
             gemini = J.Gemini(J.KeyPool.from_file(), model=args.model, min_interval=args.min_interval)
+            # The stronger judge has its own per-model quota: its own key pool.
+            escalate = (J.Gemini(J.KeyPool.from_file(), model=args.escalate, min_interval=args.min_interval)
+                        if args.escalate else None)
             if args.list_models:
                 print("\n".join(gemini.models()))
                 return 0
             for d in args.runs:
-                J.print_summary(Path(d).name, J.judge_run(Path(d), gemini, limit=args.limit))
+                J.print_summary(Path(d).name, J.judge_run(Path(d), gemini, limit=args.limit,
+                                                          escalate=escalate))
         except J.JudgeError as exc:
             print(f"judge stopped: {exc}", file=sys.stderr)
             return 2
-        print(f"\n{gemini.calls} call(s)")
+        print(f"\n{gemini.calls + (escalate.calls if escalate else 0)} call(s)")
         return 0
     print("usage: feast-ai memeval {validate,gen,render,run,report,judge} ...", file=sys.stderr)
     return 2
@@ -571,6 +575,8 @@ def main(argv: list[str] | None = None) -> int:
     judge_cmd = memeval_sub.add_parser("judge", help="grade runs with an LLM judge (Gemini free tier)")
     judge_cmd.add_argument("runs", nargs="*", help="run directories under FEAST_AI_HOME/evals")
     judge_cmd.add_argument("--model", default="gemini-3.5-flash")
+    judge_cmd.add_argument("--escalate", default="",
+                           help="stronger model for rubric answers and code disagreements")
     judge_cmd.add_argument("--limit", type=int, default=0, help="N answers spread over categories")
     judge_cmd.add_argument("--min-interval", type=float, default=4.0, help="seconds between calls")
     judge_cmd.add_argument("--list-models", action="store_true", help="list models the key can call")

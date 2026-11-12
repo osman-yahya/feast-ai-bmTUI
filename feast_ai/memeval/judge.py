@@ -40,13 +40,14 @@ DEFAULT_MODEL = "gemini-3.5-flash"
 API = "https://generativelanguage.googleapis.com/v1beta"
 KEYS_FILE = HOME / "secrets" / "gemini_keys.txt"
 #: Bump when the prompt or a rubric changes; verdicts from another version are redone.
-JUDGE_VERSION = 2
+JUDGE_VERSION = 3
 
 SYSTEM = """You grade one answer of a Turkish restaurant assistant ("Mustachio") that
 keeps a memory of past chats with the user. You get the user's question, the
 gold answer written by the dataset author, a tolerance/rubric note, and
 reference data. Grade only what the reply says against the gold answer and
-the rubric; do not reward style, length or politeness. Handles like (t3) or
+the rubric; do not reward style, length or politeness. When a tolerance note
+is given it is specific to this question and overrides the category rule. Handles like (t3) or
 (f1) are citations to memory and are fine.
 
 Return JSON:
@@ -302,19 +303,19 @@ def build_prompt(ds: Dataset, q: Question, reply: str) -> str:
 # ----------------------------------------------------------------------
 # Runs
 # ----------------------------------------------------------------------
-def judgments_path(run_dir: Path, model: str = DEFAULT_MODEL) -> Path:
-    return run_dir / f"judgments-{model}.jsonl"
+def judgments_path(run_dir: Path, model: str = DEFAULT_MODEL, escalate: str = "") -> Path:
+    return run_dir / f"judgments-{model}{'+' + escalate if escalate else ''}.jsonl"
 
 
-def load_judgments(run_dir: Path, model: str = DEFAULT_MODEL) -> dict[str, dict]:
-    path = judgments_path(run_dir, model)
+def load_judgments(run_dir: Path, model: str = DEFAULT_MODEL, escalate: str = "") -> dict[str, dict]:
+    path = judgments_path(run_dir, model, escalate)
     if not path.is_file():
         return {}
     out = {}
     for line in path.open(encoding="utf-8"):
         j = json.loads(line)
         if j.get("version") == JUDGE_VERSION:
-            out[j["qid"]] = j
+            out[j["qid"]] = j       # a later line (an escalation done on resume) wins
     return out
 
 
@@ -331,26 +332,47 @@ def _spread(rows: list[dict], n: int) -> list[dict]:
     return out
 
 
-def judge_run(run_dir: Path, gemini: Gemini, limit: int = 0, log=print) -> dict:
+def judge_run(run_dir: Path, gemini: Gemini, limit: int = 0, log=print,
+              escalate: Gemini | None = None) -> dict:
+    """Grade a run with ``gemini``; with ``escalate``, a rubric answer or one
+    where the verdict disagrees with :mod:`.score` is graded again by the
+    stronger model, whose verdict is kept (the first one is stored beside it).
+    When the stronger model's quota runs out the cheap verdict stands, marked
+    ``escalate_pending``, and a later run escalates it."""
     meta = json.loads((run_dir / "meta.json").read_text(encoding="utf-8"))
     ds = load(meta["dataset"])
     qs = {q.qid: q for q in ds.questions}
+    vocab = cuisine_vocab(ds.questions)
     rows = [json.loads(line) for line in (run_dir / "predictions.jsonl").open(encoding="utf-8")]
     if limit:
         rows = _spread(rows, limit)
-    done = load_judgments(run_dir, gemini.model)
-    todo = [r for r in rows if r["qid"] not in done]
+    esc = escalate.model if escalate else ""
+    done = load_judgments(run_dir, gemini.model, esc)
+    todo = [r for r in rows if r["qid"] not in done or (escalate and done[r["qid"]].get("escalate_pending"))]
     log(f"{run_dir.name}: {len(rows) - len(todo)} hazir, {len(todo)} kaldi")
-    path = judgments_path(run_dir, gemini.model)
-    with path.open("a", encoding="utf-8") as fh:
+    with judgments_path(run_dir, gemini.model, esc).open("a", encoding="utf-8") as fh:
         for i, row in enumerate(todo, 1):
             q = qs[row["qid"]]
+            prompt = build_prompt(ds, q, row.get("reply") or "")
+            first = done.get(q.qid) if q.qid in done else None
             if row.get("error"):
                 verdict = {"score": 0.0, "abstained": False, "reason": "run error"}
             else:
-                verdict = gemini.ask(build_prompt(ds, q, row.get("reply") or ""))
-            rec = {"qid": q.qid, "category": q.category, **verdict,
-                   "model": gemini.model, "version": JUDGE_VERSION}
+                verdict = ({k: first[k] for k in ("score", "abstained", "reason")} if first
+                           else gemini.ask(prompt))
+            rec = {"qid": q.qid, "category": q.category, **verdict, "model": gemini.model,
+                   "version": JUDGE_VERSION}
+            code = score_row(row, q, vocab)["score"]
+            if escalate and not row.get("error") and (
+                    q.category in RUBRIC or code is None or abs(code - verdict["score"]) >= 0.5):
+                try:
+                    strong = escalate.ask(prompt)
+                    rec = {**rec, **strong, "model": escalate.model,
+                           "first": {"score": verdict["score"], "reason": verdict["reason"],
+                                     "model": gemini.model}}
+                except JudgeError as exc:
+                    log(f"  ust hakem durdu ({exc}); kalanlar sonra yukseltilecek")
+                    escalate, rec["escalate_pending"] = None, True
             fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
             fh.flush()
             done[q.qid] = rec
