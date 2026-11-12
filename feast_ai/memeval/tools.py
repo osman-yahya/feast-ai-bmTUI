@@ -58,12 +58,12 @@ RESULT_NOTE = "Answer the user's question from this result, briefly, in the user
 #: (:func:`.engine.gate.tools_for`).  The menu and restaurant tools filter by
 #: the user's allergies and diet in code - the model never sees an unsafe dish.
 TOOL_TEXT = {
-    "my_visits": "my_visits(since, until, restaurant) - the restaurants this user went to: the day and "
-                 "cuisine of each visit, a count, and the cuisines. Every argument is optional; dates are "
+    "my_visits": "my_visits(since, until, restaurant, cuisine) - the restaurants this user went to: the day "
+                 "and cuisine of each visit, a count, and the cuisines. Every argument is optional; dates are "
                  "YYYY-MM-DD.",
     "search_saved": "search_saved() - the restaurants this user saved in the app, with a count.",
-    "my_recommendations": "my_recommendations(since, until) - the places you, the assistant, recommended "
-                          "to this user: the day and cuisine of each, and the cuisines. Both optional.",
+    "my_recommendations": "my_recommendations(since, until, cuisine) - the places you, the assistant, "
+                          "recommended to this user: the day and cuisine of each, and the cuisines. All optional.",
     "search_restaurants": "search_restaurants(cuisine, area) - restaurants open now near the user, each with "
                           "up to two dishes safe for the user's allergies and diet. Both optional.",
     "get_menu": "get_menu(restaurant, category) - one restaurant's dishes that are safe for the user's "
@@ -71,8 +71,8 @@ TOOL_TEXT = {
     "search_posts": "search_posts(restaurant) - what people wrote about a restaurant in the app, with the "
                     "author of each post.",
 }
-ARGS = {"my_visits": ("since", "until", "restaurant"), "search_saved": (),
-        "my_recommendations": ("since", "until"), "search_restaurants": ("cuisine", "area"),
+ARGS = {"my_visits": ("since", "until", "restaurant", "cuisine"), "search_saved": (),
+        "my_recommendations": ("since", "until", "cuisine"), "search_restaurants": ("cuisine", "area"),
         "get_menu": ("restaurant", "category"), "search_posts": ("restaurant",)}
 DAYS_EN = ("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
 WEEKDAYS = ("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday")
@@ -168,6 +168,10 @@ def _logs(name: str, args: dict, data: AppData) -> tuple[bool, str]:
         r = _restaurant(args["restaurant"], data.world)
         rows = [v for v in rows if r is not None and v["restaurant_id"] == r.id]
         shown.append(f"restaurant={r.name if r else args['restaurant']}")
+    if args.get("cuisine"):                     # v0.3: 22 of 48 "önerdiğin kahvaltı yeri" calls passed one
+        want = fold(str(args["cuisine"]))
+        rows = [v for v in rows if want in fold(_cuisine(v["restaurant_id"]))]
+        shown.append(f"cuisine={args['cuisine']}")
     lines = [f"- {v['date']} {DAYS_EN[date.fromisoformat(v['date']).weekday()]} | {v['restaurant']} "
              f"[{_cuisine(v['restaurant_id'])}]" + (" | app record" if v.get("source") == "app" else "")
              for v in rows[-12:]]

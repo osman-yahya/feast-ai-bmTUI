@@ -191,6 +191,8 @@ def score_row(row: dict, q, vocab: set[str]) -> dict:
     elif cat == "app_data":
         n = int(re.findall(r"\d+", gold)[0])
         found = numbers(reply)
+        if not found and re.search(r"\b(?:yok|hic)\b", fold(reply)):   # "kaydettiğin restoran yok" = 0
+            found = [0]
         score = float(bool(found) and found[0] == n)
         checks["numbers"] = found[:3]
     elif cat == "abstention":
