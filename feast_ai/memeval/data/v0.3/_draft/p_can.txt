@@ -1,0 +1,318 @@
+# Can
+
+## 0
+U [049] slm cuma pide salı kaça kadar açık
+A [050] Selam! Cuma Pide salı 11:00-23:30 arası açık.
+U [051] moda yeşil mutfak'ta kampanya var mı
+A [052] Moda Yeşil Mutfak'ta şu an aktif kampanya yok; 1 ekim'de başlayacak Öğrenciye %15 (Salı-Perşembe 12:00-16:00) görünüyor.
+U [001] bi de benim balık alerjim var bilgin olsun
+U [002] kalamar midye falan yediğimde de boğazım şişiyo nefesim daralıyo, geçen yaz acile gittik o yüzden
+A [003] Anladım, ikisini de not ettim. Balık ve kalamar, midye gibi yumuşakçalara dikkat edeceğim.
+U [] tmm saol
+
+## 1
+U [053] yeşil tabak nerde
+A [054] Yeşil Tabak Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺.
+U [055] eski dostlar'da kampanya var mı
+A [056] Eski Dostlar için uygulamada kampanya kaydı yok.
+U [] tmm
+
+## 2
+U [057] martı balık'ta ara sıcak ne var
+A [058] Martı Balık'ta ara sıcak olarak Karides Güveç var, 495 TL.
+
+## 3
+U [059] baklavacı güllüoğlu usta'da tatlı ne var
+A [060] Baklavacı Güllüoğlu Usta'da tatlı olarak Kazandibi 110 TL ve Meyve Salatası 120 TL var.
+U [004] bu arada ben haftada iki kere kebapçıya gitmezsem olmuyo
+A [] Haha anlaşıldı, aklımda 🙂
+
+## 4
+U [061] moda yeşil mutfak perşembe açık mı
+A [062] Moda Yeşil Mutfak perşembe 09:00-22:00 arası açık.
+U [063] şekerci cafer'de kampanya var mı
+A [064] Şekerci Cafer'de şu an aktif kampanya yok; 1 ekim'de başlayacak Öğrenciye %15 (Salı-Perşembe 12:00-16:00) görünüyor.
+U [006] beşiktaşta oturuyorum bu arada
+A [] Tamam, not aldım.
+U [065] iskele lokantası cumartesi kaça kadar açık
+A [066] İskele Lokantası cumartesi 12:00-23:59 arası açık.
+U [067] bambu'da wok olarak ne var
+A [068] Bambu'da wok olarak Tavuklu Pad Thai 360 TL ve Sebzeli Noodle 290 TL var.
+U [] nbr çok pahalı ya
+
+## 5
+U [009] evvelsi gün akşam kebapçı halil'de adana kebap yedim efsaneydi
+A [010] Afiyet olsun!
+U [] 🔥
+
+## 6
+U [037] bugün nerde yiyebilirim
+A [038] Lagos Balık'a bakabilirsin: Helva 120 TL. Beşiktaş'ta, fiyat seviyesi ₺₺.
+U [069] rakı sofrası pazar açık mı
+A [070] Rakı Sofrası pazar 17:00-02:00 arası açık.
+U [] tmm
+
+## 7
+U [071] yeşil tabak çarşamba açık mı
+A [072] Yeşil Tabak çarşamba 09:00-22:00 arası açık.
+U [073] rakı sofrası'nda kampanya var mı
+A [074] Rakı Sofrası için uygulamada kampanya kaydı yok.
+U [075] tatlı dünyası'nda tatlı ne var
+A [076] Tatlı Dünyası'nda tatlı olarak Kazandibi 110 TL ve Meyve Salatası 120 TL var.
+U [077] fırın pide cumartesi kaça kadar
+A [078] Fırın Pide cumartesi 11:00-23:30 arası açık.
+U [079] baklavacı güllüoğlu usta nerde
+A [080] Baklavacı Güllüoğlu Usta Fenerbahçe'de, fiyat seviyesi ₺₺.
+
+## 8
+U [081] bizim mutfak pazartesi açık mı
+A [082] Bizim Mutfak pazartesi 11:00-21:00 arası açık.
+U [011] dün akşam kasap burger'de acılı burger yedim ağzım yandı ama değdi
+A [012] Afiyet olsun, cesur bir seçim 🙂
+U [083] tokyo sokağı'nda kampanya var mı
+A [084] Tokyo Sokağı için uygulamada kampanya kaydı yok.
+U [] tmm
+
+## 9
+U [085] yeşil tabak cuma açık mı
+A [086] Yeşil Tabak cuma 09:00-22:00 arası açık.
+U [] tmm saol
+
+## 10
+U [087] kasap köfte'de burger olarak ne var
+A [088] Kasap Köfte'de burger olarak Klasik Burger 340 TL, Acılı Burger 360 TL ve Sebze Burger 300 TL var.
+U [039] bugün nerde yiyebilirim
+A [040] Cihangir Meze Evi'ne bakabilirsin: Muhammara 120 TL, vegan ve acılı etiketli. Beşiktaş'ta, fiyat seviyesi ₺₺. @acikmis_ogrenci da "Fiyatına göre gayet iyi bir Muhammara" yazmış.
+U [] bakarım
+
+## 11
+U [013] dün akşam sushi nami'de edamame yedim, sushiye dokunmadım tabi
+A [014] Afiyet olsun, iyi düşünmüşsün.
+
+## 12
+U [089] yaz kursu başladı sabah 8de kalkıyorum nbr
+A [090] Kolay gelsin, erken kalkmak zor ama alışırsın!
+U [091] yeşil tabak'ta mercimek köftesi kaç para
+A [092] Yeşil Tabak'ta Mercimek Köftesi 170 TL.
+U [093] cuma pide'de kampanya var mı
+A [094] Cuma Pide için uygulamada kampanya kaydı yok.
+U [] tmm
+
+## 13
+U [095] iskele lokantası pazar açık mı
+A [096] İskele Lokantası pazar 12:00-23:59 arası açık.
+U [097] eski dostlar pazartesi kaça kadar açık
+A [098] Eski Dostlar pazartesi 17:00-02:00 arası açık.
+U [099] sushi nomi'de kampanya var mı
+A [100] Sushi Nomi için uygulamada kampanya kaydı yok.
+
+## 14
+U [101] hava çok sıcak bugün eriyorum
+A [102] Gerçekten sıcak, bol su iç!
+U [103] tokyo sokağı'nda miso çorba kaç para
+A [104] Tokyo Sokağı'nda Miso Çorba 120 TL.
+U [007] cumartesi mert'le yemeğe çıkıcaz, mert'in yer fıstığı alerjisi var, benim değil onun, ona göre bi yer bakmak lazım
+A [008] Mert için menülerde yer fıstığı içeren yemeklere dikkat etmek gerek.
+U [105] bizim mutfak cumartesi kaça kadar açık
+A [106] Bizim Mutfak cumartesi 11:00-21:00 arası açık.
+U [107] yeşil tabak pazartesi açık mı
+A [108] Yeşil Tabak pazartesi kapalı.
+U [] tmm
+
+## 15
+U [109] iskele lokantası'nda kampanya var mı
+A [110] İskele Lokantası için uygulamada kampanya kaydı yok.
+U [111] tatlı dünyası nerde
+A [112] Tatlı Dünyası Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [015] evvelsi gün öğlen smash bros'ta patates kızartması yedim
+A [016] Afiyet olsun!
+U [113] bizim mutfak'ta ana yemek ne var
+A [114] Bizim Mutfak'ta ana yemek olarak Kuru Fasulye 130 TL ve Karnıyarık 170 TL var.
+U [115] tencere kapak'ta karnıyarık kaç para
+A [116] Tencere Kapak'ta Karnıyarık 210 TL.
+U [] tmm
+
+## 16
+U [117] fırın pide cumartesi açık mı
+A [118] Fırın Pide cumartesi 11:00-23:30 arası açık.
+U [041] bugün nerde yiyebilirim
+A [042] Fenerbahçe Balıkçısı'na bakabilirsin: Helva 205 TL. Beşiktaş'ta, fiyat seviyesi ₺₺₺₺.
+U [119] wok & roll pazar açık mı
+A [120] Wok & Roll pazar 12:00-23:00 arası açık.
+U [121] pazar kahvaltı evi cumartesi kaça kadar açık
+A [122] Pazar Kahvaltı Evi cumartesi 08:00-16:00 arası açık.
+
+## 17
+U [123] pazar kahvaltı evi'nde kampanya var mı
+A [124] Pazar Kahvaltı Evi'nde şu an aktif kampanya yok; 1 ekim'de başlayacak 2 al 1 öde (Salı-Perşembe 12:00-16:00) görünüyor.
+U [125] baklavacı güllüoğlu usta cuma açık mı
+A [126] Baklavacı Güllüoğlu Usta cuma 10:00-00:00 arası açık.
+U [127] rakı sofrası'nda fava kaç para
+A [128] Rakı Sofrası'nda Fava 130 TL.
+U [129] köprü kilit, otobüs bi saattir yerinden kıpırdamadı
+A [130] Geçmiş olsun, sabır dilerim.
+U [131] bambu'da çorba ne var
+A [132] Bambu'da çorba olarak Miso Çorba var, 120 TL.
+U [133] rakı sofrası nerde
+A [134] Rakı Sofrası Moda'da, fiyat seviyesi ₺₺₺.
+
+## 18
+U [135] moda yeşil mutfak cuma açık mı
+A [136] Moda Yeşil Mutfak cuma 09:00-22:00 arası açık.
+U [137] yeşil tabak'ta zencefilli limonata kaç para
+A [138] Yeşil Tabak'ta Zencefilli Limonata 115 TL.
+U [] tmm
+
+## 19
+U [139] moda yeşil mutfak nerde
+A [140] Moda Yeşil Mutfak Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺.
+U [017] evvelsi gün öğlen ateş kebap'ta közlenmiş patlıcan salatası yedim
+A [018] Afiyet olsun!
+U [] saol
+
+## 20
+U [141] bizim mutfak'ta yan ürün ne var
+A [142] Bizim Mutfak'ta yan ürün olarak Tereyağlı Pilav var, 55 TL.
+U [] tmm
+
+## 21
+U [043] bugün nerde yiyebilirim
+A [044] Pideci Hasan'a bakabilirsin: Kıymalı Pide 210 TL, menüde 'popüler' etiketli. Beşiktaş'ta, fiyat seviyesi ₺.
+U [] süper uygunmuş
+
+## 22
+U [143] iskele lokantası çarşamba açık mı
+A [144] İskele Lokantası çarşamba 12:00-23:59 arası açık.
+U [145] baklavacı güllüoğlu usta pazartesi açık mı
+A [146] Baklavacı Güllüoğlu Usta pazartesi 10:00-00:00 arası açık.
+U [] tmm
+
+## 23
+U [019] evvelsi gün akşam antep sofrası'nda adana kebap yedim
+A [020] Afiyet olsun!
+U [147] tokyo sokağı'nda wok ne var
+A [148] Tokyo Sokağı'nda wok olarak Tavuklu Pad Thai 360 TL ve Sebzeli Noodle 290 TL var.
+U [149] baklavacı güllüoğlu usta cumartesi kaça kadar
+A [150] Baklavacı Güllüoğlu Usta cumartesi 10:00-00:00 arası açık.
+
+## 24
+U [151] iskele lokantası nerde
+A [152] İskele Lokantası Yeldeğirmeni'nde, fiyat seviyesi ₺₺.
+U [153] moda yeşil mutfak nerdeydi
+A [154] Moda Yeşil Mutfak Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺.
+U [155] baklavacı güllüoğlu usta cuma açık mı
+A [156] Baklavacı Güllüoğlu Usta cuma 10:00-00:00 arası açık.
+U [] tmm
+
+## 25
+U [157] rakı sofrası pazartesi açık mı
+A [158] Rakı Sofrası pazartesi kapalı.
+U [159] cuma pide salı açık mı
+A [160] Cuma Pide salı 11:00-23:30 arası açık.
+U [] tmm
+
+## 26
+U [161] baklavacı güllüoğlu usta'da kampanya var mı
+A [162] Baklavacı Güllüoğlu Usta'da şu an aktif kampanya yok; 1 ekim'de başlayacak Hafta içi %20 indirim (Salı-Perşembe 12:00-16:00) görünüyor.
+U [163] tokyo sokağı nerde
+A [164] Tokyo Sokağı Moda'da, fiyat seviyesi ₺₺.
+U [005] bu arada burgeri de çok seviyorum, kebaptan sonra en sevdiğim o
+A [] Anlaşıldı, not aldım.
+U [165] rakı sofrası'nda kampanya var mı
+A [166] Rakı Sofrası için uygulamada kampanya kaydı yok.
+
+## 27
+U [167] pazar kahvaltı evi pazartesi açık mı
+A [168] Pazar Kahvaltı Evi pazartesi 08:00-16:00 arası açık.
+U [169] baklavacı güllüoğlu usta nerdeydi
+A [170] Baklavacı Güllüoğlu Usta Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [021] dün akşam esnaf sofrası'nda kuru fasulye yedim, annem yapmıyo diye
+A [022] Afiyet olsun 🙂
+U [171] rakı sofrası'nda haydari kaç para
+A [172] Rakı Sofrası'nda Haydari 145 TL.
+U [173] moda yeşil mutfak'ta kampanya var mı
+A [174] Moda Yeşil Mutfak'ta şu an aktif kampanya yok; 1 ekim'de başlayacak Öğrenciye %15 (Salı-Perşembe 12:00-16:00) görünüyor.
+U [] okul açılınca giderim o zaman
+
+## 28
+U [045] bugün nerde yiyebilirim
+A [046] Tencere Kapak'a bakabilirsin: Mercimek Çorbası 80 TL, vegan etiketli. Cihangir'de, fiyat seviyesi ₺₺.
+U [175] pazar kahvaltı evi salı açık mı
+A [176] Pazar Kahvaltı Evi salı 08:00-16:00 arası açık.
+U [] tmm
+
+## 29
+U [177] esnaf lokantası'nda tatlı ne var
+A [178] Esnaf Lokantası'nda tatlı olarak Sütlaç var, 95 TL.
+U [023] evvelsi gün öğlen urfa ocakbaşı'nda künefe yedim
+A [024] Afiyet olsun!
+
+## 30
+U [179] şekerci cafer'de içecek ne var
+A [180] Şekerci Cafer'de içecek olarak Türk Kahvesi var, 70 TL.
+U [033] cumartesi öğlen bitki kafe'ye gitmeyi planlıyoz arkadaşlarla, daha gitmedim hiç
+A [034] Bitki Kafe cumartesi 09:00-22:00 arası açık.
+U [] tmm
+
+## 31
+U [181] urfa sofrası nerde
+A [182] Urfa Sofrası Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [035] bitki kafe planı iptal oldu gidemedik
+A [036] Olsun, başka zaman olur.
+U [183] cuma pide pazar açık mı
+A [184] Cuma Pide pazar 11:00-23:30 arası açık.
+
+## 32
+U [185] şekerci cafer'de içecek ne vardı
+A [186] Şekerci Cafer'de içecek olarak Türk Kahvesi var, 70 TL.
+U [187] moda yeşil mutfak cumartesi açık mı
+A [188] Moda Yeşil Mutfak cumartesi 09:00-22:00 arası açık.
+
+## 33
+U [189] cuma pide'de kampanya var mı
+A [190] Cuma Pide için uygulamada kampanya kaydı yok.
+U [025] bu çarşamba akşam burger atölyesi'nde klasik burger yedim
+A [026] Afiyet olsun!
+U [191] bizim mutfak pazar açık mı
+A [192] Bizim Mutfak pazar 11:00-21:00 arası açık.
+U [193] moda yeşil mutfak salı açık mı
+A [194] Moda Yeşil Mutfak salı kapalı.
+U [] tmm
+
+## 34
+U [047] bugün nerde yiyebilirim
+A [048] Şekerci Cafer'e bakabilirsin: Fıstık Ezmeli Brownie 160 TL. Cihangir'de, fiyat seviyesi ₺₺.
+U [195] fırın pide nerde
+A [196] Fırın Pide Moda'da, fiyat seviyesi ₺₺₺₺.
+U [197] pazar kahvaltı evi nerde
+A [198] Pazar Kahvaltı Evi Cihangir'de, fiyat seviyesi ₺₺.
+U [] tmm
+
+## 35
+U [027] dün akşam akşam meyhanesi'nde fava yedim
+A [028] Afiyet olsun!
+U [] 👍
+
+## 36
+U [199] tokyo sokağı'nda kampanya var mı
+A [200] Tokyo Sokağı için uygulamada kampanya kaydı yok.
+
+## 37
+U [029] dün öğlen dün gece burger'de klasik burger yedim
+A [030] Afiyet olsun!
+
+## 38
+U [201] pazar kahvaltı evi'nde kampanya var mı
+A [202] Pazar Kahvaltı Evi'nde 2 al 1 öde var (Salı-Perşembe 12:00-16:00), 30 kasım'a kadar.
+U [203] tencere kapak pazar açık mı
+A [204] Tencere Kapak pazar 11:00-21:00 arası açık.
+U [] tmm
+
+## 39
+U [205] moda yeşil mutfak'ta içecek ne var
+A [206] Moda Yeşil Mutfak'ta içecek olarak Zencefilli Limonata var, 115 TL.
+U [207] rakı sofrası'nda fava kaç para
+A [208] Rakı Sofrası'nda Fava 130 TL.
+U [031] dün öğlen serpme bahçe'de simit yedim
+A [032] Afiyet olsun!
+U [] saol

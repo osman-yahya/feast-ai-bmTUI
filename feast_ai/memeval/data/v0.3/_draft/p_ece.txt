@@ -1,0 +1,316 @@
+# Ece
+
+## 0
+U [053] Merhaba, okul çıkışı arkadaşlarla bir yere geçmeyi düşünüyoruz; Fırın Pide'de şu sıralar bir kampanya var mı acaba?
+A [054] Merhaba! Fırın Pide için uygulamada kampanya kaydı yok.
+U [001] Bir de şunu bilmeni isterim: geçen ay simitli bir şey yedikten sonra boğazım kaşınıp nefesim daraldı, gece acile gitmek zorunda kaldık. O günden beri susamlı hiçbir şeye dokunmuyorum.
+A [002] Çok geçmiş olsun. Bundan sonra susam içeren yemeklere ayrıca dikkat edeceğim.
+U [] Teşekkür ederim, çok iyi olur.
+
+## 1
+U [055] Eski Dostlar'da fava ne kadar, öğrenebilir miyim? Akşam meze tabağı düşünüyoruz da.
+A [056] Eski Dostlar'da Fava 100 TL.
+
+## 2
+U [003] Sana açıkça söyleyeyim, ben vejetaryenim; o yüzden bana bir şey bakarken et içeren yemekleri hiç düşünme lütfen.
+A [004] Not ettim, bundan sonra et içermeyen seçeneklere göre bakacağım.
+
+## 3
+U [057] Burger Atölyesi'nde bu aralar bir kampanya var mı, öğrencilerim sordu da?
+A [058] Burger Atölyesi için uygulamada kampanya kaydı yok.
+U [005] Bu arada ben hafta sonları uzun uzun kahvaltı yapmadan güne başlayamam; cumartesi ve pazar sabahları mutlaka dışarıda bir kahvaltı sofrası kurarız.
+A [] Ne güzel bir alışkanlık, aklımda tutarım.
+U [059] Urfa Ocakbaşı pazar günü açık mı, açıksa kaça kadar?
+A [060] Urfa Ocakbaşı pazar 12:00-00:30 arası açık.
+
+## 4
+U [061] Bugün hava o kadar güzeldi ki teneffüste bütün sınıf bahçeye çıkmak istedi.
+A [062] Ne güzel, çocuklar için de keyifli bir gün olmuş!
+U [063] Burger Atölyesi pazar günü kaça kadar açık?
+A [064] Burger Atölyesi pazar 12:00-02:00 arası açık.
+U [008] Bu arada ben Moda'da oturuyorum; okul da yürüme mesafesinde, o yüzden yakın yerler benim için hep daha pratik.
+A [] Tamam, Moda'yı not aldım.
+U [065] Moda Yeşil Mutfak'ta şu an kampanya var mı?
+A [066] Moda Yeşil Mutfak'ta şu an aktif kampanya yok; 1 ekim'de başlayacak Öğrenciye %15 (Salı-Perşembe 12:00-16:00) görünüyor.
+U [067] Bambu tam olarak nerede?
+A [068] Bambu Moda'da, fiyat seviyesi ₺₺.
+U [] Teşekkürler, çok yardımcı oldun.
+
+## 5
+U [013] Dün öğlen Simitçi Dünyası'nda avokadolu kase yedim; nöbetçi olduğum gün kısa bir molada hızlıca atıştırmak için ideal oldu.
+A [014] Afiyet olsun, yoğun bir günde iyi gelmiştir.
+U [069] Burger Atölyesi pazartesi günü açık mı, kaça kadar?
+A [070] Burger Atölyesi pazartesi 12:00-02:00 arası açık.
+
+## 6
+U [071] Ateş Kebap'ın menüsünde meze olarak neler var?
+A [072] Ateş Kebap'ta meze olarak Közlenmiş Patlıcan Salatası var, 155 TL.
+U [041] Bugün nerede yiyebilirim, öğleden sonra boşum?
+A [042] Martı Balık'a bakabilirsin: Roka Salatası 180 TL, vegan etiketli. Moda'da, fiyat seviyesi ₺₺₺. @gurme_kadikoy da "Efsane Roka Salatası, kesin tekrar geleceğim" yazmış.
+U [073] İskele Lokantası cuma günü kaça kadar açık?
+A [074] İskele Lokantası cuma 12:00-23:59 arası açık.
+U [075] Bu sıcakta sınıfta ders anlatmak gerçekten zor oluyor, klimalar da çalışmıyor.
+A [076] Kolay gelsin, bol su içmeyi unutma.
+U [] Unutmam, teşekkürler.
+
+## 7
+U [077] Ateş Kebap çarşamba günü açık mı, kaça kadar?
+A [078] Ateş Kebap çarşamba 12:00-00:30 arası açık.
+U [079] Moda Yeşil Mutfak'ta kampanya başladı mı, geçen sefer sormuştum?
+A [080] Moda Yeşil Mutfak'ta şu an aktif kampanya yok; 1 ekim'de başlayacak Öğrenciye %15 (Salı-Perşembe 12:00-16:00) görünüyor.
+
+## 8
+U [015] Evvelsi gün öğlen Van Kahvaltı Salonu'nda serpme kahvaltı yaptık; masada bir sürü çeşit vardı, saatlerce oturduk.
+A [016] Afiyet olsun, keyifli bir kahvaltı olmuş!
+U [081] Hafta sonu yeğenlerimi alıp sahile götürmeyi düşünüyorum, hava da güzel olacakmış.
+A [082] Harika bir plan, keyifli geçsin!
+U [083] Tokyo Sokağı'nın menüsünde wok olarak ne var?
+A [084] Tokyo Sokağı'nda wok olarak Sebzeli Noodle var, 290 TL.
+
+## 9
+U [085] Eski Dostlar nerede bulunuyor?
+A [086] Eski Dostlar Yeldeğirmeni'nde, fiyat seviyesi ₺₺.
+U [087] Antep Sofrası cuma günü kaça kadar açık?
+A [088] Antep Sofrası cuma 12:00-00:30 arası açık.
+
+## 10
+U [089] Eski Dostlar'da haydari kaç lira?
+A [090] Eski Dostlar'da Haydari 110 TL.
+U [043] Bugün öğlen nerede yiyebilirim?
+A [044] Cuma Pide'ye bakabilirsin: Kaşarlı Pide 220 TL, vejetaryen etiketli. Moda'da, fiyat seviyesi ₺₺.
+U [091] Eski Dostlar neredeydi, tekrar söyler misin?
+A [092] Eski Dostlar Yeldeğirmeni'nde, fiyat seviyesi ₺₺.
+U [093] Martı Balık'ta roka salatası kaç lira?
+A [094] Martı Balık'ta Roka Salatası 180 TL.
+U [] Teşekkür ederim.
+
+## 11
+U [017] Geçen cuma akşam Sushi Nami'de miso çorba içtim; hafif bir şey istiyordum, tam istediğim gibiydi.
+A [018] Afiyet olsun, hafif ve sıcak bir seçim olmuş.
+U [095] Yeşil Tabak'ta mercimek köftesi kaç lira?
+A [096] Yeşil Tabak'ta Mercimek Köftesi 170 TL.
+U [097] Dün Gece Burger nerede?
+A [098] Dün Gece Burger Fenerbahçe'de, fiyat seviyesi ₺₺.
+
+## 12
+U [099] Dün akşam okulun voleybol takımı maçı kazandı, öğrencilerim çok mutlu.
+A [100] Tebrikler, harika bir haber!
+U [007] Bu arada şunu da ekleyeyim: acılı yemekleri hiç sevmem, midemi yakıyor; menüde acılı yazan bir şeye zaten bakmıyorum.
+A [] Anladım, acısız seçeneklere göre bakarım.
+U [101] Urfa Ocakbaşı nerede?
+A [102] Urfa Ocakbaşı Fenerbahçe'de, fiyat seviyesi ₺₺₺.
+U [103] Yeşil Tabak pazar günü kaça kadar açık?
+A [104] Yeşil Tabak pazar 09:00-22:00 arası açık.
+
+## 13
+U [105] İskele Lokantası nerede?
+A [106] İskele Lokantası Yeldeğirmeni'nde, fiyat seviyesi ₺₺.
+U [107] Sushi Nomi'de miso çorba kaç lira?
+A [108] Sushi Nomi'de Miso Çorba 155 TL.
+
+## 14
+U [109] Smash Bros salı günü açık mı?
+A [110] Smash Bros salı 12:00-02:00 arası açık.
+U [111] Dün Gece Burger nerede bulunuyor?
+A [112] Dün Gece Burger Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [113] Urfa Ocakbaşı pazar günü kaça kadar açık?
+A [114] Urfa Ocakbaşı pazar 12:00-00:30 arası açık.
+U [011] Cumartesi akşamı arkadaşım Selin ile yemeğe çıkacağız; Selin'in yer fıstığı alerjisi var, benim böyle bir sorunum yok ama yer seçerken onu düşünmemiz gerekiyor.
+A [012] Selin için menülerde yer fıstığı içeren yemeklere dikkat etmek gerek.
+U [115] Dün Gece Burger'in menüsünde burger olarak ne var?
+A [116] Dün Gece Burger'de burger olarak Sebze Burger var, 300 TL.
+U [117] Eski Dostlar cumartesi kaça kadar açık?
+A [118] Eski Dostlar cumartesi 17:00-02:00 arası açık.
+U [] Tamam, teşekkür ederim.
+
+## 15
+U [119] Dün akşamki maçı izledin mi bilmiyorum ama uzatmalara kadar gitti, nefesimiz kesildi.
+A [120] Heyecanlı bir maçmış, keyifli seyirler olmuş!
+U [121] Cuma Pide'de ayran kaç lira?
+A [122] Cuma Pide'de Ayran 40 TL.
+U [019] Evvelsi gün akşam Muhallebici Moda'da meyve salatası yedim; ağır bir şey istemiyordum, çok ferahlatıcıydı.
+A [020] Afiyet olsun, hafif bir tatlı olmuş.
+U [123] Burger Atölyesi perşembe günü kaça kadar açık?
+A [124] Burger Atölyesi perşembe 12:00-02:00 arası açık.
+U [125] Ateş Kebap'ta kampanya var mı?
+A [126] Ateş Kebap için uygulamada kampanya kaydı yok.
+U [] Anladım.
+
+## 16
+U [045] Bugün öğleden sonra nerede yiyebilirim?
+A [046] Bambu'ya bakabilirsin: Miso Çorba 120 TL, vegan etiketli. Moda'da, fiyat seviyesi ₺₺.
+
+## 17
+U [127] Eski Dostlar'da kampanya var mı?
+A [128] Eski Dostlar için uygulamada kampanya kaydı yok.
+U [129] Smash Bros'ta sebze burger kaç lira?
+A [130] Smash Bros'ta Sebze Burger 300 TL.
+U [131] Bugün veli toplantısı vardı, çok uzun sürdü ama verimliydi.
+A [132] Kolay gelsin, yorucu ama faydalı bir gün olmuş.
+U [133] Martı Balık'ta roka salatası kaç liraydı?
+A [134] Martı Balık'ta Roka Salatası 180 TL.
+U [] Teşekkürler.
+
+## 18
+U [135] Eski Dostlar'ın menüsünde meze olarak neler var?
+A [136] Eski Dostlar'da meze olarak Haydari 110 TL ve Fava 100 TL var.
+U [137] Urfa Ocakbaşı cuma günü kaça kadar açık?
+A [138] Urfa Ocakbaşı cuma 12:00-00:30 arası açık.
+U [] Teşekkür ederim.
+
+## 19
+U [139] Bambu'nun menüsünde çorba olarak ne var?
+A [140] Bambu'da çorba olarak Miso Çorba var, 120 TL.
+U [021] Dün öğlen Baklavacı Güllüoğlu Usta'da kazandibi yedim; tatil olduğu için kendime küçük bir ödül verdim.
+A [022] Afiyet olsun, güzel bir ödül olmuş!
+U [141] Ateş Kebap'ta meze ne vardı?
+A [142] Ateş Kebap'ta meze olarak Közlenmiş Patlıcan Salatası var, 155 TL.
+U [] Teşekkürler.
+
+## 20
+U [143] Rakı Sofrası nerede bulunuyor?
+A [144] Rakı Sofrası Moda'da, fiyat seviyesi ₺₺₺.
+U [145] Urfa Ocakbaşı pazartesi günü açık mı?
+A [146] Urfa Ocakbaşı pazartesi 12:00-00:30 arası açık.
+U [147] Dün Gece Burger'de yan ürün olarak ne var?
+A [148] Dün Gece Burger'de yan ürün olarak Patates Kızartması var, 110 TL.
+U [] Anladım, teşekkür ederim.
+
+## 21
+U [047] Bugün öğlen nerede yiyebilirim?
+A [048] Tokyo Sokağı'na bakabilirsin: Edamame 110 TL, vegan ve glutensiz etiketli. Moda'da, fiyat seviyesi ₺₺.
+U [149] Cuma Pide çarşamba günü kaça kadar açık?
+A [150] Cuma Pide çarşamba 11:00-23:30 arası açık.
+U [151] Yaz tatilinde yarım kalan diziyi bitirmeye karar verdim, akşamlarım dolu.
+A [152] Keyifli seyirler!
+
+## 22
+U [153] Serpme Bahçe'de avokadolu kase kaç lira?
+A [154] Serpme Bahçe'de Avokadolu Kase 170 TL.
+U [009] Haberin olsun, Moda'dan Fenerbahçe'ye taşındık; yeni okul dönemine yeni evde başlayacağım.
+A [010] Yeni eviniz hayırlı olsun! Bundan sonra Fenerbahçe'ye göre bakarım.
+U [] Teşekkür ederim.
+
+## 23
+U [155] Fırın Pide salı günü kaça kadar açık?
+A [156] Fırın Pide salı 11:00-23:30 arası açık.
+U [023] Dün akşam Tatlı Dünyası'nda meyve salatası yedim; taşınma yorgunluğuna iyi geldi.
+A [024] Afiyet olsun, biraz dinlenmişsindir.
+U [157] Urfa Ocakbaşı'nda közlenmiş patlıcan salatası kaç lira?
+A [158] Urfa Ocakbaşı'nda Közlenmiş Patlıcan Salatası 155 TL.
+U [159] Bizim Mutfak'ın menüsünde yan ürün olarak ne var?
+A [160] Bizim Mutfak'ta yan ürün olarak Tereyağlı Pilav var, 55 TL.
+U [161] Rakı Sofrası'nda haydari kaç lira?
+A [162] Rakı Sofrası'nda Haydari 145 TL.
+U [] Teşekkürler.
+
+## 24
+U [163] Martı Balık çarşamba günü açık mı?
+A [164] Martı Balık çarşamba 12:00-23:59 arası açık.
+U [165] Bitirdiğim dizinin son bölümü beni biraz hayal kırıklığına uğrattı açıkçası.
+A [166] Anlıyorum, finaller bazen beklentiyi karşılamıyor.
+
+## 25
+U [167] Antep Sofrası nerede?
+A [168] Antep Sofrası Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [169] İskele Lokantası pazar günü kaça kadar açık?
+A [170] İskele Lokantası pazar 12:00-23:59 arası açık.
+
+## 26
+U [171] Yeşil Tabak perşembe günü açık mı?
+A [172] Yeşil Tabak perşembe 09:00-22:00 arası açık.
+U [173] Ateş Kebap pazartesi günü kaça kadar açık?
+A [174] Ateş Kebap pazartesi 12:00-00:30 arası açık.
+U [006] İtiraf edeyim, akşam yemeğinden sonra bir tatlı yemeden günü kapatamıyorum; haftada en az üç dört kez bir tatlıcıya uğruyorum.
+A [] Haha, anlaşıldı, aklımda tutarım.
+U [175] Eski Dostlar'da fava kaç lira?
+A [176] Eski Dostlar'da Fava 100 TL.
+U [177] Yeni evden okula giderken trafik beklediğimden uzun sürüyor, sabahları erken çıkmam gerekecek.
+A [178] Kolay gelsin, alışınca daha rahat olur.
+
+## 27
+U [179] İskele Lokantası'nın menüsünde salata olarak ne var?
+A [180] İskele Lokantası'nda salata olarak Roka Salatası var, 140 TL.
+U [181] Bambu çarşamba günü kaça kadar açık?
+A [182] Bambu çarşamba 12:00-23:00 arası açık.
+U [025] Evvelsi gün akşam Kasap Burger'de sebze burger yedim; menüde başka seçenek azdı ama memnun kaldım.
+A [026] Afiyet olsun!
+U [183] Dün Gece Burger'de yan ürün olarak ne vardı?
+A [184] Dün Gece Burger'de yan ürün olarak Patates Kızartması var, 110 TL.
+
+## 28
+U [049] Bu akşam nerede yiyebilirim?
+A [050] Urfa Ocakbaşı'na bakabilirsin: Közlenmiş Patlıcan Salatası 155 TL, vegan etiketli. Fenerbahçe'de, fiyat seviyesi ₺₺₺.
+U [] Teşekkürler.
+
+## 29
+U [185] Kasap Köfte çarşamba günü açık mı?
+A [186] Kasap Köfte çarşamba 12:00-02:00 arası açık.
+U [027] Bu perşembe öğlen Şekerci Cafer'de meyve salatası yedim; ders arasında hafif bir şey iyi geldi.
+A [028] Afiyet olsun!
+
+## 30
+U [037] Cumartesi öğlen Pazar Kahvaltı Evi'ne gitmeyi planlıyorum, henüz hiç gitmedim.
+A [038] Pazar Kahvaltı Evi cumartesi 08:00-16:00 arası açık.
+
+## 31
+U [039] Maalesef Pazar Kahvaltı Evi planımız iptal oldu, gidemedik.
+A [040] Üzüldüm, belki başka bir hafta sonu olur.
+U [187] Rakı Sofrası'nda haydari kaç liraydı?
+A [188] Rakı Sofrası'nda Haydari 145 TL.
+U [] Teşekkürler.
+
+## 32
+U [189] Fırın Pide cuma günü kaça kadar açık?
+A [190] Fırın Pide cuma 11:00-23:30 arası açık.
+U [191] Bu hafta sonu sınav kağıtlarını okuyacağım, pek dışarı çıkamayacağım.
+A [192] Kolay gelsin, araya küçük molalar koymayı unutma.
+U [193] Antep Sofrası nerede?
+A [194] Antep Sofrası Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [195] Urfa Ocakbaşı'nın menüsünde meze olarak ne var?
+A [196] Urfa Ocakbaşı'nda meze olarak Közlenmiş Patlıcan Salatası var, 155 TL.
+U [] Teşekkür ederim.
+
+## 33
+U [029] Dün akşam Esnaf Sofrası'nda tereyağlı pilav yedim; sade ama tam ev yemeği tadındaydı.
+A [030] Afiyet olsun!
+U [] Teşekkürler.
+
+## 34
+U [197] Martı Balık'ta kampanya var mı?
+A [198] Martı Balık için uygulamada kampanya kaydı yok.
+U [051] Bu akşam nerede yiyebilirim?
+A [052] Dün Gece Burger'e bakabilirsin: Sebze Burger 300 TL, vejetaryen etiketli. Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [] Bakarım, teşekkürler.
+
+## 35
+U [199] Esnaf Lokantası çarşamba günü açık mı?
+A [200] Esnaf Lokantası çarşamba 11:00-21:00 arası açık.
+U [031] Dün akşam Akşam Meyhanesi'nde fava yedim; arkadaşlarla uzun bir sohbet oldu.
+A [032] Afiyet olsun, keyifli bir akşam olmuş.
+U [201] Serpme Bahçe'de avokadolu kase kaç liraydı?
+A [202] Serpme Bahçe'de Avokadolu Kase 170 TL.
+
+## 36
+U [203] Smash Bros nerede?
+A [204] Smash Bros Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [] Teşekkürler.
+
+## 37
+U [033] Dün akşam Kebapçı Halil'de közlenmiş patlıcan salatası yedim.
+A [034] Afiyet olsun!
+U [] Teşekkür ederim.
+
+## 38
+U [205] Eski Dostlar cuma günü kaça kadar açık?
+A [206] Eski Dostlar cuma 17:00-02:00 arası açık.
+U [207] Burger Atölyesi cumartesi günü açık mı?
+A [208] Burger Atölyesi cumartesi 12:00-02:00 arası açık.
+U [] Teşekkürler.
+
+## 39
+U [035] Dün akşam Wok & Roll'da miso çorba içtim; havalar soğuyunca çorba iyi geliyor.
+A [036] Afiyet olsun, içini ısıtmıştır.
+U [209] Moda Yeşil Mutfak'taki kampanya başladı mı?
+A [210] Moda Yeşil Mutfak'ta Öğrenciye %15 var (Salı-Perşembe 12:00-16:00), 30 kasım'a kadar.
+U [] Harika, teşekkürler.
