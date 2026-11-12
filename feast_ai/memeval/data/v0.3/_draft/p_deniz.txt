@@ -1,0 +1,302 @@
+# Deniz
+
+## 0
+U [052] İyi akşamlar. Moda Yeşil Mutfak tam olarak nerede bulunuyor?
+A [053] İyi akşamlar! Moda Yeşil Mutfak Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺.
+U [001] Bir konuyu baştan belirteyim: soya alerjim var. Soya sosu, tofu, edamame gibi şeyler benim için kesinlikle uygun değil.
+A [002] Not ettim. Bundan sonra soya içeren yemeklere ayrıca dikkat edeceğim.
+U [054] Cuma Pide'nin menüsünde içecek olarak neler var?
+A [055] Cuma Pide'de içecek olarak Ayran 40 TL ve Şalgam 45 TL var.
+U [056] Antep Sofrası pazartesi günü açık mı, açıksa kaça kadar?
+A [057] Antep Sofrası pazartesi 12:00-00:30 arası açık.
+U [] Teşekkür ederim.
+
+## 1
+U [058] Bambu pazartesi günü kaça kadar açık?
+A [059] Bambu pazartesi 12:00-23:00 arası açık.
+
+## 2
+U [003] Bu arada et yemediğim için menülerde hep sebzeli ya da peynirli seçeneklere bakıyorum. Bunu da göz önünde bulundurursan sevinirim.
+A [004] Anladım, bundan sonra et içermeyen seçeneklere göre bakacağım.
+U [060] Cuma Pide'nin menüsünde pide olarak neler var?
+A [061] Cuma Pide'de pide olarak Kaşarlı Pide var, 220 TL.
+
+## 3
+U [062] Bambu'da şu sıralar bir kampanya var mı?
+A [063] Bambu için uygulamada kampanya kaydı yok.
+U [064] Bu hafta sonu yarım kalan bir maket projesini bitirmeyi planlıyorum. Uzun zamandır masamda bekliyordu.
+A [065] Kolay gelsin, bitirince içiniz rahatlar.
+U [066] İskele Lokantası'nda roka salatası kaç lira?
+A [067] İskele Lokantası'nda Roka Salatası 140 TL.
+U [005] En sevdiğim mutfağın meyhane olduğunu söyleyebilirim. Uzun bir sofra, meze ve sohbet benim için ideal akşam yemeğidir.
+A [] Çok güzel, aklımda tutarım.
+U [068] İskele Lokantası nerede bulunuyor?
+A [069] İskele Lokantası Yeldeğirmeni'nde, fiyat seviyesi ₺₺.
+U [] Teşekkürler.
+
+## 4
+U [070] Burger Atölyesi'nde bir kampanya var mı?
+A [071] Burger Atölyesi için uygulamada kampanya kaydı yok.
+U [072] Tatlı Dünyası'nın menüsünde içecek olarak ne var?
+A [073] Tatlı Dünyası'nda içecek olarak Türk Kahvesi var, 70 TL.
+U [007] Ben Fenerbahçe'de oturuyorum. Bu nedenle yakın çevredeki yerler benim için daha pratik oluyor.
+A [] Anladım, Fenerbahçe'yi not aldım.
+U [074] Burger Atölyesi cumartesi günü kaça kadar açık?
+A [075] Burger Atölyesi cumartesi 12:00-02:00 arası açık.
+U [] Teşekkür ederim.
+
+## 5
+U [012] Dün akşam Tencere Kapak'ta kuru fasulye yedim. Sade ama özenli bir yemekti.
+A [013] Afiyet olsun, güzel bir akşam yemeği olmuş.
+U [] Evet, memnun kaldım.
+
+## 6
+U [040] Bugün nerede yiyebilirim?
+A [041] Van Kahvaltı Salonu'na bakabilirsiniz: Menemen 305 TL, vejetaryen etiketli. Fenerbahçe'de, fiyat seviyesi ₺₺₺₺. @sokak_tadi da "Hayatımda yediğim en iyi Serpme Kahvaltı 🔥" yazmış.
+
+## 7
+U [076] Bambu'da bir kampanya başladı mı?
+A [077] Bambu için uygulamada kampanya kaydı yok.
+U [078] Cuma Pide cumartesi günü kaça kadar açık?
+A [079] Cuma Pide cumartesi 11:00-23:30 arası açık.
+
+## 8
+U [014] Evvelsi gün öğlen Bizim Mutfak'ta tereyağlı pilav yedim. Şantiye arasında kısa bir mola için uygundu.
+A [015] Afiyet olsun!
+U [] Teşekkürler.
+
+## 9
+U [080] Uzun zamandır izlediğim bir belgesel dizisini bu akşam bitirdim. Şehircilik üzerineydi, oldukça ilham vericiydi.
+A [081] Ne güzel, keyifli ve öğretici bir dizi olmuş.
+U [082] Moda Yeşil Mutfak'ın menüsünde ana yemek olarak ne var?
+A [083] Moda Yeşil Mutfak'ta ana yemek olarak Nohutlu Buddha Kase var, 310 TL.
+U [084] Burger Atölyesi salı günü açık mı?
+A [085] Burger Atölyesi salı 12:00-02:00 arası açık.
+U [086] Tatlı Dünyası pazartesi günü kaça kadar açık?
+A [087] Tatlı Dünyası pazartesi 10:00-00:00 arası açık.
+U [088] Muhallebici Moda'nın menüsünde içecek olarak ne var?
+A [089] Muhallebici Moda'da içecek olarak Türk Kahvesi var, 70 TL.
+
+## 10
+U [042] Bu akşam nerede yiyebilirim?
+A [043] Tatlı Dünyası'na bakabilirsiniz: Kazandibi 110 TL, vejetaryen etiketli. Fenerbahçe'de, fiyat seviyesi ₺₺.
+
+## 11
+U [090] Bambu nerede bulunuyor?
+A [091] Bambu Moda'da, fiyat seviyesi ₺₺.
+U [016] Dün öğlen Bitki Kafe'de nohutlu buddha kase yedim. Porsiyon dengeliydi.
+A [017] Afiyet olsun, dengeli bir öğle yemeği olmuş.
+U [092] Burger Atölyesi çarşamba günü kaça kadar açık?
+A [093] Burger Atölyesi çarşamba 12:00-02:00 arası açık.
+U [] Teşekkür ederim.
+
+## 12
+U [094] Bugün ofiste bir proje teslimi vardı. Sonunda yetiştirdik, ekip olarak rahatladık.
+A [095] Tebrikler, emeğinize sağlık.
+U [096] Muhallebici Moda nerede?
+A [097] Muhallebici Moda Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [098] Moda Yeşil Mutfak cumartesi günü kaça kadar açık?
+A [099] Moda Yeşil Mutfak cumartesi 09:00-22:00 arası açık.
+U [100] İskele Lokantası'nda kampanya var mı?
+A [101] İskele Lokantası için uygulamada kampanya kaydı yok.
+
+## 13
+U [102] Tatlı Dünyası'nda kampanya var mı?
+A [103] Tatlı Dünyası için uygulamada kampanya kaydı yok.
+U [104] Bitki Bahçe'nin menüsünde içecek olarak ne var?
+A [105] Bitki Bahçe'de içecek olarak Zencefilli Limonata var, 115 TL.
+U [106] Yeşil Tabak nerede bulunuyor?
+A [107] Yeşil Tabak Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺.
+
+## 14
+U [108] Günaydın. Serpme Bahçe çarşamba günü kaça kadar açık?
+A [109] Günaydın! Serpme Bahçe çarşamba 08:00-16:00 arası açık.
+U [110] Ateş Kebap'ta bir kampanya var mı?
+A [111] Ateş Kebap için uygulamada kampanya kaydı yok.
+U [010] Hafta sonu arkadaşım Kerem ile yemeğe çıkacağız. Kerem'in yer fıstığı alerjisi var; benim değil, onun. Bu yüzden yer seçerken dikkatli olmamız gerekiyor.
+A [011] Kerem için menülerde yer fıstığı içeren yemeklere dikkat etmek gerek.
+U [112] Cuma Pide'de şalgam kaç lira?
+A [113] Cuma Pide'de Şalgam 45 TL.
+U [] Teşekkür ederim.
+A [] Rica ederim, iyi yemekler!
+U [] Sağ olun.
+
+## 15
+U [114] İskele Lokantası nerede bulunuyordu?
+A [115] İskele Lokantası Yeldeğirmeni'nde, fiyat seviyesi ₺₺.
+U [116] Moda Yeşil Mutfak pazar günü kaça kadar açık?
+A [117] Moda Yeşil Mutfak pazar 09:00-22:00 arası açık.
+U [118] Yeşil Tabak cumartesi günü açık mı?
+A [119] Yeşil Tabak cumartesi 09:00-22:00 arası açık.
+U [018] Geçen cumartesi akşam Esnaf Sofrası'nda tereyağlı pilav yedim. Yanında cacık olsa daha iyi olurdu ama yine de keyifliydi.
+A [019] Afiyet olsun, keyifli bir akşam olmuş.
+U [120] Antep Sofrası'nın menüsünde meze olarak neler var?
+A [121] Antep Sofrası'nda meze olarak Közlenmiş Patlıcan Salatası 120 TL ve Ezme 90 TL var.
+U [122] Yeşil Tabak'ta avokado tost kaç lira?
+A [123] Yeşil Tabak'ta Avokado Tost 245 TL.
+
+## 16
+U [044] Bugün nerede yiyebilirim?
+A [045] Burger Atölyesi'ne bakabilirsiniz: Patates Kızartması 145 TL, vegan etiketli. Fenerbahçe'de, fiyat seviyesi ₺₺₺.
+U [] Belki, teşekkürler.
+
+## 17
+U [124] Dün akşam izlediğim film beklediğimden çok daha iyiydi. Görüntü yönetimi özellikle etkileyiciydi.
+A [125] Ne güzel, keyifli bir akşam olmuş.
+U [126] Muhallebici Moda nerede bulunuyor?
+A [127] Muhallebici Moda Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [128] Esnaf Lokantası'nın menüsünde yan ürün olarak ne var?
+A [129] Esnaf Lokantası'nda yan ürün olarak Tereyağlı Pilav var, 70 TL.
+U [130] Tatlı Dünyası pazartesi günü kaça kadar açık?
+A [131] Tatlı Dünyası pazartesi 10:00-00:00 arası açık.
+U [] Teşekkür ederim.
+
+## 18
+U [132] Hafta sonu Kuzguncuk'taki eski köşkleri gezmeyi planlıyorum. Restorasyon çalışmalarını görmek istiyorum.
+A [133] Çok güzel bir plan, keyifli bir gezi dilerim.
+U [134] Yeşil Tabak pazartesi günü açık mı?
+A [135] Yeşil Tabak pazartesi kapalı.
+
+## 19
+U [020] Bu çarşamba akşam Cihangir Meze Evi'nde fava yedim. Meze tabağı oldukça özenliydi.
+A [021] Afiyet olsun, keyifli bir akşam olmuş.
+
+## 20
+U [136] Günaydın. Cuma Pide çarşamba günü kaça kadar açık?
+A [137] Günaydın! Cuma Pide çarşamba 11:00-23:30 arası açık.
+U [138] Dün akşamki maçı izledim. Taktik açısından oldukça ilginç bir oyundu.
+A [139] Keyifli bir maçmış, ne güzel.
+
+## 21
+U [046] Bu akşam nerede yiyebilirim?
+A [047] Baklavacı Güllüoğlu Usta'ya bakabilirsiniz: Kazandibi 110 TL, vejetaryen etiketli. Fenerbahçe'de, fiyat seviyesi ₺₺.
+
+## 22
+U [140] Bugün şantiyede uzun bir gün oldu, öğle yemeğine ancak şimdi fırsat bulabildim.
+A [141] Kolay gelsin, umarım biraz dinlenebilirsiniz.
+U [008] Size bir haber vereyim: Fenerbahçe'den Yeldeğirmeni'ne taşındım. Eski bir binanın üst katını kendim yeniledim.
+A [009] Yeni eviniz hayırlı olsun! Bundan sonra Yeldeğirmeni'ne göre bakarım.
+U [142] Tokyo Sokağı pazartesi günü kaça kadar açık?
+A [143] Tokyo Sokağı pazartesi 12:00-23:00 arası açık.
+U [] Teşekkür ederim.
+
+## 23
+U [022] Dün öğlen Anne Eli Lokantası'nda kuru fasulye yedim. Tam bir mahalle lokantası havası vardı.
+A [023] Afiyet olsun!
+
+## 24
+U [144] Ateş Kebap salı günü kaça kadar açık?
+A [145] Ateş Kebap salı 12:00-00:30 arası açık.
+U [146] Cuma Pide nerede bulunuyor?
+A [147] Cuma Pide Moda'da, fiyat seviyesi ₺₺.
+U [] Teşekkürler.
+
+## 25
+U [148] Wok & Roll nerede bulunuyor?
+A [149] Wok & Roll Yeldeğirmeni'nde, fiyat seviyesi ₺.
+U [150] Moda Yeşil Mutfak cuma günü kaça kadar açık?
+A [151] Moda Yeşil Mutfak cuma 09:00-22:00 arası açık.
+U [] Teşekkür ederim.
+
+## 26
+U [152] Moda Yeşil Mutfak'ta bir kampanya var mı?
+A [153] Moda Yeşil Mutfak'ta şu an aktif kampanya yok; 1 ekim'de başlayacak Öğrenciye %15 (Salı-Perşembe 12:00-16:00) görünüyor.
+U [154] Hafta sonu yeni evdeki kitaplığı monte etmeyi düşünüyorum. Uzun süredir kutularda bekliyorlar.
+A [155] Kolay gelsin, keyifli bir iş olacak.
+U [006] Tencere yemeklerini çok severim; haftada en az iki kez öğlenleri bir lokantada kuru fasulye ya da türlü yemeden duramıyorum.
+A [] Anlaşıldı, aklımda tutarım.
+U [156] Muhallebici Moda nerede?
+A [157] Muhallebici Moda Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [158] Cuma Pide'nin menüsünde pide olarak ne var?
+A [159] Cuma Pide'de pide olarak Kaşarlı Pide var, 220 TL.
+
+## 27
+U [160] Dün akşamki maç uzatmaya gitti. Son dakikalar oldukça gergindi.
+A [161] Heyecanlı bir maçmış!
+U [162] Ateş Kebap'ta bir kampanya var mı?
+A [163] Ateş Kebap için uygulamada kampanya kaydı yok.
+U [024] Dün akşam Urfa Ocakbaşı'nda ezme yedim. Biraz acıydı ama dengeliydi.
+A [025] Afiyet olsun!
+U [164] Wok & Roll'da kampanya var mı?
+A [165] Wok & Roll için uygulamada kampanya kaydı yok.
+U [166] Tatlı Dünyası'nda kampanya var mı peki?
+A [167] Tatlı Dünyası için de uygulamada kampanya kaydı yok.
+U [] Anladım, teşekkürler.
+
+## 28
+U [168] Antep Sofrası'nda ezme kaç lira?
+A [169] Antep Sofrası'nda Ezme 90 TL.
+U [048] Bugün nerede yiyebilirim?
+A [049] İskele Lokantası'na bakabilirsiniz: Roka Salatası 140 TL, vegan etiketli. Yeldeğirmeni'nde, fiyat seviyesi ₺₺. @beyza.yer da "Fiyatına göre gayet iyi bir Helva" yazmış.
+U [170] Yeşil Tabak cuma günü kaça kadar açık?
+A [171] Yeşil Tabak cuma 09:00-22:00 arası açık.
+U [] Teşekkür ederim.
+
+## 29
+U [172] Urfa Sofrası'nda közlenmiş patlıcan salatası kaç lira?
+A [173] Urfa Sofrası'nda Közlenmiş Patlıcan Salatası 120 TL.
+U [026] Evvelsi gün akşam Rakı Sofrası'nda muhammara yedim. Meze çeşitliliği oldukça iyiydi.
+A [027] Afiyet olsun, keyifli bir akşam olmuş.
+U [] Teşekkürler.
+
+## 30
+U [036] Cumartesi akşamı Smash Bros'a gitmeyi planlıyoruz. Daha önce hiç gitmedim.
+A [037] Smash Bros cumartesi 12:00-02:00 arası açık.
+U [174] Baklavacı Güllüoğlu Usta'nın menüsünde içecek olarak ne var?
+A [175] Baklavacı Güllüoğlu Usta'da içecek olarak Türk Kahvesi var, 70 TL.
+U [] Teşekkür ederim.
+
+## 31
+U [176] Dün akşamki maçı kaçırdım ama özetini izledim. Oldukça keyifliydi.
+A [177] Ne güzel, özetler de iyi oluyor.
+U [038] Smash Bros planımız iptal oldu, gidemedik.
+A [039] Üzüldüm, belki başka bir zaman olur.
+
+## 32
+U [178] Burger Atölyesi çarşamba günü kaça kadar açık?
+A [179] Burger Atölyesi çarşamba 12:00-02:00 arası açık.
+U [180] Cuma Pide'nin menüsünde içecek olarak neler var?
+A [181] Cuma Pide'de içecek olarak Ayran 40 TL ve Şalgam 45 TL var.
+U [182] Muhallebici Moda çarşamba günü açık mı?
+A [183] Muhallebici Moda çarşamba 10:00-00:00 arası açık.
+U [] Teşekkür ederim.
+
+## 33
+U [028] Evvelsi gün akşam Akşam Meyhanesi'nde fava yedim. Ortam sakindi, uzun uzun sohbet ettik.
+A [029] Afiyet olsun, keyifli bir akşam olmuş.
+
+## 34
+U [050] Bugün öğlen nerede yiyebilirim?
+A [051] Karadeniz Pide Salonu'na bakabilirsiniz: Kaşarlı Pide 175 TL, vejetaryen etiketli. Yeldeğirmeni'nde, fiyat seviyesi ₺.
+U [184] Hafta sonu eski fotoğraf arşivimi düzenlemeyi düşünüyorum. Yağmur da yağacakmış zaten.
+A [185] Keyifli ve sakin bir hafta sonu olacak gibi.
+U [] Umarım.
+
+## 35
+U [030] Dün akşam Dün Gece Burger'de sebze burger yedim. Beklediğimden iyiydi.
+A [031] Afiyet olsun!
+U [] Teşekkürler.
+
+## 36
+U [186] Ateş Kebap nerede bulunuyor?
+A [187] Ateş Kebap Kadıköy Çarşı'da, fiyat seviyesi ₺₺₺.
+
+## 37
+U [032] Dün akşam Eski Dostlar'da haydari yedim. Mahalleye yeni taşınan komşularla tanıştık.
+A [033] Afiyet olsun, keyifli bir tanışma olmuş.
+U [188] Muhallebici Moda nerede bulunuyordu?
+A [189] Muhallebici Moda Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [190] Muhallebici Moda'da Türk kahvesi kaç lira?
+A [191] Muhallebici Moda'da Türk Kahvesi 70 TL.
+
+## 38
+U [192] Muhallebici Moda pazar günü kaça kadar açık?
+A [193] Muhallebici Moda pazar 10:00-00:00 arası açık.
+U [194] Wok & Roll cumartesi günü kaça kadar açık?
+A [195] Wok & Roll cumartesi 12:00-23:00 arası açık.
+U [] Teşekkür ederim.
+
+## 39
+U [034] Dün akşam Fırın Pide'de kaşarlı pide yedim. Hamuru oldukça inceydi.
+A [035] Afiyet olsun!
+U [] Teşekkürler.

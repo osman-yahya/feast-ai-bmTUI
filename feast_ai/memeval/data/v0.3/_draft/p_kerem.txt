@@ -1,0 +1,308 @@
+# Kerem
+
+## 0
+U [001] gecen hafta bi kurabiyenin icinde yer fistigi varmis, yarim saat sonra boğazim sisti nefes alamadim, acilde bitirdim aksami
+U [002] bi de susamli seyler ayni etkiyi yapiyor bende, simit bile yiyemiyorum o yuzden
+A [003] Çok geçmiş olsun! İkisini de not ettim; yer fıstığı ve susam içeren yemeklere ayrıca dikkat edeceğim.
+U [050] bu arada sabah trafik rezaletti, derse gec kaldim
+A [051] Geçmiş olsun, umarım hoca anlayışlıdır 🙂
+U [] umarim
+
+## 1
+U [052] marti balik'ta kampanya var mi
+A [053] Martı Balık için uygulamada kampanya kaydı yok.
+
+## 2
+U [054] baklavaci gulluoglu usta nerde
+A [055] Baklavacı Güllüoğlu Usta Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [056] esnaf sofrasi'nda yan urun ne var
+A [057] Esnaf Sofrası'nda yan ürün olarak Tereyağlı Pilav var, 70 TL.
+U [] ok
+
+## 3
+U [058] baklavaci gulluoglu usta sali acik mi
+A [059] Baklavacı Güllüoğlu Usta salı 10:00-00:00 arası açık.
+U [004] en sevdigim mutfak uzakdogu bu arada, noodle sushi ne olursa
+A [] Anlaşıldı, aklımda tutarım.
+U [060] serpme bahce'de menemen kac para
+A [061] Serpme Bahçe'de Menemen 145 TL.
+U [062] raki sofrasi'nda kampanya var mi
+A [063] Rakı Sofrası için uygulamada kampanya kaydı yok.
+U [] ok sagol
+
+## 4
+U [064] marti balik carsamba kaca kadar acik
+A [065] Martı Balık çarşamba 12:00-23:59 arası açık.
+U [066] dun aksam mac cok iyiydi ya, son dakika golu
+A [067] Heyecanlı bir maçmış!
+U [007] cihangir'de oturuyorum bu arada, yakin yerler ise yarar
+A [] Tamam, Cihangir'i not aldım.
+U [068] lagos balik'ta ana yemek ne var
+A [069] Lagos Balık'ta ana yemek olarak Levrek Izgara var, 520 TL.
+U [070] firin pide cuma acik mi
+A [071] Fırın Pide cuma 11:00-23:30 arası açık.
+U [] ok
+
+## 5
+U [072] antep sofrasi'nda urfa kebap kac para
+A [073] Antep Sofrası'nda Urfa Kebap 420 TL.
+U [010] evvelsi gun ogle burger atolyesi'nde sebze burger yedim, fena degildi
+A [011] Afiyet olsun!
+U [074] eski dostlar nerde
+A [075] Eski Dostlar Yeldeğirmeni'nde, fiyat seviyesi ₺₺.
+U [076] muhallebici moda nerde peki
+A [077] Muhallebici Moda Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [] tmm
+
+## 6
+U [078] iskele lokantasi pazartesi acik mi
+A [079] İskele Lokantası pazartesi 12:00-23:59 arası açık.
+U [038] bugun nerde yiyebilirim
+A [039] Tencere Kapak'a bakabilirsin: Sütlaç 95 TL, vejetaryen ve glutensiz etiketli. Cihangir'de, fiyat seviyesi ₺₺.
+U [] tatli mi, olur
+
+## 7
+U [080] hafta sonu arkadaslarla adalara gidicez
+A [081] Ne güzel, keyifli bir gezi dilerim!
+U [] sagol
+
+## 8
+U [012] evvelsi gun aksam kasap burger'de sebze burger yedim
+A [013] Afiyet olsun!
+U [] 👍
+
+## 9
+U [082] aksam meyhanesi'nde kampanya var mi
+A [083] Akşam Meyhanesi için uygulamada kampanya kaydı yok.
+
+## 10
+U [084] moda yesil mutfak sali acik mi
+A [085] Moda Yeşil Mutfak salı kapalı.
+U [086] kasap kofte nerde
+A [087] Kasap Köfte Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [040] bugun nerde yiyebilirim
+A [041] Simitçi Dünyası'na bakabilirsin: Menemen 305 TL, vejetaryen etiketli. Cihangir'de, fiyat seviyesi ₺₺₺₺.
+U [] biraz pahali ama ok
+
+## 11
+U [088] baklavaci gulluoglu usta carsamba acik mi
+A [089] Baklavacı Güllüoğlu Usta çarşamba 10:00-00:00 arası açık.
+U [014] dun aksam urfa ocakbasi'nda kozlenmis patlican salatasi yedim
+A [015] Afiyet olsun!
+U [090] fenerbahce balikcisi carsamba kaca kadar acik
+A [091] Fenerbahçe Balıkçısı çarşamba 12:00-23:59 arası açık.
+U [] ok
+
+## 12
+U [006] bu arada aci yemekleri hic sevmiyorum, midemi yakiyor
+A [] Anladım, acısız seçeneklere bakarım.
+
+## 13
+U [092] urfa sofrasi'nda urfa kebap kac para
+A [093] Urfa Sofrası'nda Urfa Kebap 420 TL.
+U [094] eski dostlar pazartesi acik mi
+A [095] Eski Dostlar pazartesi 17:00-02:00 arası açık.
+U [096] bu aksam derbi var, yurtta herkes toplaniyor
+A [097] Keyifli seyirler!
+U [] sagol
+
+## 14
+U [098] staj basvurulari basladi, cv duzenliyorum sabahtan beri
+A [099] Kolay gelsin, umarım güzel bir yere girersin!
+U [100] baklavaci gulluoglu usta nerdeydi
+A [101] Baklavacı Güllüoğlu Usta Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [102] antep sofrasi cuma acik mi
+A [103] Antep Sofrası cuma 12:00-00:30 arası açık.
+U [008] cumartesi deniz'le yemege cikicaz, deniz'in gluten alerjisi var, benim degil onun yani, ona gore bi yer lazim
+A [009] Deniz için menülerde gluten içeren yemeklere dikkat etmek gerek; glutensiz etiketli yemeklere bakabiliriz.
+U [104] iskele lokantasi pazar acik mi
+A [105] İskele Lokantası pazar 12:00-23:59 arası açık.
+U [106] firin pide carsamba kaca kadar acik
+A [107] Fırın Pide çarşamba 11:00-23:30 arası açık.
+U [] ok
+
+## 15
+U [108] lagos balik nerde
+A [109] Lagos Balık Beşiktaş'ta, fiyat seviyesi ₺₺.
+U [110] raki sofrasi nerde
+A [111] Rakı Sofrası Moda'da, fiyat seviyesi ₺₺₺.
+U [016] evvelsi gun ogle smash bros'ta sebze burger yedim
+A [017] Afiyet olsun!
+U [112] marti balik nerde
+A [113] Martı Balık Moda'da, fiyat seviyesi ₺₺₺.
+U [114] marti balik carsamba acik mi
+A [115] Martı Balık çarşamba 12:00-23:59 arası açık.
+U [] ok
+
+## 16
+U [042] bugun nerde yiyebilirim
+A [043] Pazar Kahvaltı Evi'ne bakabilirsin: Avokadolu Kase 210 TL, vegan ve glutensiz etiketli. Cihangir'de, fiyat seviyesi ₺₺.
+
+## 17
+U [116] serpme bahce nerde
+A [117] Serpme Bahçe Kadıköy Çarşı'da, fiyat seviyesi ₺.
+U [118] muhallebici moda carsamba acik mi
+A [119] Muhallebici Moda çarşamba 10:00-00:00 arası açık.
+U [120] firin pide cuma kaca kadar acik
+A [121] Fırın Pide cuma 11:00-23:30 arası açık.
+U [122] raki sofrasi'nda kampanya var mi
+A [123] Rakı Sofrası için uygulamada kampanya kaydı yok.
+
+## 18
+U [124] bitki kafe pazar acik mi
+A [125] Bitki Kafe pazar 09:00-22:00 arası açık.
+U [126] ates kebap'ta kunefe kac para
+A [127] Ateş Kebap'ta Künefe 235 TL.
+U [] ok
+
+## 19
+U [128] cihangir meze evi carsamba acik mi
+A [129] Cihangir Meze Evi çarşamba 17:00-02:00 arası açık.
+U [018] evvelsi gun aksam dun gece burger'de patates kizartmasi yedim, gece 1de
+A [019] Afiyet olsun, geç saat atıştırması olmuş 🙂
+U [130] hafta sonu kamp var, cadir lazim
+A [131] Keyifli bir kamp dilerim!
+U [] sagol
+
+## 20
+U [132] baklavaci gulluoglu usta nerdeydi ya
+A [133] Baklavacı Güllüoğlu Usta Fenerbahçe'de, fiyat seviyesi ₺₺.
+
+## 21
+U [044] bugun nerde yiyebilirim
+A [045] Fenerbahçe Balıkçısı'na bakabilirsin: Kalamar Tava 580 TL. Beşiktaş'ta, fiyat seviyesi ₺₺₺₺.
+U [] pahaliymis
+
+## 22
+U [134] esnaf sofrasi pazartesi acik mi
+A [135] Esnaf Sofrası pazartesi 11:00-21:00 arası açık.
+
+## 23
+U [020] dun ogle tokyo sokagi'nda sebzeli noodle yedim
+A [021] Afiyet olsun!
+U [] 🍜
+
+## 24
+U [136] bizim mutfak'ta kampanya var mi
+A [137] Bizim Mutfak'ta şu an aktif kampanya yok; 1 ekim'de başlayacak Hafta içi %20 indirim (Salı-Perşembe 12:00-16:00) görünüyor.
+
+## 25
+U [138] muhallebici moda'da icecek ne var
+A [139] Muhallebici Moda'da içecek olarak Türk Kahvesi var, 70 TL.
+U [140] lig basladi sonunda
+A [141] Hayırlı olsun, keyifli bir sezon dilerim!
+U [] sagol
+
+## 26
+U [142] serpme bahce carsamba acik mi
+A [143] Serpme Bahçe çarşamba 08:00-16:00 arası açık.
+U [144] iskele lokantasi'nda salata ne var
+A [145] İskele Lokantası'nda salata olarak Roka Salatası var, 140 TL.
+U [146] esnaf sofrasi'nda karniyarik kac para
+A [147] Esnaf Sofrası'nda Karnıyarık 210 TL.
+U [005] bu arada burgeri de cok seviyorum, uzakdogudan sonra ikinci sirada
+A [] Not aldım 🙂
+U [148] raki sofrasi'nda fava kac para
+A [149] Rakı Sofrası'nda Fava 130 TL.
+U [150] fenerbahce balikcisi cumartesi acik mi
+A [151] Fenerbahçe Balıkçısı cumartesi 12:00-23:59 arası açık.
+U [] ok
+
+## 27
+U [152] lagos balik'ta salata ne var
+A [153] Lagos Balık'ta salata olarak Roka Salatası var, 140 TL.
+U [154] esnaf sofrasi cuma acik mi
+A [155] Esnaf Sofrası cuma 11:00-21:00 arası açık.
+U [022] bu carsamba aksam sushi nami'de miso corba ictim
+A [023] Afiyet olsun!
+U [156] lagos balik'ta kampanya var mi
+A [157] Lagos Balık'ta şu an aktif kampanya yok; 1 ekim'de başlayacak Hafta içi %20 indirim (Salı-Perşembe 12:00-16:00) görünüyor.
+U [158] fenerbahce balikcisi sali kaca kadar acik
+A [159] Fenerbahçe Balıkçısı salı 12:00-23:59 arası açık.
+U [] ok
+
+## 28
+U [046] bugun nerde yiyebilirim
+A [047] Kebapçı Halil'e bakabilirsin: Urfa Kebap 420 TL, helal etiketli. Cihangir'de, fiyat seviyesi ₺₺. @gurme_kadikoy da "Fiyatına göre gayet iyi bir Ezme" yazmış.
+U [160] muhallebici moda nerde
+A [161] Muhallebici Moda Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [] ok
+
+## 29
+U [162] serpme bahce nerdeydi
+A [163] Serpme Bahçe Kadıköy Çarşı'da, fiyat seviyesi ₺.
+U [164] sushi nomi'de kampanya var mi
+A [165] Sushi Nomi için uygulamada kampanya kaydı yok.
+U [024] evvelsi gun ogle wok & roll'da sebzeli noodle yedim
+A [025] Afiyet olsun!
+U [] 👍
+
+## 30
+U [034] cumartesi ogle sekerci cafer'e gitmeyi planliyoruz, daha hic gitmedim
+A [035] Şekerci Cafer cumartesi 10:00-00:00 arası açık.
+U [166] moda yesil mutfak carsamba acik mi
+A [167] Moda Yeşil Mutfak çarşamba 09:00-22:00 arası açık.
+U [168] raki sofrasi cuma kaca kadar acik
+A [169] Rakı Sofrası cuma 17:00-02:00 arası açık.
+U [] ok
+
+## 31
+U [170] eski dostlar nerdeydi
+A [171] Eski Dostlar Yeldeğirmeni'nde, fiyat seviyesi ₺₺.
+U [036] sekerci cafer plani iptal oldu, gidemedik
+A [037] Olsun, başka zaman olur.
+
+## 32
+U [172] ates kebap'ta kampanya var mi
+A [173] Ateş Kebap için uygulamada kampanya kaydı yok.
+U [174] iskele lokantasi nerde
+A [175] İskele Lokantası Yeldeğirmeni'nde, fiyat seviyesi ₺₺.
+U [176] bizim mutfak'ta kampanya basladi mi
+A [177] Bizim Mutfak'ta şu an aktif kampanya yok; 1 ekim'de başlayacak Hafta içi %20 indirim (Salı-Perşembe 12:00-16:00) görünüyor.
+U [178] firin pide'de kiymali pide kac para
+A [179] Fırın Pide'de Kıymalı Pide 440 TL.
+U [] ok
+
+## 33
+U [026] dun aksam bambu'da edamame yedim
+A [027] Afiyet olsun!
+
+## 34
+U [048] bugun nerde yiyebilirim
+A [049] Lagos Balık'a bakabilirsin: Roka Salatası 140 TL, vegan etiketli. Beşiktaş'ta, fiyat seviyesi ₺₺.
+
+## 35
+U [028] dun ogle cuma pide'de kiymali pide yedim
+A [029] Afiyet olsun!
+U [180] yesil tabak nerde
+A [181] Yeşil Tabak Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺.
+U [] ok
+
+## 36
+U [182] moda yesil mutfak nerde
+A [183] Moda Yeşil Mutfak Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺.
+
+## 37
+U [030] dun aksam pideci hasan'da kasarli pide yedim
+A [031] Afiyet olsun!
+U [184] esnaf sofrasi nerde
+A [185] Esnaf Sofrası Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [] ok
+
+## 38
+U [186] iskele lokantasi carsamba acik mi
+A [187] İskele Lokantası çarşamba 12:00-23:59 arası açık.
+U [188] raki sofrasi persembe kaca kadar acik
+A [189] Rakı Sofrası perşembe 17:00-02:00 arası açık.
+U [190] aksam meyhanesi'nde meze ne var
+A [191] Akşam Meyhanesi'nde meze olarak Haydari 185 TL ve Fava 170 TL var.
+U [192] serpme bahce'de kampanya var mi
+A [193] Serpme Bahçe için uygulamada kampanya kaydı yok.
+U [194] aksam meyhanesi'nde ahtapot izgara kac para
+A [195] Akşam Meyhanesi'nde Ahtapot Izgara 715 TL.
+U [] pahali ya
+
+## 39
+U [032] evvelsi gun aksam tatli dunyasi'nda meyve salatasi yedim
+A [033] Afiyet olsun!
+U [] 🍓
