@@ -41,6 +41,10 @@ def label(meta: dict, version: bool = False) -> str:
     name = COND_TR.get(c["condition"], c["condition"])
     if c["condition"] in ("always", "gated"):
         name += f" · {c['arm']}" + (f" · {c['retriever']}" if c.get("retriever", "bm25") != "bm25" else "")
+        name += " · tarih v2" if meta.get("store_rev", 0) >= 2 else ""
+        name += " · ziyaret" if c.get("visits") else ""
+    if c.get("tools") == "app":
+        name += " · araç"
     return f"{Path(meta['dataset']).name} · {name}" if version else name
 
 
@@ -132,6 +136,40 @@ def _examples(runs: list[dict], per_cat: int = 1) -> list[str]:
     return out
 
 
+def _judged(runs: list[dict], head: str, line) -> list[str]:
+    """The LLM judge's scores beside the code's, for the runs that were judged."""
+    from .judge import best_judgments, summarize as judge_summary
+
+    cells = []
+    for run in runs:
+        name, verdicts = best_judgments(EVALS_DIR / run["meta"]["run_id"])
+        rows = [r for r in run["rows"] if r["qid"] in verdicts]
+        s = judge_summary(run["dataset"], rows, verdicts) if rows else None
+        waiting = sum(v.get("escalate_pending", False) and v["category"] in RUBRIC for v in verdicts.values())
+        cells.append((name, s, len(run["rows"]), waiting))
+    if not any(s for _, s, _, _ in cells):
+        return []
+    judges = sorted({name for name, s, _, _ in cells if s})
+
+    def cell(fn) -> list[str]:
+        return [fn(s) if s else "–" for _, s, _, _ in cells]
+
+    out = ["\n## Hakem puanı (LLM)\n",
+           f"Hakem: `{'`, `'.join(judges)}` (a+b: a her cevabı puanlar, b rubrikli kategorileri yeniden "
+           "puanlar ve onun kararı geçerlidir). Hakem cevabı altın cevap, tolerans notu ve gereken "
+           "uygulama verisiyle (menü, kullanıcının güncel olguları) görür; 0 / 0,5 / 1 verir.\n\n", head,
+           line("**Genel (kodun da puanladığı 8 kategori)**", cell(lambda s: f"**{_pct([s['accuracy']])}**")),
+           line("Genel (11 kategori, rubrikliler dahil)", cell(lambda s: _pct([s["accuracy_all"]])))]
+    for c in CATEGORIES:
+        if any(s and c in s["by_category"] for _, s, _, _ in cells):
+            out.append(line(CATEGORY_TR.get(c, c) + (" (rubrik)" if c in RUBRIC else ""),
+                            cell(lambda s: _pct([s["by_category"][c][0]]) if c in s["by_category"] else "–")))
+    out += [line("Kod–hakem uyumu (aynı puan)", cell(lambda s: _pct([s["agreement"]]))),
+            line("Puanlanan cevap", [f"{s['n']}/{n}" if s else "–" for _, s, n, _ in cells]),
+            line("Üst hakemi bekleyen rubrikli cevap", [str(w) if s else "–" for _, s, _, w in cells])]
+    return out
+
+
 def _write_path(sums: list[dict]) -> list[str]:
     versions = sorted({s["dataset"] for s in sums})
     out = []
@@ -198,13 +236,16 @@ def write_report(run_dirs: list[Path], out: Path | None = None, retrieval: list[
           + f" · {len(ds.personas)} persona · {len(ds.questions)} soru  \n"
           f"Model: {m0['model_name']} ({m0['quant']}) · profil {m0['profile']} · "
           f"{m0['threads']} çekirdek · bağlam {m0['context_size']} · greedy (temperature 0)  \n"
-          f"Araçlar: {m0['config']['tools']} · koşular: " + ", ".join(f"`{s['run_id']}`" for s in sums) + "\n",
+          f"Araçlar: {', '.join(sorted({r['meta']['config']['tools'] for r in runs}))} · koşular: " + ", ".join(f"`{s['run_id']}`" for s in sums) + "\n",
           "Koşullar: **bellek yok** = MEMORY boş; **oracle** = yalnız kanıtı içeren oturumlar "
           "(okuma tavanı); **hepsini koy** = tüm geçmiş ham; **her zaman** = bellek motoru, kapısız; "
           "**kapılı** = bellek motoru, müdahale kapısıyla. Kollar: raw = getirilen ham turlar "
           "(tarihleri kodla çözülmüş), facts = konsolide olgular, facts+raw = ikisi. Getirici: "
           "varsayılan BM25 (v0.1), rrf = BM25 ile ModernBERT-TR vektör sıralamasının RRF birleşimi. "
-          "Prompt'un geri kalanı koşullar arasında bayt bayt aynıdır.\n",
+          "Prompt'un geri kalanı koşullar arasında bayt bayt aynıdır. **tarih v2** = turun satır "
+          "tarihi anlatılan gün, soru içindeki zaman ifadesi de çözülmüş; **ziyaret** = soruyla ilgili "
+          "ziyaret kaydı satırları (v) MEMORY'de; **araç** = sayı soran sorulara my_visits / "
+          "search_saved sunulur, çağrı gerçekten çalıştırılır ve model sonuçtan cevaplar.\n",
           "## Doğruluk (deterministik puan)\n", head,
           line("**Genel (puanlanan 8 kategori)**", [f"**{100 * s['accuracy']:.0f}%**" for s in sums])]
     for c in CATEGORIES:
@@ -214,7 +255,7 @@ def write_report(run_dirs: list[Path], out: Path | None = None, retrieval: list[
         md.append(line(f"{CATEGORY_TR.get(c, c)} (n={n})",
                        [f"{100 * s['by_category'][c][0]:.0f}%" if c in s["by_category"] else "–"
                         for s in sums]))
-    md += ["\n## Davranış\n", head,
+    md += [*_judged(runs, head, line), "\n## Davranış\n", head,
            line("Uydurma (cevaplanabilir soruda yanlış ve emin)", [_pct([s["hallucinated"]]) for s in sums]),
            line("Cevaplanabilir soruda 'bilmiyorum'", [_pct([s["abstained_answerable"]]) for s in sums]),
            line("Doğru kanıt turuna atıf (tN / fN)", [_pct([s["cites_evidence"]]) for s in sums]),

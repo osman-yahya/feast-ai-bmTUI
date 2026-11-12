@@ -232,7 +232,7 @@ def _cmd_memeval(args) -> int:
                         ram_gb=args.ram_gb, limit=args.limit, personas=split(args.personas),
                         categories=split(args.categories), max_tokens=args.max_tokens,
                         arm=args.arm, k=args.k, memory_budget=args.memory_budget,
-                        retriever=args.retriever)
+                        retriever=args.retriever, visits=args.visits)
         try:
             out = asyncio.run(run(cfg))
         except EngineError as exc:
@@ -263,8 +263,9 @@ def _cmd_memeval(args) -> int:
                 print("\n".join(gemini.models()))
                 return 0
             for d in args.runs:
-                J.print_summary(Path(d).name, J.judge_run(Path(d), gemini, limit=args.limit,
-                                                          escalate=escalate))
+                J.print_summary(Path(d).name, J.judge_run(
+                    Path(d), gemini, limit=args.limit, escalate=escalate,
+                    workers=args.workers or len(gemini.pool.keys), escalate_on=args.escalate_on))
         except J.JudgeError as exc:
             print(f"judge stopped: {exc}", file=sys.stderr)
             return 2
@@ -558,8 +559,11 @@ def main(argv: list[str] | None = None) -> int:
     run_cmd.add_argument("--retriever", default="bm25", choices=["bm25", "rrf"],
                          help="raw-turn ranking: BM25 (v0.1) or BM25+encoder RRF (engine conditions)")
     run_cmd.add_argument("--memory-budget", type=int, default=900, help="MEMORY tokens (approx)")
-    run_cmd.add_argument("--tools", default="off", choices=["off", "all"],
-                         help="off: plain answers; all: every agent tool offered, calls recorded")
+    run_cmd.add_argument("--tools", default="off", choices=["off", "all", "app"],
+                         help="off: plain answers; all: every agent tool offered, calls recorded; "
+                              "app: count questions get my_visits/search_saved, run for real")
+    run_cmd.add_argument("--visits", action="store_true",
+                         help="engine conditions: show the visit log's lines for the question in MEMORY")
     run_cmd.add_argument("--profile", default="", help="device profile (budget, midrange, ...)")
     run_cmd.add_argument("--cores", type=int, default=0)
     run_cmd.add_argument("--ram-gb", type=float, default=0.0, help="device RAM; turns the ceiling on")
@@ -576,7 +580,12 @@ def main(argv: list[str] | None = None) -> int:
     judge_cmd.add_argument("runs", nargs="*", help="run directories under FEAST_AI_HOME/evals")
     judge_cmd.add_argument("--model", default="gemini-3.5-flash")
     judge_cmd.add_argument("--escalate", default="",
-                           help="stronger model for rubric answers and code disagreements")
+                           help="stronger model that regrades answers (see --escalate-on)")
+    judge_cmd.add_argument("--escalate-on", default="rubric", choices=["rubric", "all"],
+                           help="what the stronger model regrades: rubric categories only, or also "
+                                "answers where the first verdict disagrees with the code score")
+    judge_cmd.add_argument("--workers", type=int, default=0,
+                           help="answers graded at once (default: one per key)")
     judge_cmd.add_argument("--limit", type=int, default=0, help="N answers spread over categories")
     judge_cmd.add_argument("--min-interval", type=float, default=4.0, help="seconds between calls")
     judge_cmd.add_argument("--list-models", action="store_true", help="list models the key can call")

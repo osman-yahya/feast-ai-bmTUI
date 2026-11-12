@@ -24,9 +24,12 @@ spent the run stops cleanly.  Keys are never printed or written anywhere.
 from __future__ import annotations
 
 import json
+import queue
 import re
 import statistics
+import threading
 import time
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -142,14 +145,25 @@ class KeyPool:
     def label(self) -> str:
         return f"anahtar {self.index + 1}/{len(self.keys)}"
 
-    def retire(self, log) -> None:
-        """Drop the current key and move to the next live one."""
-        self.retired.add(self.index)
-        live = [i for i in range(len(self.keys)) if i not in self.retired]
+    def view(self, offset: int) -> "KeyPool":
+        """The same keys and retirements, starting ``offset`` keys on - one view per worker."""
+        return KeyPool(self.keys, offset % len(self.keys), self.retired)
+
+    def settle(self) -> None:
+        """Move off a key that was retired (by this view or another worker's)."""
+        if self.index not in self.retired:
+            return
+        n = len(self.keys)
+        live = [i % n for i in range(self.index + 1, self.index + n) if i % n not in self.retired]
         if not live:
             raise JudgeError("every key has hit its daily quota (or the model has no free-tier quota); "
                              "resume tomorrow or pick another --model - verdicts so far are saved")
         self.index = live[0]
+
+    def retire(self, log) -> None:
+        """Drop the current key and move to the next live one."""
+        self.retired.add(self.index)
+        self.settle()
         log(f"  -> {self.label()}")
 
 
@@ -181,6 +195,10 @@ class Gemini:
     _last: float = 0.0
     _http: httpx.Client = field(default_factory=lambda: httpx.Client(timeout=120))
 
+    def clone(self, offset: int) -> "Gemini":
+        """A client of its own for one worker: own pacing, shared key retirements."""
+        return Gemini(self.pool.view(offset), self.model, self.min_interval, self.log)
+
     def ask(self, prompt: str) -> dict:
         body = {
             "systemInstruction": {"parts": [{"text": SYSTEM}]},
@@ -194,6 +212,7 @@ class Gemini:
             if wait > 0:
                 time.sleep(wait)
             self._last = time.monotonic()
+            self.pool.settle()
             try:
                 r = self._http.post(f"{API}/models/{self.model}:generateContent", json=body,
                                     headers={"x-goog-api-key": self.pool.current})
@@ -319,6 +338,20 @@ def load_judgments(run_dir: Path, model: str = DEFAULT_MODEL, escalate: str = ""
     return out
 
 
+def best_judgments(run_dir: Path) -> tuple[str, dict[str, dict]]:
+    """The fullest set of current-version verdicts a run has: ``(judge label, qid -> verdict)``."""
+    best: tuple[str, dict[str, dict]] = ("", {})
+    for path in sorted(run_dir.glob("judgments-*.jsonl")):
+        found = {}
+        for line in path.open(encoding="utf-8"):
+            j = json.loads(line)
+            if j.get("version") == JUDGE_VERSION:
+                found[j["qid"]] = j
+        if len(found) > len(best[1]):
+            best = (path.stem.removeprefix("judgments-"), found)
+    return best
+
+
 def _spread(rows: list[dict], n: int) -> list[dict]:
     """``n`` rows taken round-robin over categories, so a sample covers them all."""
     by: dict[str, list[dict]] = {}
@@ -333,12 +366,13 @@ def _spread(rows: list[dict], n: int) -> list[dict]:
 
 
 def judge_run(run_dir: Path, gemini: Gemini, limit: int = 0, log=print,
-              escalate: Gemini | None = None) -> dict:
-    """Grade a run with ``gemini``; with ``escalate``, a rubric answer or one
-    where the verdict disagrees with :mod:`.score` is graded again by the
-    stronger model, whose verdict is kept (the first one is stored beside it).
-    When the stronger model's quota runs out the cheap verdict stands, marked
-    ``escalate_pending``, and a later run escalates it."""
+              escalate: Gemini | None = None, workers: int = 1, escalate_on: str = "rubric") -> dict:
+    """Grade a run with ``gemini``; with ``escalate``, a rubric answer (and, with
+    ``escalate_on="all"``, one where the verdict disagrees with :mod:`.score`) is
+    graded again by the stronger model, whose verdict is kept (the first one is
+    stored beside it).  When the stronger model's quota runs out the cheap
+    verdict stands, marked ``escalate_pending``, and a later run escalates it.
+    ``workers`` answers are graded at once, each worker starting on its own key."""
     meta = json.loads((run_dir / "meta.json").read_text(encoding="utf-8"))
     ds = load(meta["dataset"])
     qs = {q.qid: q for q in ds.questions}
@@ -348,36 +382,82 @@ def judge_run(run_dir: Path, gemini: Gemini, limit: int = 0, log=print,
         rows = _spread(rows, limit)
     esc = escalate.model if escalate else ""
     done = load_judgments(run_dir, gemini.model, esc)
-    todo = [r for r in rows if r["qid"] not in done or (escalate and done[r["qid"]].get("escalate_pending"))]
+
+    def wants_strong(row: dict, score: float) -> bool:
+        if row.get("error"):
+            return False
+        if row["category"] in RUBRIC:
+            return True
+        if escalate_on != "all":
+            return False
+        code = score_row(row, qs[row["qid"]], vocab)["score"]
+        return code is None or abs(code - score) >= 0.5
+
+    todo = [r for r in rows if r["qid"] not in done
+            or (escalate and done[r["qid"]].get("escalate_pending")
+                and wants_strong(r, done[r["qid"]]["score"]))]
     log(f"{run_dir.name}: {len(rows) - len(todo)} hazir, {len(todo)} kaldi")
+
+    workers = max(1, min(workers, len(todo) or 1))
+    clones: list[tuple[Gemini, Gemini | None]] = []
+    idle: queue.Queue = queue.Queue()
+    for w in range(workers):
+        clones.append((gemini.clone(w), escalate.clone(w) if escalate else None))
+        idle.put(clones[-1])
+    lock = threading.Lock()
+    strong_out = threading.Event()
+    fatal: list[JudgeError] = []
+    count = [0]
+
     with judgments_path(run_dir, gemini.model, esc).open("a", encoding="utf-8") as fh:
-        for i, row in enumerate(todo, 1):
-            q = qs[row["qid"]]
-            prompt = build_prompt(ds, q, row.get("reply") or "")
-            first = done.get(q.qid) if q.qid in done else None
-            if row.get("error"):
-                verdict = {"score": 0.0, "abstained": False, "reason": "run error"}
-            else:
-                verdict = ({k: first[k] for k in ("score", "abstained", "reason")} if first
-                           else gemini.ask(prompt))
-            rec = {"qid": q.qid, "category": q.category, **verdict, "model": gemini.model,
-                   "version": JUDGE_VERSION}
-            code = score_row(row, q, vocab)["score"]
-            if escalate and not row.get("error") and (
-                    q.category in RUBRIC or code is None or abs(code - verdict["score"]) >= 0.5):
-                try:
-                    strong = escalate.ask(prompt)
-                    rec = {**rec, **strong, "model": escalate.model,
-                           "first": {"score": verdict["score"], "reason": verdict["reason"],
-                                     "model": gemini.model}}
-                except JudgeError as exc:
-                    log(f"  ust hakem durdu ({exc}); kalanlar sonra yukseltilecek")
-                    escalate, rec["escalate_pending"] = None, True
-            fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
-            fh.flush()
-            done[q.qid] = rec
-            if i % 10 == 0 or i == len(todo):
-                log(f"  {i}/{len(todo)}")
+        def one(row: dict) -> None:
+            if fatal:
+                return
+            cheap, strong = idle.get()
+            try:
+                q = qs[row["qid"]]
+                prompt = build_prompt(ds, q, row.get("reply") or "")
+                first = done.get(q.qid)
+                if row.get("error"):
+                    verdict = {"score": 0.0, "abstained": False, "reason": "run error"}
+                elif first:                         # a cheap verdict waiting for the stronger model
+                    verdict = {k: first[k] for k in ("score", "abstained", "reason")}
+                else:
+                    verdict = cheap.ask(prompt)
+                rec = {"qid": q.qid, "category": q.category, **verdict, "model": gemini.model,
+                       "version": JUDGE_VERSION}
+                if strong and wants_strong(row, verdict["score"]):
+                    if strong_out.is_set():
+                        rec["escalate_pending"] = True
+                    else:
+                        try:
+                            rec = {**rec, **strong.ask(prompt), "model": strong.model,
+                                   "first": {"score": verdict["score"], "reason": verdict["reason"],
+                                             "model": gemini.model}}
+                        except JudgeError as exc:
+                            if not strong_out.is_set():
+                                log(f"  ust hakem durdu ({exc}); kalanlar sonra yukseltilecek")
+                            strong_out.set()
+                            rec["escalate_pending"] = True
+                with lock:
+                    fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
+                    fh.flush()
+                    done[q.qid] = rec
+                    count[0] += 1
+                    if count[0] % 10 == 0 or count[0] == len(todo):
+                        log(f"  {count[0]}/{len(todo)}")
+            except JudgeError as exc:
+                fatal.append(exc)
+            finally:
+                idle.put((cheap, strong))
+
+        with ThreadPoolExecutor(workers) as pool:
+            list(pool.map(one, todo))
+    gemini.calls += sum(c.calls for c, _ in clones)
+    if escalate:
+        escalate.calls += sum(s.calls for _, s in clones)
+    if fatal:
+        raise fatal[0]
     return summarize(ds, [r for r in rows if r["qid"] in done], done)
 
 

@@ -35,6 +35,7 @@ class Episode:
     role: str
     text: str                      # with resolved dates: "dün (=2026-10-15 Thu)"
     dates: list[str] = field(default_factory=list)   # event days the text refers to
+    event_day: str = ""            # the one earlier day the turn tells about, if it does
 
 
 @dataclass
@@ -44,6 +45,10 @@ class MemoryStore:
     episodes: list[Episode] = field(default_factory=list)
     #: Every write-path decision, for debugging consolidation: session, raw SLM output, ops.
     log: list[dict] = field(default_factory=list)
+    #: Visits the user told about, written by rule (:mod:`.visits`): restaurant, day, turn.
+    visits: list[dict] = field(default_factory=list)
+    #: What code derived the episodes and visits (consolidate.STORE_REV); 0 = before visits.
+    rev: int = 0
 
     def open_facts(self) -> list[Fact]:
         return [f for f in self.facts if f.status == "open"]
@@ -60,4 +65,5 @@ class MemoryStore:
     def load(cls, path: Path) -> "MemoryStore":
         data = json.loads(path.read_text(encoding="utf-8"))
         return cls(persona=data["persona"], facts=[Fact(**f) for f in data["facts"]],
-                   episodes=[Episode(**e) for e in data["episodes"]], log=data.get("log", []))
+                   episodes=[Episode(**e) for e in data["episodes"]], log=data.get("log", []),
+                   visits=data.get("visits", []), rev=data.get("rev", 0))

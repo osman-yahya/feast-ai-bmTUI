@@ -28,6 +28,7 @@ PATTERN = re.compile(
     r"\b(?:"
     r"(?P<rel>dun|bugun|evvelsi gun|onceki gun)"
     r"|gecen " + _DAY.replace("(", "(?P<lastday>", 1) +
+    r"|bu " + _DAY.replace("(", "(?P<thisday>", 1) +
     r"|" + _DAY.replace("(", "(?P<dayof>", 1) + r" (?:gunu|aksami|ogle\w*|sabahi)"
     r"|(?P<ago>" + _N[1:-1] + r") (?P<agounit>gun|hafta|ay) (?:once|evvel)"
     r"|gecen (?P<lastunit>hafta|ay)\w*"
@@ -43,6 +44,8 @@ class Span:
     end: int
     first: date
     last: date
+    #: The words can only mean a day gone by ("dün", "geçen cuma"), unlike "cuma günü".
+    past: bool = False
 
     def label(self) -> str:
         if self.first == self.last:
@@ -88,6 +91,8 @@ def resolve(text: str, ref: datetime | date, names: tuple[str, ...] = ()) -> lis
             if g["lastday"] and not back:            # "geçen pazar" on a Sunday: a week ago
                 back = 7
             first = last = today - timedelta(days=back)
+        elif g["thisday"]:                           # "bu perşembe": this week's, past or coming
+            first = last = today - timedelta(days=today.weekday() - DAYS.index(g["thisday"]))
         elif g["ago"]:
             n, unit = _n(g["ago"]), g["agounit"]
             if unit == "gun":
@@ -115,7 +120,8 @@ def resolve(text: str, ref: datetime | date, names: tuple[str, ...] = ()) -> lis
         elif g["month"]:
             first, last = _month_window(MONTHS.index(g["month"]) + 1, today)
         if first:
-            out.append(Span(m.start(), m.end(), first, last))
+            told = bool(g["rel"] and g["rel"] != "bugun" or g["lastday"] or g["ago"] or g["thisday"])
+            out.append(Span(m.start(), m.end(), first, last, told and last < today))
     return out
 
 

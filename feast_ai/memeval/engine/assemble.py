@@ -19,12 +19,17 @@ ENGINE_RULES = (
     "What you remember about this user.\n"
     "f lines are facts: handle | key | value | valid dates (an end date means it no longer "
     "holds; allergen and diet are hard constraints).\n"
-    "t lines are past chats, oldest first: handle | date | who | text; a date in (=...) is "
-    "the day that phrase meant.\n"
+    "t lines are past chats, oldest first: handle | date | who | text. The date is the day "
+    "the line is about; (said ...) is when it was written, and a date in (=...) is the day "
+    "that phrase meant.\n"
     "Use them only for questions about the user's own past or to respect their constraints, "
     "and cite the handle you rely on, e.g. (f1) or (t3). If the answer is not in MEMORY, say "
     "the user never told you - never guess. Not finding an allergy here does not mean the "
     "user has none: say they have not mentioned one."
+)
+VISIT_RULE = (
+    "v lines are the user's restaurant visits, from the app's records and what they told you: "
+    "handle | day of the visit | restaurant. For where or when the user ate, trust v lines.\n"
 )
 #: Rough Turkish chars per Gemma token, for the greedy fill; the runner measures exactly.
 CHARS_PER_TOKEN = 3.0
@@ -38,9 +43,18 @@ def _value(f: Fact) -> str:
     return f.value
 
 
-def _stamp(ts: str) -> str:
-    d = date.fromisoformat(ts[:10])
+def _day(d: date) -> str:
     return f"{d:%Y-%m-%d} {DAY_EN[d.weekday()]}"
+
+
+def _stamp(e: Episode) -> str:
+    """The day a turn is about.  A 2B model copies the first date on a line, so
+    when the turn tells of one earlier day ("evvelsi gün ... yedim") that day
+    leads and the day it was written follows."""
+    told = date.fromisoformat(e.ts[:10])
+    if e.event_day:
+        return f"{_day(date.fromisoformat(e.event_day))} (said {told:%m-%d})"
+    return _day(told)
 
 
 def fact_line(h: str, f: Fact) -> str:
@@ -48,13 +62,20 @@ def fact_line(h: str, f: Fact) -> str:
     return f"{h} | {f.key} | {_value(f)} | {f.valid_from} -> {until}"
 
 
-def assemble(facts: list[Fact], ranked: list[Episode], budget_tokens: int) -> tuple[str, dict]:
+def assemble(facts: list[Fact], ranked: list[Episode], budget_tokens: int,
+             visits: list[dict] | None = None) -> tuple[str, dict]:
+    """``visits``: the visit-log lines for this question (:func:`.visits.select`);
+    None leaves the visit log, and its rule, out of the block."""
     budget = budget_tokens * CHARS_PER_TOKEN
     handles: dict[str, str] = {}
     lines = []
     for n, f in enumerate(facts, 1):
         lines.append(fact_line(f"f{n}", f))
         handles[f"f{n}"] = f.source_turn_id
+    for n, v in enumerate(visits or [], 1):
+        lines.append(f"v{n} | {_day(date.fromisoformat(v['date']))} | {v['restaurant']}")
+        if v["turn_id"]:
+            handles[f"v{n}"] = v["turn_id"]
     used = sum(len(x) + 1 for x in lines)
     chosen = []
     for e in ranked:
@@ -64,6 +85,7 @@ def assemble(facts: list[Fact], ranked: list[Episode], budget_tokens: int) -> tu
         chosen.append(e)
         used += cost
     for n, e in enumerate(sorted(chosen, key=lambda e: e.ts), 1):
-        lines.append(f"t{n} | {_stamp(e.ts)} | {e.role} | {e.text}")
+        lines.append(f"t{n} | {_stamp(e)} | {e.role} | {e.text}")
         handles[f"t{n}"] = e.turn_id
-    return ENGINE_RULES + "\n" + ("\n".join(lines) if lines else "(empty)"), handles
+    rules = ENGINE_RULES if visits is None else ENGINE_RULES.replace("Use them only", VISIT_RULE + "Use them only")
+    return rules + "\n" + ("\n".join(lines) if lines else "(empty)"), handles

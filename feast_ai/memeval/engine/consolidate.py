@@ -28,6 +28,7 @@ from ..gen.world import AREAS, CUISINES, cuisine_of
 from ..schema import Dataset
 from .store import HARD, SINGLE, Episode, Fact, MemoryStore
 from .timeparse import annotate, resolve
+from .visits import visits_in
 
 KEYS = ("allergen", "diet", "likes", "dislikes", "home_area")
 EXTRACT_PROMPT = (
@@ -189,7 +190,8 @@ async def build_store(client, ds: Dataset, persona: str, until: str, log=print,
     names = memory_names(ds)
     recorded = {e["session"]: e for e in (reuse.log if reuse else []) if "session" in e}
     cuisines = cuisine_index(ds)
-    store = MemoryStore(persona=persona)
+    store = MemoryStore(persona=persona, rev=STORE_REV)
+    restaurants = {fold(r.name): (r.id, r.name) for r in ds.world.restaurants}
     events = [(s.started_at, "session", s) for s in ds.sessions.get(persona, []) if s.started_at < until]
     events += [(d["at"], "erase", d) for d in ds.personas[persona].memory_deletions if d["at"] < until]
     for _, kind, item in sorted(events, key=lambda e: e[0]):
@@ -199,8 +201,12 @@ async def build_store(client, ds: Dataset, persona: str, until: str, log=print,
         for t in item.turns:
             ref = datetime.fromisoformat(t.ts)
             spans = resolve(t.text, ref, names)
+            told = {s.first for s in spans if s.past and s.first == s.last}
             store.episodes.append(Episode(t.turn_id, t.ts, t.role, annotate(link(t.text, cuisines), ref, names),
-                                          [f"{s.first}..{s.last}" for s in spans]))
+                                          [f"{s.first}..{s.last}" for s in spans],
+                                          told.pop().isoformat() if len(told) == 1 else ""))
+            if t.role == "user":
+                store.visits += visits_in(t.text, ref, spans, restaurants, t.turn_id)
         first_user = next((t for t in item.turns if t.role == "user"), item.turns[0])
         if item.session_id in recorded:
             rec = recorded[item.session_id]
@@ -228,6 +234,9 @@ async def build_store(client, ds: Dataset, persona: str, until: str, log=print,
 
 #: The dataset a later version extends; its stores are replayed, not rebuilt.
 BASE_VERSION = "v0.1"
+#: Bump when code changes what a store holds besides the SLM's ops (date
+#: resolution, the visit log): cached stores are then refreshed by replay.
+STORE_REV = 2
 
 
 def store_path(root: Path, model_id: str, persona: str, version: str = BASE_VERSION) -> Path:
@@ -251,11 +260,16 @@ async def build_stores(client, ds: Dataset, model_id: str, root: Path, log=print
         path = store_path(root, model_id, pid, version)
         if path.exists():
             stores[pid] = MemoryStore.load(path)
-            continue
-        base = store_path(root, model_id, pid)
-        reuse = MemoryStore.load(base) if derived == BASE_VERSION and base.exists() else None
+            if stores[pid].rev == STORE_REV:
+                continue
+            # Dates and visits are code's work: redo them, replaying the SLM's recorded ops.
+            reuse = stores[pid]
+            log(f"Refreshing {pid} ({version}): episodes and visits, consolidation replayed")
+        else:
+            base = store_path(root, model_id, pid)
+            reuse = MemoryStore.load(base) if derived == BASE_VERSION and base.exists() else None
+            log(f"Consolidating {pid} ({version}{', replaying ' + BASE_VERSION if reuse else ''})…")
         until = max((q.asked_at for q in ds.questions if q.persona == pid), default="9999")
-        log(f"Consolidating {pid} ({version}{', replaying ' + BASE_VERSION if reuse else ''})…")
         stores[pid] = await build_store(client, ds, pid, until, log, reuse)
         if save:
             stores[pid].save(path)

@@ -19,6 +19,18 @@ RECALL = ("hatirl", "soyle", "anlatm", "bahset", "onerdig", "gecen", "once", "en
 RECOMMEND = ("ne yesem", "ner", "oner", "tavsiye", "ne icsem", "acikt", "canim", "ac misin")
 
 
+#: A count is the app's to make (visits, saved places), not the model's: these
+#: questions get the app tools (:mod:`..tools`) when the run offers them.
+COUNT = ("kac ", "kac tane", "kac kere", "kac kez", "kac defa")
+#: ...but not opening hours or prices: "kaça kadar açık", "kaç lira".
+NOT_COUNT = ("kaca kadar", "kac lira", "kac tl", "kac para", "saat kac")
+
+
+def wants_count(question: str) -> bool:
+    f = fold(question) + " "
+    return any(c in f for c in COUNT) and not any(c in f for c in NOT_COUNT)
+
+
 def gate(question: str) -> str:
     f = fold(question)
     if any(c in f for c in RECALL):

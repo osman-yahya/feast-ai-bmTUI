@@ -47,6 +47,8 @@ from datetime import datetime
 from pathlib import Path
 
 from ..paths import HOME
+from .engine.gate import wants_count
+from .engine.timeparse import annotate
 from .schema import Dataset, Question, load
 
 EVALS_DIR = HOME / "evals"
@@ -82,6 +84,7 @@ class Row:
     call: str = ""
     call_status: str = ""
     call_args: dict = field(default_factory=dict)
+    tool_steps: int = 0                                   # tools run for this answer (tools=app)
     gate: str = ""
     memory_turns: int = 0
     memory_handles: dict = field(default_factory=dict)   # t1 -> turn_id
@@ -138,8 +141,16 @@ def agent_context(ds: Dataset, q: Question):
     )
 
 
+def visit_log(ds: Dataset, store, q: Question) -> list[dict]:
+    """What the app recorded and what the user told, up to the question."""
+    from .engine.visits import merged
+
+    return merged(store.visits, ds.personas[q.persona].visited_restaurants,
+                  {r.id: r.name for r in ds.world.restaurants}, q.asked_at)
+
+
 def engine_memory(store, q: Question, cfg: "RunConfig", names: tuple[str, ...],
-                  encoder=None) -> tuple[str, dict, str]:
+                  encoder=None, ds: Dataset | None = None) -> tuple[str, dict, str]:
     """MEMORY block, handles and gate decision from a consolidated store."""
     from .engine.assemble import assemble
     from .engine.embed import retrieve_dense
@@ -160,11 +171,18 @@ def engine_memory(store, q: Question, cfg: "RunConfig", names: tuple[str, ...],
                                     mode="rrf", encoder=encoder, lexical_query=query)
         else:
             ranked = retrieve(store.episodes, query, q.asked_at, cfg.k, names)
-    return (*assemble(facts, ranked, cfg.memory_budget), decision)
+    seen = None
+    if cfg.visits and ds is not None:
+        from .engine.timeparse import resolve
+        from .engine.visits import select
+
+        windows = [(s.first, s.last) for s in resolve(q.question, datetime.fromisoformat(q.asked_at), names)]
+        seen = select(visit_log(ds, store, q), q.question, windows) if decision == "recall" else []
+    return (*assemble(facts, ranked, cfg.memory_budget, seen), decision)
 
 
 def sections(ds: Dataset, q: Question, condition: str, tools: str,
-             memory: tuple[str, dict] | None = None) -> tuple[dict, dict]:
+             memory: tuple[str, dict] | None = None, offer: bool = False) -> tuple[dict, dict]:
     """The system prompt in order, static first: preamble + tools never change,
     MEMORY changes per persona (full) or per question (oracle), CONTEXT last."""
     from ..agent.prompts import CALL_FORMAT, NO_TOOLS, PREAMBLE
@@ -175,6 +193,11 @@ def sections(ds: Dataset, q: Question, condition: str, tools: str,
     out = {"preamble": PREAMBLE}
     if tools == "all":
         out["tools"] = "TOOLS  (* = required)\n\n" + render_tools(ALL_TOOL_NAMES, context.tags)
+        out["call_format"] = CALL_FORMAT
+    elif tools == "app" and offer:                  # a count question: the two app tools
+        from .tools import APP_TOOLS
+
+        out["tools"] = APP_TOOLS
         out["call_format"] = CALL_FORMAT
     else:
         out["rules"] = NO_TOOLS
@@ -203,6 +226,7 @@ class RunConfig:
     arm: str = "facts+raw"          # engine conditions only
     k: int = 8                      # retrieved turns
     retriever: str = "bm25"         # bm25 | rrf
+    visits: bool = False            # v lines from the visit log in MEMORY
     memory_budget: int = 900        # MEMORY tokens, approx
 
 
@@ -223,6 +247,38 @@ def select(ds: Dataset, cfg: RunConfig) -> list[Question]:
         qs = picked
     # Persona order keeps a persona's MEMORY block hot in the prompt cache.
     return sorted(qs, key=lambda q: (q.persona, q.qid))
+
+
+async def _tool_loop(client, messages: list[dict], reply: str, stats: dict, row: Row,
+                     visits: list[dict], ds: Dataset, q: Question, generate) -> tuple[str, dict]:
+    """Run the app tools the model calls and let it answer from the results,
+    under the phone agent's limits.  ``stats`` ends as the last call's, with
+    the earlier calls' time added: TTFT is when the answer starts."""
+    from ..agent.calls import extract
+    from .tools import MAX_INVALID_CALLS, MAX_TOOL_CALLS, RESULT_NOTE, run_app_tool
+
+    names = {r.id: r.name for r in ds.world.restaurants}
+    saved = ds.personas[q.persona].saved_restaurants
+    invalid = 0
+    while True:
+        check = extract(reply)
+        if not check.is_call:
+            return reply, stats
+        if not row.call:
+            row.call, row.call_args = check.name, dict(check.args)
+        ok, result = (run_app_tool(check.name, check.args, visits, saved, names)
+                      if check.status != "parse_error" else (False, "error: the call could not be read."))
+        row.tool_steps += ok
+        invalid += not ok
+        row.call_status = row.call_status or ("ok" if ok else "invalid")
+        if row.tool_steps > MAX_TOOL_CALLS or invalid > MAX_INVALID_CALLS:
+            return "", {**stats, "error": "tool limit: the message ended without an answer"}
+        messages += [{"role": "assistant", "content": reply},
+                     {"role": "user", "content": f"TOOL RESULT\n{result}\n\n{RESULT_NOTE}"}]
+        spent = stats["latency_s"]
+        reply, more = await generate(client, messages, time.perf_counter())
+        stats = {**more, "ttft_s": spent + more["ttft_s"], "latency_s": spent + more["latency_s"],
+                 "completion_tokens": stats["completion_tokens"] + more["completion_tokens"]}
 
 
 async def run(cfg: RunConfig, log=print) -> Path:
@@ -266,6 +322,8 @@ async def run(cfg: RunConfig, log=print) -> Path:
     cond = f"{cfg.condition}-{cfg.arm.replace('+', '')}" if engine else cfg.condition
     if engine and cfg.retriever != "bm25":
         cond += f"-{cfg.retriever}"
+    if engine and cfg.visits:
+        cond += "-visits"
     run_id = time.strftime("%Y%m%d-%H%M%S") + f"-{cfg.model_id}-{cond}-{cfg.tools}"
     out = EVALS_DIR / run_id
     out.mkdir(parents=True, exist_ok=True)
@@ -295,13 +353,15 @@ async def run(cfg: RunConfig, log=print) -> Path:
     def prompt(q: Question) -> tuple[dict, dict, str]:
         if not engine:
             return (*sections(ds, q, cfg.condition, cfg.tools), "")
-        block, handles, decision = engine_memory(stores[q.persona], q, cfg, names, encoder)
-        return (*sections(ds, q, cfg.condition, cfg.tools, (block, handles)), decision)
+        block, handles, decision = engine_memory(stores[q.persona], q, cfg, names, encoder, ds)
+        return (*sections(ds, q, cfg.condition, cfg.tools, (block, handles), wants_count(q.question)),
+                decision)
 
     try:
         if engine:
-            from .engine.consolidate import build_stores, facts_eval, memory_names
+            from .engine.consolidate import STORE_REV, build_stores, facts_eval, memory_names
 
+            meta["store_rev"] = STORE_REV
             names = memory_names(ds)
             t0 = time.perf_counter()
             stores = await build_stores(client, ds, cfg.model_id, HOME, log)
@@ -333,8 +393,15 @@ async def run(cfg: RunConfig, log=print) -> Path:
                 if sum(row.tokens.values()) > budget:
                     row.error = f"overflow: {sum(row.tokens.values())} tokens > {budget}"
                 else:
-                    messages = client.build_messages([], q.question, system_prompt=system)
+                    # The engine dates the question too: "4 hafta önce (=2026-09-27..2026-10-03)".
+                    asked_text = (annotate(q.question, datetime.fromisoformat(q.asked_at), names)
+                                  if engine else q.question)
+                    messages = client.build_messages([], asked_text, system_prompt=system)
                     reply, stats = await _generate(client, messages, time.perf_counter())
+                    if cfg.tools == "app" and "tools" in parts and not stats["error"]:
+                        reply, stats = await _tool_loop(client, messages, reply, stats, row,
+                                                        visit_log(ds, stores[q.persona], q) if engine else [],
+                                                        ds, q, _generate)
                     row.reply = reply
                     for key in ("prompt_tokens", "cached_tokens", "prefilled_tokens",
                                 "completion_tokens", "ttft_s", "latency_s", "prefill_tps",
