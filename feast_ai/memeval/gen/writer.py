@@ -25,7 +25,8 @@ Kurallar:
 - Her oturum icin verilen "beat"leri SIRAYLA isle. Her beat tam olarak bir turda gecer ve o turun
   "beats" listesine id'si yazilir. Beat'in rolu ile turun rolu ayni olmali.
 - Bir turda birden fazla beat olabilir; beat tasimayan kisa dolgu turlari ekleyebilirsin.
-- Oturum her zaman kullanici turuyla baslar. Oturum basina 2-8 tur.
+- Oturum her zaman kullanici turuyla baslar. Oturum basina 2-8 tur; oturumda "tur_hedefi" varsa
+  ona yakin yaz (beat tasimayan dolgu turlari da plan disi bilgi icermez).
 - Plan disinda kisisel bilgi EKLEME: alerji, diyet, evcil hayvan, adres, saglik, gidilen yer,
   restoran adi. Beat'te gecmeyen hicbir restoran adini yazma.
 - "DOLAYLI" denen beat'lerde bilgiyi acikca soyleme, gunluk dille ima et.
@@ -87,9 +88,11 @@ def _prompt(plan: Plan) -> str:
         sessions.append({
             "session_index": s.index,
             "tarih": f"{d.day} {MONTH_TR[d.month]} {d.year} {DAY_TR[d.weekday()]} {d:%H:%M}",
+            **({"tur_hedefi": s.target_turns} if s.target_turns else {}),
             "beats": [{"id": b.id, "role": b.role, "talimat": b.instruction} for b in s.beats],
         })
-    return (f"Kullanici: {plan.spec.name}. Asagidaki {len(sessions)} oturumu yaz.\n\n"
+    voice = f" Yazim tarzi: {plan.spec.voice}." if plan.spec.voice else ""
+    return (f"Kullanici: {plan.spec.name}.{voice} Asagidaki {len(sessions)} oturumu yaz.\n\n"
             + json.dumps(sessions, ensure_ascii=False, indent=1))
 
 

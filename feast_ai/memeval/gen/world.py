@@ -225,6 +225,44 @@ def _posts(restaurants: list[dict], items: list[dict], seed: int) -> list[dict]:
     return posts
 
 
+#: v0.3: (original, look-alike, area). Same cuisine, a name one word apart, so
+#: "where did I eat?" has a near miss in the history ("Sushi Nami" / "Sushi Nomi").
+LOOKALIKES = (
+    ("Urfa Ocakbaşı", "Urfa Sofrası", "Kadıköy Çarşı"),
+    ("Sushi Nami", "Sushi Nomi", "Moda"),
+    ("Bitki Kafe", "Bitki Bahçe", "Cihangir"),
+    ("Kasap Burger", "Kasap Köfte", "Fenerbahçe"),
+    ("Martı Balık", "Martı Meze", "Beşiktaş"),
+    ("Esnaf Sofrası", "Esnaf Lokantası", "Yeldeğirmeni"),
+)
+
+
+def with_lookalikes(world: dict, seed: int = 7) -> dict:
+    """``world`` plus the :data:`LOOKALIKES`, appended so every existing id,
+    price and post stays where it was. Ids keep the ``r_CCx`` cuisine code."""
+    rng = random.Random(f"{seed}:lookalikes")
+    restaurants, items = list(world["restaurants"]), list(world["menu_items"])
+    by_name = {r["name"]: r for r in restaurants}
+    for k, (original, name, area) in enumerate(LOOKALIKES):
+        base = by_name[original]
+        c_index = int(base["id"][2:4])
+        spec = list(CUISINES.values())[c_index]
+        rid = f"r_{c_index:02d}{4 + k}"
+        lat, lng = AREAS[area]
+        level = rng.choice((1, 2, 3))
+        restaurants.append({**base, "id": rid, "name": name, "address": f"{area}, İstanbul", "area": area,
+                            "lat": round(lat + rng.uniform(-0.004, 0.004), 5),
+                            "lng": round(lng + rng.uniform(-0.004, 0.004), 5), "price_level": level})
+        for d_index, (dish, category, price, badges, allergens) in enumerate(spec["dishes"]):
+            items.append({
+                "id": f"m_{c_index:02d}{4 + k}{d_index:02d}", "restaurant_id": rid,
+                "name": dish, "category_name": category,
+                "price": str(int(round(price * PRICE_FACTOR[level] / 5) * 5)),
+                "badges": list(badges), "allergens": list(allergens),
+            })
+    return {**world, "restaurants": restaurants, "menu_items": items}
+
+
 def cuisine_of(restaurant_id: str) -> str:
     """``r_CCx`` ids encode the cuisine index."""
     return list(CUISINES)[int(restaurant_id[2:4])]

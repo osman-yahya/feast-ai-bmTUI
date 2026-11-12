@@ -12,6 +12,7 @@ from pathlib import Path
 
 from .. import schema
 from . import plan as P
+from . import plan_long as PL
 from . import world as W
 from . import writer
 from .llm import DEFAULT_MODEL, GenError, Usage
@@ -27,16 +28,28 @@ def _dump_lines(path: Path, rows: list[dict]) -> None:
     path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
 
 
-def export_prompts(out: Path, *, seed: int = 7, personas: list[str] | None = None) -> list[Path]:
+#: ``short`` = v0.1 (plan.py), ``long`` = v0.3 (plan_long.py).
+PROFILES = ("short", "long")
+
+
+def _profile(profile: str, seed: int):
+    """(world, specs, build_plan) for a profile."""
+    if profile == "long":
+        return W.with_lookalikes(W.build(seed), seed), PL.SPECS, PL.build_plan
+    return W.build(seed), P.SPECS, P.build_plan
+
+
+def export_prompts(out: Path, *, seed: int = 7, personas: list[str] | None = None,
+                   profile: str = "short") -> list[Path]:
     """Write each persona's writer prompt to ``<out>/_prompts/``, for writing
     the histories by hand (or in a Claude Code session) instead of the API.
     The result goes to ``<out>/_raw/<id>.json`` and is checked by ``--offline``."""
-    world = W.build(seed)
+    world, specs, build_plan = _profile(profile, seed)
     paths = []
-    for spec in P.SPECS:
+    for spec in specs:
         if personas and spec.id not in personas:
             continue
-        plan = P.build_plan(spec, world, seed)
+        plan = build_plan(spec, world, seed)
         path = out / "_prompts" / f"{spec.id}.txt"
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(writer.SYSTEM + "\n\n" + writer._prompt(plan) + "\n", encoding="utf-8")
@@ -46,19 +59,21 @@ def export_prompts(out: Path, *, seed: int = 7, personas: list[str] | None = Non
 
 def build(out: Path, *, seed: int = 7, personas: list[str] | None = None, dry_run: bool = False,
           force: bool = False, offline: bool = False, model: str = DEFAULT_MODEL,
-          log=print) -> schema.Report:
-    world = W.build(seed)
+          profile: str = "short", log=print) -> schema.Report:
+    world, all_specs, build_plan = _profile(profile, seed)
     names = [r["name"] for r in world["restaurants"]]
     _dump(out / "world.json", world)
-    specs = [s for s in P.SPECS if not personas or s.id in personas]
+    specs = [s for s in all_specs if not personas or s.id in personas]
     questions: list[dict] = []
     usage = Usage()
 
     for spec in specs:
-        plan = P.build_plan(spec, world, seed)
+        plan = build_plan(spec, world, seed)
         raw_path = out / "_raw" / f"{spec.id}.json"
         cached = json.loads(raw_path.read_text(encoding="utf-8")) if raw_path.exists() else None
         problems = writer.check(plan, cached, names) if cached is not None else ["no _raw file"]
+        if cached is not None and profile == "long":
+            problems += PL.audit(plan, cached)
         if dry_run:
             data = writer.dry_run(plan)
         elif not problems and not force:
@@ -85,7 +100,7 @@ def build(out: Path, *, seed: int = 7, personas: list[str] | None = None, dry_ru
 
     _dump_lines(out / "questions.jsonl", questions)
     _dump(out / "MANIFEST.json", {
-        "seed": seed, "model": "dry-run" if dry_run else "offline (hand-written)" if offline else model, "asked_at": P.ASKED_AT.isoformat(),
+        "seed": seed, "profile": profile, "model": "dry-run" if dry_run else "offline (hand-written)" if offline else model, "asked_at": P.ASKED_AT.isoformat(),
         "personas": [s.id for s in specs], "questions": len(questions),
         "generation_tokens": {"input": usage.input_tokens, "output": usage.output_tokens},
     })

@@ -64,6 +64,10 @@ FAILURE_TAGS = (
     "indirect_evidence",      # stated indirectly, never saved (Coze)
     "consolidation_corrupt",  # compressed into something wrong (ChatGPT)
     "time_false_positive",    # "Cuma Pide" parsed as a date
+    # v0.3
+    "distractor",             # a friend's allergy, a plan that was called off
+    "lookalike",              # "Sushi Nami" visited, "Sushi Nomi" only asked about
+    "buried_evidence",        # the evidence sits mid-way through a long session
 )
 
 ANSWER_TYPES = ("exact", "rubric", "abstain", "count")

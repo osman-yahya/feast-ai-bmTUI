@@ -67,6 +67,8 @@ class PersonaSpec:
     #: The second liked cuisine *replaces* the first ("burgeri bırak, kebap").
     likes_replace: bool = False
     friends: tuple[str, ...] = ("Aslı", "Emre")
+    #: How the user writes, for the writer (v0.3; empty in v0.1).
+    voice: str = ""
 
 
 SPECS = (
@@ -104,6 +106,8 @@ class SessionPlan:
     started_at: datetime
     beats: list[Beat]
     recommended: list[dict] = field(default_factory=list)
+    #: Turns the writer should aim for (v0.3; 0 = the writer's 2-8 default).
+    target_turns: int = 0
 
 
 @dataclass
@@ -116,6 +120,9 @@ class Plan:
     #: (beat_id, date, restaurant_id) - the assistant's own recommendations.
     recs: list[tuple[str, datetime, str]]
     questions: list[dict] = field(default_factory=list)
+    #: v0.3: ids of everyday beats, and folded words their turns may not hold.
+    noise: set[str] = field(default_factory=set)
+    banned: set[str] = field(default_factory=set)
 
 
 # ----------------------------------------------------------------------

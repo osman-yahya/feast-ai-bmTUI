@@ -194,13 +194,14 @@ def _cmd_memeval(args) -> int:
 
         personas = [p for p in args.personas.split(",") if p] if args.personas else None
         if args.export_prompts:
-            for path in build.export_prompts(Path(args.out), seed=args.seed, personas=personas):
+            for path in build.export_prompts(Path(args.out), seed=args.seed, personas=personas,
+                                              profile=args.profile):
                 print(path)
             return 0
         try:
             report = build.build(Path(args.out), seed=args.seed, personas=personas,
                                  dry_run=args.dry_run, force=args.force, offline=args.offline,
-                                 model=args.model)
+                                 model=args.model, profile=args.profile)
         except GenError as exc:
             print(f"generation failed: {exc}", file=sys.stderr)
             return 2
@@ -248,7 +249,24 @@ def _cmd_memeval(args) -> int:
                            [Path(d) for d in args.retrieval])
         print(f"Report written to {out / 'report.md'}")
         return 0
-    print("usage: feast-ai memeval {validate,gen,render,run,report} ...", file=sys.stderr)
+    if args.memeval_command == "judge":
+        from pathlib import Path
+
+        from .memeval import judge as J
+
+        try:
+            gemini = J.Gemini(J.KeyPool.from_file(), model=args.model, min_interval=args.min_interval)
+            if args.list_models:
+                print("\n".join(gemini.models()))
+                return 0
+            for d in args.runs:
+                J.print_summary(Path(d).name, J.judge_run(Path(d), gemini, limit=args.limit))
+        except J.JudgeError as exc:
+            print(f"judge stopped: {exc}", file=sys.stderr)
+            return 2
+        print(f"\n{gemini.calls} call(s)")
+        return 0
+    print("usage: feast-ai memeval {validate,gen,render,run,report,judge} ...", file=sys.stderr)
     return 2
 
 
@@ -511,6 +529,8 @@ def main(argv: list[str] | None = None) -> int:
     gen = memeval_sub.add_parser("gen", help="generate a dataset (plan in code, prose by Claude)")
     gen.add_argument("--out", default="feast_ai/memeval/data/v0.1", help="dataset directory to write")
     gen.add_argument("--seed", type=int, default=7)
+    gen.add_argument("--profile", choices=("short", "long"), default="short",
+                     help="short = v0.1 (10 sessions, 8 personas), long = v0.3 (40 sessions, 16 personas)")
     gen.add_argument("--personas", default="", help="comma-separated persona ids (default: all)")
     gen.add_argument("--dry-run", action="store_true",
                      help="no model: beat instructions as text, to test the pipeline")
@@ -548,6 +568,12 @@ def main(argv: list[str] | None = None) -> int:
     report_cmd.add_argument("--out", default="", help="report directory (default evals/report-<time>)")
     report_cmd.add_argument("--retrieval", nargs="*", default=[],
                             help="retrieval_eval report directories to tabulate beside the runs")
+    judge_cmd = memeval_sub.add_parser("judge", help="grade runs with an LLM judge (Gemini free tier)")
+    judge_cmd.add_argument("runs", nargs="*", help="run directories under FEAST_AI_HOME/evals")
+    judge_cmd.add_argument("--model", default="gemini-3.5-flash")
+    judge_cmd.add_argument("--limit", type=int, default=0, help="N answers spread over categories")
+    judge_cmd.add_argument("--min-interval", type=float, default=4.0, help="seconds between calls")
+    judge_cmd.add_argument("--list-models", action="store_true", help="list models the key can call")
 
     args = parser.parse_args(argv)
 
