@@ -1,0 +1,328 @@
+# İpek
+
+## 0
+U [001] ayy sana bir şey anlatayım 😩 geçen hafta karidesli makarna yedim, yarım saat sonra her yerim kaşındı, nefesim daraldı, acile koştuk!!
+U [002] kalamar midye falan da aynı, onlarda da boğazım şişiyor 😵 o yüzden deniz ürünlerinden uzak duruyorum artık
+A [003] Çok geçmiş olsun! İkisini de not ettim; kabuklu deniz ürünleri ve kalamar, midye gibi yumuşakçalara dikkat edeceğim.
+U [] teşekkürleeer 💕
+
+## 1
+U [054] Bizim Mutfak'ta tereyağlı pilav kaç para? 🍚
+A [055] Bizim Mutfak'ta Tereyağlı Pilav 55 TL.
+U [056] Dün Gece Burger'de kampanya var mı!!
+A [057] Dün Gece Burger için uygulamada kampanya kaydı yok.
+U [058] Yeşil Tabak'ta içecek ne var? 🥤
+A [059] Yeşil Tabak'ta içecek olarak Zencefilli Limonata var, 115 TL.
+
+## 2
+U [060] Urfa Ocakbaşı'nda meze ne var?
+A [061] Urfa Ocakbaşı'nda meze olarak Közlenmiş Patlıcan Salatası var, 155 TL.
+U [062] Cuma Pide salı kaça kadar açık? 🍕
+A [063] Cuma Pide salı 11:00-23:30 arası açık.
+U [004] bu arada ben et yemiyorum 🌱 menüde etsiz ne varsa ona bakıyorum hep!
+A [005] Not ettim, bundan sonra et içermeyen seçeneklere göre bakarım.
+U [064] Serpme Bahçe'de kampanya var mı?
+A [065] Serpme Bahçe için uygulamada kampanya kaydı yok.
+U [] okeyyy 😊
+
+## 3
+U [006] haftada en az iki kere noodle ya da sushi yemezsem olmuyor bende 🍜🍣 ofiste herkes biliyor artık hahah
+A [] Haha anlaşıldı, aklımda 🙂
+U [066] Antep Sofrası nerede?
+A [067] Antep Sofrası Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [068] Rakı Sofrası'nda meze ne var?!
+A [069] Rakı Sofrası'nda meze olarak Haydari 145 TL ve Fava 130 TL var.
+U [070] Yeşil Tabak'ta kampanya var mı?
+A [071] Yeşil Tabak için uygulamada kampanya kaydı yok.
+U [] tamaam 👍
+
+## 4
+U [072] Ateş Kebap çarşamba kaça kadar açık?
+A [073] Ateş Kebap çarşamba 12:00-00:30 arası açık.
+U [074] Yeşil Tabak cuma açık mı? 🥗
+A [075] Yeşil Tabak cuma 09:00-22:00 arası açık.
+U [009] bu arada ben Yeldeğirmeni'nde oturuyorum!! 🏡 yakındaki yerler süper olur
+A [] Tamam, Yeldeğirmeni'ni not aldım 🙂
+U [076] Bizim Mutfak nerede?
+A [077] Bizim Mutfak Kadıköy Çarşı'da, fiyat seviyesi ₺.
+U [078] trafik rezalet ya 🚗🚗🚗 bir saattir yoldayım
+A [079] Geçmiş olsun, sabır dilerim!
+U [] 😤
+
+## 5
+U [080] Rakı Sofrası'nda haydari kaç para?
+A [081] Rakı Sofrası'nda Haydari 145 TL.
+U [082] Eski Dostlar çarşamba açık mı? 🍷
+A [083] Eski Dostlar çarşamba 17:00-02:00 arası açık.
+U [014] dün akşam Şekerci Cafer'de kazandibi yedim 😍😍 tam kıvamındaydı!!
+A [015] Afiyet olsun! Tatlı bir akşam olmuş 🙂
+U [084] Dün Gece Burger'de patates kızartması kaç?
+A [085] Dün Gece Burger'de Patates Kızartması 110 TL.
+
+## 6
+U [042] bugün nerede yiyebilirim? 🤔
+A [043] Eski Dostlar'a bakabilirsin: Fava 100 TL, vegan etiketli. Yeldeğirmeni'nde, fiyat seviyesi ₺₺. @acikmis_ogrenci da "Efsane Muhammara, kesin tekrar geleceğim" yazmış.
+
+## 7
+U [086] Bizim Mutfak neredeydi? 🙈
+A [087] Bizim Mutfak Kadıköy Çarşı'da, fiyat seviyesi ₺.
+U [] teşekkürler!
+
+## 8
+U [016] evvelsi gün öğlen Bambu'da edamame yedim 🫛 hafif ve güzeldi!
+A [017] Afiyet olsun!
+U [] 💚
+
+## 9
+U [088] Serpme Bahçe'de kampanya var mı?
+A [089] Serpme Bahçe için uygulamada kampanya kaydı yok.
+U [090] Serpme Bahçe'de kahvaltı ne var? ☕
+A [091] Serpme Bahçe'de kahvaltı olarak Serpme Kahvaltı 520 TL, Menemen 145 TL ve Avokadolu Kase 170 TL var.
+U [092] Cuma Pide nerede?
+A [093] Cuma Pide Moda'da, fiyat seviyesi ₺₺.
+
+## 10
+U [094] Yeşil Tabak nerede?
+A [095] Yeşil Tabak Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺.
+U [044] bugün nerede yiyebilirim!!
+A [045] Karadeniz Pide Salonu'na bakabilirsin: Kaşarlı Pide 175 TL, vejetaryen etiketli. Yeldeğirmeni'nde, fiyat seviyesi ₺.
+U [096] Eski Dostlar pazartesi açık mı?
+A [097] Eski Dostlar pazartesi 17:00-02:00 arası açık.
+U [] süperrr 🎉
+
+## 11
+U [018] geçen cuma öğlen Martı Balık'ta roka salatası yedim 🥗 deniz ürünü yemedim tabii ki 😅
+A [019] Afiyet olsun, iyi seçim!
+U [098] Dün Gece Burger çarşamba açık mı?
+A [099] Dün Gece Burger çarşamba kapalı.
+U [] tamam 🙃
+
+## 12
+U [100] Fırın Pide çarşamba kaça kadar açık?
+A [101] Fırın Pide çarşamba 11:00-23:30 arası açık.
+U [102] Rakı Sofrası nerede?
+A [103] Rakı Sofrası Moda'da, fiyat seviyesi ₺₺₺.
+U [104] Eski Dostlar'da kampanya var mı?
+A [105] Eski Dostlar için uygulamada kampanya kaydı yok.
+U [008] ayrıca acılı yemekleri hiç sevmiyorum 🌶️❌ midemi yakıyor
+A [] Anladım, acısız seçeneklere bakarım.
+U [106] Serpme Bahçe nerede?
+A [107] Serpme Bahçe Kadıköy Çarşı'da, fiyat seviyesi ₺.
+U [] teşekkürler 🙏
+
+## 13
+U [108] Martı Meze'de roka salatası kaç para?
+A [109] Martı Meze'de Roka Salatası 140 TL.
+
+## 14
+U [110] Smash Bros'ta yan ürün ne var? 🍟
+A [111] Smash Bros'ta yan ürün olarak Patates Kızartması var, 110 TL.
+U [112] Yeşil Tabak nerede?
+A [113] Yeşil Tabak Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺.
+U [114] Burger Atölyesi nerede?
+A [115] Burger Atölyesi Fenerbahçe'de, fiyat seviyesi ₺₺₺.
+U [012] cumartesi Kerem'le yemeğe çıkıyoruz!! 🥳 Kerem'in yer fıstığı alerjisi var, benim değil onun, ona göre bir yer bakmamız lazım
+A [013] Kerem için menülerde yer fıstığı içeren yemeklere dikkat etmek gerek.
+U [116] Bizim Mutfak nerede?
+A [117] Bizim Mutfak Kadıköy Çarşı'da, fiyat seviyesi ₺.
+U [118] Fırın Pide'de ayran kaç para?
+A [119] Fırın Pide'de Ayran 70 TL.
+U [] tamamdır 👌
+
+## 15
+U [120] Moda Yeşil Mutfak'ta kampanya var mı? 🌿
+A [121] Moda Yeşil Mutfak'ta şu an aktif kampanya yok; 1 ekim'de başlayacak Öğrenciye %15 (Salı-Perşembe 12:00-16:00) görünüyor.
+U [122] Eski Dostlar nerede?
+A [123] Eski Dostlar Yeldeğirmeni'nde, fiyat seviyesi ₺₺.
+U [020] evvelsi gün öğlen Tatlı Dünyası'nda kazandibi yedim 🍮 yine!!
+A [021] Afiyet olsun!
+U [124] Eski Dostlar'da meze ne var?
+A [125] Eski Dostlar'da meze olarak Haydari 110 TL ve Fava 100 TL var.
+U [] 😋
+
+## 16
+U [126] Moda Yeşil Mutfak'ta içecek ne var?
+A [127] Moda Yeşil Mutfak'ta içecek olarak Zencefilli Limonata var, 115 TL.
+U [128] Fırın Pide cuma açık mı?
+A [129] Fırın Pide cuma 11:00-23:30 arası açık.
+U [046] bugün nerede yiyebilirim? 😋
+A [047] Moda Yeşil Mutfak'a bakabilirsin: Nohutlu Buddha Kase 310 TL, vegan ve glutensiz etiketli. Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺. @acikmis_ogrenci da "Efsane Nohutlu Buddha Kase, kesin tekrar geleceğim" yazmış.
+U [130] Yeşil Tabak'ta nohutlu buddha kase kaç?
+A [131] Yeşil Tabak'ta Nohutlu Buddha Kase 310 TL.
+U [132] Moda Yeşil Mutfak'ta da aynı mı?
+A [133] Moda Yeşil Mutfak'ta Nohutlu Buddha Kase 310 TL.
+U [] aynıymış 😄
+
+## 17
+U [134] Ateş Kebap nerede?
+A [135] Ateş Kebap Kadıköy Çarşı'da, fiyat seviyesi ₺₺₺.
+U [136] hava bugün çok güzel ☀️☀️ sahile inmek istiyorum
+A [137] Gerçekten güzel bir gün, keyfini çıkar!
+U [138] Dün Gece Burger'de sebze burger kaç para? 🍔
+A [139] Dün Gece Burger'de Sebze Burger 300 TL.
+U [140] Burger Atölyesi cuma kaça kadar açık?
+A [141] Burger Atölyesi cuma 12:00-02:00 arası açık.
+U [142] Bizim Mutfak perşembe açık mı?
+A [143] Bizim Mutfak perşembe 11:00-21:00 arası açık.
+
+## 18
+U [144] Moda Yeşil Mutfak pazar kaça kadar açık?
+A [145] Moda Yeşil Mutfak pazar 09:00-22:00 arası açık.
+U [146] Serpme Bahçe neredeydi? 🙈
+A [147] Serpme Bahçe Kadıköy Çarşı'da, fiyat seviyesi ₺.
+U [148] Antep Sofrası'nda kampanya var mı?
+A [149] Antep Sofrası için uygulamada kampanya kaydı yok.
+U [] okeyy
+
+## 19
+U [150] Eski Dostlar cuma kaça kadar açık?
+A [151] Eski Dostlar cuma 17:00-02:00 arası açık.
+U [022] bu pazartesi öğlen Baklavacı Güllüoğlu Usta'da meyve salatası yedim 🍓
+A [023] Afiyet olsun!
+
+## 20
+U [152] Eski Dostlar neredeydi?
+A [153] Eski Dostlar Yeldeğirmeni'nde, fiyat seviyesi ₺₺.
+U [154] Antep Sofrası nerede?
+A [155] Antep Sofrası Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [] teşekkürler 💕
+
+## 21
+U [156] Rakı Sofrası'nda haydari kaç paraydı?
+A [157] Rakı Sofrası'nda Haydari 145 TL.
+U [048] bugün nerede yiyebilirim!!
+A [049] Yeşil Tabak'a bakabilirsin: Nohutlu Buddha Kase 310 TL, vegan ve glutensiz etiketli. Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺.
+U [] süper 🥗
+
+## 22
+U [158] Eski Dostlar pazartesi açık mı?
+A [159] Eski Dostlar pazartesi 17:00-02:00 arası açık.
+U [160] Smash Bros'ta burger olarak ne var? 🍔
+A [161] Smash Bros'ta burger olarak Sebze Burger var, 300 TL.
+U [010] haberim var!! 🎉 Yeldeğirmeni'nden Cihangir'e taşındım, yeni ev çok tatlı 🏡
+A [011] Yeni evin hayırlı olsun! Bundan sonra Cihangir'e göre bakarım.
+U [162] Bitki Kafe salı kaça kadar açık?
+A [163] Bitki Kafe salı 09:00-22:00 arası açık.
+U [] 💃
+
+## 23
+U [164] Tencere Kapak'ta sütlaç kaç para?
+A [165] Tencere Kapak'ta Sütlaç 95 TL.
+U [024] evvelsi gün öğlen Muhallebici Moda'da kazandibi yedim 😍
+A [025] Afiyet olsun!
+U [] 🍮
+
+## 24
+U [166] Pazar Kahvaltı Evi cuma açık mı? ☕
+A [167] Pazar Kahvaltı Evi cuma 08:00-16:00 arası açık.
+U [] tamam!
+
+## 25
+U [168] hafta sonu kızlarla piknik yapacağız!! 🧺☀️
+A [169] Harika plan, keyifli bir piknik dilerim!
+U [] 🥰
+
+## 26
+U [170] Cihangir Meze Evi'nde fava kaç para?
+A [171] Cihangir Meze Evi'nde Fava 100 TL.
+U [172] Burger Atölyesi nerede?
+A [173] Burger Atölyesi Fenerbahçe'de, fiyat seviyesi ₺₺₺.
+U [007] bu arada tatlıyı da çok seviyorum 🍰 hele kazandibi falan ayy
+A [] Haha anlaşıldı, aklımda 🙂
+U [174] Ateş Kebap'ta közlenmiş patlıcan salatası kaç?
+A [175] Ateş Kebap'ta Közlenmiş Patlıcan Salatası 155 TL.
+U [176] bu hafta kampanya çekimlerimiz var, çok yoğunum 📸
+A [177] Kolay gelsin, umarım güzel geçer!
+U [] umarım 🤞
+
+## 27
+U [178] Eski Dostlar çarşamba açık mı?
+A [179] Eski Dostlar çarşamba 17:00-02:00 arası açık.
+U [180] bugün çekim 10 saat sürdü 😵‍💫
+A [181] Emeğine sağlık, iyi dinlenmeler!
+U [026] dün akşam Sushi Nami'de sebzeli noodle yedim 🍜
+A [027] Afiyet olsun!
+U [182] Pideci Hasan'da ayran kaç para?
+A [183] Pideci Hasan'da Ayran 30 TL.
+U [] uygunmuş 😄
+
+## 28
+U [050] bugün nerede yiyebilirim? 🤗
+A [051] Pazar Kahvaltı Evi'ne bakabilirsin: Menemen 180 TL, vejetaryen etiketli. Cihangir'de, fiyat seviyesi ₺₺. @gurme_kadikoy da "Fiyatına göre gayet iyi bir Serpme Kahvaltı" yazmış.
+U [] olur!!
+
+## 29
+U [184] Sushi Nomi'de sebzeli noodle kaç para?
+A [185] Sushi Nomi'de Sebzeli Noodle 375 TL.
+U [028] bu pazartesi öğlen Wok & Roll'da edamame yedim 🫛
+A [029] Afiyet olsun!
+U [] 💚
+
+## 30
+U [038] cumartesi akşamı İskele Lokantası'na gitmeyi planlıyoruz!! daha önce hiç gitmedim 🤩
+A [039] İskele Lokantası cumartesi 12:00-23:59 arası açık.
+U [] süper 🎉
+
+## 31
+U [186] Tencere Kapak cuma açık mı?
+A [187] Tencere Kapak cuma kapalı.
+U [040] İskele Lokantası planı iptal oldu 😭 gidemedik
+A [041] Üzüldüm, başka zaman olur!
+U [188] hafta sonu evde dinleneceğim galiba 🛋️
+A [189] Bazen en güzeli bu, keyifli dinlenmeler!
+
+## 32
+U [190] Ateş Kebap neredeydi?
+A [191] Ateş Kebap Kadıköy Çarşı'da, fiyat seviyesi ₺₺₺.
+U [192] Cihangir Meze Evi cuma kaça kadar açık?
+A [193] Cihangir Meze Evi cuma 17:00-02:00 arası açık.
+U [194] Tencere Kapak'ta kampanya var mı?
+A [195] Tencere Kapak için uygulamada kampanya kaydı yok.
+
+## 33
+U [030] evvelsi gün öğlen Tokyo Sokağı'nda edamame yedim 🫛 yine hahah
+A [031] Afiyet olsun!
+U [] 😂
+
+## 34
+U [196] Tencere Kapak çarşamba açık mı?
+A [197] Tencere Kapak çarşamba 11:00-21:00 arası açık.
+U [052] bugün nerede yiyebilirim? 😊
+A [053] Kasap Burger'e bakabilirsin: Sebze Burger 240 TL, vejetaryen etiketli. Cihangir'de, fiyat seviyesi ₺.
+U [198] hava birden soğudu 🥶
+A [199] Gerçekten, ceketini almayı unutma!
+U [] unutmam 🧥
+
+## 35
+U [200] Smash Bros'ta kampanya var mı?
+A [201] Smash Bros için uygulamada kampanya kaydı yok.
+U [032] dün akşam Akşam Meyhanesi'nde haydari yedim 🍷 çok keyifli bir akşamdı!
+A [033] Afiyet olsun, keyifli bir akşam olmuş!
+U [] 🥂
+
+## 36
+U [202] Serpme Bahçe'de fırın olarak ne var?
+A [203] Serpme Bahçe'de fırın olarak Simit var, 25 TL.
+U [204] Kasap Burger nerede?
+A [205] Kasap Burger Cihangir'de, fiyat seviyesi ₺.
+U [] yakınmış 😍
+
+## 37
+U [034] dün öğlen Esnaf Sofrası'nda kuru fasulye yedim 🍲
+A [035] Afiyet olsun!
+
+## 38
+U [206] Serpme Bahçe pazartesi açık mı?
+A [207] Serpme Bahçe pazartesi 08:00-16:00 arası açık.
+U [] tamam!
+
+## 39
+U [208] Esnaf Lokantası'nda kuru fasulye kaç para?
+A [209] Esnaf Lokantası'nda Kuru Fasulye 160 TL.
+U [036] evvelsi gün öğlen Fenerbahçe Balıkçısı'nda roka salatası yedim 🥗 arkadaşlar balık yedi ben salata hahah
+A [037] Afiyet olsun, iyi idare etmişsin!
+U [210] Dün Gece Burger'de kampanya var mı?
+A [211] Dün Gece Burger için uygulamada kampanya kaydı yok.
+U [212] Lagos Balık pazar açık mı?
+A [213] Lagos Balık pazar 12:00-23:59 arası açık.
+U [] teşekkürleer 💕

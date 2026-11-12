@@ -1,0 +1,1865 @@
+{
+ "sessions": [
+  {
+   "session_index": 0,
+   "turns": [
+    {
+     "role": "user",
+     "text": "ayy sana bir şey anlatayım 😩 geçen hafta karidesli makarna yedim, yarım saat sonra her yerim kaşındı, nefesim daraldı, acile koştuk!!",
+     "beats": [
+      "b_p_ipek_001"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "kalamar midye falan da aynı, onlarda da boğazım şişiyor 😵 o yüzden deniz ürünlerinden uzak duruyorum artık",
+     "beats": [
+      "b_p_ipek_002"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Çok geçmiş olsun! İkisini de not ettim; kabuklu deniz ürünleri ve kalamar, midye gibi yumuşakçalara dikkat edeceğim.",
+     "beats": [
+      "b_p_ipek_003"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürleeer 💕",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 1,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Bizim Mutfak'ta tereyağlı pilav kaç para? 🍚",
+     "beats": [
+      "b_p_ipek_054"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Bizim Mutfak'ta Tereyağlı Pilav 55 TL.",
+     "beats": [
+      "b_p_ipek_055"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Dün Gece Burger'de kampanya var mı!!",
+     "beats": [
+      "b_p_ipek_056"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Dün Gece Burger için uygulamada kampanya kaydı yok.",
+     "beats": [
+      "b_p_ipek_057"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Yeşil Tabak'ta içecek ne var? 🥤",
+     "beats": [
+      "b_p_ipek_058"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Yeşil Tabak'ta içecek olarak Zencefilli Limonata var, 115 TL.",
+     "beats": [
+      "b_p_ipek_059"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 2,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Urfa Ocakbaşı'nda meze ne var?",
+     "beats": [
+      "b_p_ipek_060"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Urfa Ocakbaşı'nda meze olarak Közlenmiş Patlıcan Salatası var, 155 TL.",
+     "beats": [
+      "b_p_ipek_061"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Cuma Pide salı kaça kadar açık? 🍕",
+     "beats": [
+      "b_p_ipek_062"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Cuma Pide salı 11:00-23:30 arası açık.",
+     "beats": [
+      "b_p_ipek_063"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bu arada ben et yemiyorum 🌱 menüde etsiz ne varsa ona bakıyorum hep!",
+     "beats": [
+      "b_p_ipek_004"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Not ettim, bundan sonra et içermeyen seçeneklere göre bakarım.",
+     "beats": [
+      "b_p_ipek_005"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Serpme Bahçe'de kampanya var mı?",
+     "beats": [
+      "b_p_ipek_064"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Serpme Bahçe için uygulamada kampanya kaydı yok.",
+     "beats": [
+      "b_p_ipek_065"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "okeyyy 😊",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 3,
+   "turns": [
+    {
+     "role": "user",
+     "text": "haftada en az iki kere noodle ya da sushi yemezsem olmuyor bende 🍜🍣 ofiste herkes biliyor artık hahah",
+     "beats": [
+      "b_p_ipek_006"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Haha anlaşıldı, aklımda 🙂",
+     "beats": []
+    },
+    {
+     "role": "user",
+     "text": "Antep Sofrası nerede?",
+     "beats": [
+      "b_p_ipek_066"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Antep Sofrası Kadıköy Çarşı'da, fiyat seviyesi ₺₺.",
+     "beats": [
+      "b_p_ipek_067"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Rakı Sofrası'nda meze ne var?!",
+     "beats": [
+      "b_p_ipek_068"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Rakı Sofrası'nda meze olarak Haydari 145 TL ve Fava 130 TL var.",
+     "beats": [
+      "b_p_ipek_069"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Yeşil Tabak'ta kampanya var mı?",
+     "beats": [
+      "b_p_ipek_070"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Yeşil Tabak için uygulamada kampanya kaydı yok.",
+     "beats": [
+      "b_p_ipek_071"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "tamaam 👍",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 4,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Ateş Kebap çarşamba kaça kadar açık?",
+     "beats": [
+      "b_p_ipek_072"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Ateş Kebap çarşamba 12:00-00:30 arası açık.",
+     "beats": [
+      "b_p_ipek_073"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Yeşil Tabak cuma açık mı? 🥗",
+     "beats": [
+      "b_p_ipek_074"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Yeşil Tabak cuma 09:00-22:00 arası açık.",
+     "beats": [
+      "b_p_ipek_075"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bu arada ben Yeldeğirmeni'nde oturuyorum!! 🏡 yakındaki yerler süper olur",
+     "beats": [
+      "b_p_ipek_009"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Tamam, Yeldeğirmeni'ni not aldım 🙂",
+     "beats": []
+    },
+    {
+     "role": "user",
+     "text": "Bizim Mutfak nerede?",
+     "beats": [
+      "b_p_ipek_076"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Bizim Mutfak Kadıköy Çarşı'da, fiyat seviyesi ₺.",
+     "beats": [
+      "b_p_ipek_077"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "trafik rezalet ya 🚗🚗🚗 bir saattir yoldayım",
+     "beats": [
+      "b_p_ipek_078"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Geçmiş olsun, sabır dilerim!",
+     "beats": [
+      "b_p_ipek_079"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "😤",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 5,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Rakı Sofrası'nda haydari kaç para?",
+     "beats": [
+      "b_p_ipek_080"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Rakı Sofrası'nda Haydari 145 TL.",
+     "beats": [
+      "b_p_ipek_081"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Eski Dostlar çarşamba açık mı? 🍷",
+     "beats": [
+      "b_p_ipek_082"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Eski Dostlar çarşamba 17:00-02:00 arası açık.",
+     "beats": [
+      "b_p_ipek_083"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "dün akşam Şekerci Cafer'de kazandibi yedim 😍😍 tam kıvamındaydı!!",
+     "beats": [
+      "b_p_ipek_014"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun! Tatlı bir akşam olmuş 🙂",
+     "beats": [
+      "b_p_ipek_015"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Dün Gece Burger'de patates kızartması kaç?",
+     "beats": [
+      "b_p_ipek_084"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Dün Gece Burger'de Patates Kızartması 110 TL.",
+     "beats": [
+      "b_p_ipek_085"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 6,
+   "turns": [
+    {
+     "role": "user",
+     "text": "bugün nerede yiyebilirim? 🤔",
+     "beats": [
+      "b_p_ipek_042"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Eski Dostlar'a bakabilirsin: Fava 100 TL, vegan etiketli. Yeldeğirmeni'nde, fiyat seviyesi ₺₺. @acikmis_ogrenci da \"Efsane Muhammara, kesin tekrar geleceğim\" yazmış.",
+     "beats": [
+      "b_p_ipek_043"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 7,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Bizim Mutfak neredeydi? 🙈",
+     "beats": [
+      "b_p_ipek_086"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Bizim Mutfak Kadıköy Çarşı'da, fiyat seviyesi ₺.",
+     "beats": [
+      "b_p_ipek_087"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürler!",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 8,
+   "turns": [
+    {
+     "role": "user",
+     "text": "evvelsi gün öğlen Bambu'da edamame yedim 🫛 hafif ve güzeldi!",
+     "beats": [
+      "b_p_ipek_016"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun!",
+     "beats": [
+      "b_p_ipek_017"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "💚",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 9,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Serpme Bahçe'de kampanya var mı?",
+     "beats": [
+      "b_p_ipek_088"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Serpme Bahçe için uygulamada kampanya kaydı yok.",
+     "beats": [
+      "b_p_ipek_089"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Serpme Bahçe'de kahvaltı ne var? ☕",
+     "beats": [
+      "b_p_ipek_090"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Serpme Bahçe'de kahvaltı olarak Serpme Kahvaltı 520 TL, Menemen 145 TL ve Avokadolu Kase 170 TL var.",
+     "beats": [
+      "b_p_ipek_091"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Cuma Pide nerede?",
+     "beats": [
+      "b_p_ipek_092"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Cuma Pide Moda'da, fiyat seviyesi ₺₺.",
+     "beats": [
+      "b_p_ipek_093"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 10,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Yeşil Tabak nerede?",
+     "beats": [
+      "b_p_ipek_094"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Yeşil Tabak Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺.",
+     "beats": [
+      "b_p_ipek_095"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bugün nerede yiyebilirim!!",
+     "beats": [
+      "b_p_ipek_044"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Karadeniz Pide Salonu'na bakabilirsin: Kaşarlı Pide 175 TL, vejetaryen etiketli. Yeldeğirmeni'nde, fiyat seviyesi ₺.",
+     "beats": [
+      "b_p_ipek_045"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Eski Dostlar pazartesi açık mı?",
+     "beats": [
+      "b_p_ipek_096"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Eski Dostlar pazartesi 17:00-02:00 arası açık.",
+     "beats": [
+      "b_p_ipek_097"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "süperrr 🎉",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 11,
+   "turns": [
+    {
+     "role": "user",
+     "text": "geçen cuma öğlen Martı Balık'ta roka salatası yedim 🥗 deniz ürünü yemedim tabii ki 😅",
+     "beats": [
+      "b_p_ipek_018"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun, iyi seçim!",
+     "beats": [
+      "b_p_ipek_019"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Dün Gece Burger çarşamba açık mı?",
+     "beats": [
+      "b_p_ipek_098"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Dün Gece Burger çarşamba kapalı.",
+     "beats": [
+      "b_p_ipek_099"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "tamam 🙃",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 12,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Fırın Pide çarşamba kaça kadar açık?",
+     "beats": [
+      "b_p_ipek_100"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Fırın Pide çarşamba 11:00-23:30 arası açık.",
+     "beats": [
+      "b_p_ipek_101"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Rakı Sofrası nerede?",
+     "beats": [
+      "b_p_ipek_102"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Rakı Sofrası Moda'da, fiyat seviyesi ₺₺₺.",
+     "beats": [
+      "b_p_ipek_103"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Eski Dostlar'da kampanya var mı?",
+     "beats": [
+      "b_p_ipek_104"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Eski Dostlar için uygulamada kampanya kaydı yok.",
+     "beats": [
+      "b_p_ipek_105"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "ayrıca acılı yemekleri hiç sevmiyorum 🌶️❌ midemi yakıyor",
+     "beats": [
+      "b_p_ipek_008"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Anladım, acısız seçeneklere bakarım.",
+     "beats": []
+    },
+    {
+     "role": "user",
+     "text": "Serpme Bahçe nerede?",
+     "beats": [
+      "b_p_ipek_106"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Serpme Bahçe Kadıköy Çarşı'da, fiyat seviyesi ₺.",
+     "beats": [
+      "b_p_ipek_107"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürler 🙏",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 13,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Martı Meze'de roka salatası kaç para?",
+     "beats": [
+      "b_p_ipek_108"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Martı Meze'de Roka Salatası 140 TL.",
+     "beats": [
+      "b_p_ipek_109"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 14,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Smash Bros'ta yan ürün ne var? 🍟",
+     "beats": [
+      "b_p_ipek_110"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Smash Bros'ta yan ürün olarak Patates Kızartması var, 110 TL.",
+     "beats": [
+      "b_p_ipek_111"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Yeşil Tabak nerede?",
+     "beats": [
+      "b_p_ipek_112"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Yeşil Tabak Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺.",
+     "beats": [
+      "b_p_ipek_113"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Burger Atölyesi nerede?",
+     "beats": [
+      "b_p_ipek_114"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Burger Atölyesi Fenerbahçe'de, fiyat seviyesi ₺₺₺.",
+     "beats": [
+      "b_p_ipek_115"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "cumartesi Kerem'le yemeğe çıkıyoruz!! 🥳 Kerem'in yer fıstığı alerjisi var, benim değil onun, ona göre bir yer bakmamız lazım",
+     "beats": [
+      "b_p_ipek_012"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Kerem için menülerde yer fıstığı içeren yemeklere dikkat etmek gerek.",
+     "beats": [
+      "b_p_ipek_013"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Bizim Mutfak nerede?",
+     "beats": [
+      "b_p_ipek_116"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Bizim Mutfak Kadıköy Çarşı'da, fiyat seviyesi ₺.",
+     "beats": [
+      "b_p_ipek_117"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Fırın Pide'de ayran kaç para?",
+     "beats": [
+      "b_p_ipek_118"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Fırın Pide'de Ayran 70 TL.",
+     "beats": [
+      "b_p_ipek_119"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "tamamdır 👌",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 15,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Moda Yeşil Mutfak'ta kampanya var mı? 🌿",
+     "beats": [
+      "b_p_ipek_120"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Moda Yeşil Mutfak'ta şu an aktif kampanya yok; 1 ekim'de başlayacak Öğrenciye %15 (Salı-Perşembe 12:00-16:00) görünüyor.",
+     "beats": [
+      "b_p_ipek_121"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Eski Dostlar nerede?",
+     "beats": [
+      "b_p_ipek_122"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Eski Dostlar Yeldeğirmeni'nde, fiyat seviyesi ₺₺.",
+     "beats": [
+      "b_p_ipek_123"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "evvelsi gün öğlen Tatlı Dünyası'nda kazandibi yedim 🍮 yine!!",
+     "beats": [
+      "b_p_ipek_020"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun!",
+     "beats": [
+      "b_p_ipek_021"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Eski Dostlar'da meze ne var?",
+     "beats": [
+      "b_p_ipek_124"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Eski Dostlar'da meze olarak Haydari 110 TL ve Fava 100 TL var.",
+     "beats": [
+      "b_p_ipek_125"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "😋",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 16,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Moda Yeşil Mutfak'ta içecek ne var?",
+     "beats": [
+      "b_p_ipek_126"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Moda Yeşil Mutfak'ta içecek olarak Zencefilli Limonata var, 115 TL.",
+     "beats": [
+      "b_p_ipek_127"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Fırın Pide cuma açık mı?",
+     "beats": [
+      "b_p_ipek_128"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Fırın Pide cuma 11:00-23:30 arası açık.",
+     "beats": [
+      "b_p_ipek_129"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bugün nerede yiyebilirim? 😋",
+     "beats": [
+      "b_p_ipek_046"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Moda Yeşil Mutfak'a bakabilirsin: Nohutlu Buddha Kase 310 TL, vegan ve glutensiz etiketli. Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺. @acikmis_ogrenci da \"Efsane Nohutlu Buddha Kase, kesin tekrar geleceğim\" yazmış.",
+     "beats": [
+      "b_p_ipek_047"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Yeşil Tabak'ta nohutlu buddha kase kaç?",
+     "beats": [
+      "b_p_ipek_130"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Yeşil Tabak'ta Nohutlu Buddha Kase 310 TL.",
+     "beats": [
+      "b_p_ipek_131"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Moda Yeşil Mutfak'ta da aynı mı?",
+     "beats": [
+      "b_p_ipek_132"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Moda Yeşil Mutfak'ta Nohutlu Buddha Kase 310 TL.",
+     "beats": [
+      "b_p_ipek_133"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "aynıymış 😄",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 17,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Ateş Kebap nerede?",
+     "beats": [
+      "b_p_ipek_134"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Ateş Kebap Kadıköy Çarşı'da, fiyat seviyesi ₺₺₺.",
+     "beats": [
+      "b_p_ipek_135"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "hava bugün çok güzel ☀️☀️ sahile inmek istiyorum",
+     "beats": [
+      "b_p_ipek_136"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Gerçekten güzel bir gün, keyfini çıkar!",
+     "beats": [
+      "b_p_ipek_137"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Dün Gece Burger'de sebze burger kaç para? 🍔",
+     "beats": [
+      "b_p_ipek_138"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Dün Gece Burger'de Sebze Burger 300 TL.",
+     "beats": [
+      "b_p_ipek_139"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Burger Atölyesi cuma kaça kadar açık?",
+     "beats": [
+      "b_p_ipek_140"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Burger Atölyesi cuma 12:00-02:00 arası açık.",
+     "beats": [
+      "b_p_ipek_141"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Bizim Mutfak perşembe açık mı?",
+     "beats": [
+      "b_p_ipek_142"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Bizim Mutfak perşembe 11:00-21:00 arası açık.",
+     "beats": [
+      "b_p_ipek_143"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 18,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Moda Yeşil Mutfak pazar kaça kadar açık?",
+     "beats": [
+      "b_p_ipek_144"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Moda Yeşil Mutfak pazar 09:00-22:00 arası açık.",
+     "beats": [
+      "b_p_ipek_145"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Serpme Bahçe neredeydi? 🙈",
+     "beats": [
+      "b_p_ipek_146"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Serpme Bahçe Kadıköy Çarşı'da, fiyat seviyesi ₺.",
+     "beats": [
+      "b_p_ipek_147"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Antep Sofrası'nda kampanya var mı?",
+     "beats": [
+      "b_p_ipek_148"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Antep Sofrası için uygulamada kampanya kaydı yok.",
+     "beats": [
+      "b_p_ipek_149"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "okeyy",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 19,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Eski Dostlar cuma kaça kadar açık?",
+     "beats": [
+      "b_p_ipek_150"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Eski Dostlar cuma 17:00-02:00 arası açık.",
+     "beats": [
+      "b_p_ipek_151"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bu pazartesi öğlen Baklavacı Güllüoğlu Usta'da meyve salatası yedim 🍓",
+     "beats": [
+      "b_p_ipek_022"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun!",
+     "beats": [
+      "b_p_ipek_023"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 20,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Eski Dostlar neredeydi?",
+     "beats": [
+      "b_p_ipek_152"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Eski Dostlar Yeldeğirmeni'nde, fiyat seviyesi ₺₺.",
+     "beats": [
+      "b_p_ipek_153"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Antep Sofrası nerede?",
+     "beats": [
+      "b_p_ipek_154"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Antep Sofrası Kadıköy Çarşı'da, fiyat seviyesi ₺₺.",
+     "beats": [
+      "b_p_ipek_155"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürler 💕",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 21,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Rakı Sofrası'nda haydari kaç paraydı?",
+     "beats": [
+      "b_p_ipek_156"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Rakı Sofrası'nda Haydari 145 TL.",
+     "beats": [
+      "b_p_ipek_157"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bugün nerede yiyebilirim!!",
+     "beats": [
+      "b_p_ipek_048"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Yeşil Tabak'a bakabilirsin: Nohutlu Buddha Kase 310 TL, vegan ve glutensiz etiketli. Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺.",
+     "beats": [
+      "b_p_ipek_049"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "süper 🥗",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 22,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Eski Dostlar pazartesi açık mı?",
+     "beats": [
+      "b_p_ipek_158"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Eski Dostlar pazartesi 17:00-02:00 arası açık.",
+     "beats": [
+      "b_p_ipek_159"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Smash Bros'ta burger olarak ne var? 🍔",
+     "beats": [
+      "b_p_ipek_160"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Smash Bros'ta burger olarak Sebze Burger var, 300 TL.",
+     "beats": [
+      "b_p_ipek_161"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "haberim var!! 🎉 Yeldeğirmeni'nden Cihangir'e taşındım, yeni ev çok tatlı 🏡",
+     "beats": [
+      "b_p_ipek_010"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Yeni evin hayırlı olsun! Bundan sonra Cihangir'e göre bakarım.",
+     "beats": [
+      "b_p_ipek_011"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Bitki Kafe salı kaça kadar açık?",
+     "beats": [
+      "b_p_ipek_162"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Bitki Kafe salı 09:00-22:00 arası açık.",
+     "beats": [
+      "b_p_ipek_163"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "💃",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 23,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Tencere Kapak'ta sütlaç kaç para?",
+     "beats": [
+      "b_p_ipek_164"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Tencere Kapak'ta Sütlaç 95 TL.",
+     "beats": [
+      "b_p_ipek_165"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "evvelsi gün öğlen Muhallebici Moda'da kazandibi yedim 😍",
+     "beats": [
+      "b_p_ipek_024"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun!",
+     "beats": [
+      "b_p_ipek_025"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "🍮",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 24,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Pazar Kahvaltı Evi cuma açık mı? ☕",
+     "beats": [
+      "b_p_ipek_166"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Pazar Kahvaltı Evi cuma 08:00-16:00 arası açık.",
+     "beats": [
+      "b_p_ipek_167"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "tamam!",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 25,
+   "turns": [
+    {
+     "role": "user",
+     "text": "hafta sonu kızlarla piknik yapacağız!! 🧺☀️",
+     "beats": [
+      "b_p_ipek_168"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Harika plan, keyifli bir piknik dilerim!",
+     "beats": [
+      "b_p_ipek_169"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "🥰",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 26,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Cihangir Meze Evi'nde fava kaç para?",
+     "beats": [
+      "b_p_ipek_170"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Cihangir Meze Evi'nde Fava 100 TL.",
+     "beats": [
+      "b_p_ipek_171"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Burger Atölyesi nerede?",
+     "beats": [
+      "b_p_ipek_172"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Burger Atölyesi Fenerbahçe'de, fiyat seviyesi ₺₺₺.",
+     "beats": [
+      "b_p_ipek_173"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bu arada tatlıyı da çok seviyorum 🍰 hele kazandibi falan ayy",
+     "beats": [
+      "b_p_ipek_007"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Haha anlaşıldı, aklımda 🙂",
+     "beats": []
+    },
+    {
+     "role": "user",
+     "text": "Ateş Kebap'ta közlenmiş patlıcan salatası kaç?",
+     "beats": [
+      "b_p_ipek_174"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Ateş Kebap'ta Közlenmiş Patlıcan Salatası 155 TL.",
+     "beats": [
+      "b_p_ipek_175"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bu hafta kampanya çekimlerimiz var, çok yoğunum 📸",
+     "beats": [
+      "b_p_ipek_176"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Kolay gelsin, umarım güzel geçer!",
+     "beats": [
+      "b_p_ipek_177"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "umarım 🤞",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 27,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Eski Dostlar çarşamba açık mı?",
+     "beats": [
+      "b_p_ipek_178"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Eski Dostlar çarşamba 17:00-02:00 arası açık.",
+     "beats": [
+      "b_p_ipek_179"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bugün çekim 10 saat sürdü 😵‍💫",
+     "beats": [
+      "b_p_ipek_180"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Emeğine sağlık, iyi dinlenmeler!",
+     "beats": [
+      "b_p_ipek_181"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "dün akşam Sushi Nami'de sebzeli noodle yedim 🍜",
+     "beats": [
+      "b_p_ipek_026"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun!",
+     "beats": [
+      "b_p_ipek_027"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Pideci Hasan'da ayran kaç para?",
+     "beats": [
+      "b_p_ipek_182"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Pideci Hasan'da Ayran 30 TL.",
+     "beats": [
+      "b_p_ipek_183"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "uygunmuş 😄",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 28,
+   "turns": [
+    {
+     "role": "user",
+     "text": "bugün nerede yiyebilirim? 🤗",
+     "beats": [
+      "b_p_ipek_050"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Pazar Kahvaltı Evi'ne bakabilirsin: Menemen 180 TL, vejetaryen etiketli. Cihangir'de, fiyat seviyesi ₺₺. @gurme_kadikoy da \"Fiyatına göre gayet iyi bir Serpme Kahvaltı\" yazmış.",
+     "beats": [
+      "b_p_ipek_051"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "olur!!",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 29,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Sushi Nomi'de sebzeli noodle kaç para?",
+     "beats": [
+      "b_p_ipek_184"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Sushi Nomi'de Sebzeli Noodle 375 TL.",
+     "beats": [
+      "b_p_ipek_185"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bu pazartesi öğlen Wok & Roll'da edamame yedim 🫛",
+     "beats": [
+      "b_p_ipek_028"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun!",
+     "beats": [
+      "b_p_ipek_029"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "💚",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 30,
+   "turns": [
+    {
+     "role": "user",
+     "text": "cumartesi akşamı İskele Lokantası'na gitmeyi planlıyoruz!! daha önce hiç gitmedim 🤩",
+     "beats": [
+      "b_p_ipek_038"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "İskele Lokantası cumartesi 12:00-23:59 arası açık.",
+     "beats": [
+      "b_p_ipek_039"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "süper 🎉",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 31,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Tencere Kapak cuma açık mı?",
+     "beats": [
+      "b_p_ipek_186"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Tencere Kapak cuma kapalı.",
+     "beats": [
+      "b_p_ipek_187"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "İskele Lokantası planı iptal oldu 😭 gidemedik",
+     "beats": [
+      "b_p_ipek_040"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Üzüldüm, başka zaman olur!",
+     "beats": [
+      "b_p_ipek_041"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "hafta sonu evde dinleneceğim galiba 🛋️",
+     "beats": [
+      "b_p_ipek_188"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Bazen en güzeli bu, keyifli dinlenmeler!",
+     "beats": [
+      "b_p_ipek_189"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 32,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Ateş Kebap neredeydi?",
+     "beats": [
+      "b_p_ipek_190"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Ateş Kebap Kadıköy Çarşı'da, fiyat seviyesi ₺₺₺.",
+     "beats": [
+      "b_p_ipek_191"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Cihangir Meze Evi cuma kaça kadar açık?",
+     "beats": [
+      "b_p_ipek_192"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Cihangir Meze Evi cuma 17:00-02:00 arası açık.",
+     "beats": [
+      "b_p_ipek_193"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Tencere Kapak'ta kampanya var mı?",
+     "beats": [
+      "b_p_ipek_194"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Tencere Kapak için uygulamada kampanya kaydı yok.",
+     "beats": [
+      "b_p_ipek_195"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 33,
+   "turns": [
+    {
+     "role": "user",
+     "text": "evvelsi gün öğlen Tokyo Sokağı'nda edamame yedim 🫛 yine hahah",
+     "beats": [
+      "b_p_ipek_030"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun!",
+     "beats": [
+      "b_p_ipek_031"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "😂",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 34,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Tencere Kapak çarşamba açık mı?",
+     "beats": [
+      "b_p_ipek_196"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Tencere Kapak çarşamba 11:00-21:00 arası açık.",
+     "beats": [
+      "b_p_ipek_197"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "bugün nerede yiyebilirim? 😊",
+     "beats": [
+      "b_p_ipek_052"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Kasap Burger'e bakabilirsin: Sebze Burger 240 TL, vejetaryen etiketli. Cihangir'de, fiyat seviyesi ₺.",
+     "beats": [
+      "b_p_ipek_053"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "hava birden soğudu 🥶",
+     "beats": [
+      "b_p_ipek_198"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Gerçekten, ceketini almayı unutma!",
+     "beats": [
+      "b_p_ipek_199"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "unutmam 🧥",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 35,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Smash Bros'ta kampanya var mı?",
+     "beats": [
+      "b_p_ipek_200"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Smash Bros için uygulamada kampanya kaydı yok.",
+     "beats": [
+      "b_p_ipek_201"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "dün akşam Akşam Meyhanesi'nde haydari yedim 🍷 çok keyifli bir akşamdı!",
+     "beats": [
+      "b_p_ipek_032"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun, keyifli bir akşam olmuş!",
+     "beats": [
+      "b_p_ipek_033"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "🥂",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 36,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Serpme Bahçe'de fırın olarak ne var?",
+     "beats": [
+      "b_p_ipek_202"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Serpme Bahçe'de fırın olarak Simit var, 25 TL.",
+     "beats": [
+      "b_p_ipek_203"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Kasap Burger nerede?",
+     "beats": [
+      "b_p_ipek_204"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Kasap Burger Cihangir'de, fiyat seviyesi ₺.",
+     "beats": [
+      "b_p_ipek_205"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "yakınmış 😍",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 37,
+   "turns": [
+    {
+     "role": "user",
+     "text": "dün öğlen Esnaf Sofrası'nda kuru fasulye yedim 🍲",
+     "beats": [
+      "b_p_ipek_034"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun!",
+     "beats": [
+      "b_p_ipek_035"
+     ]
+    }
+   ]
+  },
+  {
+   "session_index": 38,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Serpme Bahçe pazartesi açık mı?",
+     "beats": [
+      "b_p_ipek_206"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Serpme Bahçe pazartesi 08:00-16:00 arası açık.",
+     "beats": [
+      "b_p_ipek_207"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "tamam!",
+     "beats": []
+    }
+   ]
+  },
+  {
+   "session_index": 39,
+   "turns": [
+    {
+     "role": "user",
+     "text": "Esnaf Lokantası'nda kuru fasulye kaç para?",
+     "beats": [
+      "b_p_ipek_208"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Esnaf Lokantası'nda Kuru Fasulye 160 TL.",
+     "beats": [
+      "b_p_ipek_209"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "evvelsi gün öğlen Fenerbahçe Balıkçısı'nda roka salatası yedim 🥗 arkadaşlar balık yedi ben salata hahah",
+     "beats": [
+      "b_p_ipek_036"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Afiyet olsun, iyi idare etmişsin!",
+     "beats": [
+      "b_p_ipek_037"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Dün Gece Burger'de kampanya var mı?",
+     "beats": [
+      "b_p_ipek_210"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Dün Gece Burger için uygulamada kampanya kaydı yok.",
+     "beats": [
+      "b_p_ipek_211"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "Lagos Balık pazar açık mı?",
+     "beats": [
+      "b_p_ipek_212"
+     ]
+    },
+    {
+     "role": "assistant",
+     "text": "Lagos Balık pazar 12:00-23:59 arası açık.",
+     "beats": [
+      "b_p_ipek_213"
+     ]
+    },
+    {
+     "role": "user",
+     "text": "teşekkürleer 💕",
+     "beats": []
+    }
+   ]
+  }
+ ]
+}
