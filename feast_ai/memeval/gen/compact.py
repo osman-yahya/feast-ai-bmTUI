@@ -77,6 +77,8 @@ def parse(pid: str, text: str) -> dict:
         if not m or not sessions:
             raise ValueError(f"line {n}: not 'U [ids] text' / 'A [ids] text': {line[:80]}")
         role, ids, body = m.groups()
+        if not body.strip():
+            raise ValueError(f"line {n}: empty turn")
         beats = [f"b_{pid}_{int(x):03d}" for x in re.split(r"[,\s]+", ids.strip()) if x]
         sessions[-1]["turns"].append({"role": "user" if role == "U" else "assistant",
                                       "text": body.strip(), "beats": beats})

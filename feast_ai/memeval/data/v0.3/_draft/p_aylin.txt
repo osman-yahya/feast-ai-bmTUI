@@ -1,0 +1,338 @@
+# Aylin
+
+## 0
+U [001] Merhaba canım. Geçen hafta bir börekten sonra dudaklarım şişti, nefesim daraldı; meğer içinde yumurta varmış. O günden beri yumurtalı her şeyden uzak duruyorum.
+U [002] Bir de süt alerjim var, onu da bilmen iyi olur.
+A [003] Çok geçmiş olsun. İkisini de not ettim; yumurta ve süt içeren yemeklere dikkat edeceğim.
+U [] Teşekkür ederim canım 🙏
+
+## 1
+U [055] Bugün sabah dersim çok kalabalıktı, herkes derin nefeslerle güne başladı, çok güzeldi.
+A [056] Ne güzel, huzurlu bir başlangıç olmuş!
+U [057] Antep Sofrası cumartesi kaça kadar açık?
+A [058] Antep Sofrası cumartesi 12:00-00:30 arası açık.
+U [059] İskele Lokantası nerede?
+A [060] İskele Lokantası Yeldeğirmeni'nde, fiyat seviyesi ₺₺.
+U [061] Wok & Roll çarşamba açık mı?
+A [062] Wok & Roll çarşamba 12:00-23:00 arası açık.
+U [063] İskele Lokantası pazar günü kaça kadar açık?
+A [064] İskele Lokantası pazar 12:00-23:59 arası açık.
+U [] Teşekkürler 🌿
+
+## 2
+U [004] Ben vejetaryenim bu arada, et ve tavuk yemiyorum.
+A [005] Not ettim, bundan sonra et içermeyen seçeneklere göre bakarım.
+U [065] Urfa Ocakbaşı perşembe günü açık mı?
+A [066] Urfa Ocakbaşı perşembe 12:00-00:30 arası açık.
+U [] Teşekkür ederim.
+
+## 3
+U [010] Haftada en az iki kere vegan kafelere uğrarım; sakin ortamları ve sebzeli tabakları bana çok iyi geliyor.
+A [] Çok güzel, aklımda tutarım 🙂
+
+## 4
+U [067] Bambu nerede?
+A [068] Bambu Moda'da, fiyat seviyesi ₺₺.
+U [069] Bizim Mutfak'ta kampanya var mı canım?
+A [070] Bizim Mutfak'ta şu an aktif kampanya yok; 1 ekim'de başlayacak Hafta içi %20 indirim (Salı-Perşembe 12:00-16:00) görünüyor.
+U [071] İskele Lokantası salı günü açık mı?
+A [072] İskele Lokantası salı 12:00-23:59 arası açık.
+U [012] Ben Moda'da oturuyorum, sahile yürüme mesafesinde.
+A [] Ne güzel, Moda'yı not aldım.
+U [073] Bambu'nun menüsünde wok olarak ne var?
+A [074] Bambu'da wok olarak Sebzeli Noodle var, 290 TL.
+U [075] Tokyo Sokağı'nda sebzeli noodle kaç lira?
+A [076] Tokyo Sokağı'nda Sebzeli Noodle 290 TL.
+U [] Aynı fiyatmış, teşekkürler.
+A [] Rica ederim!
+
+## 5
+U [077] Wok & Roll'da kampanya var mı?
+A [078] Wok & Roll için uygulamada kampanya kaydı yok.
+U [079] Dün akşam maç vardı galiba, sokaklar çok gürültülüydü 🙂
+A [080] Öyle görünüyor, heyecanlı bir akşam olmuş!
+U [015] Bu perşembe akşam Bitki Kafe'de mercimek köftesi yedim, çok hafifti.
+A [016] Afiyet olsun, hafif bir akşam yemeği olmuş.
+U [081] Bambu neredeydi canım?
+A [082] Bambu Moda'da, fiyat seviyesi ₺₺.
+U [083] Akşam Meyhanesi'nin menüsünde meze olarak neler var?
+A [084] Akşam Meyhanesi'nde meze olarak Fava 170 TL ve Muhammara 205 TL var.
+U [] Teşekkürler.
+
+## 6
+U [043] Bu akşam nerede yiyebilirim?
+A [044] Rakı Sofrası'na bakabilirsin: Fava 130 TL, vegan etiketli. Moda'da, fiyat seviyesi ₺₺₺.
+U [] Güzel fikir, teşekkürler.
+
+## 7
+U [085] Bitki Bahçe'de mercimek köftesi kaç lira?
+A [086] Bitki Bahçe'de Mercimek Köftesi 170 TL.
+U [] Teşekkür ederim.
+
+## 8
+U [017] Geçen pazar akşam Moda Yeşil Mutfak'ta mercimek köftesi yedim, yanındaki yeşillik çok tazeydi.
+A [018] Afiyet olsun!
+U [087] Antep Sofrası cumartesi günü kaça kadar açık?
+A [088] Antep Sofrası cumartesi 12:00-00:30 arası açık.
+U [] Teşekkürler canım.
+
+## 9
+U [089] Bizim Mutfak'ta kampanya başladı mı?
+A [090] Bizim Mutfak'ta şu an aktif kampanya yok; 1 ekim'de başlayacak Hafta içi %20 indirim (Salı-Perşembe 12:00-16:00) görünüyor.
+U [091] Hafta sonu sahilde açık havada bir meditasyon buluşması düzenleyeceğiz.
+A [092] Çok güzel bir fikir, keyifli geçsin!
+U [093] Antep Sofrası salı günü açık mı?
+A [094] Antep Sofrası salı 12:00-00:30 arası açık.
+U [] Teşekkürler.
+
+## 10
+U [095] Bu hafta sonu biraz dinlenip kitap okumayı düşünüyorum.
+A [096] Harika bir plan, keyifli okumalar!
+U [097] Dün Gece Burger nerede?
+A [098] Dün Gece Burger Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [045] Bugün öğlen nerede yiyebilirim?
+A [046] Bambu'ya bakabilirsin: Edamame 110 TL, vegan ve glutensiz etiketli. Moda'da, fiyat seviyesi ₺₺.
+U [] Teşekkür ederim 🌿
+
+## 11
+U [099] Tatlı Dünyası nerede?
+A [100] Tatlı Dünyası Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [101] Rakı Sofrası'nda kampanya var mı?
+A [102] Rakı Sofrası için uygulamada kampanya kaydı yok.
+U [019] Evvelsi gün akşam Sushi Nami'de miso çorba içtim; sıcacıktı, çok iyi geldi.
+A [020] Afiyet olsun, içini ısıtmıştır.
+U [] Gerçekten öyle.
+A [] 🙂
+U [] 🌸
+
+## 12
+U [103] Bambu'nun menüsünde başlangıç olarak ne var?
+A [104] Bambu'da başlangıç olarak Edamame var, 110 TL.
+U [] Teşekkürler.
+
+## 13
+U [105] Sushi Nomi'nin menüsünde başlangıç olarak ne var?
+A [106] Sushi Nomi'de başlangıç olarak Edamame var, 145 TL.
+
+## 14
+U [107] Tatlı Dünyası'nda kampanya var mı?
+A [108] Tatlı Dünyası için uygulamada kampanya kaydı yok.
+U [109] Fırın Pide'nin menüsünde içecek olarak ne var?
+A [110] Fırın Pide'de içecek olarak Şalgam var, 75 TL.
+U [013] Cumartesi arkadaşım Zeynep ile yemeğe çıkacağız canım. Zeynep'in yer fıstığı alerjisi var; benim değil, onun. Ona göre dikkatli bir yer seçmemiz lazım.
+A [014] Zeynep için menülerde yer fıstığı içeren yemeklere dikkat etmek gerek.
+U [111] Antep Sofrası pazartesi açık mı?
+A [112] Antep Sofrası pazartesi 12:00-00:30 arası açık.
+U [113] Bizim Mutfak'ta kampanya var mıydı?
+A [114] Bizim Mutfak'ta şu an aktif kampanya yok; 1 ekim'de başlayacak Hafta içi %20 indirim (Salı-Perşembe 12:00-16:00) görünüyor.
+U [] Teşekkürler.
+A [] Rica ederim, keyifli bir yemek dilerim!
+
+## 15
+U [115] Tatlı Dünyası'nda tatlı olarak ne var?
+A [116] Tatlı Dünyası'nda tatlı olarak Meyve Salatası var, 120 TL.
+U [117] Burger Atölyesi'nde patates kızartması kaç lira?
+A [118] Burger Atölyesi'nde Patates Kızartması 145 TL.
+U [021] Dün öğlen Van Kahvaltı Salonu'nda avokadolu kase yedim; geç bir kahvaltı gibi oldu.
+A [022] Afiyet olsun, keyifli bir öğle olmuş!
+U [119] Dün Gece Burger neredeydi?
+A [120] Dün Gece Burger Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [121] Urfa Ocakbaşı pazar günü kaça kadar açık?
+A [122] Urfa Ocakbaşı pazar 12:00-00:30 arası açık.
+U [] Teşekkürler.
+
+## 16
+U [047] Bu akşam nerede yiyebilirim?
+A [048] Tokyo Sokağı'na bakabilirsin: Sebzeli Noodle 290 TL, vegan etiketli. Moda'da, fiyat seviyesi ₺₺.
+U [123] Tatlı Dünyası çarşamba günü kaça kadar açık?
+A [124] Tatlı Dünyası çarşamba 10:00-00:00 arası açık.
+U [125] Dün Gece Burger nerede bulunuyor?
+A [126] Dün Gece Burger Fenerbahçe'de, fiyat seviyesi ₺₺.
+U [] Teşekkür ederim canım.
+
+## 17
+U [127] Tatlı Dünyası cumartesi günü açık mı?
+A [128] Tatlı Dünyası cumartesi 10:00-00:00 arası açık.
+U [129] Yeni bir belgesel dizisine başladım, okyanuslar hakkında; çok huzur veriyor.
+A [130] Ne güzel, keyifli seyirler!
+U [006] Bir güncelleme yapayım: artık tamamen vegan besleniyorum. Önceden vejetaryendim; süt ve yumurtayı da bıraktım.
+A [007] Not ettim, bundan sonra vegan seçeneklere göre bakarım 🌱
+U [131] Baklavacı Güllüoğlu Usta pazar günü kaça kadar açık?
+A [132] Baklavacı Güllüoğlu Usta pazar 10:00-00:00 arası açık.
+U [133] Antep Sofrası pazartesi açık mıydı?
+A [134] Antep Sofrası pazartesi 12:00-00:30 arası açık.
+U [] Teşekkürler.
+
+## 18
+U [135] Dün Gece Burger'de yan ürün olarak ne var?
+A [136] Dün Gece Burger'de yan ürün olarak Patates Kızartması var, 110 TL.
+U [137] Wok & Roll perşembe günü açık mı?
+A [138] Wok & Roll perşembe 12:00-23:00 arası açık.
+U [139] Eski Dostlar nerede?
+A [140] Eski Dostlar Yeldeğirmeni'nde, fiyat seviyesi ₺₺.
+
+## 19
+U [141] Tokyo Sokağı cumartesi günü kaça kadar açık?
+A [142] Tokyo Sokağı cumartesi 12:00-23:00 arası açık.
+U [023] Dün öğlen Yeşil Tabak'ta mercimek köftesi yedim, çok doyurucuydu.
+A [024] Afiyet olsun!
+U [] Teşekkür ederim.
+
+## 20
+U [008] Sana güzel bir haber vereyim canım: doktora gittim, testler temiz çıktı; yumurta alerjim geçmiş.
+A [009] Ne güzel haber! Not ettim, yumurtayı artık alerji olarak tutmuyorum.
+
+## 21
+U [049] Bugün öğlen nerede yiyebilirim?
+A [050] Smash Bros'a bakabilirsin: Patates Kızartması 110 TL, vegan etiketli. Kadıköy Çarşı'da, fiyat seviyesi ₺₺.
+U [143] Bambu cumartesi günü açık mı?
+A [144] Bambu cumartesi 12:00-23:00 arası açık.
+U [] Teşekkürler.
+
+## 22
+U [145] Eski Dostlar neredeydi?
+A [146] Eski Dostlar Yeldeğirmeni'nde, fiyat seviyesi ₺₺.
+U [147] Bugün üç ders üst üste verdim, biraz yorgunum ama mutluyum.
+A [148] Emeğine sağlık, akşamı dinlenerek geçir.
+
+## 23
+U [149] İskele Lokantası'nda roka salatası kaç lira?
+A [150] İskele Lokantası'nda Roka Salatası 140 TL.
+U [025] Bu pazartesi akşam Filiz Vegan'da nohutlu buddha kase yedim; renk renk bir tabaktı.
+A [026] Afiyet olsun!
+U [] 🥗
+
+## 24
+U [151] Dün Gece Burger'de patates kızartması kaç lira?
+A [152] Dün Gece Burger'de Patates Kızartması 110 TL.
+
+## 25
+U [153] Komşular dün akşam maç izlerken çok bağırdılar, hiç uyuyamadım 😅
+A [154] Geçmiş olsun, bu akşam daha sakin geçer umarım.
+U [155] Akşam Meyhanesi perşembe günü kaça kadar açık?
+A [156] Akşam Meyhanesi perşembe 17:00-02:00 arası açık.
+U [] Teşekkürler.
+
+## 26
+U [157] Cuma Pide pazartesi günü açık mı?
+A [158] Cuma Pide pazartesi 11:00-23:30 arası açık.
+U [159] Antep Sofrası'nın menüsünde meze olarak neler var?
+A [160] Antep Sofrası'nda meze olarak Közlenmiş Patlıcan Salatası 120 TL ve Ezme 90 TL var.
+U [161] İskele Lokantası çarşamba günü kaça kadar açık?
+A [162] İskele Lokantası çarşamba 12:00-23:59 arası açık.
+U [011] Hafta sonları sabah dersinden sonra uzun bir kahvaltı yapmadan olmaz benim için; cumartesi ve pazar mutlaka dışarıda kahvaltı ederim.
+A [] Ne güzel bir ritüel, not aldım.
+U [163] Rakı Sofrası cuma günü kaça kadar açık?
+A [164] Rakı Sofrası cuma 17:00-02:00 arası açık.
+U [165] Urfa Ocakbaşı çarşamba açık mı?
+A [166] Urfa Ocakbaşı çarşamba 12:00-00:30 arası açık.
+
+## 27
+U [167] Eski Dostlar pazar günü kaça kadar açık?
+A [168] Eski Dostlar pazar 17:00-02:00 arası açık.
+U [169] Eski Dostlar neredeydi canım, tekrar söyler misin?
+A [170] Eski Dostlar Yeldeğirmeni'nde, fiyat seviyesi ₺₺.
+U [027] Evvelsi gün akşam Martı Balık'ta roka salatası yedim; deniz kenarında çok keyifliydi.
+A [028] Afiyet olsun, keyifli bir akşam olmuş.
+U [171] Tokyo Sokağı nerede?
+A [172] Tokyo Sokağı Moda'da, fiyat seviyesi ₺₺.
+U [173] Bizim Mutfak nerede peki?
+A [174] Bizim Mutfak Kadıköy Çarşı'da, fiyat seviyesi ₺.
+U [] Teşekkürler.
+
+## 28
+U [175] Akşam Meyhanesi'nde kampanya var mı?
+A [176] Akşam Meyhanesi için uygulamada kampanya kaydı yok.
+U [051] Bugün nerede yiyebilirim?
+A [052] Burger Atölyesi'ne bakabilirsin: Patates Kızartması 145 TL, vegan etiketli. Fenerbahçe'de, fiyat seviyesi ₺₺₺.
+U [177] İskele Lokantası pazartesi günü açık mı?
+A [178] İskele Lokantası pazartesi 12:00-23:59 arası açık.
+U [] Teşekkür ederim.
+
+## 29
+U [179] Martı Meze nerede?
+A [180] Martı Meze Beşiktaş'ta, fiyat seviyesi ₺₺.
+U [029] Dün akşam Ateş Kebap'ta ezme yedim; biraz acıydı ama sevdim.
+A [030] Afiyet olsun!
+
+## 30
+U [039] Cumartesi öğlen Simitçi Dünyası'na gitmeyi planlıyorum canım, daha önce hiç gitmedim.
+A [040] Simitçi Dünyası cumartesi 08:00-16:00 arası açık.
+U [] Teşekkürler.
+
+## 31
+U [181] Dün akşamki maç yüzünden sokaklar yine çok kalabalıktı.
+A [182] Öyle görünüyor, umarım bu akşam daha sakindir.
+U [041] Simitçi Dünyası planımız iptal oldu, gidemedik.
+A [042] Üzüldüm, başka bir zaman olur.
+U [183] Bizim Mutfak'ta kuru fasulye kaç lira?
+A [184] Bizim Mutfak'ta Kuru Fasulye 130 TL.
+U [] Teşekkürler.
+
+## 32
+U [185] Fırın Pide nerede?
+A [186] Fırın Pide Moda'da, fiyat seviyesi ₺₺₺₺.
+U [187] Rakı Sofrası nerede?
+A [188] Rakı Sofrası Moda'da, fiyat seviyesi ₺₺₺.
+U [189] İskele Lokantası'nda roka salatası kaç liraydı?
+A [190] İskele Lokantası'nda Roka Salatası 140 TL.
+U [191] Eski Dostlar'ın menüsünde meze olarak neler var?
+A [192] Eski Dostlar'da meze olarak Fava 100 TL ve Muhammara 120 TL var.
+U [193] Okyanus belgeselinin son bölümünü izledim, çok etkileyiciydi.
+A [194] Ne güzel, keyifli bir final olmuş!
+
+## 33
+U [195] Tokyo Sokağı'nın menüsünde çorba olarak ne var?
+A [196] Tokyo Sokağı'nda çorba olarak Miso Çorba var, 120 TL.
+U [031] Dün akşam Esnaf Sofrası'nda kuru fasulye yedim; ev yemeği gibiydi.
+A [032] Afiyet olsun!
+U [197] Tokyo Sokağı cumartesi günü kaça kadar açık?
+A [198] Tokyo Sokağı cumartesi 12:00-23:00 arası açık.
+U [199] Bizim Mutfak cuma günü açık mı?
+A [200] Bizim Mutfak cuma 11:00-21:00 arası açık.
+
+## 34
+U [053] Bugün öğlen nerede yiyebilirim?
+A [054] Urfa Ocakbaşı'na bakabilirsin: Ezme 115 TL, vegan ve acılı etiketli. Fenerbahçe'de, fiyat seviyesi ₺₺₺.
+U [] Teşekkürler canım.
+
+## 35
+U [201] Eski Dostlar'da meze olarak ne vardı?
+A [202] Eski Dostlar'da meze olarak Fava 100 TL ve Muhammara 120 TL var.
+U [203] Esnaf Lokantası'nda kuru fasulye kaç lira?
+A [204] Esnaf Lokantası'nda Kuru Fasulye 160 TL.
+U [033] Evvelsi gün öğlen Pazar Kahvaltı Evi'nde avokadolu kase yedim; bahçesi çok huzurluydu.
+A [034] Afiyet olsun, keyifli bir öğle olmuş.
+U [205] Bambu nerede?
+A [206] Bambu Moda'da, fiyat seviyesi ₺₺.
+
+## 36
+U [207] Urfa Ocakbaşı perşembe günü açık mı?
+A [208] Urfa Ocakbaşı perşembe 12:00-00:30 arası açık.
+U [209] Bugün hava çok güzel, sonbahar renkleri başladı.
+A [210] Gerçekten öyle, yürüyüş için harika bir gün.
+U [211] Rakı Sofrası'nda fava kaç lira?
+A [212] Rakı Sofrası'nda Fava 130 TL.
+U [213] Tatlı Dünyası'nda kampanya var mı?
+A [214] Tatlı Dünyası için uygulamada kampanya kaydı yok.
+U [215] Rakı Sofrası'nın menüsünde meze olarak neler var?
+A [216] Rakı Sofrası'nda meze olarak Fava 130 TL ve Muhammara 155 TL var.
+
+## 37
+U [217] Cuma Pide pazartesi açık mı?
+A [218] Cuma Pide pazartesi 11:00-23:30 arası açık.
+U [035] Dün öğlen Serpme Bahçe'de avokadolu kase yedim.
+A [036] Afiyet olsun!
+U [219] Akşam Meyhanesi nerede?
+A [220] Akşam Meyhanesi Yeldeğirmeni'nde, fiyat seviyesi ₺₺₺₺.
+U [] Teşekkürler.
+
+## 38
+U [221] Urfa Ocakbaşı'nda kampanya var mı?
+A [222] Urfa Ocakbaşı için uygulamada kampanya kaydı yok.
+U [223] Belgeselin ikinci sezonu çıkmış, akşam onu izleyeceğim.
+A [224] Keyifli seyirler!
+
+## 39
+U [037] Dün akşam Muhallebici Moda'da meyve salatası yedim; hafif ve tatlı bir kapanış oldu.
+A [038] Afiyet olsun!
