@@ -85,6 +85,7 @@ class Row:
     call_status: str = ""
     call_args: dict = field(default_factory=dict)
     tool_steps: int = 0                                   # tools run for this answer (tools=app)
+    call_raw: str = ""                                    # the reply text of a call that did not run
     gate: str = ""
     memory_turns: int = 0
     memory_handles: dict = field(default_factory=dict)   # t1 -> turn_id
@@ -287,6 +288,8 @@ async def _tool_loop(client, messages: list[dict], reply: str, stats: dict, row:
                       if check.status != "parse_error" else (False, "error: the call could not be read."))
         row.tool_steps += ok
         invalid += not ok
+        if not ok and not row.call_raw:
+            row.call_raw = reply[:400]
         row.call_status = row.call_status or ("ok" if ok else "invalid")
         if row.tool_steps > MAX_TOOL_CALLS or invalid > MAX_INVALID_CALLS:
             return "", {**stats, "error": "tool limit: the message ended without an answer"}

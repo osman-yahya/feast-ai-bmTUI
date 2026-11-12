@@ -200,6 +200,9 @@ def extract(reply: str) -> CallCheck:
             return check
         if _parse_native(body, check):
             return check
+        if _parse_pycall(body, check):          # <tool_call>name(key="v")</tool_call>
+            check.format = "tagged/pycall"
+            return check
         check.status = "parse_error"
         check.issues.append("<tool_call> body is not a call")
         return check
