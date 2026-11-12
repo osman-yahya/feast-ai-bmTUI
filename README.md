@@ -800,10 +800,10 @@ by a teacher model and scored once), one pass, greedy:
 
 | Exact | bf16 adapter (GPU) | **the shipped bundle (LiteRT-LM, CPU)** |
 | --- | --- | --- |
-| as the model wrote it (`native-raw`) | 95.3% | @@B_ALL_RAW@@ |
-| after the guard (`native`) | 96.9% | @@B_ALL_G@@ |
-| blind suite only, raw / guarded | 93.8% / 94.8% | @@B_BLD_RAW@@ / @@B_BLD_G@@ |
-| Sentences about a tool result that state only what is in it (dev) | 100% of 172 | @@B_DEV_FAITH@@ |
+| as the model wrote it (`native-raw`) | 95.3% | 96.9% (249) |
+| after the guard (`native`) | 96.9% | **98.1% (252)** |
+| blind suite only, raw / guarded | 93.8% / 94.8% | **96.9%** / **96.9%** |
+| Sentences about a tool result that state only what is in it (dev) | 100% of 172 | 100% of 104 |
 
 Every intervention is reported: the turn footer and the session report say
 what the guard changed, and `native-raw` is the same run judged without it.
@@ -813,7 +813,7 @@ prompt; read the comparison as "a trained model in one pass reaches what two
 constrained passes did", not as a like-for-like gain.
 
 What it costs: the bundle is quantised after training and is slower than
-Google's own (decode @@SPEED_DECODE@@ against 16-21 tok/s at 4 threads), and
+Google's own (decode ~10 tok/s against 16-21 tok/s at 4 threads), and
 when the app rewrites history the runtime reads the whole chat again. Both
 are in [mustachio's README](mustachio/README.md#7-shipping-on-litert-lm).
 

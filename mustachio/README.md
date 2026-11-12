@@ -288,22 +288,28 @@ the app-side guard of section 6 (*guarded*).
 
 | Exact (right tool, right arguments, valid call) | bf16 raw | bf16 guarded | **bundle raw** | **bundle guarded** |
 | --- | --- | --- | --- | --- |
-| standard (60) | 98.3% | 100% | @@B_STD_RAW@@ | @@B_STD_G@@ |
-| kanka (31) | 90.3% | 96.8% | @@B_KAN_RAW@@ | @@B_KAN_G@@ |
-| hybrid (69) | 97.1% | 97.1% | @@B_HYB_RAW@@ | @@B_HYB_G@@ |
-| **blind (97)** | **93.8%** | **94.8%** | @@B_BLD_RAW@@ | @@B_BLD_G@@ |
-| all 257 turns | 95.3% (245) | 96.9% (249) | @@B_ALL_RAW@@ | @@B_ALL_G@@ |
-| Hallucinated calls | 4 | 1 | @@B_HAL_RAW@@ | @@B_HAL_G@@ |
-| Unsafe sends | 0 | 0 | @@B_UNS_RAW@@ | @@B_UNS_G@@ |
-| Calls the runtime could not parse | - | - | @@B_RPE_RAW@@ | @@B_RPE_G@@ |
+| standard (60) | 98.3% | 100% | 95.0% | 98.3% |
+| kanka (31) | 90.3% | 96.8% | 96.8% | 100% |
+| hybrid (69) | 97.1% | 97.1% | 98.6% | 98.6% |
+| **blind (97)** | **93.8%** | **94.8%** | **96.9%** | **96.9%** |
+| all 257 turns | 95.3% (245) | 96.9% (249) | 96.9% (249) | **98.1% (252)** |
+| Hallucinated calls | 4 | 1 | 3 | **0** |
+| Unsafe sends | 0 | 0 | 0 | 0 |
+| Calls the runtime could not parse | - | - | 0 | 0 |
 
 On the dev split (what the model was trained to do, unseen conversations):
 
 | Dev turns | bf16 (500 turns) | bundle (300 turns) |
 | --- | --- | --- |
-| Calls, exact | 99.3% of 269 | @@B_DEV_CALLS@@ |
-| Sentences about a tool result that state only what is in it | 100% of 172 | @@B_DEV_FAITH@@ |
-| All targets | 99.6% | @@B_DEV_ALL@@ |
+| Calls, exact | 99.3% of 269 | 100% of 159 |
+| Sentences about a tool result that state only what is in it | 100% of 172 | 100% of 104 |
+| All targets | 99.6% | 100% |
+
+Quantisation did not cost accuracy on these suites: the bundle is right on
+249 turns where the bf16 adapter is right on 245, and a few turns differ in
+each direction (the bundle reads "Gece 12'den sonra" as `24:00`, which the
+guard normalises; bf16 cut "Dilara" short, the bundle did not). On dev the
+bundle reproduces every call and every result sentence.
 
 What the guard changed on the bf16 run (every intervention is in the report):
 
@@ -313,7 +319,17 @@ What the guard changed on the bf16 run (every intervention is in the report):
 | "Yürüyerek 10 dakikayı geçmesin kanka" | `ask_about_posts{max_walk_minutes:10, …}` | the unknown argument dropped |
 | "bu aksam tesvikiye civarindayim…" (blind) | `location_query:"Tevşikiye"` | repaired to the user's own "tesvikiye" |
 
-The misses that remain (bf16, guarded):
+On the bundle the guard changed four answers: `open_now` dropped twice as
+above, `open_at:"24:00"` → `"00:00"`, and a garbled `"mümbär"` repaired to the
+user's "mumbar". Three of those became exact.
+
+The shipped bundle's five misses after the guard: the "Ali nazik", "mumbar"
+and pharmacy turns in the table below, plus "Tanıdığım kimler feast
+kullanıyor, kimi ekleyebilirim?" → `list_friends` (wanted
+`get_suggested_users`) and "live music olan mekanlar var mı bu civarda" →
+`search_posts` (wanted `ask_about_posts`).
+
+The misses of the bf16 adapter (guarded):
 
 | Suite | Turn | Answer | What went wrong |
 | --- | --- | --- | --- |
@@ -340,7 +356,9 @@ What to keep in mind when reading these:
   generator between runs (the time phrases, the preambles). Entities and
   sentences stayed held out, but only the blind suite is untouched: 93.8%.
 - **bf16 on a GPU is not the phone.** The bundle columns are the shipped
-  numbers; the bf16 columns show what quantisation cost.
+  numbers. Neither is a phone: the bundle ran on a desktop CPU.
+- **Four turns out of 257 is noise.** bf16 and the bundle differ by that
+  much; so do raw and guarded on a single suite.
 - **Small talk is still narrow.** Text turns count as exact when no tool is
   called. The teacher's replies widened them; the persona's voice is trained
   from templates and a few hundred teacher lines.
@@ -394,7 +412,7 @@ suites. 200 dev turns per row; the first two rows share one set of turns
 | **`gemma4_mixed48_b32`** | int4 **block-wise (32)**, int8 for the per-layer embedding projection | 2,860 MB | **95.0%** | 0 |
 | `gemma4_mixed48` | the same, channel-wise | 2,571 MB | 64.5% | 15 |
 | `gemma4_mixed48_hr` | Hadamard-rotated int4 | 2,657 MB | 86.5% | 0 |
-| `gemma4_mixed48_b32` (same turns as the two above) | | | @@B32_V2DEV@@ | @@B32_V2DEV_RPE@@ |
+| `gemma4_mixed48_b32` (same turns as the two above) | | | **90.0%** | 0 |
 
 Channel-wise int4 breaks this model visibly: garbled queries ("yakça",
 "mücvebik çorbası"), a truncated tool name, a doubled quote token that
@@ -411,29 +429,34 @@ AI's LiteRT engine:
 
 | | Google's text-only bundle | **mustachio `final`** |
 | --- | --- | --- |
-| Size | 2,256 MB | @@SIZE@@ |
-| Static prompt (1,496 tokens), once per app start | 5.0 s (345 tok/s) | @@SPEED_STATIC@@ |
-| First token of a live turn (~45 tokens read) | 0.5 s | @@SPEED_TTFT@@ |
-| Decode | 16-21 tok/s | @@SPEED_DECODE@@ |
+| Size | 2,256 MB | 2,862 MB |
+| Static prompt (1,496 tokens), once per app start | 5.0 s (345 tok/s) | 7.6 s (205 tok/s) |
+| First token of a live turn (~45 tokens read) | 0.5 s | 1.0 s |
+| Decode | 16-21 tok/s | ~10 tok/s |
 
 Google's decoder was *trained* into a mixed 2/4/8-bit scheme
 (`quant_method: gemma`) the public converter does not produce; ours is
 quantised after training with float activations, and it is slower. One part
 of the gap was a setting: a single `prefill_256` signature made every request
 read 256 tokens however short (1.9 s to the first token of a 21-token tool
-result). The export now carries `prefill_128` and `prefill_1024`, as Google's
-does.
+result, 9.7 s for the static prompt). The export now carries `prefill_128`
+and `prefill_1024`, as Google's does: 1.0 s and 7.6 s.
+
+With the settings the TUI was left in (2 threads, a 3 GB device with the RAM
+ceiling on, so the weights stream through 2,150 MB): the static prompt takes
+20 s once, decode is 7.4 tok/s, and a turn with a tool takes 8-10 s (the call,
+the tool, the sentence).
 
 ### What the runtime does, measured through the engine in `feast_ai`
 
 | Finding | Consequence |
 | --- | --- |
-| A new conversation created from a history re-reads all of it (17 s for 2,650 tokens at 4 threads) | the worker keeps the conversation: `live` (only the new message is read), `clone` (a new chat on a prefilled prompt), `replay` (the app rewrote history) |
+| A new conversation created from a history re-reads all of it (14 s for 2,650 tokens at 4 threads) | the worker keeps the conversation: `live` (only the new message is read), `clone` (a new chat on a prefilled prompt), `replay` (the app rewrote history) |
 | Prefix reuse only happens between clones of one base conversation with identical creation parameters, `max_output_tokens` included | the warm-up must use the settings of the real turns |
 | A malformed call is an exception (`Failed to parse FC tool calls`) with the raw text inside | the worker recovers the text and reports a parse error instead of failing the request |
 | The app's checks may edit a call's arguments or the sentence after a result | those two do not count as a different conversation; anything else is replayed |
 | A history window that drops one turn per message replays on every message | the window is sized in text and moves rarely, by half (`native.window`) |
-| The first load writes an XNNPack weight cache next to the bundle (~750 MB); three processes doing it at once corrupt it and segfault | load once before running in parallel |
+| The first load writes an XNNPack weight cache next to the bundle (752 MB for Google's, 1,310 MB for ours with two prefill signatures); three processes doing it at once corrupt it and segfault | load once before running in parallel; on flash the model costs 2.86 + 1.31 GB |
 | Built-in constrained decoding (`LL_GUIDANCE`) | changed nothing in our tests; the guard does the job |
 | A Windows venv's `python.exe` is a launcher stub | pin and cap the real interpreter (`engine.server.worker_python`) |
 

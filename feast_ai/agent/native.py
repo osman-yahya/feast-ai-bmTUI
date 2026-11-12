@@ -255,7 +255,7 @@ def window(history: list, chars: int = WINDOW_CHARS) -> list:
 
     An engine that keeps the conversation (LiteRT-LM here, llama.cpp's
     prompt cache) re-reads all of it when its start changes - measured on
-    the mustachio bundle at 4 threads: 17 s for 2,650 tokens.  A window that
+    the mustachio bundle at 4 threads: 14 s for 2,650 tokens.  A window that
     drops one turn per message pays that on every message.  So the start
     moves only when the conversation no longer fits, and then far: turns
     are dropped until half the budget is free.  The start is computed by

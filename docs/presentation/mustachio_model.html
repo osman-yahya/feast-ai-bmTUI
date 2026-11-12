@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mustachio: Teaching the Model</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* A 1280x720 stage scaled to the window, in the format of new_method_bm.html:
+   each slide is a clip, the animation explains the mechanism and a subtitle
+   names the current step. Every number is from the runs in mustachio/README.md. */
+:root{
+  color-scheme: light;
+  --paper:#f5f7fc; --card:#ffffff; --ink:#1d2440; --muted:#5a6280; --faint:#8e95ad; --line:#dde2ee;
+  --direct:#2a78d6; --active:#eb6834; --classes:#1baf7a; --decision:#eda100; --active2:#e87ba4;
+  --hier:#6250d6; --routed:#008300;
+  --direct-t:#dcebfb; --active-t:#fde4d8; --classes-t:#d6f3e7; --decision-t:#fdeec9; --active2-t:#fbe3ec;
+  --hier-t:#e5e1fa; --routed-t:#d9efd9;
+  --ok:#0f7a4a; --ok-t:#dcf3e6; --bad:#c62e2e; --bad-t:#fbe2e1;
+  --display:"Fredoka","Segoe UI","Trebuchet MS",system-ui,sans-serif;
+  --body:"Nunito","Segoe UI",system-ui,-apple-system,sans-serif;
+  --mono:"JetBrains Mono","Cascadia Mono",Consolas,ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--paper);color:var(--ink);font:16px/1.45 var(--body);overflow:hidden}
+#viewport{position:fixed;inset:0 0 58px 0;display:flex;align-items:center;justify-content:center}
+#stage{position:relative;width:1280px;height:720px;flex:none;transform-origin:center center;
+  background:radial-gradient(circle at 1px 1px,#dfe4f0 1.2px,transparent 1.3px) 0 0/26px 26px,var(--paper);border-radius:18px;overflow:hidden}
+.slide{position:absolute;inset:0;display:none}
+.slide.on{display:block}
+.abs{position:absolute}
+
+/* ---------- type ---------- */
+h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1{font-size:62px;line-height:1.02;font-weight:700}
+h2{font-size:40px;line-height:1.05;font-weight:600;margin-top:8px}
+h3{font-size:19px;font-weight:600}
+.head{position:absolute;left:64px;top:34px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font:700 13px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;
+  padding:7px 12px;border:2.5px solid var(--ink);border-radius:999px;background:var(--k,#fff)}
+.kicker i{width:10px;height:10px;border-radius:50%;background:var(--kc,var(--ink));border:2px solid var(--ink)}
+.lbl{position:absolute;font:700 13px/1.25 var(--body);color:var(--muted);white-space:nowrap}
+.lbl b{color:var(--ink);font:600 22px var(--display)}
+.big{font:600 26px/1 var(--display);color:var(--ink)}
+.note{position:absolute;font:600 14px/1.4 var(--body);color:var(--muted)}
+.mono{font-family:var(--mono)}
+
+.subs{position:absolute;left:0;right:0;top:640px;height:46px;display:grid;place-items:center;pointer-events:none}
+.subs span{grid-area:1/1;font:700 19px/1 var(--body);color:#fff;background:var(--ink);padding:12px 20px;border-radius:999px;white-space:nowrap}
+.badges{position:absolute;right:64px;top:44px;display:flex;gap:10px}
+.bdg{background:#fff;border:3px solid var(--ink);border-radius:14px;box-shadow:3px 3px 0 var(--ink);padding:6px 12px;text-align:center;min-width:104px}
+.bdg b{display:block;font:700 24px/1.1 var(--display);color:var(--c,var(--ink))}
+.bdg span{display:block;font:700 11px/1.2 var(--body);color:var(--muted);letter-spacing:.03em}
+
+/* ---------- cartoon objects ---------- */
+.card{position:absolute;background:var(--card);border:3px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 var(--ink)}
+.card.pad{padding:14px 16px}
+.card .t{font:800 12px/1.2 var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.card .s{font:600 13.5px/1.35 var(--body);color:var(--muted);margin-top:6px}
+.char{position:absolute}
+.char svg{display:block;overflow:visible}
+.phone{position:absolute;width:230px;height:450px;border:4px solid var(--ink);border-radius:36px;background:#fff;box-shadow:6px 6px 0 var(--ink);overflow:hidden}
+.phone .notch{position:absolute;top:9px;left:50%;width:70px;height:15px;margin-left:-35px;background:var(--ink);border-radius:10px}
+.phone .pbar{padding:34px 14px 8px;font:700 16px var(--display);border-bottom:2.5px solid var(--line)}
+.phone .pbar::after{content:".";color:var(--active)}
+.phone .chat{padding:10px;display:flex;flex-direction:column;gap:8px}
+.bub{max-width:88%;padding:7px 10px;border-radius:14px;font-size:13.5px;line-height:1.35;border:2px solid var(--ink);background:var(--direct-t)}
+.bub.me{align-self:flex-end;border-bottom-right-radius:4px}
+.bub.abs{max-width:none;white-space:nowrap;border-bottom-right-radius:4px}
+.bub.ai{background:#fff;border-bottom-left-radius:4px}
+.bub .row{font:600 11.5px/1.3 var(--mono);padding:3px 0;border-bottom:1.5px dashed var(--line);color:var(--muted)}
+.bub .row.card1{color:var(--ink)}
+.phone.sm .chat{gap:6px;padding:8px 10px}
+.phone.sm .bub{font-size:12.5px;padding:6px 9px}
+.phone.sm .bub .row{font-size:10.5px}
+.chip{position:absolute;white-space:nowrap;font:600 13px/1 var(--mono);padding:8px 11px;background:#fff;border:2.5px solid var(--ink);border-radius:10px;box-shadow:3px 3px 0 var(--ink)}
+.chip.ok{background:var(--ok-t)}
+.chip.ok::after{content:" ✓";color:var(--ok);font-weight:700}
+.chip.no{background:var(--bad-t)}
+.chip.no::after{content:" ✗";color:var(--bad);font-weight:700}
+.tag{position:absolute;white-space:nowrap;font:800 11px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border-radius:999px;border:2px solid var(--ink);background:#fff}
+.stamp{position:absolute;font:800 14px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--bad);border:3px solid var(--bad);border-radius:8px;padding:6px 9px;background:rgba(255,255,255,.92);transform:rotate(-8deg)}
+.traveler{position:absolute;left:0;top:0;offset-anchor:center;offset-rotate:0deg;offset-distance:100%;opacity:0;z-index:6}
+.dot{width:20px;height:20px;border-radius:50%;border:3px solid var(--ink);background:var(--c,var(--hier))}
+.callcard{position:absolute;font:600 14px/1.35 var(--mono);background:#fff;border:3px solid var(--ink);border-radius:12px;padding:11px 13px;box-shadow:4px 4px 0 var(--ink);white-space:nowrap}
+.caret::after{content:"▍";animation:caret .9s steps(1) infinite;color:var(--muted)}
+
+.ctx{position:absolute;display:flex;gap:4px}
+.seg{position:relative;height:54px;flex:none;border:3px solid var(--ink);border-radius:10px;overflow:hidden;background:#fff}
+.seg>.sw{position:absolute;left:0;top:0;bottom:0;width:var(--w,100%);background:var(--sc,var(--direct-t))}
+.seg>.cells{position:absolute;inset:0;z-index:1;background:repeating-linear-gradient(90deg,transparent 0 10px,rgba(29,36,64,.13) 10px 12px)}
+.seg>.bad{position:absolute;inset:0;z-index:2;background:repeating-linear-gradient(45deg,rgba(198,46,46,.42) 0 7px,rgba(255,255,255,.3) 7px 14px)}
+.seg>.lab{position:absolute;inset:0;z-index:4;display:flex;align-items:center;gap:6px;padding:0 9px;font:800 12.5px/1.1 var(--body);white-space:nowrap}
+.okm{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--ok);color:#fff;font:800 11px/1 var(--body)}
+.outbox{position:absolute;background:#fff;border:3px solid var(--ink);border-radius:14px;box-shadow:5px 5px 0 var(--ink);padding:12px 16px;font:600 18px/1.5 var(--mono)}
+.outbox .gen{color:var(--ok);background:var(--ok-t);border-radius:4px;padding:0 3px}
+.hit{border-radius:4px;padding:0 3px}
+.play .hl{animation-name:hl}
+@keyframes hl{0%{background:transparent;color:inherit}100%{background:var(--ok-t);color:var(--ok)}}
+@media (prefers-reduced-motion: reduce){.hit{background:var(--ok-t);color:var(--ok)}}
+.hb{display:grid;grid-template-columns:76px 1fr 46px;align-items:center;gap:10px;margin:9px 0}
+.hb .k{font-size:13.5px;font-weight:700;color:var(--muted)}
+.hb .v{font:700 17px var(--display);font-variant-numeric:tabular-nums;text-align:right}
+.hb .bt{height:20px;border:2.5px solid var(--ink);border-radius:7px;background:#fff;overflow:hidden}
+.hb .bt i{display:block;height:100%;width:var(--w);background:var(--c)}
+.panel{position:absolute;background:#fff;border:3px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 var(--ink);padding:12px 16px}
+.panel h3{display:flex;justify-content:space-between;align-items:baseline}
+.panel h3 small{font:600 12px var(--body);color:var(--faint)}
+.rrow{display:grid;grid-template-columns:var(--kw,150px) 1fr 64px;gap:10px;align-items:center;margin-top:10px}
+.rrow .k{font-size:13px;font-weight:700;display:flex;align-items:center;gap:7px;white-space:nowrap}
+.rrow .k i{width:11px;height:11px;border-radius:50%;border:2px solid var(--ink);flex:none}
+.rrow .bt{height:20px;border-radius:6px;background:#eef1f8;overflow:hidden;border:2px solid var(--ink)}
+.rrow .bt i{display:block;height:100%;width:var(--w);background:var(--c)}
+.rrow .v{font:700 16px var(--display);text-align:right;font-variant-numeric:tabular-nums}
+.rsep{margin-top:10px;font:800 11px var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--faint);border-top:2px dashed var(--line);padding-top:8px}
+.take{position:absolute;width:560px;height:150px;background:#fff;border:3px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 var(--ink);padding:16px 18px 14px 82px}
+.take .badge{position:absolute;left:18px;top:18px;width:46px;height:46px;border-radius:12px;border:3px solid var(--ink);background:var(--c)}
+.take .who{font:800 12px var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.take h3{font-size:22px;margin-top:2px}
+.take .nums{display:flex;gap:18px;margin-top:10px}
+.take .nums b{font:700 22px var(--display)}
+.take .nums span{display:block;font:700 11.5px var(--body);color:var(--muted)}
+.nexts{position:absolute;left:64px;top:510px;display:flex;gap:12px;flex-wrap:wrap;width:1152px;align-items:center}
+.nexts .chip{position:static;font-family:var(--body);font-weight:700}
+.gate{position:absolute;width:190px;height:118px;background:#fff;border:3px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 var(--ink);padding:12px 14px}
+.gate b{display:block;font:600 21px var(--display)}
+.gate span{display:block;font:600 12.5px/1.3 var(--body);color:var(--muted);margin-top:4px}
+.fix{position:absolute;width:190px;font:600 12.5px/1.35 var(--mono);text-align:center}
+.fix s{display:block;color:var(--muted);text-decoration-color:var(--bad);text-decoration-thickness:2px}
+.fix em{display:block;font-style:normal;color:var(--ok);background:var(--ok-t);border:2px solid var(--ink);border-radius:8px;padding:4px 6px;margin-top:6px}
+.srow{position:absolute;left:64px;display:flex;align-items:center;gap:14px;width:1160px}
+.srow .bub{flex:none;max-width:560px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-bottom-right-radius:4px}
+.srow .chip{position:static;flex:none}
+.srow .tag{position:static;flex:none}
+.srow .why{font:700 12.5px var(--body);color:var(--bad)}
+a.hf{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font:700 14px var(--body);color:var(--ink);text-decoration:none;
+  padding:8px 13px;border:2.5px solid var(--ink);border-radius:10px;background:var(--decision-t);box-shadow:3px 3px 0 var(--ink)}
+a.hf:focus-visible{outline:3px solid var(--direct);outline-offset:2px}
+
+/* ---------- animation primitives (run while the slide has .play) ---------- */
+.play .an{animation-duration:var(--t,.6s);animation-delay:var(--d,0s);animation-fill-mode:both;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.play .pop{animation-name:pop;animation-timing-function:cubic-bezier(.3,1.55,.5,1)}
+.play .rise{animation-name:rise}
+.play .fade{animation-name:fade}
+.play .fly{animation-name:fly}
+.play .flyout{animation-name:flyout;animation-timing-function:cubic-bezier(.6,0,.8,.4)}
+.play .capio{animation-name:capio;animation-timing-function:linear}
+.play .caplast{animation-name:caplast}
+.play .travel{animation-name:travel;animation-timing-function:cubic-bezier(.45,0,.35,1)}
+.play .grow{animation-name:grow;transform-origin:left center}
+.play .fill{animation-name:fillw;animation-timing-function:linear}
+.play .stamp.an{animation-name:stamp;animation-timing-function:cubic-bezier(.3,1.6,.5,1)}
+.play .draw{animation-name:draw;stroke-dasharray:var(--len);stroke-dashoffset:0}
+.play .dim{animation-name:dim}
+.play .think .bulb{animation:bulb .42s ease-in-out var(--bd,2s) 7 alternate}
+.play .writes .arm-r{animation:scribble .22s ease-in-out var(--wd,3s) 8 alternate;transform-box:fill-box;transform-origin:0 0}
+.robot .eyes{transform-box:fill-box;transform-origin:center;animation:blink 3.8s infinite}
+@keyframes pop{0%{opacity:0;transform:scale(.4)}100%{opacity:1;transform:scale(1)}}
+@keyframes rise{0%{opacity:0;transform:translateY(22px)}100%{opacity:1;transform:none}}
+@keyframes fade{0%{opacity:0}100%{opacity:1}}
+@keyframes fly{0%{opacity:0;transform:translate(var(--fx,0),var(--fy,0)) scale(var(--fs,.6)) rotate(var(--fr,0deg))}100%{opacity:1;transform:none}}
+@keyframes flyout{0%{opacity:1;transform:none}100%{opacity:.18;transform:translate(var(--ox,0),var(--oy,0)) scale(var(--os,.9))}}
+@keyframes capio{0%{opacity:0;transform:translateY(10px)}6%{opacity:1;transform:none}94%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-6px)}}
+@keyframes caplast{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:none}}
+@keyframes travel{0%{offset-distance:0%;opacity:0}8%{opacity:1}88%{opacity:1}100%{offset-distance:100%;opacity:0}}
+@keyframes grow{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+@keyframes fillw{0%{width:0}100%{width:var(--w)}}
+@keyframes stamp{0%{opacity:0;transform:scale(2.3) rotate(-18deg)}100%{opacity:1;transform:scale(1) rotate(-8deg)}}
+@keyframes draw{0%{stroke-dashoffset:var(--len)}100%{stroke-dashoffset:0}}
+@keyframes dim{to{opacity:.32}}
+@keyframes bulb{0%{fill:#fff}100%{fill:#ffd23f}}
+@keyframes scribble{0%{transform:rotate(0)}100%{transform:rotate(-14deg)}}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+@keyframes caret{50%{opacity:0}}
+@media (prefers-reduced-motion: reduce){
+  .play .an,.play .think .bulb,.play .writes .arm-r,.robot .eyes{animation:none!important}
+  .rm-hide{display:none!important}
+  .traveler{display:none}
+}
+
+/* ---------- title ---------- */
+.title-block{position:absolute;left:72px;top:150px;width:580px}
+.title-block .sub1{font:700 20px var(--body);color:var(--muted);margin-top:20px}
+.hint{margin-top:26px;font-size:14px;color:var(--muted)}
+kbd{font:700 12px var(--mono);border:2px solid var(--ink);border-bottom-width:3.5px;border-radius:6px;padding:1px 6px;background:#fff;color:var(--ink)}
+
+/* ---------- controls ---------- */
+#controls{position:fixed;left:0;right:0;bottom:0;height:58px;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 max(16px,env(safe-area-inset-left,0px));background:var(--paper)}
+#controls button{font:700 14px var(--body);color:var(--ink);background:#fff;border:2.5px solid var(--ink);border-radius:10px;height:38px;min-width:42px;padding:0 12px;cursor:pointer;box-shadow:2px 2px 0 var(--ink)}
+#controls button:active{transform:translate(2px,2px);box-shadow:none}
+#controls button:focus-visible{outline:3px solid var(--direct);outline-offset:2px}
+#controls button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.dots{display:flex;gap:6px;margin:0 6px}
+.dots button{width:12px!important;min-width:0!important;height:12px!important;padding:0!important;border-radius:50%!important;box-shadow:none!important;border:2px solid var(--ink)!important;background:#fff}
+.dots button.cur{background:var(--ink)!important}
+#counter{font:700 13px var(--mono);color:var(--muted);min-width:56px;text-align:center}
+#progress{position:fixed;left:0;bottom:58px;height:4px;background:var(--active);width:0}
+@media (max-width:700px){.dots{display:none}}
+/* JetBrains Mono draws <| and |> as triangles; code must read literally */
+.mono,.chip,.callcard,.outbox,.fix,.bub .row{font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0}
+</style>
+</head>
+<body>
+<div id="viewport"><div id="stage">
+
+<!-- 1 ─ TITLE -->
+<section class="slide" data-dur="9" aria-label="Title">
+  <div class="title-block">
+    <div class="kicker an rise" style="--d:.1s"><i style="--kc:var(--active)"></i>feast AI · bitirme · part 2</div>
+    <h1 class="an rise" style="--d:.25s;margin-top:22px">Mustachio: teaching the model itself</h1>
+    <div class="sub1 an rise" style="--d:.45s">Gemma 4 E2B · LoRA fine-tune · 15 tools · LiteRT-LM</div>
+    <a class="hf an fade" data-hf style="--d:1s">🤗 the model is on Hugging Face</a>
+    <div class="hint an fade" style="--d:1.2s"><kbd>→</kbd> next &nbsp;·&nbsp; <kbd>P</kbd> play as a clip &nbsp;·&nbsp; <kbd>R</kbd> replay &nbsp;·&nbsp; <kbd>F</kbd> full screen</div>
+  </div>
+  <div class="phone an pop" style="left:690px;top:110px;--d:.3s">
+    <div class="notch"></div><div class="pbar">feast</div>
+    <div class="chat">
+      <div class="bub me an pop" style="--d:.9s"><span data-type="kanka yarın kadıköye lets go" data-d="1.1" data-cps="20"></span></div>
+      <div class="bub ai an pop" style="--d:5.6s"><div class="row">⚙ set_active_location</div>Tamam, artık Kadıköy çevresinde arıyorum.</div>
+    </div>
+  </div>
+  <div class="traveler an travel" data-char="env" style="--d:2.8s;--t:1.3s;offset-path:path('M 902 180 C 1000 140, 1070 250, 1115 350')"></div>
+  <div class="char an pop think writes" data-char="robot" data-m="1" data-c="#eb6834" style="left:1055px;top:330px;--d:.5s;--bd:3.6s;--wd:3.9s"></div>
+  <div class="chip ok an pop" style="left:848px;top:560px;--d:4.6s">set_active_location{location_query:"Kadıköy"}</div>
+</section>
+
+<!-- 2 ─ WHERE WE WERE -->
+<section class="slide" data-dur="9" aria-label="From pipelines to the model">
+  <div class="head"><div class="kicker an rise"><i></i>Where we were</div><h2 class="an rise" style="--d:.1s">Seven pipelines around a stock model</h2></div>
+  <div class="panel an rise" style="left:64px;top:150px;width:520px;height:196px;--d:.3s" data-chart="prev"><h3>Exact answers <small>91 messages · stock Gemma 4 E2B</small></h3></div>
+  <div class="char an pop" data-char="robot" data-c="#2a78d6" style="left:700px;top:176px;--d:.6s"></div>
+  <div class="tag an pop" style="left:640px;top:150px;--d:1s;background:var(--hier-t)">a router beside it</div>
+  <div class="tag an pop" style="left:820px;top:210px;--d:1.3s;background:var(--active-t)">a second pass</div>
+  <div class="tag an pop" style="left:812px;top:300px;--d:1.6s;background:var(--active2-t)">a grammar on its output</div>
+  <svg class="abs an fade" style="left:930px;top:236px;--d:3.4s" width="90" height="40" aria-hidden="true"><path d="M4 20 H76 M62 8 L78 20 L62 32" fill="none" stroke="#1d2440" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <div class="char an pop" data-char="robot" data-m="1" data-c="#eb6834" style="left:1040px;top:176px;--d:3.7s"></div>
+  <div class="tag an pop" style="left:1020px;top:150px;--d:4.1s;background:var(--classes-t)">trained on the 15 tools</div>
+  <div class="lbl an fade" style="left:1036px;top:350px;--d:4.3s"><b>one pass</b></div>
+  <div class="bub abs an fly" style="left:64px;top:420px;--d:5.2s;--fx:-60px;--fy:0">kanka yarın kadıköye lets go</div>
+  <div class="bub abs an fly" style="left:120px;top:468px;--d:5.4s;--fx:-60px;--fy:0">save'lediklerimi check edelim bi</div>
+  <div class="bub abs an fly" style="left:84px;top:516px;--d:5.6s;--fx:-60px;--fy:0">şu an open olan bi tantuni yeri lazım asap</div>
+  <div class="lbl an fade" style="left:64px;top:568px;--d:6s"><b>Turkish, as it is typed</b></div>
+  <div class="note an fade" style="left:640px;top:430px;width:560px;--d:4.6s">The best pipelines reached 85%, with a router, a grammar or a second pass around a model that did not know the tools. This part changes the model: text only, fine-tuned with LoRA, exported for the phone's runtime.</div>
+  <div class="subs"><span data-at=".4">the best pipelines needed a router, a grammar or a second pass</span><span data-at="3.4">this time the model itself is changed</span><span data-at="5.2">and it must read Turkish the way people type it</span></div>
+</section>
+
+<!-- 3 ─ TEXT ONLY -->
+<section class="slide" data-dur="9" aria-label="Text only">
+  <div class="head"><div class="kicker an rise" style="--k:var(--direct-t)"><i style="--kc:var(--direct)"></i>Step 1</div><h2 class="an rise" style="--d:.1s">Text only: drop what a chat never uses</h2></div>
+  <div class="lbl an fade" style="left:64px;top:160px;--d:.3s">Google's LiteRT-LM bundle · <b>2,588 MB</b></div>
+  <div class="ctx" style="left:64px;top:196px">
+    <div class="seg an pop" style="width:148px;--sc:#eef1f7;--d:.5s"><i class="sw"></i><i class="cells"></i><i class="bad an fade" style="--d:2.6s"></i><span class="lab">vision + audio</span></div>
+    <div class="seg an pop" style="width:618px;--sc:var(--decision-t);--d:.65s"><i class="sw"></i><i class="cells"></i><span class="lab">vocabulary tables · 1,388 MB · one row per token, 262,144 tokens</span></div>
+    <div class="seg an pop" style="width:364px;--sc:var(--direct-t);--d:.8s"><i class="sw"></i><i class="cells"></i><span class="lab">decoder · 818 MB · the thinking</span></div>
+  </div>
+  <div class="stamp an" style="left:78px;top:262px;--d:2.4s;--t:.45s">332 MB · not used</div>
+  <div class="card pad an pop" style="left:64px;top:340px;width:270px;height:150px;--d:3.6s"><div class="t">Text-only bundle</div><div class="big" style="margin-top:10px">2,256 MB</div><div class="s">12.8% smaller to download</div></div>
+  <div class="card pad an pop" style="left:358px;top:340px;width:270px;height:150px;--d:3.9s"><div class="t">Next-token logits</div><div class="big" style="margin-top:10px;color:var(--ok)">difference 0</div><div class="s">bit-identical to the multimodal model</div></div>
+  <div class="card pad an pop" style="left:652px;top:340px;width:270px;height:150px;--d:4.2s"><div class="t">On LiteRT-LM</div><div class="big" style="margin-top:10px;color:var(--ok)">same answers</div><div class="s">greedy text identical on both test prompts</div></div>
+  <div class="card pad an pop" style="left:946px;top:340px;width:270px;height:150px;--d:4.5s"><div class="t">Peak RAM</div><div class="big" style="margin-top:10px">1,274 MB</div><div class="s">before and after: the encoders were loaded on demand</div></div>
+  <div class="note an fade" style="left:64px;top:524px;width:1150px;--d:5.4s">A download saving, not a memory one. More than half of the file is indexed by the vocabulary; trimming it to the tokens Turkish and English use is the lever that could halve the model, and it is not built yet.</div>
+  <div class="subs"><span data-at=".4">what is inside the bundle Google ships</span><span data-at="2.4">a chat never calls the vision and audio encoders</span><span data-at="3.6">removing them changes nothing the model says</span><span data-at="5.4">it saves download size, not memory</span></div>
+</section>
+
+<!-- 4 ─ LABELS BY CONSTRUCTION -->
+<section class="slide" data-dur="11" aria-label="Labels by construction">
+  <div class="head"><div class="kicker an rise" style="--k:var(--classes-t)"><i style="--kc:var(--classes)"></i>Step 2 · data</div><h2 class="an rise" style="--d:.1s">The label comes first, the sentence second</h2></div>
+  <div class="card pad an pop" style="left:64px;top:170px;width:290px;height:176px;--d:.4s"><div class="t">Scenario, drawn first</div>
+    <div class="mono" style="font-weight:600;font-size:14px;line-height:1.75;margin-top:8px">tool&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;search_menu_items<br>query&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pankek<br>max_price&nbsp;200</div></div>
+  <svg class="abs" width="1280" height="720" style="left:0;top:0;pointer-events:none" aria-hidden="true">
+    <path class="an draw" style="--len:140;--d:1.5s;--t:.4s" d="M358 220 C400 220 400 190 436 190" fill="none" stroke="#1d2440" stroke-width="3" stroke-linecap="round"/>
+    <path class="an draw" style="--len:120;--d:1.9s;--t:.4s" d="M358 244 C400 244 400 250 436 250" fill="none" stroke="#1d2440" stroke-width="3" stroke-linecap="round"/>
+    <path class="an draw" style="--len:140;--d:2.3s;--t:.4s" d="M358 268 C400 268 400 310 436 310" fill="none" stroke="#1d2440" stroke-width="3" stroke-linecap="round"/>
+    <path class="an draw" style="--len:170;--d:2.7s;--t:.4s" d="M358 292 C400 292 400 370 436 370" fill="none" stroke="#1d2440" stroke-width="3" stroke-linecap="round"/>
+    <path class="an draw" style="--len:260;--d:5s;--t:.5s" d="M700 396 C700 440 660 440 660 478" fill="none" stroke="#0f7a4a" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="6 6"/>
+  </svg>
+  <div class="tag an pop" style="left:440px;top:178px;--d:1.6s">clean</div><div class="bub abs an fly" style="left:520px;top:172px;--d:1.7s;--fx:-40px">En fazla 200 liraya pankek nerede var?</div>
+  <div class="tag an pop" style="left:440px;top:238px;--d:2s;background:var(--direct-t)">casual</div><div class="bub abs an fly" style="left:520px;top:232px;--d:2.1s;--fx:-40px">200 tl üstü olmasın, pankek bul</div>
+  <div class="tag an pop" style="left:440px;top:298px;--d:2.4s;background:var(--active-t)">hybrid</div><div class="bub abs an fly" style="left:520px;top:292px;--d:2.5s;--fx:-40px">under 200 TL pankek var mı nearby</div>
+  <div class="tag an pop" style="left:440px;top:358px;--d:2.8s;background:var(--hier-t)">english</div><div class="bub abs an fly" style="left:520px;top:352px;--d:2.9s;--fx:-40px">Find pancakes for less than 200 TL</div>
+  <div class="chip ok an pop" style="left:440px;top:480px;--d:5.3s;font-size:15px;padding:11px 14px">search_menu_items{query:"pankek", max_price:200}</div>
+  <div class="lbl an fade" style="left:444px;top:530px;--d:5.6s">one gold call for all four, known before the user "speaks"</div>
+  <div class="panel an rise" style="left:900px;top:170px;width:316px;height:206px;--d:3.4s"><h3>Who is typing <small>share</small></h3>
+    <div class="hb"><span class="k">hybrid</span><span class="bt"><i class="an grow" style="--w:38%;--c:var(--active);--d:3.8s;--t:.8s"></i></span><span class="v">38%</span></div>
+    <div class="hb"><span class="k">casual</span><span class="bt"><i class="an grow" style="--w:32%;--c:var(--direct);--d:3.9s;--t:.8s"></i></span><span class="v">32%</span></div>
+    <div class="hb"><span class="k">clean</span><span class="bt"><i class="an grow" style="--w:24%;--c:var(--classes);--d:4s;--t:.8s"></i></span><span class="v">24%</span></div>
+    <div class="hb"><span class="k">English</span><span class="bt"><i class="an grow" style="--w:5%;--c:var(--hier);--d:4.1s;--t:.8s"></i></span><span class="v">5%</span></div></div>
+  <div class="lbl an fade" style="left:960px;top:400px;--d:6.4s"><b data-count="16000" data-d="6.4" data-t="1">16000</b> conversations</div>
+  <div class="lbl an fade" style="left:960px;top:446px;--d:6.6s"><b data-count="40512" data-d="6.6" data-t="1">40512</b> training targets</div>
+  <div class="lbl an fade" style="left:960px;top:492px;--d:6.8s"><b>15</b> tools, every one covered</div>
+  <div class="subs"><span data-at=".4">first draw the action: a tool and its arguments</span><span data-at="1.6">then write it the way four kinds of people would</span><span data-at="5">the surface changes, the label does not</span><span data-at="6.4">no labelling model, so no labelling mistakes to copy</span></div>
+</section>
+
+<!-- 5 ─ HELD OUT -->
+<section class="slide" data-dur="11" aria-label="Held out twice">
+  <div class="head"><div class="kicker an rise" style="--k:var(--bad-t)"><i style="--kc:var(--bad)"></i>Step 2 · honesty</div><h2 class="an rise" style="--d:.1s">Tested on what it never saw</h2></div>
+  <div class="card pad an pop" style="left:64px;top:160px;width:430px;height:150px;--d:.3s"><div class="t">Training generator may use</div>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:10px"><span class="chip" style="position:static">pankek</span><span class="chip" style="position:static">menemen</span><span class="chip" style="position:static">Bornova</span><span class="chip" style="position:static">Pendik</span><span class="chip" style="position:static">Defne</span><span class="chip" style="position:static">kanat</span></div></div>
+  <svg class="abs" width="20" height="470" style="left:556px;top:150px" aria-hidden="true"><line class="an draw" style="--len:470;--d:.9s;--t:.8s" x1="10" y1="0" x2="10" y2="470" stroke="#c62e2e" stroke-width="4" stroke-dasharray="10 8"/></svg>
+  <div class="tag an pop" style="left:520px;top:134px;--d:1.4s;background:var(--bad-t)">held out</div>
+  <div class="card pad an pop" style="left:640px;top:160px;width:576px;height:150px;--d:.5s"><div class="t">Only the tests may use · 121 entities</div>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:10px"><span class="chip" style="position:static">trileçe</span><span class="chip" style="position:static">tantuni</span><span class="chip" style="position:static">Kadıköy</span><span class="chip" style="position:static">Teşvikiye</span><span class="chip" style="position:static">Dilara</span><span class="chip" style="position:static">kısır</span><span class="chip" style="position:static">mumbar</span></div></div>
+  <div class="chip an fly" style="left:64px;top:340px;--d:2.3s;--fx:-60px;--fy:0">590 near-copies of a test sentence</div>
+  <div class="stamp an" style="left:384px;top:338px;--d:2.9s;--t:.45s">dropped</div>
+  <div class="chip an fly" style="left:64px;top:392px;--d:3.2s;--fx:-60px;--fy:0">128 that name a held-out entity</div>
+  <div class="stamp an" style="left:384px;top:390px;--d:3.8s;--t:.45s">dropped</div>
+  <div class="card pad an pop" style="left:640px;top:336px;width:132px;height:84px;--d:1.6s"><div class="t">standard</div><div class="big" style="margin-top:6px">60</div></div>
+  <div class="card pad an pop" style="left:788px;top:336px;width:132px;height:84px;--d:1.7s"><div class="t">kanka</div><div class="big" style="margin-top:6px">31</div></div>
+  <div class="card pad an pop" style="left:936px;top:336px;width:132px;height:84px;--d:1.8s"><div class="t">hybrid</div><div class="big" style="margin-top:6px">69</div></div>
+  <div class="card pad an pop" style="left:1084px;top:336px;width:132px;height:84px;--d:1.9s;background:var(--hier-t)"><div class="t">blind</div><div class="big" style="margin-top:6px">97</div></div>
+  <div class="char an pop writes" data-char="robot" data-c="#6250d6" data-t="12B" data-s=".72" style="left:64px;top:452px;--d:5s;--wd:6.4s"></div>
+  <div class="lbl an fade" style="left:60px;top:578px;--d:5.2s">teacher · Gemma 4 12B</div>
+  <div class="callcard an pop" style="left:190px;top:462px;--d:5.6s;font-size:13px">intent card: search_menu_items · kısır · ≤ 90 TL · casual</div>
+  <div class="bub abs an fly" style="left:190px;top:530px;--d:7s;--fx:-30px;--fy:-20px">kanka 90 liraya kısır olan bi yer var mı ya?</div>
+  <svg class="abs an fade" style="left:470px;top:424px;--d:7.8s" width="700" height="140" aria-hidden="true"><path class="an draw" style="--len:780;--d:7.8s;--t:.7s" d="M4 124 C300 124 600 120 684 8" fill="none" stroke="#6250d6" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="7 7"/></svg>
+  <div class="tag an pop" style="left:640px;top:580px;--d:8.6s;background:var(--hier-t)">written without seeing a template · scored once, at the end</div>
+  <div class="subs"><span data-at=".4">no dish, place or person from a test is ever trained on</span><span data-at="2.3">a sentence too close to a test sentence is dropped</span><span data-at="5">a bigger model wrote one suite from intent cards alone</span><span data-at="8.6">that blind suite was scored once and never tuned against</span></div>
+</section>
+
+<!-- 6 ─ LoRA -->
+<section class="slide" data-dur="13" aria-label="LoRA">
+  <div class="head"><div class="kicker an rise" style="--k:var(--active-t)"><i style="--kc:var(--active)"></i>Step 3 · training</div><h2 class="an rise" style="--d:.1s">LoRA: train 1% of the model</h2></div>
+  <div class="badges"><div class="bdg an pop" style="--d:9.4s;--c:var(--active)"><b>24.2 M</b><span>trained numbers</span></div><div class="bdg an pop" style="--d:9.6s;--c:var(--active)"><b>97 MB</b><span>adapter file</span></div><div class="bdg an pop" style="--d:9.8s"><b>rank 16</b><span>alpha 32</span></div></div>
+  <div id="lora"></div>
+  <div class="chip an pop" style="left:70px;top:330px;--d:.3s;font-size:16px">x</div>
+  <div class="lbl an fade" style="left:200px;top:150px;--d:.5s">W · 2048 × 1536 · a weight matrix of the model</div>
+  <div class="tag an pop" style="left:398px;top:346px;--d:1.3s;background:var(--direct-t)">❄ frozen</div>
+  <div class="lbl an fade" style="left:200px;top:470px;--d:2.6s">A · 16 × 1536</div>
+  <div class="lbl an fade" style="left:576px;top:500px;--d:3.1s">B · 2048 × 16</div>
+  <div class="tag an pop" style="left:398px;top:396px;--d:3.4s;background:var(--active-t)">✎ trained</div>
+  <div class="chip an pop" style="left:700px;top:284px;--d:5s;font-size:16px">h</div>
+  <div class="traveler an travel" style="--d:4.2s;--t:1.6s;offset-path:path('M 114 340 C 150 340, 160 256, 198 256 L 486 256 C 560 256, 600 270, 646 294')"><div class="dot" style="--c:var(--direct)"></div></div>
+  <div class="traveler an travel" style="--d:4.2s;--t:1.6s;offset-path:path('M 114 352 C 150 352, 160 442, 198 442 L 566 442 C 620 442, 650 380, 658 316')"><div class="dot" style="--c:var(--active)"></div></div>
+  <div class="outbox an pop" style="left:64px;top:556px;width:660px;--d:5.4s">h = W·x + <span class="gen" style="color:var(--active);background:var(--active-t)">(α / r) · B·A·x</span></div>
+  <div class="lbl an fade" style="left:790px;top:150px;--d:7.2s"><b>35</b> decoder layers · <b>205</b> matrices get an adapter</div>
+  <div class="lbl an fade" style="left:1104px;top:214px;--d:7.6s;white-space:normal;width:120px">attention<br>q · k · v · o</div>
+  <div class="lbl an fade" style="left:1104px;top:286px;--d:7.8s;white-space:normal;width:120px">MLP<br>gate · up · down</div>
+  <div class="lbl an fade" style="left:790px;top:516px;--d:9.4s">parameters</div>
+  <div class="an pop" style="position:absolute;left:790px;top:540px;width:426px;height:28px;border:3px solid var(--ink);border-radius:8px;background:var(--direct-t);overflow:hidden;--d:9.2s"><i class="an grow" style="display:block;height:100%;width:7px;background:var(--active);border-right:2px solid var(--ink);--d:9.8s;--t:.5s"></i></div>
+  <div class="lbl an fade" style="left:790px;top:576px;--d:10s;color:var(--ink)">24.2 M trained <span style="color:var(--muted)">of 2.3 B · 1.05% · the rest never changes</span></div>
+  <div class="subs"><span data-at=".4">the model's own weights stay frozen</span><span data-at="2.4">beside a weight matrix, two thin ones are trained</span><span data-at="4.2">both paths read the same input; their outputs add</span><span data-at="7.2">205 matrices in 35 layers get such a pair</span><span data-at="9.4">24 million numbers: about 1% of the model</span><span data-at="11.2">after training, B·A is folded back into W</span></div>
+</section>
+
+<!-- 7 ─ TRAINING -->
+<section class="slide" data-dur="11" aria-label="Training on a shared prefix">
+  <div class="head"><div class="kicker an rise" style="--k:var(--active-t)"><i style="--kc:var(--active)"></i>Step 3 · training</div><h2 class="an rise" style="--d:.1s">One prompt, read once per step</h2></div>
+  <div class="badges"><div class="bdg an pop" style="--d:8.6s"><b>34.6 min</b><span>one RTX 5090</span></div><div class="bdg an pop" style="--d:8.8s"><b>4,774</b><span>steps · 0.44 s</span></div><div class="bdg an pop" style="--d:9s"><b>44,206</b><span>samples</span></div></div>
+  <div class="ctx" style="left:64px;top:228px"><div class="seg an pop" style="width:540px;--sc:var(--direct-t);--d:.4s"><i class="sw an fill" style="--w:100%;--d:.7s;--t:1s"></i><i class="cells"></i><span class="lab">system prompt + 15 tool declarations · 1,454 tokens <span class="okm an pop" style="--d:1.8s">✓</span></span></div></div>
+  <div class="lbl an fade" style="left:64px;top:292px;--d:1.9s">read once, its keys and values shared by the whole batch</div>
+  <div id="samples7"></div>
+  <div class="tag an pop" style="left:660px;top:416px;--d:4.6s;background:var(--ok-t)">loss only on the green part · the output layer is 262,144 wide</div>
+  <div class="panel an rise" style="left:64px;top:340px;width:540px;height:270px;--d:5.4s"><h3>Dev loss <small>1,616 unseen targets · lower is better</small></h3><div id="loss7"></div></div>
+  <div class="card pad an pop" style="left:660px;top:470px;width:268px;height:140px;--d:6.8s"><div class="t">Past turns, shown both ways</div><div class="s">half of the histories as a live chat holds them, half as a replayed one renders: the phone may do either</div></div>
+  <div class="card pad an pop" style="left:948px;top:470px;width:268px;height:140px;--d:7.2s"><div class="t">Same as the phone</div><div class="s">prefill the tool block once, decode against it: the training loop is the serving loop</div></div>
+  <div class="subs"><span data-at=".4">every sample starts with the same 1,454 tokens</span><span data-at="2.2">so they are read once and the batch decodes against them</span><span data-at="4.6">the loss is computed only where the model must answer</span><span data-at="6.8">one epoch, 35 minutes on one GPU</span></div>
+</section>
+
+<!-- 8 ─ SECOND HOP -->
+<section class="slide" data-dur="12" aria-label="Run the tool, answer the result">
+  <div class="head"><div class="kicker an rise" style="--k:var(--classes-t)"><i style="--kc:var(--classes)"></i>Step 4 · the second hop</div><h2 class="an rise" style="--d:.1s">The sentence is written from the result</h2></div>
+  <div class="bub abs an pop" style="left:64px;top:150px;--d:.4s">250 tl üstü olmasın, çoban salata bul</div>
+  <div class="callcard an pop" style="left:64px;top:200px;--d:1.3s;font-size:13px">search_menu_items{query:"çoban salata", max_price:250}</div>
+  <div class="card pad an pop" style="left:64px;top:262px;width:580px;height:138px;--d:2.4s"><div class="t">Tool result, run by the app · count <span class="hit an hl" style="--d:5.6s">2</span></div>
+    <div class="mono" style="font-weight:600;font-size:13.5px;line-height:1.9;margin-top:6px">Tereyağlı Çoban Salata · <span class="hit an hl" style="--d:5.9s">80</span> · <span class="hit an hl" style="--d:6.5s">Han Kahve</span><br>Yarım Çoban Salata · <span class="hit an hl" style="--d:6.2s">100</span> · Meşhur Restoran</div></div>
+  <div class="tag an pop" style="left:64px;top:424px;--d:4.2s;background:var(--ok-t)">the training label: built by code from the result</div>
+  <div class="outbox an pop" style="left:64px;top:458px;width:580px;font:600 15.5px/1.6 var(--body);--d:4.5s"><span class="gen">2</span> yerde buldum, fiyatlar <span class="gen">80</span> ile <span class="gen">100</span> lira arasında. En ucuzu <span class="gen">Han Kahve</span>.</div>
+  <div class="card pad an pop" style="left:700px;top:150px;width:516px;height:238px;--d:7.4s"><div class="t">Nothing found → one concrete way to widen</div>
+    <div style="display:flex;flex-direction:column;gap:7px;margin-top:10px">
+      <div class="bub me" style="font-size:12.5px">50 liranın altında levrek var mı</div>
+      <div class="bub ai" style="font-size:12.5px">50 liranın altında levrek çıkmadı. Bütçeyi biraz açalım mı?</div>
+      <div class="bub me an pop" style="font-size:12.5px;--d:8.4s">evet bak</div>
+      <div class="chip ok an pop" style="position:static;align-self:flex-start;font-size:12px;--d:9s">search_menu_items{query:"levrek"}</div></div></div>
+  <div class="card pad an pop" style="left:700px;top:408px;width:248px;height:116px;--d:9.6s"><div class="t">At most three places</div><div class="s">the app draws the cards; the sentence does not list them</div></div>
+  <div class="card pad an pop" style="left:968px;top:408px;width:248px;height:116px;--d:9.9s"><div class="t">A failed lookup</div><div class="s">said once: "Şu an verilere ulaşamadım, birazdan tekrar dene."</div></div>
+  <div class="lbl an fade" style="left:64px;top:566px;--d:10.4s"><b>14,395</b> result sentences in training · of 5,416 checked, <b style="color:var(--ok)">0</b> state a number or name that is not in the result</div>
+  <div class="subs"><span data-at=".4">before, the benchmark stopped at the call</span><span data-at="2.4">the app runs the tool and hands the result back</span><span data-at="4.2">the sentence about it is where small models invent</span><span data-at="5.6">so its label takes every value from the result</span><span data-at="7.4">an empty result gets one concrete suggestion</span><span data-at="8.4">and "evet" then means that same search, wider</span></div>
+</section>
+
+<!-- 9 ─ QUANTISATION -->
+<section class="slide" data-dur="11" aria-label="Quantisation">
+  <div class="head"><div class="kicker an rise" style="--k:var(--decision-t)"><i style="--kc:var(--decision)"></i>Step 5 · export</div><h2 class="an rise" style="--d:.1s">Quantisation can undo the training</h2></div>
+  <div class="badges"><div class="bdg an pop" style="--d:8.6s"><b>2,862 MB</b><span>the bundle</span></div><div class="bdg an pop" style="--d:8.8s;--c:var(--ok)"><b>dev</b><span>chosen on, not tests</span></div></div>
+  <div class="lbl an fade" style="left:64px;top:150px;--d:.3s">4-bit, <b>one scale per row</b></div>
+  <div id="qrow" class="abs" style="left:64px;top:182px"></div>
+  <div class="lbl an fade" style="left:64px;top:372px;--d:1.4s">4-bit, <b>one scale per block of 32</b></div>
+  <div id="qblk" class="abs" style="left:64px;top:404px"></div>
+  <div class="note an fade" style="left:64px;top:584px;width:400px;--d:2.4s">Each group of weights is rounded to 16 levels around its own scale. Smaller groups, closer fit: 290 MB more.</div>
+  <div class="panel an rise" style="left:500px;top:150px;width:716px;height:270px;--d:2.8s;--kw:250px" data-chart="quant"><h3>Dev exact after export <small>v0 adapter · 200 turns per group</small></h3></div>
+  <div class="callcard an fly" style="left:500px;top:452px;--d:6s;--fx:0;--fy:40px;font-size:13px">query:"mücvebik çorbası"</div>
+  <div class="stamp an" style="left:726px;top:460px;--d:6.6s;--t:.45s">garbled</div>
+  <div class="callcard an fly" style="left:846px;top:452px;--d:7s;--fx:0;--fy:40px;font-size:13px">{query:&lt;|"|&gt;kafe&lt;|"|&gt;&lt;|"|&gt;}</div>
+  <div class="stamp an" style="left:1090px;top:460px;--d:7.6s;--t:.45s">unparseable</div>
+  <div class="note an fade" style="left:500px;top:532px;width:716px;--d:8s">The converter's stock recipe and channel-wise int4 each lost a third of the answers; 21 and 15 of their 200 calls could not be read by LiteRT-LM's own parser. Block-wise int4 (with int8 on the per-layer embedding projection) kept them.</div>
+  <div class="subs"><span data-at=".4">a phone needs 4-bit weights; rounding them is the risk</span><span data-at="2.8">the stock recipe: a third of the answers gone</span><span data-at="4.6">finer scales, one per 32 weights, keep the model</span><span data-at="6">what the broken export wrote</span><span data-at="8">the recipe was picked on a dev split, never on the tests</span></div>
+</section>
+
+<!-- 10 ─ THE GUARD -->
+<section class="slide" data-dur="12" aria-label="The guard">
+  <div class="head"><div class="kicker an rise" style="--k:var(--active2-t)"><i style="--kc:var(--active2)"></i>Step 6 · in the app</div><h2 class="an rise" style="--d:.1s">Don't trust what you can check</h2></div>
+  <div class="char an pop think" data-char="robot" data-m="1" data-c="#eb6834" data-s=".78" style="left:64px;top:160px;--d:.3s;--bd:.6s"></div>
+  <svg class="abs" width="1280" height="20" style="left:0;top:296px" aria-hidden="true"><line class="an draw" style="--len:1060;--d:.8s;--t:1.2s" x1="170" y1="10" x2="1216" y2="10" stroke="#1d2440" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round"/></svg>
+  <div class="traveler an travel" style="--d:1.6s;--t:8.6s;offset-path:path('M 170 306 H 1216')"><div class="dot" style="--c:var(--active2)"></div></div>
+  <div class="gate an pop" style="left:200px;top:160px;--d:1.6s"><b>schema</b><span>types, enums, clock times</span></div>
+  <div class="gate an pop" style="left:406px;top:160px;--d:3.2s"><b>ids</b><span>only ones the app listed</span></div>
+  <div class="gate an pop" style="left:612px;top:160px;--d:4.8s"><b>grounding</b><span>the user's own words</span></div>
+  <div class="gate an pop" style="left:818px;top:160px;--d:6.4s"><b>confirm first</b><span>a send answers a proposal</span></div>
+  <div class="gate an pop" style="left:1024px;top:160px;--d:8s;background:var(--ok-t)"><b>faithful</b><span>the sentence after the tool</span></div>
+  <div class="fix an pop" style="left:200px;top:326px;--d:2.2s"><s>open_at:"24:00"</s><em>open_at:"00:00"</em></div>
+  <div class="fix an pop" style="left:406px;top:326px;--d:3.8s"><s>restaurant_id:"r_123"</s><em>never listed: dropped</em></div>
+  <div class="fix an pop" style="left:612px;top:326px;--d:5.4s"><s>query:"mümbär"</s><em>query:"mumbar"</em></div>
+  <div class="fix an pop" style="left:818px;top:326px;--d:7s"><s>send_message(…)</s><em>"… göndereyim mi?"</em></div>
+  <div class="fix an pop" style="left:1024px;top:326px;--d:8.6s"><s>"… 450 lira"</s><em>rewritten from the result</em></div>
+  <div class="card pad an pop" style="left:64px;top:452px;width:270px;height:140px;--d:9.6s"><div class="t">Hallucinated calls</div><div class="big" style="margin-top:10px"><span style="color:var(--bad)">3</span> → <span style="color:var(--ok)">0</span></div><div class="s">257 test messages, the shipped bundle</div></div>
+  <div class="card pad an pop" style="left:358px;top:452px;width:270px;height:140px;--d:9.9s"><div class="t">Unsafe sends</div><div class="big" style="margin-top:10px;color:var(--ok)">0</div><div class="s">with and without the guard</div></div>
+  <div class="card pad an pop" style="left:652px;top:452px;width:270px;height:140px;--d:10.2s"><div class="t">Extra passes</div><div class="big" style="margin-top:10px">none</div><div class="s">no router, no grammar: plain code after the model</div></div>
+  <div class="card pad an pop" style="left:946px;top:452px;width:270px;height:140px;--d:10.5s"><div class="t">Nothing hidden</div><div class="big" style="margin-top:10px">logged</div><div class="s">every change is in the report; scores are given with and without it</div></div>
+  <div class="subs"><span data-at=".4">a fine-tune makes answers likely right, not guaranteed</span><span data-at="1.6">so the app checks every call in code</span><span data-at="4.8">a searched word must come from what the user typed</span><span data-at="6.4">a message is sent only after "Göndereyim mi?"</span><span data-at="8">and the sentence about a result may state only the result</span></div>
+</section>
+
+<!-- 11 ─ RUNTIME -->
+<section class="slide" data-dur="11" aria-label="On LiteRT-LM">
+  <div class="head"><div class="kicker an rise" style="--k:var(--hier-t)"><i style="--kc:var(--hier)"></i>Step 7 · runtime</div><h2 class="an rise" style="--d:.1s">The phone's runtime, inside the TUI</h2></div>
+  <div class="card pad an pop" style="left:64px;top:160px;width:230px;height:104px;--d:.3s"><div class="t">feast AI TUI</div><div class="s">chat, telemetry, session report</div></div>
+  <svg class="abs an fade" style="left:300px;top:192px;--d:.7s" width="56" height="40" aria-hidden="true"><path d="M4 20 H44 M32 8 L48 20 L32 32" fill="none" stroke="#1d2440" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <div class="card pad an pop" style="left:362px;top:160px;width:300px;height:104px;--d:.9s"><div class="t">worker process</div><div class="s">pinned cores · RAM ceiling · keeps the conversation</div></div>
+  <svg class="abs an fade" style="left:668px;top:192px;--d:1.3s" width="56" height="40" aria-hidden="true"><path d="M4 20 H44 M32 8 L48 20 L32 32" fill="none" stroke="#1d2440" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <div class="card pad an pop" style="left:730px;top:160px;width:330px;height:104px;--d:1.5s;background:var(--hier-t)"><div class="t">LiteRT-LM · the mobile runtime</div><div class="s mono" style="color:var(--ink)">mustachio-e2b.litertlm</div></div>
+  <div class="char an pop" data-char="robot" data-m="1" data-c="#eb6834" data-s=".7" style="left:1100px;top:150px;--d:1.8s"></div>
+  <div class="card pad an pop" style="left:64px;top:300px;width:370px;height:140px;--d:2.8s"><div class="t" style="color:var(--ok)">live · the chat continues</div><div class="big" style="margin-top:8px">1.0 s <span style="font:700 13px var(--body);color:var(--muted)">to the first token</span></div><div class="s">only the new message is read</div></div>
+  <div class="card pad an pop" style="left:455px;top:300px;width:370px;height:140px;--d:4.2s"><div class="t" style="color:var(--direct)">clone · a new chat</div><div class="big" style="margin-top:8px">7.6 s <span style="font:700 13px var(--body);color:var(--muted)">once per app start</span></div><div class="s">the 1,454-token prompt, prefilled and shared</div></div>
+  <div class="card pad an pop" style="left:846px;top:300px;width:370px;height:140px;--d:5.6s"><div class="t" style="color:var(--bad)">replay · history was rewritten</div><div class="big" style="margin-top:8px">14 s <span style="font:700 13px var(--body);color:var(--muted)">for 2,650 tokens</span></div><div class="s">so the window moves rarely, and by half</div></div>
+  <div class="lbl an fade" style="left:64px;top:470px;--d:7s">one turn with a tool · 4 threads</div>
+  <div class="ctx" style="left:64px;top:494px">
+    <div class="seg an pop" style="width:330px;--sc:var(--active-t);--d:7.2s"><i class="sw an fill" style="--w:100%;--d:7.3s;--t:.9s"></i><i class="cells"></i><span class="lab">the call · 2.3–3.6 s</span></div>
+    <div class="seg an pop" style="width:120px;--sc:#eef1f7;--d:8.2s"><i class="sw"></i><span class="lab">guard · tool</span></div>
+    <div class="seg an pop" style="width:330px;--sc:var(--ok-t);--d:8.5s"><i class="sw an fill" style="--w:100%;--d:8.6s;--t:.9s"></i><i class="cells"></i><span class="lab">the sentence · about 3 s</span></div>
+  </div>
+  <div class="chip an pop" style="left:870px;top:486px;--d:9.4s;font-family:var(--body);font-weight:700;white-space:normal;width:346px;line-height:1.35">one prefill size (256) made every request read 256 tokens: 1.9 s → 1.0 s with Google's two sizes, 128 + 1024</div>
+  <div class="lbl an fade" style="left:64px;top:566px;--d:9.8s">decode ~10 tokens a second · a call is ~20 tokens</div>
+  <div class="subs"><span data-at=".4">the TUI got a third engine: the one the mobile app ships</span><span data-at="2.8">the worker keeps the conversation, like a phone app would</span><span data-at="5.6">re-reading a chat is the expensive case</span><span data-at="7">a turn is two short generations with the tool between</span><span data-at="9.4">a wrong export setting cost a second per request</span></div>
+</section>
+
+<!-- 12 ─ RESULTS -->
+<section class="slide" data-dur="10" aria-label="Results">
+  <div class="head"><div class="kicker an rise"><i></i>Benchmark · 257 messages · 4 suites</div><h2 class="an rise" style="--d:.1s">Results: the bundle that ships</h2></div>
+  <div class="panel an rise" style="left:64px;top:150px;width:566px;height:236px;--d:.3s;--kw:170px" data-chart="suites"><h3>Exact, after the guard <small>as written → guarded</small></h3></div>
+  <div class="panel an rise" style="left:650px;top:150px;width:566px;height:236px;--d:.45s;--kw:210px" data-chart="prev91"><h3>The 91 messages of part 1 <small>exact</small></h3></div>
+  <div class="panel an rise" style="left:64px;top:404px;width:566px;height:226px;--d:.6s;--kw:210px" data-chart="halluc"><h3>Hallucinated calls <small>of 257 · lower is better</small></h3></div>
+  <div class="panel an rise" style="left:650px;top:404px;width:566px;height:226px;--d:.75s;--kw:250px" data-chart="dev"><h3>Unseen dev conversations <small>bundle · 300 turns</small></h3></div>
+  <div class="lbl" style="left:64px;top:650px;font-weight:600;color:var(--faint)">LiteRT-LM on CPU · one pass · greedy · blind suite scored once · part 1 rows: llama.cpp Q4_K_M, 3 cores, another prompt (not like-for-like)</div>
+</section>
+
+<!-- 13 ─ SAMPLES: A CHAT -->
+<section class="slide" data-dur="14" aria-label="Samples: a chat">
+  <div class="head"><div class="kicker an rise" style="--k:var(--active-t)"><i style="--kc:var(--active)"></i>Samples</div><h2 class="an rise" style="--d:.1s">A chat with Mustachio</h2></div>
+  <div class="lbl an fade" style="left:500px;top:98px;--d:.4s">real output of the shipped bundle in the TUI · tools answered by a mock neighbourhood</div>
+  <div class="phone sm an pop" style="left:64px;top:130px;width:368px;height:500px;--d:.3s"><div class="notch"></div><div class="pbar">feast</div><div class="chat">
+    <div class="bub me an pop" style="--d:.8s">selam, sen kimsin</div>
+    <div class="bub ai an pop" style="--d:1.6s">Mustachio ben, feast'in bıyıklı asistanı. Telefonunda çalışıyorum; yazdıkların burada kalıyor.</div>
+    <div class="bub me an pop" style="--d:3s">kanka yakında güzel bi kahveci var mı</div>
+    <div class="bub ai an pop" style="--d:3.9s"><div class="row">⚙ search_restaurants · kahveci</div><div class="row card1">▸ Asma Kahve · 2 dk</div>Bir yer çıktı: Asma Kahve, 2 dakikalık yürüme mesafesinde.</div>
+    <div class="bub me an pop" style="--d:5.4s">ilki kaça kadar açık</div>
+    <div class="bub ai an pop" style="--d:6.2s"><div class="row">⚙ get_restaurant_details · r_106</div>Asma Kahve 09:00-23:00 arası açık. Şu an açık.</div>
+  </div></div>
+  <div class="phone sm an pop" style="left:456px;top:130px;width:368px;height:500px;--d:.45s"><div class="notch"></div><div class="pbar">feast</div><div class="chat">
+    <div class="bub me an pop" style="--d:7.2s">50 liranın altında levrek var mı</div>
+    <div class="bub ai an pop" style="--d:8s"><div class="row">⚙ search_menu_items · levrek ≤ 50</div><div class="row card1">∅ sonuç yok</div>50 liranın altında levrek çıkmadı. Bütçeyi biraz açalım mı?</div>
+    <div class="bub me an pop" style="--d:9.2s">evet bak</div>
+    <div class="bub ai an pop" style="--d:10s"><div class="row">⚙ search_menu_items · levrek</div><div class="row card1">▸ Izgara Levrek · 520 TL · Rıhtım Balık</div>Bir yerde buldum: Rıhtım Balık, Izgara Levrek 520 lira.</div>
+    <div class="bub me an pop" style="--d:11s">sessiz, laptopla çalışmalık bi yer lazım</div>
+    <div class="bub ai an pop" style="--d:11.6s"><div class="row">⚙ ask_about_posts · "Laptopla çalışılabilen, sessiz bir mekan var mı?"</div></div>
+  </div></div>
+  <div class="phone sm an pop" style="left:848px;top:130px;width:368px;height:500px;--d:.6s"><div class="notch"></div><div class="pbar">feast</div><div class="chat">
+    <div class="bub me an pop" style="--d:12s">Elife yaz, akşam 8de Asma Kahvede buluşalım de</div>
+    <div class="bub ai an pop" style="--d:12.5s">Elif'e "akşam 8de Asma Kahvede buluşalım" göndereyim mi?</div>
+    <div class="bub me an pop" style="--d:13s">evet gönder</div>
+    <div class="bub ai an pop" style="--d:13.4s"><div class="row">⚙ send_message_to_friends · Elif</div>Tamam, gönderdim.</div>
+    <div class="bub me an pop" style="--d:13.8s">what's the cheapest burger around here</div>
+    <div class="bub ai an pop" style="--d:14.2s"><div class="row">⚙ search_menu_items · burger, cheapest first</div><div class="row card1">▸ Cheeseburger · 310 TL · Mavi Burger</div>Cheeseburger at Mavi Burger, 310 lira.<div class="row" style="border:0;color:var(--active)">the model answered in Turkish; the language check rewrote it</div></div>
+  </div></div>
+  <div class="subs"><span data-at=".4">the persona, a tool call, a follow-up by position</span><span data-at="7.2">nothing found: one suggestion, and "evet" widens that search</span><span data-at="12">a message is proposed first, sent only after a yes</span></div>
+</section>
+
+<!-- 14 ─ SAMPLES: AS PEOPLE TYPE -->
+<section class="slide" data-dur="11" aria-label="Samples: as people type">
+  <div class="head"><div class="kicker an rise" style="--k:var(--active-t)"><i style="--kc:var(--active)"></i>Samples</div><h2 class="an rise" style="--d:.1s">As people type it</h2></div>
+  <div class="lbl an fade" style="left:700px;top:92px;--d:.4s">held-out test messages and what the shipped bundle answered</div>
+  <div id="rows14"></div>
+  <div class="subs"><span data-at=".4">English words inside Turkish sentences, typed fast</span><span data-at="5.4">sentences a teacher model wrote, never seen in training</span><span data-at="8">and two of the five it still gets wrong</span></div>
+</section>
+
+<!-- 15 ─ COSTS AND NEXT -->
+<section class="slide" data-dur="9" aria-label="What it costs, what comes next">
+  <div class="head"><div class="kicker an rise"><i style="--kc:var(--active)"></i>For feast mobile</div><h2 class="an rise" style="--d:.1s">What it costs, what comes next</h2></div>
+  <div class="take an pop" style="left:64px;top:150px;--d:.4s;--c:var(--decision)"><div class="badge"></div><div class="who">Speed · 4 threads</div><h3>Slower than Google's own bundle</h3>
+    <div class="nums"><div><b style="color:var(--bad)">~10</b><span>tok/s (theirs 16–21)</span></div><div><b>1.0 s</b><span>first token (0.5 s)</span></div><div><b>7.6 s</b><span>prompt, once (5.0 s)</span></div></div></div>
+  <div class="take an pop" style="left:656px;top:150px;--d:.7s;--c:var(--direct)"><div class="badge"></div><div class="who">Storage</div><h3>2.86 GB, plus a cache</h3>
+    <div class="nums"><div><b>2,862 MB</b><span>the bundle</span></div><div><b>1,310 MB</b><span>runtime cache, first load</span></div></div></div>
+  <div class="take an pop" style="left:64px;top:330px;--d:1s;--c:var(--bad)"><div class="badge"></div><div class="who">When history is rewritten</div><h3>The whole chat is read again</h3>
+    <div class="nums"><div><b style="color:var(--bad)">14 s</b><span>2,650 tokens</span></div><div><b>rare</b><span>a blocked send, a moved window</span></div></div></div>
+  <div class="take an pop" style="left:656px;top:330px;--d:1.3s;--c:var(--hier)"><div class="badge"></div><div class="who">Not a phone yet</div><h3>Measured on a desktop CPU</h3>
+    <div class="nums"><div><b>7.4</b><span>tok/s on 2 cores, 3 GB ceiling</span></div><div><b>8–10 s</b><span>a turn with a tool</span></div></div></div>
+  <div class="nexts"><span class="lbl" style="position:static;font-size:15px">Next</span>
+    <span class="chip an pop" style="--d:1.8s">Google's bundle + the LoRA at run time</span><span class="chip an pop" style="--d:1.95s">run it on a phone</span>
+    <span class="chip an pop" style="--d:2.1s">real tools instead of the mock</span><span class="chip an pop" style="--d:2.25s">trim the vocabulary</span><span class="chip an pop" style="--d:2.4s">real user logs</span></div>
+  <a class="hf an fade" data-hf style="position:absolute;left:64px;top:578px;margin:0;--d:2.8s">🤗 the model is on Hugging Face</a>
+</section>
+
+</div></div>
+
+<div id="progress"></div>
+<nav id="controls" aria-label="Slide controls">
+  <button id="prev" aria-label="Previous slide">◀</button>
+  <div class="dots" id="dots"></div>
+  <button id="next" aria-label="Next slide">▶</button>
+  <span id="counter" aria-live="polite">1 / 15</span>
+  <button id="replay" aria-label="Replay this slide's animation">↻ Replay</button>
+  <button id="auto" aria-pressed="false" aria-label="Play as a clip">▶ Play clip</button>
+  <button id="full" aria-label="Full screen">⛶</button>
+</nav>
+
+<script>
+(() => {
+  // Where the model was pushed. Put the repo URL here and both links go live.
+  const HF_URL = "";
+
+  const INK = "#1d2440";
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const el = (html) => { const t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstChild; };
+  const $ = (id) => document.getElementById(id);
+
+  document.querySelectorAll("[data-hf]").forEach(a => {
+    if (HF_URL) { a.href = HF_URL; a.target = "_blank"; a.rel = "noopener"; }
+  });
+
+  // ---------- characters ----------
+  const CHAR = {
+    // o.m draws the mustache instead of the mouth: the fine-tuned model
+    robot: (o) => `<svg class="robot" viewBox="0 0 130 165" width="${130 * o.s}" height="${165 * o.s}" aria-hidden="true">
+      <line x1="65" y1="20" x2="65" y2="36" stroke="${INK}" stroke-width="4" stroke-linecap="round"/>
+      <circle class="bulb" cx="65" cy="14" r="8" fill="#fff" stroke="${INK}" stroke-width="3"/>
+      <rect x="17" y="36" width="96" height="70" rx="24" fill="#fff" stroke="${INK}" stroke-width="4"/>
+      <rect x="29" y="48" width="72" height="46" rx="15" fill="${INK}"/>
+      <g class="eyes"><ellipse cx="51" cy="64" rx="6" ry="8" fill="#8fe3ff"/><ellipse cx="79" cy="64" rx="6" ry="8" fill="#8fe3ff"/></g>
+      ${o.m ? `<path d="M65 80 C59 73 47 75 41 86 C49 83 58 88 65 83 C72 88 81 83 89 86 C83 75 71 73 65 80 Z" fill="#fff"/>`
+            : `<path d="M56 83 q9 6 18 0" stroke="#8fe3ff" stroke-width="3" fill="none" stroke-linecap="round"/>`}
+      <path class="arm-l" d="M33 122 q-20 2 -22 22" stroke="${INK}" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path class="arm-r" d="M97 122 q20 2 22 22" stroke="${INK}" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <rect x="33" y="110" width="64" height="48" rx="16" fill="${o.c}" stroke="${INK}" stroke-width="4"/>
+      <text x="65" y="140" text-anchor="middle" fill="#fff" font-family="Fredoka,Segoe UI,sans-serif" font-weight="700" font-size="17">${o.t}</text></svg>`,
+    env: () => `<svg viewBox="0 0 46 32" width="46" height="32" aria-hidden="true"><rect x="2" y="2" width="42" height="28" rx="5" fill="#fff" stroke="${INK}" stroke-width="3"/><path d="M4 5 L23 19 L42 5" fill="none" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/></svg>`,
+  };
+  document.querySelectorAll("[data-char]").forEach(n => {
+    const d = n.dataset;
+    n.insertAdjacentHTML("afterbegin", CHAR[d.char]({c: d.c || "#2a78d6", s: +(d.s || 1), m: d.m === "1", t: d.t || "E2B"}));
+  });
+
+  // ---------- generated scene parts ----------
+  // a matrix as a grid of cells, popping in row by row
+  const grid = (cols, rows, cell, fill, d0, tint) => {
+    let s = `<svg width="${cols * cell + 4}" height="${rows * cell + 4}" aria-hidden="true">`;
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++)
+      s += `<rect class="an pop" style="--d:${(d0 + (r * cols + c) * .006).toFixed(3)}s;--t:.3s;transform-box:fill-box;transform-origin:center" x="${2 + c * cell}" y="${2 + r * cell}" width="${cell - 4}" height="${cell - 4}" rx="3" fill="${tint ? tint(r, c) : fill}" stroke="${INK}" stroke-width="1.6"/>`;
+    return s + `</svg>`;
+  };
+
+  // slide 6: W (frozen), A and B (trained), the two paths, the 35 layers
+  const lora = $("lora");
+  lora.insertAdjacentHTML("beforeend",
+    `<div class="abs" style="left:200px;top:174px">${grid(14, 8, 20, "#dcebfb", .6)}</div>` +
+    `<div class="abs" style="left:200px;top:420px">${grid(14, 2, 20, "#fde4d8", 2.4)}</div>` +
+    `<div class="abs" style="left:520px;top:360px">${grid(2, 8, 20, "#fde4d8", 2.9)}</div>` +
+    `<svg class="abs" width="1280" height="720" style="left:0;top:0;pointer-events:none" aria-hidden="true">
+      <path class="an draw" style="--len:140;--d:.9s;--t:.5s" d="M114 340 C150 340 160 256 198 256" fill="none" stroke="#2a78d6" stroke-width="3.5" stroke-linecap="round"/>
+      <path class="an draw" style="--len:180;--d:1.2s;--t:.5s" d="M486 256 C560 256 600 270 646 294" fill="none" stroke="#2a78d6" stroke-width="3.5" stroke-linecap="round"/>
+      <path class="an draw" style="--len:150;--d:2.6s;--t:.5s" d="M114 352 C150 352 160 442 198 442" fill="none" stroke="#eb6834" stroke-width="3.5" stroke-linecap="round"/>
+      <path class="an draw" style="--len:40;--d:3s;--t:.3s" d="M486 442 H518" fill="none" stroke="#eb6834" stroke-width="3.5" stroke-linecap="round"/>
+      <path class="an draw" style="--len:190;--d:3.3s;--t:.5s" d="M566 442 C620 442 650 380 658 318" fill="none" stroke="#eb6834" stroke-width="3.5" stroke-linecap="round"/>
+      <g class="an pop" style="--d:3.8s;transform-box:fill-box;transform-origin:center"><circle cx="660" cy="300" r="15" fill="#fff" stroke="${INK}" stroke-width="3.5"/><path d="M652 300 H668 M660 292 V308" stroke="${INK}" stroke-width="3.5" stroke-linecap="round"/></g>
+      <path class="an draw" style="--len:30;--d:4.8s;--t:.3s" d="M677 300 H698" fill="none" stroke="${INK}" stroke-width="3.5" stroke-linecap="round"/>
+    </svg>`);
+  let stack = `<svg class="abs" width="300" height="320" style="left:790px;top:186px" aria-hidden="true">`;
+  for (let i = 0; i < 35; i++) {
+    const y = i * 9, d = (7.2 + i * .035).toFixed(2);
+    stack += `<rect class="an fade" style="--d:${d}s;--t:.3s" x="0" y="${y}" width="300" height="6" rx="3" fill="#dcebfb" stroke="${INK}" stroke-width="1"/>`;
+    // q, o and the three MLP projections on every layer; k and v on the first 15
+    const ticks = i < 15 ? [20, 60, 100, 140, 190, 230, 270] : [20, 140, 190, 230, 270];
+    stack += ticks.map(x => `<rect class="an pop" style="--d:${(+d + .5).toFixed(2)}s;--t:.3s;transform-box:fill-box;transform-origin:center" x="${x}" y="${y - 1}" width="14" height="8" rx="2" fill="#eb6834" stroke="${INK}" stroke-width="1"/>`).join("");
+  }
+  lora.insertAdjacentHTML("beforeend", stack + `</svg>`);
+
+  // slide 7: four samples decoding against the shared prefix, and the dev loss
+  const s7 = $("samples7");
+  [[230, 96], [150, 120], [280, 70], [190, 110]].forEach(([h, t], i) => {
+    const y = 150 + i * 62, d = 2.2 + i * .35;
+    s7.appendChild(el(`<svg class="abs" width="60" height="320" style="left:604px;top:150px;pointer-events:none" aria-hidden="true"><path class="an draw" style="--len:140;--d:${d}s;--t:.4s" d="M4 105 C30 105 30 ${27 + i * 62} 54 ${27 + i * 62}" fill="none" stroke="${INK}" stroke-width="2.5" stroke-linecap="round"/></svg>`));
+    s7.appendChild(el(`<div class="ctx" style="left:660px;top:${y}px">
+      <div class="seg an pop" style="width:${h}px;--sc:#eef1f7;--d:${d + .1}s"><i class="sw"></i><i class="cells"></i><span class="lab">${i === 2 ? "history · tool result" : i === 1 ? "user turn" : "history · user turn"}</span></div>
+      <div class="seg an pop" style="width:${t}px;--sc:var(--ok-t);--d:${d + .3}s"><i class="sw"></i><i class="cells"></i><span class="lab">${i === 2 ? "sentence" : "call"}</span></div></div>`));
+  });
+  // dev loss before training and after steps 900, 1800, 3000, 4774 (from the training log)
+  const LOSS = [[0, 1.0604], [900, .0487], [1800, .0405], [3000, .0250], [4774, .0201]];
+  const X = s => 52 + s / 4774 * 430, Y = v => 180 - v / 1.1 * 150;
+  const line = LOSS.map(([s, v], i) => `${i ? "L" : "M"}${X(s).toFixed(1)} ${Y(v).toFixed(1)}`).join(" ");
+  $("loss7").innerHTML = `<svg width="508" height="214" aria-hidden="true">
+    <line x1="52" y1="180" x2="490" y2="180" stroke="${INK}" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="52" y1="26" x2="52" y2="180" stroke="${INK}" stroke-width="2.5" stroke-linecap="round"/>
+    <path class="an draw" style="--len:640;--d:5.9s;--t:1.4s" d="${line}" fill="none" stroke="#eb6834" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    ${LOSS.map(([s, v], i) => `<circle class="an pop" style="--d:${(6 + i * .3).toFixed(2)}s;transform-box:fill-box;transform-origin:center" cx="${X(s).toFixed(1)}" cy="${Y(v).toFixed(1)}" r="6" fill="#fff" stroke="${INK}" stroke-width="2.5"/>
+      <text class="an fade" style="--d:${(6.1 + i * .3).toFixed(2)}s" x="${(X(s) + (i ? 0 : 12)).toFixed(1)}" y="${(Y(v) - (i ? 14 : -5)).toFixed(1)}" text-anchor="${i ? "middle" : "start"}" font-family="Fredoka,Segoe UI,sans-serif" font-weight="700" font-size="15" fill="${INK}">${v.toFixed(i ? 3 : 2)}</text>
+      <text x="${X(s).toFixed(1)}" y="200" text-anchor="middle" font-family="Nunito,Segoe UI,sans-serif" font-weight="700" font-size="12" fill="#5a6280">${i ? s.toLocaleString("en-US") : "start"}</text>`).join("")}
+    <text x="490" y="212" text-anchor="end" font-family="Nunito,Segoe UI,sans-serif" font-weight="700" font-size="11" fill="#8e95ad">training steps</text></svg>`;
+
+  // slide 9: one scale per row against one scale per block
+  const TINT = ["#dcebfb", "#fde4d8", "#d6f3e7", "#fdeec9", "#fbe3ec", "#e5e1fa"];
+  $("qrow").innerHTML = grid(16, 6, 24, "", .4, (r) => TINT[r % 6]);
+  $("qblk").innerHTML = grid(16, 6, 24, "", 1.5, (r, c) => TINT[(r * 4 + Math.floor(c / 4) * 5 + r) % 6]);
+
+  // ---------- charts: label, bar, value on every row ----------
+  const bar = (name, col, pct, text, d, cls) =>
+    `<div class="rrow"><span class="k"><i style="background:${col}"></i>${name}</span><span class="bt"><i class="an grow" style="--w:${Math.max(pct, pct ? 1.5 : 0)}%;--c:${col};--d:${d.toFixed(2)}s;--t:.9s"></i></span><span class="v"${cls ? ` style="color:${cls}"` : ""}>${text}</span></div>`;
+  const CHARTS = {
+    prev: (d) => [["Direct", "var(--direct)", 71], ["Active", "var(--active)", 73], ["Classes · COSMOS", "var(--classes)", 84], ["Active v2", "var(--active2)", 85]]
+      .map(([n, c, v], i) => bar(n, c, v, v + "%", d + i * .12)).join(""),
+    quant: (d) => bar("stock int4, every weight", "var(--bad)", 65.0, "65.0%", d, "var(--bad)") +
+      bar("block-wise int4", "var(--classes)", 95.0, "95.0%", d + .15, "var(--ok)") +
+      `<div class="rsep">another 200 dev turns</div>` +
+      bar("channel-wise int4 / int8", "var(--bad)", 64.5, "64.5%", d + 1.2, "var(--bad)") +
+      bar("Hadamard-rotated int4", "var(--decision)", 86.5, "86.5%", d + 1.35) +
+      bar("block-wise int4", "var(--classes)", 90.0, "90.0%", d + 1.5, "var(--ok)"),
+    suites: (d) => [["standard · 60", 95.0, 98.3], ["kanka · 31", 96.8, 100], ["hybrid · 69", 98.6, 98.6], ["blind · 97", 96.9, 96.9], ["all 257", 96.9, 98.1]]
+      .map(([n, raw, g], i) => bar(n, i === 3 ? "var(--hier)" : "var(--active)", g, `${raw.toFixed(raw % 1 ? 1 : 0)} → ${g.toFixed(g % 1 ? 1 : 0)}%`, d + i * .12)).join("")
+      .replace(/grid-template-columns[^;"]*;?/g, ""),
+    prev91: (d) => bar("Direct · stock model", "var(--direct)", 71, "71%", d) + bar("Active v2 · two passes", "var(--active2)", 85, "85%", d + .12) +
+      bar("Mustachio · as written", "var(--active)", 95.6, "95.6%", d + .24) + bar("Mustachio · guarded", "var(--active)", 98.9, "98.9%", d + .36, "var(--ok)"),
+    halluc: (d) => bar("bf16 adapter, as written", "var(--direct)", 4 / 5 * 100, "4", d) + bar("bundle, as written", "var(--active)", 3 / 5 * 100, "3", d + .12) +
+      bar("bundle, guarded", "var(--classes)", 0, "0", d + .24, "var(--ok)") + bar("unsafe sends, any run", "var(--classes)", 0, "0", d + .36, "var(--ok)"),
+    dev: (d) => bar("calls reproduced exactly", "var(--active)", 100, "159/159", d) +
+      bar("result sentences, only the result", "var(--classes)", 100, "104/104", d + .12) +
+      bar("calls the runtime cannot parse", "var(--classes)", 0, "0", d + .24, "var(--ok)") +
+      `<div class="rsep">bf16 adapter: 267 of 269 calls · 172 of 172 sentences</div>`,
+  };
+  document.querySelectorAll("[data-chart]").forEach((panel, p) => {
+    panel.insertAdjacentHTML("beforeend", CHARTS[panel.dataset.chart](1 + (p % 4) * .25));
+    if (panel.dataset.chart === "suites") panel.querySelectorAll(".v").forEach(v => { v.style.fontSize = "14px"; v.style.whiteSpace = "nowrap"; });
+    if (panel.dataset.chart === "suites") panel.querySelectorAll(".rrow").forEach(r => { r.style.gridTemplateColumns = "150px 1fr 104px"; r.style.marginTop = "8px"; });
+    if (panel.dataset.chart === "dev") panel.querySelectorAll(".rrow").forEach(r => { r.style.gridTemplateColumns = "250px 1fr 74px"; });
+  });
+
+  // slide 14: test messages and the shipped bundle's answers (from the eval report)
+  const ROWS = [
+    ["hybrid", "kanka yarın kadıköye lets go", 'set_active_location{location_query:"Kadıköy"}'],
+    ["hybrid", "şu an open olan bi tantuni yeri lazım asap", 'search_restaurants{query:"tantuni", open_now:true}'],
+    ["hybrid", "gece 2de open olan bi yer var mı, after party açlığı 😅", 'search_restaurants{open_at:"02:00"}'],
+    ["hybrid", "en cheap çiğ köfte nerde abi", 'search_menu_items{query:"çiğ köfte", sort_by:"price_asc"}'],
+    ["hybrid", "first date için romantic bi mekan lazım, öneri?", 'ask_about_posts{question:"İlk buluşma için romantik bir mekan var mı?"}'],
+    ["blind", "abi 3'ten sonra açık olan bi yer var mı ya bi bakayım", 'search_restaurants{open_at:"15:00"}'],
+    ["blind", "kanka 90 liraya kısır olan bi yer var mı ya?", 'search_menu_items{query:"kısır", max_price:90}'],
+    ["blind", "Ali nazik yiyebilirim ama budget olarak 320 TL'yi geçmesin…", 'search_menu_items{query:"Ali", max_price:320}', "a two-word dish, cut short"],
+    ["blind", "Yakınlarda gece nöbeti olan bir eczane var mı…", 'search_restaurants{query:"eczane", open_now:true}', "a pharmacy is not something feast finds"],
+  ];
+  const r14 = $("rows14");
+  ROWS.forEach(([suite, text, call, why], i) => {
+    const d = (i < 5 ? .6 + i * .9 : i < 7 ? 5.4 + (i - 5) * 1.1 : 8 + (i - 7) * 1.1);
+    const row = el(`<div class="srow" style="top:${142 + i * 54}px">
+      <span class="tag an pop" style="--d:${d}s;background:${suite === "blind" ? "var(--hier-t)" : "var(--active-t)"}">${suite}</span>
+      <span class="bub an fly" style="--d:${d}s;--fx:-30px"></span>
+      <span class="chip ${why ? "no" : "ok"} an pop" style="--d:${(d + .45).toFixed(2)}s;font-size:12px"></span>
+      ${why ? `<span class="why an fade" style="--d:${(d + .7).toFixed(2)}s">${why}</span>` : ""}</div>`);
+    row.querySelector(".bub").textContent = text;
+    row.querySelector(".chip").textContent = call;
+    r14.appendChild(row);
+  });
+
+  // subtitles: each line shows until the next one starts
+  document.querySelectorAll(".subs").forEach(box => {
+    const items = [...box.children];
+    items.forEach((s, i) => {
+      const at = +s.dataset.at, next = i < items.length - 1 ? +items[i + 1].dataset.at : null;
+      s.classList.add("an", next === null ? "caplast" : "capio");
+      s.style.setProperty("--d", at + "s");
+      if (next !== null) { s.style.setProperty("--t", (next - at) + "s"); s.classList.add("rm-hide"); }
+    });
+  });
+
+  // ---------- deck ----------
+  const stage = $("stage");
+  const slides = [...document.querySelectorAll(".slide")];
+  const dots = $("dots"), counter = $("counter");
+  const autoBtn = $("auto"), progress = $("progress");
+  let cur = -1, run = 0, timers = [], auto = false, autoTimer = 0;
+  slides.forEach((s, i) => {
+    const b = document.createElement("button");
+    b.setAttribute("aria-label", `Slide ${i + 1}: ${s.getAttribute("aria-label")}`);
+    b.addEventListener("click", () => show(i));
+    dots.appendChild(b);
+    s.querySelectorAll("[data-type]").forEach(n => { n.dataset.full = n.dataset.type; n.textContent = n.dataset.type; });
+  });
+  const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+  function typeIt(n, id) {
+    const txt = n.dataset.full, d = +(n.dataset.d || 0), cps = +(n.dataset.cps || 30);
+    if (reduce) { n.textContent = txt; return; }
+    n.textContent = "";
+    later(() => {
+      let i = 0;
+      n.classList.add("caret");
+      const step = () => { if (id !== run) return; n.textContent = txt.slice(0, ++i); if (i < txt.length) later(step, 1000 / cps); else n.classList.remove("caret"); };
+      step();
+    }, d * 1000);
+  }
+  function countUp(n, id) {
+    const to = +n.dataset.count, d = +(n.dataset.d || 0), dur = +(n.dataset.t || 1.1) * 1000;
+    const put = v => { n.textContent = Math.round(v).toLocaleString("en-US"); };
+    if (reduce) { put(to); return; }
+    put(0);
+    later(() => {
+      let t0 = null;
+      const f = now => {
+        if (id !== run) return;
+        if (t0 === null) t0 = now;
+        const k = Math.max(0, Math.min(1, (now - t0) / dur));
+        put(to * (1 - Math.pow(1 - k, 3)));
+        if (k < 1) requestAnimationFrame(f);
+      };
+      requestAnimationFrame(f);
+    }, d * 1000);
+    // the final value lands even if frames stop (background tab, capture)
+    later(() => { if (id === run) put(to); }, d * 1000 + dur + 120);
+  }
+  function play(s) {
+    run++;
+    timers.forEach(clearTimeout); timers = [];
+    s.classList.remove("play"); void s.offsetWidth; s.classList.add("play");
+    s.querySelectorAll(".caret").forEach(n => n.classList.remove("caret"));
+    s.querySelectorAll("[data-type]").forEach(n => typeIt(n, run));
+    s.querySelectorAll("[data-count]").forEach(n => countUp(n, run));
+    clearTimeout(autoTimer);
+    progress.style.transition = "none"; progress.style.width = "0";
+    if (auto) {
+      const ms = (+(s.dataset.dur || 8) + 1.5) * 1000;
+      requestAnimationFrame(() => { progress.style.transition = `width ${ms}ms linear`; progress.style.width = "100%"; });
+      autoTimer = setTimeout(() => { if (cur < slides.length - 1) show(cur + 1); else setAuto(false); }, ms);
+    }
+  }
+  function show(i) {
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    if (cur >= 0) slides[cur].classList.remove("on", "play");
+    cur = i; slides[i].classList.add("on"); play(slides[i]);
+    [...dots.children].forEach((b, k) => b.classList.toggle("cur", k === i));
+    counter.textContent = `${i + 1} / ${slides.length}`;
+    try { history.replaceState(null, "", "#" + (i + 1)); } catch (e) {}
+  }
+  function setAuto(on) {
+    auto = on; autoBtn.setAttribute("aria-pressed", String(on)); autoBtn.textContent = on ? "❚❚ Pause" : "▶ Play clip";
+    if (on) play(slides[cur]); else { clearTimeout(autoTimer); progress.style.transition = "none"; progress.style.width = "0"; }
+  }
+  $("prev").onclick = () => show(cur - 1);
+  $("next").onclick = () => show(cur + 1);
+  $("replay").onclick = () => play(slides[cur]);
+  autoBtn.onclick = () => setAuto(!auto);
+  $("full").onclick = () => { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen?.().catch(() => {}); };
+  addEventListener("keydown", e => {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    const k = e.key;
+    if (["ArrowRight", "PageDown", " ", "Enter"].includes(k)) { if (document.activeElement && document.activeElement.tagName === "A") return; e.preventDefault(); show(cur + 1); }
+    else if (["ArrowLeft", "PageUp", "Backspace"].includes(k)) { e.preventDefault(); show(cur - 1); }
+    else if (k === "Home") show(0); else if (k === "End") show(slides.length - 1);
+    else if (k === "r" || k === "R") play(slides[cur]);
+    else if (k === "p" || k === "P") setAuto(!auto);
+    else if (k === "f" || k === "F") $("full").click();
+  });
+  let x0 = null;
+  addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, {passive: true});
+  addEventListener("touchend", e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; x0 = null; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); });
+  const fit = () => { stage.style.transform = `scale(${Math.min(innerWidth / 1280, (innerHeight - 58) / 720)})`; };
+  addEventListener("resize", fit); fit();
+  const start = parseInt(location.hash.slice(1), 10);
+  show(Number.isFinite(start) ? start - 1 : 0);
+})();
+</script>
+</body>
+</html>
