@@ -26,6 +26,14 @@ class StreamEvent:
 class Message:
     role: str
     content: str
+    #: For a ``tool`` message: the tool whose result ``content`` is (JSON).
+    name: str = ""
+
+    def payload(self) -> dict:
+        out = {"role": self.role, "content": self.content}
+        if self.name:
+            out["name"] = self.name
+        return out
 
 
 class ChatClient:
@@ -56,8 +64,11 @@ class ChatClient:
             messages.append({"role": "system", "content": prompt.strip()})
 
         if s.keep_history and s.history_turns > 0:
-            window = history[-(s.history_turns * 2):]
-            messages += [{"role": m.role, "content": m.content} for m in window]
+            # A turn is a user message and everything up to the next one: one
+            # reply, or a call, its tool result and the sentence about it.
+            starts = [i for i, m in enumerate(history) if m.role == "user"]
+            window = history[starts[-s.history_turns]:] if len(starts) > s.history_turns                 else history[starts[0]:] if starts else []
+            messages += [m.payload() for m in window]
 
         messages.append({"role": "user", "content": user_text})
         return messages
@@ -106,6 +117,11 @@ class ChatClient:
         """
         usage: dict = {}
         timings: dict = {}
+        #: Structured tool calls (``delta.tool_calls``), assembled by index. An
+        #: engine that parses the model's native call syntax returns them
+        #: instead of text; they are handed on in feast AI's canonical text
+        #: form so the transcript, the history and the judge see one format.
+        calls: dict[int, dict] = {}
         url = f"{self.base_url}/v1/chat/completions"
 
         try:
@@ -140,6 +156,12 @@ class ChatClient:
                             content = delta.get("content")
                             if content:
                                 yield StreamEvent("token", text=content)
+                            for call in delta.get("tool_calls") or []:
+                                slot = calls.setdefault(int(call.get("index") or 0),
+                                                        {"name": "", "arguments": ""})
+                                function = call.get("function") or {}
+                                slot["name"] = function.get("name") or slot["name"]
+                                slot["arguments"] += function.get("arguments") or ""
 
         except httpx.HTTPError as exc:
             yield StreamEvent("error", error=f"Connection error: {exc}")
@@ -148,6 +170,8 @@ class ChatClient:
             yield StreamEvent("error", error=str(exc))
             return
 
+        for _index, call in sorted(calls.items()):
+            yield StreamEvent("token", text=canonical_call(call["name"], call["arguments"]))
         yield StreamEvent("done", usage=usage, timings=timings)
 
     # ------------------------------------------------------------------
@@ -170,9 +194,9 @@ class ChatClient:
             return {"error": str(exc)}
 
     async def complete_once(self, messages: list[dict], max_tokens: int = 1,
-                            timeout: float = 600.0) -> dict:
+                            timeout: float = 600.0, extra: dict | None = None) -> dict:
         """One non-streamed completion - used to prefill a prompt to snapshot."""
-        payload = self._payload(messages)
+        payload = self._payload(messages, extra)
         payload.update(stream=False, max_tokens=max_tokens)
         payload.pop("stream_options", None)
         try:
@@ -208,6 +232,19 @@ class ChatClient:
         except (httpx.HTTPError, ValueError, OSError):
             return {}
         return {}
+
+
+def canonical_call(name: str, arguments: str | dict) -> str:
+    """A structured tool call as ``<tool_call>{json}</tool_call>`` text."""
+    from ..agent.calls import render_call
+
+    if isinstance(arguments, str):
+        try:
+            arguments = json.loads(arguments or "{}")
+        except json.JSONDecodeError:
+            # Unparseable arguments stay visible, so the judge counts them.
+            return f"<tool_call>{name}{arguments}</tool_call>"
+    return render_call(name, arguments if isinstance(arguments, dict) else {})
 
 
 THINK_OPEN = "<think>"

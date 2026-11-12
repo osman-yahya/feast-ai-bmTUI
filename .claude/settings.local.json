@@ -25,7 +25,9 @@
       "PowerShell(python \"$env:TEMP\\\\claude\\\\C--Users-UYSM-3-Desktop-Osman-Bitirme\\\\ff77b06e-5432-4d10-a6fd-fcaa6f1af321\\\\scratchpad\\\\think2.py\")",
       "PowerShell(python -m pyflakes feast_ai; python \"$env:TEMP\\\\claude\\\\C--Users-UYSM-3-Desktop-Osman-Bitirme\\\\ff77b06e-5432-4d10-a6fd-fcaa6f1af321\\\\scratchpad\\\\tui_think.py\")",
       "PowerShell(python -m pyflakes feast_ai; if \\($?\\) { Write-Host \"pyflakes: clean\" }; python \"$env:TEMP\\\\claude\\\\C--Users-UYSM-3-Desktop-Osman-Bitirme\\\\ff77b06e-5432-4d10-a6fd-fcaa6f1af321\\\\scratchpad\\\\tui_think.py\")",
-      "PowerShell(python -m pyflakes feast_ai; python \"$env:TEMP\\\\claude\\\\C--Users-UYSM-3-Desktop-Osman-Bitirme\\\\ff77b06e-5432-4d10-a6fd-fcaa6f1af321\\\\scratchpad\\\\repro.py\")"
+      "PowerShell(python -m pyflakes feast_ai; python \"$env:TEMP\\\\claude\\\\C--Users-UYSM-3-Desktop-Osman-Bitirme\\\\ff77b06e-5432-4d10-a6fd-fcaa6f1af321\\\\scratchpad\\\\repro.py\")",
+      "PowerShell($g = Get-Command gh -ErrorAction SilentlyContinue; if \\($g\\) { $g.Source; gh --version } else { \"gh: not found\" }; $w = Get-Command winget -ErrorAction SilentlyContinue; if \\($w\\) { \"winget: \" + $w.Source } else { \"winget: not found\" }; $s = Get-Command scoop -ErrorAction SilentlyContinue; if \\($s\\) { \"scoop: yes\" }; $c = Get-Command choco -ErrorAction SilentlyContinue; if \\($c\\) { \"choco: yes\" }; git remote -v)",
+      "PowerShell(winget install --id GitHub.cli -e --source winget --accept-package-agreements --accept-source-agreements --silent)"
     ]
   }
 }

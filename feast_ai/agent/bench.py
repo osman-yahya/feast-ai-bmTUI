@@ -143,6 +143,7 @@ class Row:
     encoder_ms: float = 0.0
     reply: str = ""
     error: str = ""
+    guard: str = ""           # native: what the app-side guard changed
 
     @property
     def hallucinated(self) -> bool:
@@ -162,7 +163,8 @@ def _judge(row: Row, turn: Turn, check: CallCheck, reply: str) -> None:
 
 # --------------------------------------------------------------------------
 async def _generate(client: ChatClient, messages: list[dict], started: float,
-                    stop: tuple[str, ...] = (), grammar: str = "") -> tuple[str, dict]:
+                    stop: tuple[str, ...] = (), grammar: str = "",
+                    request: dict | None = None) -> tuple[str, dict]:
     """Stream one completion; return the visible reply and its measurements.
 
     ``grammar`` is a GBNF string for llama.cpp's grammar sampler. A trailing
@@ -178,7 +180,7 @@ async def _generate(client: ChatClient, messages: list[dict], started: float,
     usage: dict = {}
     timings: dict = {}
     error = ""
-    extra: dict = {}
+    extra: dict = dict(request or {})
     if stop:
         extra["stop"] = list(stop)
     if grammar:
@@ -451,6 +453,53 @@ class ContextStore:
                 "avg_bytes": (sum(sizes) / len(sizes)) if sizes else 0}
 
 
+def _native_request(context: AgentContext) -> dict:
+    """What every ``native`` request carries besides its messages."""
+    from . import native
+
+    # Greedy regardless of --temperature: which tool to call is not sampled.
+    return {"tools": native.declarations(context.tags), "temperature": 0.0}
+
+
+async def _native_turn(row: Row, turn: Turn, history: list[Message], context: AgentContext,
+                       client: ChatClient, prompts: dict, started: float,
+                       guarded: bool) -> str:
+    """One pass in the model's own tool format; the app's guard on top if ``guarded``.
+
+    ``native-raw`` judges what the model wrote.  ``native`` judges what the
+    app would act on after :func:`feast_ai.agent.native.guard` - and counts
+    every answer the guard changed, so the two rows can be told apart.
+    Returns the reply that enters the history.
+    """
+    from . import native
+
+    prompts.setdefault("native", native.SYSTEM)
+    row.prompt_name = "native"
+    row.offered, row.tools_offered = list(ALL_TOOL_NAMES), len(ALL_TOOL_NAMES)
+    messages = client.build_messages(history, native.user_content(turn.text, context),
+                                     system_prompt=native.SYSTEM)
+    reply, stats = await _generate(client, messages, started, request=_native_request(context))
+    for key, value in stats.items():
+        setattr(row, key, value)
+    if row.error:
+        return reply
+    check = check_reply(reply, ALL_TOOL_NAMES, context.tags)
+    if guarded:
+        outcome = native.guard(
+            check,
+            [native.strip_ctx(m.content) for m in history if m.role == "user"] + [turn.text],
+            [m.content for m in history if m.role == "assistant"],
+            "" if check.is_call else reply, context_line=native.ctx_line(context))
+        row.guard = "; ".join(outcome.notes)
+        check = outcome.check
+        if outcome.text:
+            reply = outcome.text
+        elif check.is_call:
+            reply = render_call(check.name, check.args)
+    _judge(row, turn, check, reply)
+    return reply
+
+
 def _class_ids(decision, previous_ids: tuple[str, ...]) -> tuple[str, ...]:
     """Which classes' tasks and rules a decision's prompt carries."""
     if decision.kind == "inherit":
@@ -483,6 +532,19 @@ async def _run_mode(mode: str, cases, context: AgentContext, client: ChatClient 
         for index, turn in enumerate(case.turns, 1):
             row = Row(mode, case.id, index, turn.text, turn.intent, turn.tool)
             started = time.perf_counter()
+            if base in NATIVE_MODES:
+                from . import native
+
+                if index == 1:  # seeded history reads like the turns that follow
+                    history = [Message(m.role, native.user_content(m.content, context)
+                                       if m.role == "user" else m.content) for m in history]
+                reply = await _native_turn(row, turn, history, context, client, prompts,
+                                           started, guarded=base == "native")
+                history += [Message("user", native.user_content(turn.text, context)),
+                            Message("assistant", reply)]
+                rows.append(row)
+                log(row)
+                continue
             if base in ("active", "active2"):
                 if base == "active":
                     reply = await _active_turn(row, turn, history, context, client, prompts,
@@ -578,6 +640,13 @@ async def _warm_up(context: AgentContext, client: ChatClient, router, mode: str 
 
     base = mode.split("@")[0]
     system, stop, grammar = full_prompt(context), (), ""
+    if base in NATIVE_MODES:
+        from . import native
+
+        await _generate(client, client.build_messages(
+            [], native.user_content("merhaba", context), system_prompt=native.SYSTEM),
+            time.perf_counter(), request=_native_request(context))
+        return
     if base == "active":
         system, stop = index_prompt(context), SELECT_STOP
     elif base == "active2":
@@ -610,6 +679,15 @@ def _all_prompts(context: AgentContext, bases: set[str], used: dict) -> dict[str
     from .prompts import class_prompt
 
     out = {"direct": full_prompt(context)}
+    if bases & set(NATIVE_MODES):
+        from . import native
+
+        # The declarations are rendered by the model's own chat template, so
+        # the text below is what the app sends, not what the model reads; the
+        # token count the model actually prefilled is in each turn's row.
+        out["native"] = native.SYSTEM
+        out["native:declarations"] = json.dumps(native.declarations(context.tags),
+                                                ensure_ascii=False, indent=1)
     if "active" in bases:
         out["active"] = index_prompt(context)
         out.update({f"manual:{t}": manual_message(t, context) for t in ALL_TOOL_NAMES})
@@ -966,7 +1044,10 @@ def _router_meta(settings: Settings) -> dict:
 
 
 ROUTER_MODES = ("hierarchical", "routed", "contexts", "classes")
-MODES = ("direct", "active", "active2") + ROUTER_MODES
+#: One pass in the model's own tool format (for a model trained on the
+#: tools): judged as written, or after the app-side guard.
+NATIVE_MODES = ("native", "native-raw")
+MODES = ("direct", "active", "active2") + NATIVE_MODES + ROUTER_MODES
 
 
 def _snapshot_sets() -> list[tuple[str, ...]]:

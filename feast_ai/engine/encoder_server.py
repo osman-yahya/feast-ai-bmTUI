@@ -17,7 +17,7 @@ from pathlib import Path
 
 from ..config import Settings
 from ..encoders import EncoderSpec
-from .server import BaseServer, EngineError, package_on_pythonpath
+from .server import BaseServer, EngineError, package_on_pythonpath, worker_python
 
 #: What the worker imports. All three are optional for feast AI as a whole.
 REQUIRED = ("onnxruntime", "tokenizers", "numpy")
@@ -45,7 +45,7 @@ class EncoderServer(BaseServer):
         spec: EncoderSpec,
         bank: list[tuple[str, str]],
     ) -> None:
-        super().__init__(Path(sys.executable), settings)
+        super().__init__(Path(worker_python()), settings)
         self.spec = spec
         self.bank = bank
 
@@ -74,7 +74,7 @@ class EncoderServer(BaseServer):
     def _commands(self, model_path: Path, port: int) -> list[list[str]]:
         bank = self._write_bank(model_path)
         return [[
-            sys.executable,
+            worker_python(),
             "-m", "feast_ai.engine.encoder_worker",
             "--model", str(model_path),
             "--onnx", self.spec.onnx_file,

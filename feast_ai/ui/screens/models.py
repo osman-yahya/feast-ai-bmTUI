@@ -139,6 +139,8 @@ class ModelsScreen(Screen):
             title.append("   TURKISH-NATIVE", style="bold #7bd88f")
         elif spec.is_onnx:
             title.append("   ONNX RUNTIME", style="bold #c792ea")
+        elif spec.is_litert:
+            title.append("   LITERT-LM", style="bold #4fc1ff")
         self.query_one("#detail-name", Static).update(title)
 
         meta = Text()
@@ -148,7 +150,8 @@ class ModelsScreen(Screen):
             meta.append(f"{value}\n", style=style)
 
         row("Vendor", spec.vendor)
-        row("Engine", _engine_label(spec), "#c792ea" if spec.is_onnx else "#8b93a7")
+        row("Engine", _engine_label(spec),
+            "#c792ea" if spec.is_onnx else "#4fc1ff" if spec.is_litert else "#8b93a7")
         row("Params", spec.params)
         row("Quant", f"{spec.quant}  ·  {spec.size_label}")
         row("Context", f"{spec.context:,} tokens")
@@ -419,6 +422,12 @@ class ModelsScreen(Screen):
 
 def _engine_label(spec) -> str:
     """What runs this model, plus whether that backend is actually installed."""
+    if spec.is_litert:
+        from ...engine import litert_available, litert_version
+
+        if litert_available():
+            return f"LiteRT-LM {litert_version()} (.litertlm)"
+        return "LiteRT-LM - NOT INSTALLED (pip install litert-lm)"
     if not spec.is_onnx:
         return "llama.cpp (GGUF)"
     from ...engine import onnx_available, onnx_version

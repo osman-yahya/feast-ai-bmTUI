@@ -167,12 +167,13 @@ THINKING_HELP = (
 )
 
 #: How a message reaches the SLM - see :mod:`feast_ai.agent`.
-AGENT_MODES = ["off", "direct", "hierarchical"]
+AGENT_MODES = ["off", "direct", "hierarchical", "native"]
 
 AGENT_LABELS = {
     "off": "Off - plain chat with the system prompt below",
     "direct": "Direct - the SLM sees every tool and decides alone",
     "hierarchical": "Hierarchical - intent router first, then only its tools",
+    "native": "Native - the fine-tuned model's own tool format, one pass, guarded",
 }
 
 AGENT_HELP = (
@@ -180,7 +181,10 @@ AGENT_HELP = (
     "Direct sends all 15 tools on every message. Hierarchical runs the "
     "ModernBERT-TR encoder first: it narrows the prompt to the intent's tools, "
     "or answers trivial requests (open saved items, time, back to GPS) with no "
-    "SLM at all. Compare them with Ctrl+R mid-chat, or `python -m feast_ai bench`."
+    "SLM at all. Native is for a model trained on the tools (mustachio): the "
+    "tools go in as declarations, the call comes back in Gemma 4's own syntax, "
+    "decoding is greedy, and the app checks ids, grounding and confirm-first "
+    "in code. Compare them with Ctrl+R mid-chat, or `python -m feast_ai bench`."
 )
 
 QUANT_PREFERENCES = [

@@ -21,11 +21,16 @@ Bitirme/                 <- git root
     cli.py  config.py  catalog.py  encoders.py  prompts.py  download.py  paths.py
     agent/   tools.py · manuals.py · calls.py · context.py · intents.py · classes.py
              prompts.py · direct.py · router.py · decision.py · suite.py · bench.py
-             page.py · text.py · grammar.py
+             page.py · text.py · grammar.py · native.py · replies.py · mock.py
     engine/  server.py (BaseServer, LlamaServer) · onnx_server.py · onnx_worker.py
+             litert_server.py · litert_worker.py
              encoder_server.py · encoder_worker.py · memcap.py · binaries.py · client.py
     metrics/ sampler.py · session.py
     ui/      app.py · widgets.py · feast.tcss · screens/
+  mustachio/             <- the model workspace (import name mustachio): text-only
+                            Gemma 4 E2B, training data, LoRA fine-tune, eval, export.
+                            Its own README is the source of truth; state lives in
+                            ~/.feast-ai/mustachio/. It imports feast_ai's tools and suites.
 ```
 
 Run every command from the **git root** (`Bitirme/`), not from inside `feast_ai/`. Otherwise `python -m feast_ai` won't resolve.
@@ -44,7 +49,9 @@ python -m feast_ai pull modernbert-tr-embed          # the intent router (int8 O
 python -m feast_ai route "Kaydedilenlerimi göster"    # how the router serves a sentence
 python -m feast_ai bench --router-only --profile budget   # router accuracy/latency, no SLM
 python -m feast_ai bench qwen3-0.6b --profile budget      # direct vs hierarchical, MD+JSON report
-python -m pyflakes feast_ai              # the only static check in use
+python -m mustachio install --activate   # register the exported .litertlm, set agent mode native
+python -m feast_ai bench mustachio-e2b --modes native,native-raw --suite kanka
+python -m pyflakes feast_ai mustachio/*.py   # the only static check in use (not mustachio/: it holds a .venv)
 ```
 
 There is **no test suite**. Verify a change in these steps:
@@ -64,9 +71,11 @@ Never write weights, sessions or logs into the repo.
 
 ## Architecture essentials
 
-- **Two engines, one interface.** `engine.make_server(spec.engine, …)` picks `LlamaServer` (GGUF, single file) or `OnnxServer` (ONNX directory). The *model's* `ModelSpec.engine` decides which, and there is no global switch. Both run as a **subprocess** that exposes an OpenAI-compatible `/v1/chat/completions` (SSE), so `ChatClient` and the telemetry treat them the same way.
+- **Three engines, one interface.** `engine.make_server(spec.engine, …)` picks `LlamaServer` (GGUF, single file), `OnnxServer` (ONNX directory) or `LiteRtServer` (`.litertlm` bundle, the runtime the mobile app ships; needs `pip install litert-lm`). The *model's* `ModelSpec.engine` decides which, and there is no global switch. Both run as a **subprocess** that exposes an OpenAI-compatible `/v1/chat/completions` (SSE), so `ChatClient` and the telemetry treat them the same way.
   - ONNX runs as a subprocess on purpose. Running it in-process would pin the TUI's own process to the core budget and cap the TUI's memory instead of the model's.
   - A new engine should subclass `BaseServer` and implement `_commands()`, which returns candidate command lines in order, later ones being fallbacks. Affinity, RAM cap, priority, health polling and process-tree telemetry then come from the base class. Don't bypass them.
+  - Workers are started with `server.worker_python()`, not `sys.executable`: in a Windows venv `python.exe` is a launcher stub, and the affinity and RAM cap would land on the stub (measured: RSS 4 MB "model").
+  - The LiteRT worker keeps the conversation (`live` / `clone` / `replay`, reported as `timings.path`). A new conversation from a history re-reads all of it (8 s for 3,000 tokens), so: the warm-up must use the same `max_tokens`, tools and sampler as real turns (they are part of the reuse key), and `_fingerprint` deliberately ignores a call's arguments and the sentence after a tool result, the two things the app-side checks may have edited.
 - **CPU budget is applied twice:** `--threads N` and `psutil.cpu_affinity` pinning (`select_cores` prefers even indices, i.e. distinct physical cores on SMT). Threads alone are not a cap.
 - **RAM ceiling = working set, never a commit limit** (`engine/memcap.py`). On Windows it uses `SetProcessWorkingSetSizeEx` with a hard max. On Linux it uses cgroup v2 `memory.high`. Never switch to Job Object `ProcessMemoryLimit` or `memory.max`: those kill the process instead of slowing it down, and slowing down is what a phone actually does. The cap is off by default. When it's on, `Settings.effective_no_mmap` turns `--no-mmap` off on purpose.
 - **Settings** (`config.py`) is a dataclass persisted as JSON. `from_dict` drops unknown keys and validates enums, so you can add fields freely as long as they have defaults. Device profiles are presets. If the user changes any value, `mark_custom_if_needed` relabels the profile as `custom` so reports stay truthful.
@@ -82,8 +91,22 @@ Never write weights, sessions or logs into the repo.
   - The `routed` and `contexts` bench modes make the router a system-prompt picker only (SLM always answers). `contexts` restores a precomputed per-intent KV snapshot (`--slot-save-path`, `ContextStore`), which needs `--swa-full` on Gemma (`Settings.swa_full`) or llama.cpp discards the restored state.
   - Two more bench modes share the tool manuals in `manuals.py` (per-argument hints, one complete example call per tool, the send protocol), so a difference between them is routing, not wording. `active`: one fixed prompt names every tool (`<use>tool</use>`, generation stops at the tag), then that tool's manual is appended as a *system* turn (Gemma 4 renders any role as `<|turn>role`) and dropped from history afterwards; both passes reuse the cached conversation. `classes`: the router picks one of 13 action classes (`classes.py`, the 19 intents merged by what the SLM must do; exemplars are the old ones relabelled, `gold()` maps suite labels) and the class prompt (`prompts.class_static`) carries manuals + class rules; its KV snapshot is restored only when the class changes. A router mode can name its router: `classes@decision-2.0-kai-0.6b`. Decision 2.0 uses `CLASS_THRESHOLDS` and sees the previous user message on that taxonomy. Manual examples follow the exemplar rule: never a paraphrase of a suite sentence.
   - The `active2` bench mode keeps `active`'s idea: the SLM picks a tool by name, and that tool's manual is injected for one pass and then dropped. It adds constraints. `agent/grammar.py` builds GBNF from the same `ToolSpec`s and sends it as `grammar` on `/v1/chat/completions`. Pass A may only produce `<use>`+an exact tool name or plain text. In pass B the call's opening is prefilled as a trailing assistant message, which llama.cpp continues, and the grammar admits only that tool's arguments. `send_message_to_friends` is callable only right after a text turn. On b10144, `json_schema` with a prefill returns HTTP 400, so use `grammar`. Never end a prefill with a space (token boundary). Measured on Gemma 4 E2B over 91 turns: 85% exact (`active` 73%, `classes` 84%), 0 hallucinated calls, reply median 3.43 s. The arguments grammar inflates the bench's page-fault ("page-ins") figure with allocator faults, not weight re-reads.
+  - `native` (`Settings.agent_mode`, bench modes `native` / `native-raw`) is the pipeline for a model trained on the tools (the mustachio bundle): one greedy pass in Gemma 4's own tool format. The declarations travel as `tools` and are rendered by the bundle's template; the volatile context is a `[ctx]` line on the user turn. `agent/native.py` holds the prompt (`SYSTEM`, the Mustachio persona, `declarations`) and the guard: schema coercion, ids must be ones the app listed, searched words/places/people must be the user's (near misses repaired from the user's wording), `send_message_to_friends` only as the answer to its own proposal. Then the chat screen runs the tool (`agent/mock.py`, invented local data), sends the result back as a `tool` message and checks the sentence about it (`agent/replies.py`: a number or name not in the result replaces the sentence with one written from the result). **The prompt, the declarations, the result shapes (`mock.*_item`) and `replies.say` are also the training format and the training labels** (`mustachio/generate.py` imports them): change one and the model has to be retrained. Every intervention is reported (`Turn.guard_note`, `Turn.answer_note`, the bench's `native-raw` row), so the guard cannot hide what the model did.
   - The routing policy is in `router.py` (`decide()` is pure). The margin, not the raw score, is the confidence signal that works (see its docstring for the calibration numbers). The margin is measured against rivals the top group's tools can't serve. A near-tie gets the union of the tied groups (`kind="merged"`, capped at `MAX_MERGED`), not a guess. A direct (no-SLM) answer on a near-tie needs the rival to produce the identical action. A no-tool intent that isn't answered directly falls back to the full prompt.
   - `suite.py` is the held-out test set. **Never add exemplars that paraphrase suite sentences**, since that measures memory, not routing. Tune exemplars against new real queries instead.
+
+## mustachio essentials
+
+`python -m mustachio {inspect,strip,bundle,data,train,eval,teacher,export,install}` from the git root. Read `mustachio/README.md` before changing it; the measured numbers and open items are there.
+
+- **Environment:** `mustachio/.venv` (created with `--system-site-packages`, so it reuses the system torch; it adds peft, accelerate, litert-lm). `litert-torch` does not install on Windows.
+- **Four held-out suites, held out twice.** `mustachio/hybrid.py` is a suite like `suite.py`; `mustachio/blind.py` is generated from `blind_cards.py` by a teacher model that never saw the templates, and is scored once per final model, never tuned against. No training sentence may repeat or paraphrase a suite sentence, and no training slot value may be an entity a suite tests (`lexicon.HELD_OUT`). `python -m mustachio data` enforces both and refuses to build otherwise. Don't loosen the guards to get more data.
+- **One prompt format.** Gemma 4's native tool syntax, rendered by `mustachio/assets/chat_template.jinja`, which is byte-identical to the template inside the LiteRT-LM bundle. Don't replace it with the newer template on the Hugging Face repo: LiteRT-LM's on-device Jinja has no `dict.get`. Training, eval and the phone must render the same string (`template.render` was checked against LiteRT-LM's own renderer).
+- **Volatile context goes in the user turn** (`[ctx]` line), never in the system text: the native template puts the tool declarations after the system text, so anything volatile there re-prefills all of them.
+- **The per-layer embedding table stays in system RAM via two hooks** (`model.place`). Don't use an accelerate `device_map` for it: it copies the 4.7 GB table to the GPU on every forward.
+- **Two kinds of training conversation.** `bare` (a call ends the turn, as the suites and the bench run it) and `executed` (call, tool result, one sentence; `EXECUTED_SHARE`). The sentence is written from the result by `feast_ai.agent.replies.say`, never by a model, so its label states nothing the result does not.
+- **Quantisation is chosen on the dev split, never on the suites** (`eval --suites dev`). The stock `dynamic_wi4_afp32` and channel-wise int4 break this model (65% on dev, calls the runtime cannot parse); `gemma4_mixed48_b32` (`assets/recipes/`, block-wise int4) keeps it (95%). Conversion needs Linux (`litert-torch`, `litert-lm-builder==0.18.1`, `tensorflow`).
+- **Logits only where needed.** The output layer is 262,144 wide; compute it at supervised positions (training) or the last position (decoding), never over the whole 2,087-token prompt.
 
 ## Conventions
 

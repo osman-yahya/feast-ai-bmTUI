@@ -19,7 +19,7 @@ import sys
 from pathlib import Path
 
 from ..config import Settings
-from .server import BaseServer, EngineError, package_on_pythonpath
+from .server import BaseServer, EngineError, package_on_pythonpath, worker_python
 
 #: Advertised on the models screen and in the session report.
 PACKAGE = "onnxruntime-genai"
@@ -49,7 +49,7 @@ class OnnxServer(BaseServer):
     def __init__(self, settings: Settings) -> None:
         # BaseServer wants a path to derive the working directory from; the
         # interpreter is the closest true equivalent for a Python worker.
-        super().__init__(Path(sys.executable), settings)
+        super().__init__(Path(worker_python()), settings)
 
     def _check_available(self) -> None:
         if not available():
@@ -61,7 +61,7 @@ class OnnxServer(BaseServer):
     def _commands(self, model_path: Path, port: int) -> list[list[str]]:
         s = self.settings
         return [[
-            sys.executable,
+            worker_python(),
             "-m", "feast_ai.engine.onnx_worker",
             "--model", str(model_path),
             "--host", "127.0.0.1",

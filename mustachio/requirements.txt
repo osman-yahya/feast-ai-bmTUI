@@ -1,0 +1,14 @@
+# mustachio: slim, train and evaluate the on-device model.
+# `inspect` and `data` need only feast AI's own requirements (httpx).
+
+# strip --verify, train, eval. Install torch for your GPU first
+# (https://pytorch.org); measured here with torch 2.11.0+cu128 on an RTX 5070.
+torch>=2.6
+transformers>=5.5          # the first release with Gemma 4 (Gemma4ForCausalLM)
+peft>=0.20
+accelerate>=1.10
+jinja2>=3.1                # renders the on-device chat template
+
+# bundle: unpack / pack / run .litertlm files. Measured with 0.19.1.
+litert-lm>=0.19
+litert-lm-builder>=0.19

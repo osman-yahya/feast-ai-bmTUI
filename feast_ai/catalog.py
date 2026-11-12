@@ -86,13 +86,14 @@ class ModelSpec:
     extra_args: tuple[str, ...] = field(default_factory=tuple)
 
     #: Which backend runs this model. ``llama.cpp`` reads a single GGUF file;
-    #: ``onnx`` needs a whole directory (weights + tokenizer + genai_config).
+    #: ``onnx`` needs a whole directory (weights + tokenizer + genai_config);
+    #: ``litert`` reads a single ``.litertlm`` bundle.
     engine: str = "llama.cpp"
     #: ONNX only: the files making up the model, and the sub-directory inside
     #: the repo they live in ("" when the model sits at the repo root).
     onnx_files: tuple[str, ...] = ()
     onnx_subdir: str = ""
-    #: ONNX only: what the weights were quantised to, since there is no
+    #: ONNX and LiteRT: what the weights were quantised to, since there is no
     #: filename convention to parse it out of the way GGUF has.
     onnx_precision: str = ""
 
@@ -102,13 +103,22 @@ class ModelSpec:
         return self.engine == "onnx"
 
     @property
+    def is_litert(self) -> bool:
+        return self.engine == "litert"
+
+    @property
+    def needs_llama(self) -> bool:
+        """True if this model can only run with the llama.cpp runtime installed."""
+        return self.engine == "llama.cpp"
+
+    @property
     def effective_filename(self) -> str:
         """The GGUF actually in use - the pinned default, or a resolved quant."""
         return _overrides().get(self.id, self.filename)
 
     @property
     def quant(self) -> str:
-        if self.is_onnx:
+        if self.is_onnx or self.is_litert:
             return self.onnx_precision or "?"
         found = _QUANT_RE.search(Path(self.effective_filename).stem)
         return found.group(0).upper() if found else "?"
@@ -637,7 +647,7 @@ CUSTOM_FILE = MODELS_DIR / "custom.json"
 _SPEC_FIELDS = {
     "id", "name", "repo", "filename", "params", "approx_mb", "context",
     "vendor", "license", "tr", "tier", "rank", "why", "tags",
-    "system_prompt_ok", "source_url",
+    "system_prompt_ok", "source_url", "engine", "onnx_precision",
 }
 
 

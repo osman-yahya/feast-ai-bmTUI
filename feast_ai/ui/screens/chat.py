@@ -19,6 +19,7 @@ from textual.containers import Grid, Horizontal, Vertical, VerticalScroll
 from textual.screen import Screen
 from textual.widgets import Footer, Header, Input, Static
 
+from ...agent import mock, native, replies
 from ...agent import prompts as agent_prompts
 from ...agent.calls import check_reply, render_call
 from ...agent.context import AgentContext
@@ -103,6 +104,8 @@ class ChatScreen(Screen):
         self._router_lock = asyncio.Lock()
         #: Kept past an unload, so the report still states what the router cost.
         self._router_rss = 0
+        #: Has the native tool prompt been prefilled on this server yet?
+        self._warmed = False
 
     # ------------------------------------------------------------------
     def compose(self) -> ComposeResult:
@@ -182,7 +185,7 @@ class ChatScreen(Screen):
             return
         # The model decides its own backend, so a GGUF can never be handed to
         # ONNX Runtime or vice versa.
-        if not spec.is_onnx and app.runtime.server is None:
+        if spec.needs_llama and app.runtime.server is None:
             self.status("[#ff5f5f]llama.cpp runtime is not installed.[/]")
             self.add_bubble(
                 "error", "engine",
@@ -260,6 +263,43 @@ class ChatScreen(Screen):
         self.update_side_facts()
         if app.settings.agent_mode == "hierarchical":
             await self.ensure_router()
+        elif app.settings.agent_mode == "native":
+            await self.prefill_tool_prompt()
+
+    # ------------------------------------------------------------------
+    async def prefill_tool_prompt(self) -> None:
+        """Run the static tool prompt through the model once, as an app would at launch.
+
+        The native prompt is over a thousand tokens that never change.  Both
+        engines keep a prefilled prefix, so paying for it here - and saying
+        so - leaves the first real message with only its own tokens to read.
+        """
+        if self.client is None or self._warmed:
+            return
+        context = AgentContext.load()
+        messages = self.client.build_messages(
+            [], native.user_content("selam", context), system_prompt=native.SYSTEM)
+        self.status("[#8b93a7]Prefilling the tool prompt…[/]")
+        started = time.monotonic()
+        # The same request shape as a real turn (max_tokens included): the
+        # runtime shares a prefilled prompt only between identical setups.
+        reply = await self.client.complete_once(
+            messages, max_tokens=self.app.settings.max_tokens,
+            extra={"tools": native.declarations(context.tags), "temperature": 0.0})
+        seconds = time.monotonic() - started
+        if "error" in reply:
+            self.add_bubble("system", "feast AI", f"Tool prompt not prefilled: {reply['error']}")
+            return
+        self._warmed = True
+        tokens = int((reply.get("timings") or {}).get("prompt_n")
+                     or (reply.get("usage") or {}).get("prompt_tokens") or 0)
+        self.add_bubble(
+            "system", "feast AI",
+            f"Native agent: tool prompt prefilled in {seconds:.1f}s"
+            + (f" ({tokens} tokens)" if tokens else "")
+            + ". It stays cached, so each message now costs only its own tokens.",
+        )
+        self.status("[#7bd88f]Ready.[/]")
 
     # ------------------------------------------------------------------
     async def ensure_router(self) -> bool:
@@ -460,7 +500,8 @@ class ChatScreen(Screen):
                 style=f"bold {think_tone}",
             )
             model.append("  (Ctrl+T)\n", style="#3a3f4b")
-            agent_tone = {"off": "#6f7789", "direct": "#ffb454", "hierarchical": "#7bd88f"}
+            agent_tone = {"off": "#6f7789", "direct": "#ffb454", "hierarchical": "#7bd88f",
+                          "native": "#4fc1ff"}
             model.append("agent    ", style="#6f7789")
             model.append(settings.agent_mode, style=f"bold {agent_tone[settings.agent_mode]}")
             model.append("  (Ctrl+R)\n", style="#3a3f4b")
@@ -476,7 +517,9 @@ class ChatScreen(Screen):
             else:
                 model.append(
                     "system: feast tool prompt"
-                    + (" (routed per message)" if settings.agent_mode == "hierarchical" else ""),
+                    + (" (routed per message)" if settings.agent_mode == "hierarchical" else "")
+                    + (" (native declarations, guarded)" if settings.agent_mode == "native"
+                       else ""),
                     style="#545b6b",
                 )
         self.query_one("#model-facts", Static).update(model)
@@ -537,12 +580,21 @@ class ChatScreen(Screen):
         system_prompt: str | None = None  # None -> the Settings system prompt
         offered: tuple[str, ...] = ()
         context: AgentContext | None = None
+        extra: dict | None = None
+        sent_text = text  # what the model reads; native adds the [ctx] line
         if mode != "off":
             context = AgentContext.load()
             if mode == "direct":
                 system_prompt = agent_prompts.full_prompt(context)
                 offered = ALL_TOOL_NAMES
                 turn.prompt_name, turn.tools_offered = "full", len(offered)
+            elif mode == "native":
+                system_prompt = native.SYSTEM
+                offered = ALL_TOOL_NAMES
+                turn.prompt_name, turn.tools_offered = "native", len(offered)
+                # Greedy: which tool to call is not a place for sampling.
+                extra = {"tools": native.declarations(context.tags), "temperature": 0.0}
+                sent_text = native.user_content(text, context)
             else:
                 decision = await self.route(text, context)
                 if decision is None:
@@ -557,7 +609,16 @@ class ChatScreen(Screen):
                 offered = decision.tools
 
         bubble = self.add_bubble("assistant", app.active_model.name if app.active_model else "model")
-        messages = self.client.build_messages(self.history, text, system_prompt=system_prompt)
+        if mode == "native":
+            # The window is sized in text, not turns, and moves rarely, so the
+            # engine's kept conversation survives between moves (native.window).
+            past = native.window(self.history) if settings.keep_history else []
+            messages = ([{"role": "system", "content": system_prompt}]
+                        + [m.payload() for m in past]
+                        + [{"role": "user", "content": sent_text}])
+        else:
+            messages = self.client.build_messages(self.history, sent_text,
+                                                  system_prompt=system_prompt)
 
         think = ThinkFilter()
         visible_parts: list[str] = []
@@ -573,7 +634,7 @@ class ChatScreen(Screen):
         self.status("[#ffb454]Generating…[/]  [#6f7789]Ctrl+X to stop[/]")
 
         try:
-            async for event in self.client.stream(messages):
+            async for event in self.client.stream(messages, extra=extra):
                 if self._stop:
                     turn.stopped = True
                     break
@@ -623,11 +684,33 @@ class ChatScreen(Screen):
             visible_parts.append(tail)
             answer_parts.append(tail)
         answer = "".join(visible_parts).strip()
+        generated = time.monotonic()  # the first pass ends here
+
+        # ---- judge the answer; in native mode run the tool and answer it ----
+        check = outcome = hop = None
+        if context is not None and not error:
+            check = check_reply("".join(answer_parts), offered, context.tags)
+            if mode == "native":
+                # The app's half of the job: ids, grounding, confirm-first.
+                outcome = native.guard(
+                    check,
+                    [native.strip_ctx(m.content) for m in self.history if m.role == "user"]
+                    + [text],
+                    [m.content for m in self.history if m.role == "assistant"],
+                    "" if check.is_call else "".join(answer_parts),
+                    results=[m.content for m in self.history if m.role == "tool"],
+                    context_line=native.ctx_line(context),
+                )
+                check = outcome.check
+                if check.is_call and check.status == "ok" and not outcome.text \
+                        and not turn.stopped:
+                    hop = await self.answer_result(check, messages, extra, bubble, context, text)
+                    error = hop["error"]
         finished = time.monotonic()
 
         # ---- fold the measurements into the turn ----------------------
         turn.total_s = finished - started
-        turn.decode_s = max(1e-6, finished - (self._first_token_at or started))
+        turn.decode_s = max(1e-6, generated - (self._first_token_at or started))
         turn.response_chars = len(answer)
         turn.reasoning_chars = reasoning_chars
         turn.reasoning_tokens = reasoning_tokens
@@ -639,6 +722,12 @@ class ChatScreen(Screen):
         turn.completion_tokens = int(
             usage.get("completion_tokens") or timings.get("predicted_n") or self._live_tokens
         )
+        if hop is not None:
+            turn.tool_result = hop["result_json"]
+            turn.answer_s = hop["seconds"]
+            turn.answer_tokens = hop["tokens"]
+            turn.answer_prompt_tokens = hop["prompt_tokens"]
+            turn.answer_note = "; ".join(hop["notes"])
         # Prompt tokens llama.cpp did not have to prefill again.
         turn.cached_tokens = int(timings.get("cache_n") or 0)
 
@@ -653,7 +742,7 @@ class ChatScreen(Screen):
         elif turn.prompt_tokens and prefill_s > 0:
             turn.prefill_tps = turn.prompt_tokens / prefill_s
         if turn.total_s > 0:
-            turn.e2e_tps = turn.completion_tokens / turn.total_s
+            turn.e2e_tps = (turn.completion_tokens + turn.answer_tokens) / turn.total_s
 
         # Take one final reading before closing the window. A short reply can
         # finish inside a single sample interval, and without this the turn
@@ -677,16 +766,37 @@ class ChatScreen(Screen):
             self.status(f"[#ff5f5f]{error[:120]}[/]")
         else:
             call_note = ""
-            if context is not None:
-                check = check_reply("".join(answer_parts), offered, context.tags)
+            stored = answer  # what goes into the history
+            if check is not None:
+                if outcome is not None:
+                    if outcome.text:
+                        answer = stored = outcome.text
+                    elif check.is_call:
+                        stored = render_call(check.name, check.args)
+                        answer = "⚙ " + check.name + "(" + ", ".join(
+                            f"{k}={v!r}" for k, v in check.args.items()) + ")"
+                    turn.guard_note = "; ".join(outcome.notes)
+                    if outcome.ungrounded:
+                        turn.guard_note = "; ".join(
+                            [turn.guard_note] * bool(turn.guard_note)
+                            + ["ungrounded: " + ", ".join(outcome.ungrounded)])
                 turn.tool_call, turn.call_status = check.name, check.status
-                turn.call_format = check.format
+                turn.call_format = "native" if mode == "native" and check.is_call else check.format
                 call_note = f" · call: {check.label()}"
                 if check.issues:
                     call_note += " — " + "; ".join(check.issues[:2])
+                if turn.guard_note:
+                    call_note += f" · guard: {turn.guard_note}"
+            if hop is not None:
+                answer = "\n".join([answer] + hop["cards"] + ["", hop["reply"]])
+                call_note += (f" · answer: {turn.answer_tokens} tok in {turn.answer_s:.2f}s"
+                              + (f" · {turn.answer_note}" if turn.answer_note else ""))
             if settings.keep_history:
-                self.history.append(Message("user", text))
-                self.history.append(Message("assistant", answer))
+                self.history.append(Message("user", sent_text))
+                self.history.append(Message("assistant", stored))
+                if hop is not None:
+                    self.history.append(Message("tool", hop["result_json"], name=check.name))
+                    self.history.append(Message("assistant", hop["reply"]))
             thinking_note = (
                 f" · {turn.reasoning_tokens} thinking ({turn.reasoning_share:.0f}%)"
                 if turn.reasoning_tokens
@@ -712,6 +822,70 @@ class ChatScreen(Screen):
         self.query_one("#t-ttft", StatTile).set_value(f"{turn.ttft_s:.2f}")
         self.query_one("#transcript", VerticalScroll).scroll_end(animate=False)
         self.query_one("#chat-input", Input).focus()
+
+    # ------------------------------------------------------------------
+    async def answer_result(self, check, messages: list[dict], extra: dict | None,
+                            bubble: Bubble, context: AgentContext, user_text: str) -> dict:
+        """Run a guarded call and let the model say a sentence about the result.
+
+        The tool is the mock of the phone's local data
+        (:mod:`feast_ai.agent.mock`).  The request continues the conversation
+        the call came from - the call and its result are appended - so the
+        engine reads only the result.  The sentence is then checked against
+        the result (:func:`feast_ai.agent.replies.check`); what the check
+        replaces is reported with the turn.
+        """
+        import json
+
+        from ...agent.text import detect_lang
+
+        result = mock.run(check.name, check.args, context)
+        call_line = "⚙ " + check.name + "(" + ", ".join(
+            f"{k}={v!r}" for k, v in check.args.items()) + ")"
+        shown = native.cards(result)
+        request = messages + [
+            {"role": "assistant", "content": render_call(check.name, check.args)},
+            native.tool_message(check.name, result)]
+        started = time.monotonic()
+        parts: list[str] = []
+        usage: dict = {}
+        timings: dict = {}
+        error = ""
+        think = ThinkFilter()
+        try:
+            async for event in self.client.stream(request, extra=extra):
+                if self._stop:
+                    break
+                if event.kind == "error":
+                    error = event.error
+                    break
+                if event.kind == "done":
+                    usage, timings = event.usage, event.timings
+                    break
+                if event.kind == "reasoning":
+                    continue
+                visible, _reasoned = think.feed(event.text)
+                if visible:
+                    parts.append(visible)
+                    self._live_tokens += 1
+                    bubble.set_text("\n".join([call_line] + shown + ["", "".join(parts)]))
+                    self._pending_render = bubble
+        except asyncio.CancelledError:
+            pass
+        except Exception as exc:  # noqa: BLE001 - surfaced in the transcript
+            error = str(exc)
+        parts.append(think.flush())
+        raw = "".join(parts).strip()
+        reply, notes = replies.check(
+            raw, check.name, check.args, result, user_text, native.ctx_line(context),
+            english=detect_lang(user_text) == "en")
+        return {
+            "result_json": json.dumps(result, ensure_ascii=False), "cards": shown,
+            "reply": reply, "raw": raw, "notes": notes, "error": error,
+            "seconds": time.monotonic() - started,
+            "tokens": int(usage.get("completion_tokens") or timings.get("predicted_n") or 0),
+            "prompt_tokens": int(usage.get("prompt_tokens") or timings.get("prompt_n") or 0),
+        }
 
     # ------------------------------------------------------------------
     async def route(self, text: str, context: AgentContext) -> RouteDecision | None:
@@ -793,6 +967,7 @@ class ChatScreen(Screen):
             "off": "plain chat with your system prompt",
             "direct": "every tool in one prompt; the SLM decides alone",
             "hierarchical": "intent router first, then only the relevant tools",
+            "native": "the trained model's own tool format, greedy, guarded in code",
         }[mode]
         self.notify(f"Agent: {mode} — {explain}", title="feast AI")
         self.status(
@@ -803,7 +978,13 @@ class ChatScreen(Screen):
             self.start_router_worker()
         elif mode != "hierarchical" and app.router_server is not None:
             self.stop_router_worker()
+        if self._ready and mode == "native" and not self._warmed:
+            self.prefill_worker()
         self.update_side_facts()
+
+    @work(group="prefill")
+    async def prefill_worker(self) -> None:
+        await self.prefill_tool_prompt()
 
     # ------------------------------------------------------------------
     def action_stop_generation(self) -> None:

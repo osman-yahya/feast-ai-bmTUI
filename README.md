@@ -364,6 +364,12 @@ the same model and the same device budget:
 | `off` | your system prompt | every message (plain chat, as before) |
 | `direct` | one prompt with all 15 tools (~1,000 tokens) | every message |
 | `hierarchical` | only the routed intent's tools (165–490 tokens) | only when the router can't answer alone |
+| `native` | the 15 tools as declarations in the model's own format (1,454 tokens, prefilled once) | every message, then once more to answer the tool's result |
+
+`native` is for a model that was *trained* on the tools (the
+[mustachio](mustachio/README.md) bundle, on LiteRT-LM). The other modes work
+around a stock model; this one trusts a fine-tune for the call and checks it
+in code. See [Native pipeline](#native-pipeline-a-trained-model-on-litert-lm).
 
 Switch modes with `Ctrl+R` mid-chat, or in Settings → *Agent / intent
 routing*. The router loads with hierarchical mode and unloads when you leave
@@ -748,6 +754,90 @@ back to a free string, and the judge does not check ids against the chat:
 one `get_directions` call with an invented `r_123` counted as a valid call,
 though not as exact.
 
+### Native pipeline: a trained model on LiteRT-LM
+
+Agent mode `native` (`Ctrl+R`), bench modes `native` and `native-raw`. It
+needs a model fine-tuned on the tools; the one this repo produces is
+`mustachio-e2b` (see the next section), a `.litertlm` bundle that runs on
+LiteRT-LM, the runtime the feast mobile app ships.
+
+One turn:
+
+1. **One greedy pass.** The tools travel as declarations and are rendered by
+   the template inside the bundle; the clock and location are a `[ctx]` line
+   on the user's message, so the 1,454-token prompt is read once per session.
+2. **The guard** (`agent/native.py`) checks the call in code: unknown
+   arguments dropped and types coerced, ids must be ones the app listed,
+   searched words, places and people must come from the user's own message
+   (a near miss is repaired from it), and `send_message_to_friends` runs only
+   as the answer to the assistant's own "Göndereyim mi?".
+3. **The tool runs.** In the TUI that is `agent/mock.py`, an invented
+   neighbourhood; results are shown as cards.
+4. **One sentence about the result**, written by the model, then checked
+   (`agent/replies.py`): a number or a name that is not in the result
+   replaces the sentence with one written from the result.
+
+```text
+you        kanka yakında güzel bi kahveci var mı
+mustachio  ⚙ search_restaurants(query='kahveci')
+           ▸ Asma Kahve · 2 dk · [r_106]
+
+           Bir yer çıktı: Asma Kahve, 2 dakikalık yürüme mesafesinde.
+you        50 liranın altında levrek var mı
+mustachio  ⚙ search_menu_items(max_price=50, query='levrek')
+           ∅ no results
+
+           50 liranın altında levrek çıkmadı. Bütçeyi biraz açalım mı?
+you        evet bak
+mustachio  ⚙ search_menu_items(query='levrek')
+           ▸ Izgara Levrek · 520 TL · Rıhtım Balık · [m_2003]
+
+           Bir yerde buldum: Rıhtım Balık, Izgara Levrek 520 lira.
+```
+
+Measured on the four held-out suites (257 turns; the blind suite was written
+by a teacher model and scored once), one pass, greedy:
+
+| Exact | bf16 adapter (GPU) | **the shipped bundle (LiteRT-LM, CPU)** |
+| --- | --- | --- |
+| as the model wrote it (`native-raw`) | 95.3% | @@B_ALL_RAW@@ |
+| after the guard (`native`) | 96.9% | @@B_ALL_G@@ |
+| blind suite only, raw / guarded | 93.8% / 94.8% | @@B_BLD_RAW@@ / @@B_BLD_G@@ |
+| Sentences about a tool result that state only what is in it (dev) | 100% of 172 | @@B_DEV_FAITH@@ |
+
+Every intervention is reported: the turn footer and the session report say
+what the guard changed, and `native-raw` is the same run judged without it.
+The standard and kanka suites are the 91 turns `direct` (71%) and `active2`
+(85%) were measured on, but through llama.cpp at Q4_K_M with a different
+prompt; read the comparison as "a trained model in one pass reaches what two
+constrained passes did", not as a like-for-like gain.
+
+What it costs: the bundle is quantised after training and is slower than
+Google's own (decode @@SPEED_DECODE@@ against 16-21 tok/s at 4 threads), and
+when the app rewrites history the runtime reads the whole chat again. Both
+are in [mustachio's README](mustachio/README.md#7-shipping-on-litert-lm).
+
+---
+
+## The model itself: mustachio
+
+Everything above the native pipeline compares ways to use a stock model.
+[`mustachio/`](mustachio/README.md) is the workspace that changes the model:
+a text-only Gemma 4 E2B, a training set with labels correct by construction
+in four registers including Turkish mixed with English, conversations in
+which the tool is run and answered, a LoRA fine-tune, an export to
+`.litertlm` with a quantisation recipe chosen on a dev split, and an
+evaluation on the suites above plus a hybrid and a blind one. Its README has
+the measured numbers and the open items.
+
+```bash
+python -m mustachio data --name v4 --size 16000 --dev 600
+python -m mustachio train --data ~/.feast-ai/mustachio/data/v4 --run final
+python -m mustachio export ~/.feast-ai/mustachio/runs/final/adapter --name final   # Linux
+python -m mustachio install --activate      # the bundle appears in the TUI's model list
+python -m feast_ai                          # load "Mustachio", chat (agent mode native)
+```
+
 ---
 
 ## What gets measured
@@ -781,7 +871,7 @@ and JSON (for plotting).
 
 **Models** — `↑↓` browse · `Enter` load & chat · `D` download · `A` add a model · `X` delete · `R` refresh · `Ctrl+C` cancel download · `Esc` back
 
-**Chat** — `Enter` send · `Ctrl+E` end & report · `Ctrl+P` system prompt · `Ctrl+T` thinking mode · `Ctrl+R` agent mode (off → direct → hierarchical) · `Ctrl+X` stop · `Ctrl+L` clear context · `F2` settings · `Esc` leave
+**Chat** — `Enter` send · `Ctrl+E` end & report · `Ctrl+P` system prompt · `Ctrl+T` thinking mode · `Ctrl+R` agent mode (off → direct → hierarchical → native) · `Ctrl+X` stop · `Ctrl+L` clear context · `F2` settings · `Esc` leave
 
 **Summary** — `S` save report · `N` another model · `Esc` back to chat · `Q` quit
 
@@ -827,6 +917,14 @@ python -m feast_ai bench qwen3-0.6b --profile budget
 
 ```bash
 python -m feast_ai bench gemma-4-e2b --profile midrange --suite kanka
+```
+
+```bash
+pip install litert-lm && python -m mustachio install --activate
+```
+
+```bash
+python -m feast_ai bench mustachio-e2b --modes native,native-raw --profile midrange --suite kanka
 ```
 
 `pull` also fetches encoders. `route` prints how the intent router would serve
@@ -904,17 +1002,19 @@ Requires Python 3.10+. Tested on Windows 11 with Python 3.13, llama.cpp
 
 ---
 
-## Two inference engines
+## Three inference engines
 
-feast AI runs two CPU backends behind one interface. Each model declares which
-one it needs, so a GGUF can never be handed to ONNX Runtime or vice versa.
+feast AI runs three CPU backends behind one interface. Each model declares
+which one it needs, so a GGUF can never be handed to ONNX Runtime or vice
+versa.
 
 | Engine | Weights | Install | Notes |
 | --- | --- | --- | --- |
 | **llama.cpp** | GGUF, one file | bundled prebuilt binary | The default. |
 | **ONNX Runtime GenAI** | ONNX, a directory | `pip install onnxruntime-genai` | Optional; catalog entries report it as missing if absent. |
+| **LiteRT-LM** | `.litertlm`, one file | `pip install litert-lm` | Optional; the runtime the feast mobile app ships. Tool calls are parsed by the runtime and returned as `tool_calls`. The worker keeps the conversation, as a phone app would, and says for each reply whether it was continued, cloned from the prefilled prompt or re-read (`timings.path`). |
 
-Both run as a **subprocess** exposing the same OpenAI-compatible endpoint.
+All run as a **subprocess** exposing the same OpenAI-compatible endpoint.
 That is deliberate: `onnxruntime-genai` is a Python library, so calling it
 in-process would pin *the TUI* to the device's core budget, cap the TUI's
 working set instead of the model's, and leave no separate process tree to

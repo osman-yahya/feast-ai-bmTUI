@@ -79,6 +79,15 @@ class TurnStats:
     tool_call: str = ""
     call_status: str = ""       # "text" | "ok" | a hallucination class
     call_format: str = ""
+    #: What the app-side guard changed in a ``native`` turn ("" = nothing).
+    guard_note: str = ""
+    #: Native mode, when the call was run: the tool's result (JSON), the time
+    #: and tokens of the sentence about it, and what the reply check changed.
+    tool_result: str = ""
+    answer_s: float = 0.0
+    answer_tokens: int = 0
+    answer_prompt_tokens: int = 0
+    answer_note: str = ""
 
     stopped: bool = False
     error: str = ""

@@ -118,7 +118,10 @@ def _native_object(text: str) -> dict | None:
     the model falls back to the format it was trained on. Swap the token for
     quotes and quote the bare keys, and it is plain JSON.
     """
-    raw = text.replace('<|"|>', '"')
+    # A quantised model sometimes doubles the closing quote token; the value
+    # is not in doubt, so it is read as one quote.
+    raw = re.sub(r'(?:<\|"\|>){2,}(?=\s*[,}\]])', '<|"|>', text)
+    raw = raw.replace('<|"|>', '"')
     for candidate in (raw, re.sub(r'([{,]\s*)([A-Za-z_][A-Za-z0-9_]*)\s*:', r'\1"\2":', raw)):
         try:
             value = json.loads(candidate)

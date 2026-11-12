@@ -298,6 +298,10 @@ def _cmd_doctor() -> int:
 
     print(f"  onnx runtime     "
           f"{'onnxruntime-genai ' + onnx_version() if onnx_available() else 'NOT INSTALLED'}")
+    from .engine import litert_available, litert_version
+
+    print(f"  litert-lm        "
+          f"{'litert-lm ' + litert_version() if litert_available() else 'NOT INSTALLED'}")
     from . import encoders
     from .engine.encoder_server import INSTALL_HINT, missing_packages
 
@@ -318,7 +322,7 @@ def _cmd_doctor() -> int:
     downloaded = [m for m in CATALOG if m.downloaded]
     print(f"  models on disk   {len(downloaded)}/{len(CATALOG)}")
     for spec in downloaded:
-        tag = "  [onnx]" if spec.is_onnx else ""
+        tag = "  [onnx]" if spec.is_onnx else "  [litert]" if spec.is_litert else ""
         print(f"                   - {spec.name}  {human_bytes(spec.local_size)}{tag}")
     if not runtime.available:
         print("\n  Fix: feast-ai runtime")

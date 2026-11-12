@@ -452,16 +452,44 @@ def _tail(path: Path | None, lines: int) -> str:
     return "\n".join(content[-lines:])
 
 
+def in_venv() -> bool:
+    return sys.prefix != getattr(sys, "base_prefix", sys.prefix)
+
+
+def worker_python() -> str:
+    """The interpreter a Python worker must be started with.
+
+    On Windows a virtualenv's ``python.exe`` is a launcher that starts the
+    real interpreter as a *child*.  A worker started through it is two
+    processes, and the one BaseServer holds - the one it pins and caps - is
+    the launcher: measured here, the "worker" showed 4 MB of RSS while the
+    model ran unpinned and uncapped beside it.  Starting the base interpreter
+    directly (with the virtualenv's packages on PYTHONPATH, see
+    :func:`package_on_pythonpath`) keeps the budget on the process that does
+    the work.
+    """
+    if os.name == "nt" and in_venv():
+        return getattr(sys, "_base_executable", "") or sys.executable
+    return sys.executable
+
+
 @contextmanager
 def package_on_pythonpath():
     """Make ``feast_ai`` importable for a ``python -m`` worker subprocess.
 
     BaseServer sets the child's cwd to the binary's directory, which for
     ``sys.executable`` is the Python install - so the package root goes on
-    PYTHONPATH for the duration of the launch instead.
+    PYTHONPATH for the duration of the launch instead.  Inside a virtualenv
+    the worker runs on the base interpreter (:func:`worker_python`), so the
+    virtualenv's own package directories go with it.
     """
     root = str(Path(__file__).resolve().parents[2])
     existing = os.environ.get("PYTHONPATH", "")
+    extra = [root]
+    if os.name == "nt" and in_venv():
+        extra += [p for p in sys.path if p and Path(p).is_dir()
+                  and str(Path(p)).lower().startswith(str(Path(sys.prefix)).lower())]
+    root = os.pathsep.join(extra)
     os.environ["PYTHONPATH"] = root + (os.pathsep + existing if existing else "")
     try:
         yield
