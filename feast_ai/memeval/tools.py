@@ -205,25 +205,42 @@ def _menu(args: dict, data: AppData) -> tuple[bool, str]:
     return True, "\n".join(out)
 
 
+#: Kitchens where an allergen is the trade, so a safe dish still shares the pans with it.
+CROSS_CONTACT = {"deniz ürünleri": {"fish", "molluscs", "crustaceans"}}
+
+
 def _nearby(args: dict, data: AppData) -> tuple[bool, str]:
     c = data.constraints
     want_c, want_a = fold(str(args.get("cuisine") or "")), fold(str(args.get("area") or ""))
+    places = data.world.restaurants
+    # A filter no place matches ("any", "herhangi", a district with no restaurant) is dropped, not obeyed.
+    ignored = []
+    if want_c and not any(want_c in fold(_cuisine(r.id)) or any(want_c in fold(t) for t in r.tags) for r in places):
+        ignored, want_c = ignored + [f"cuisine '{args['cuisine']}'"], ""
+    if want_a and not any(want_a in fold(r.area) for r in places):
+        ignored, want_a = ignored + [f"area '{args['area']}'"], ""
     rows = []
-    for r in data.world.restaurants:
+    for r in places:
         label = _cuisine(r.id)
         if want_c and want_c not in fold(label) and not any(want_c in fold(t) for t in r.tags):
             continue
         if want_a and want_a not in fold(r.area):
             continue
         until = _open_until(r, data.now)
-        safe = [m for m in data.world.menu_items if m.restaurant_id == r.id and c.allows(m)]
+        dishes = [m for m in data.world.menu_items if m.restaurant_id == r.id and fold(m.category_name) != "icecek"]
+        safe = [m for m in dishes if c.allows(m)]
         if until and safe:
-            rows.append((label not in c.likes, _km(data.home, (r.lat, r.lng)), r, label, until, safe))
+            mostly = 2 * len(safe) > len(dishes) and not (CROSS_CONTACT.get(label, set()) & set(c.allergens))
+            rows.append((label not in c.likes, _km(data.home, (r.lat, r.lng)), r, label, until, safe, mostly))
+    if any(row[6] for row in rows):                    # a place where half the menu or more is off limits only as a last resort
+        rows = [row for row in rows if row[6]]
     rows.sort(key=lambda x: (x[0], x[1]))              # cuisines the user likes first, then nearest
     out = [f"search_restaurants: {len(rows)} open place(s) with a dish safe for: {c.label()}"]
+    if ignored:
+        out.append(f"(no place matches {' or '.join(ignored)}: that filter was left out)")
     out += [f"- {r.name} [{label}{'' if other else ', the user likes it'}] {r.area}, {km:.1f} km, "
             f"open until {until} | safe: {'; '.join(_dish(m) for m in safe[:2])}"
-            for other, km, r, label, until, safe in rows[:5]]
+            for other, km, r, label, until, safe, _ in rows[:3]]
     return True, "\n".join(out)
 
 
